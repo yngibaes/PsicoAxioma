@@ -1,0 +1,65 @@
+https://reactnavigation.org/docs/preventing-going-back = Para cuando se este haciendo la entrada de diario
+
+https://reactnavigation.org/docs/shared-element-transitions =  Para las animaciónes de navigación
+
+https://reactnative.dev/docs/text-style-props = Documentación de React para poder ver cada cosa
+
+/*
+           */
+
+
+            /*
+            <ScrollView>
+            <KeyboardAvoidingView style={{ flex: 1, flexDirection: 'column',justifyContent: 'center',}} behavior="padding" enabled   keyboardVerticalOffset={100}>
+   
+            <View style={styles.osito2Wrapper}>
+                <Image style={styles.osito2Icon} resizeMode="contain" source={require('../assets/img/osito2.png')} />
+            </View>
+            
+                <View style={[styles.frameGroup, styles.frameGroupFlexBox]}>
+                    <View style={[styles.olvidasteTuContraseaParent, styles.frameGroupFlexBox]}>
+                        <View style={[styles.contrasea, styles.email1SpaceBlock]}>
+                            <Text style={[styles.email, styles.emailTypo]}>Contraseña</Text>
+                            <View style={styles.fieldShadowBox}>
+                                <TextInput style={[styles.label, styles.emailTypo]}>Escriba su contraseña</TextInput>
+                            </View>
+                        </View>
+                        <View style={[styles.email1, styles.email1SpaceBlock]}>
+                            <Text style={[styles.email2, styles.emailTypo]}>Email</Text>
+
+                            <View style={[styles.field1, styles.fieldShadowBox]}>
+                                <Text style={[styles.label, styles.emailTypo]}>Escriba su email</Text>
+                            </View>
+
+                        </View>
+                        <Pressable style={styles.olvidasteTuContraseaContainer} onPress={() => { }}>
+                            <Text style={[styles.olvidasteTuContrasea, styles.iniciarSesin2FlexBox]}>¿Olvidaste tu contraseña?</Text>
+                        </Pressable>
+                    </View>
+                    <View style={styles.frame31}>
+                        <View style={styles.frame32}>
+                            <Pressable style={styles.regstratePosition} onPress={() => { }}>
+                                <Text style={[styles.regstrate1, styles.regstrate1Typo]}>Regístrate</Text>
+                            </Pressable>
+                            <Text style={[styles.anNoTienes, styles.regstrate1Typo]}>¿Aún no tienes cuenta?</Text>
+                        </View>
+                        <Pressable style={[styles.frame321, styles.frame321Bg]} onPress={() => { }}>
+                            <Text style={[styles.iniciarSesin2, styles.iniciarSesin2FlexBox]}>Iniciar sesión</Text>
+                        </Pressable>
+                    </View>
+                    </View>
+            </KeyboardAvoidingView>
+            </ScrollView>*/
+
+
+            Link de 9/7
+
+            https://www.google.com/search?q=texttype+textinput+react+native+android&sca_esv=01e0ff83ef1459c0&sxsrf=ADLYWILhaTQWSvtmGDHwsp1QDV-Uhteang%3A1720586533092&ei=JRGOZuGtBZuZwbkPs7yMoAU&oq=texttype+textinput+reac&gs_lp=Egxnd3Mtd2l6LXNlcnAiF3RleHR0eXBlIHRleHRpbnB1dCByZWFjKgIIAjIHECEYoAEYCjIHECEYoAEYCjIHECEYoAEYCkjmHVD_AVjnFHAEeACQAQCYAZMBoAGPB6oBAzAuN7gBA8gBAPgBAZgCCqACywbCAgoQABiwAxjWBBhHmAMAiAYBkAYIkgcDNC42oAfWJQ&sclient=gws-wiz-serp
+            https://blog.logrocket.com/keyboardawarescrollview-keyboardavoidingview-react-native/
+            https://reactnative.dev/docs/textinput
+            https://www.taskade.com/spaces/3FkbZCu8UWVH9X6k/agents?onboarding-open-chat-agent-id=01J2D98NKGR9380VDXX4K3J958
+            https://reactnative.dev/docs/textinput
+            https://reactnavigation.org/docs/tab-based-navigation
+            https://reactnative.dev/docs/images
+            https://www.paste.photos/
+            https://www.figma.com/design/cEsEbDLSfCKaxkD5xkXN3a/PsicoAxioma?node-id=9-2&m=dev
