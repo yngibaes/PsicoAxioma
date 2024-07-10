@@ -9,15 +9,15 @@ const Registrarse = () => {
             <View style={styles.frameParent}>
                 <Pressable style={styles.frameChildLayout} onPress={() => {navigation.goBack();}}>
                     <View style={[styles.frameChild, styles.childPosition]} />
-                    <Image style={styles.frameItem} resizeMode="cover" source={require('../assets/img/flechaizq.png')} />
+                    <Image style={styles.frameItem} resizeMode="cover" source={require('../../assets/img/flechaizq.png')} />
                 </Pressable>
                 <Text style={styles.registrarse1}>Registrarse</Text>
             </View>
             <View style={styles.frame21Parent}>
                 <View style={styles.frame21}>
                     <View style={[styles.frame21Child, styles.childPosition]} />
-                    <Image style={styles.frame21Item} resizeMode="cover" source={require('../assets/img/osito2.png')} />
-                    <Image style={styles.osito3Icon} resizeMode="cover" source={require('../assets/img/osito2.png')} />
+                    <Image style={styles.frame21Item} resizeMode="cover" source={require('../../assets/img/osito2.png')} />
+                    <Image style={styles.osito3Icon} resizeMode="cover" source={require('../../assets/img/osito2.png')} />
                 </View>
                 <Pressable style={styles.frame23} onPress={() => { }}>
                     <Text style={styles.registrarse2}>Registrarse</Text>
@@ -65,7 +65,7 @@ const Registrarse = () => {
                             <Text style={styles.text}>*</Text>
                         </Text>
                         <View style={[styles.field4, styles.fieldShadowBox]}>
-                            <Text style={[styles.label, styles.emailTypo]}>Escriba su contraseña</Text>
+                            <Text style={[styles.label, styles.emailTypo]} >Escriba su contraseña</Text>
                         </View>
                     </View>
                 </View>

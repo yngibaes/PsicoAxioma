@@ -1,8 +1,12 @@
+Todo: Cambiar todos los valore s a porcentajes en welcome, cambiar colores por los nuevos, poner el figma en blanco y negro, Arreglar inicio sesión, registrarse y olvidoo de contraseña, revisar documentación.
+
 https://reactnavigation.org/docs/preventing-going-back = Para cuando se este haciendo la entrada de diario
 
 https://reactnavigation.org/docs/shared-element-transitions =  Para las animaciónes de navigación
 
 https://reactnative.dev/docs/text-style-props = Documentación de React para poder ver cada cosa
+
+npx react-native doctor - Para mirar los errores
 
 /*
            */

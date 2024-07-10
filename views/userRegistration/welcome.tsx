@@ -5,13 +5,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 const WelcomeScreen = () => {
 	const navigation = useNavigation();
-	const logIn = () => {
-		navigation.navigate('LogIn');
-	}
-	const signUp = () => {
-		navigation.navigate('SignUp');
-		console.log('Sign Up');
-	}
+	const logIn = () => {navigation.navigate('LogIn');}
+	const signUp = () => {navigation.navigate('SignUp');}
 
 	return (
 		<View style={styles.parentAll}>
@@ -19,7 +14,7 @@ const WelcomeScreen = () => {
 				<Text style={[styles.sizeTitle, styles.title]}>¡Bienvenido a PsicoAxioma!</Text>
 			</View>
 			<View style={[styles.divImage]}>
-				<Image style={styles.image} resizeMode="contain" source={require('../assets/img/osito1.png')} />
+				<Image style={styles.image} resizeMode="contain" source={require('../../assets/img/osito1.png')} />
 			</View>
 			<View style={[styles.divButton]}>
 				<Pressable style={styles.parentButton} onPress={logIn}>
@@ -37,7 +32,7 @@ const WelcomeScreen = () => {
 
 const styles = StyleSheet.create({
 	parentAll: { // Estilos del contenedor principal
-		backgroundColor: "#a6bccc", // Color de fondo
+		backgroundColor: "#b5d0ce", // Color de fondo
 		flex: 1, // Tamaño del contenedor
 		width: wp("100%"), // Ancho del contenedor
 		height: hp("100%"), // Altura del contenedor
@@ -56,12 +51,13 @@ const styles = StyleSheet.create({
 		justifyContent: "center", // Alineación de los elementos 
 	},
 	sizeTitle: { // Estilos del tamaño del título
+		color: "#000", // Color del texto
 		fontSize: wp('10.5%'), // Tamaño de la fuente, 4.2% del ancho de la pantalla
 		textAlign: "center", // Alineación del texto
 		width: "100%", // Ancho del contenedor
 	},
 	title: { // Estilos del título
-		color: "#000", // Color del texto
+
 		fontFamily: "InterBold", // Tipo de fuente
 		fontWeight: "300", // Grosor del texto
 	},
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
 	},
 	parentButton: { // Estilos del contenedor del botón de inicio de sesión
 		borderRadius: 10, // Radio de las esquinas del botón 
-		backgroundColor: "#e5ccba", // Color de fondo del botón
+		backgroundColor: "#233333", // Color de fondo del botón
 		width: wp("75%"), // Ancho del botón
 		height: hp("9.5%"), // Altura del botón
 		overflow: "hidden", // Ocultar elementos que sobresalgan
@@ -91,6 +87,7 @@ const styles = StyleSheet.create({
         alignItems: "center", // Alineación de los elementos
 	},	
 	button: { // Estilos del botón
+		color: "#FFF", // Color del texto
         fontSize: wp('8%'), // Tamaño de la fuente, 15% del ancho de la pantalla
         textAlign: "center", // Alineación del texto
 	},
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
 	sizeText: { // Estilos del tamaño del texto
 		fontWeight: "600", // Grosor del texto
 		fontFamily: "InterSemiBold", // Tipo de fuente
-		color: "#fff" // Color del texto
+		color: "#FFF" // Color del texto
 	},
 	optionsText: { // Estilos del texto de las opciones
 		color: "#000", // Color del texto

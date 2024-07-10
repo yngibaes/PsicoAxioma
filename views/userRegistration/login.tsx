@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Image, Pressable, Text, TextInput } from "react-native";
+import { StyleSheet, View, Image, Pressable, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -8,18 +8,18 @@ const LogInScreen = () => {
     const navigation = useNavigation();
     const goBack = () => {navigation.goBack();}
     return (
-        <View style={[styles.iniciarSesin, styles.frame321Bg]}>
-            <View style={styles.frameParent}>
+        <View style={styles.parentAll}>
+            <View style={styles.gobackParent}>
                 <Pressable style={styles.frameChildLayout} onPress={goBack}>
                     <View style={[styles.frameChild, styles.frameChildLayout]}>
-                        <Image style={styles.frameItem} resizeMode="contain" source={require('../assets/img/flechaizq.png')} />
+                        <Image style={styles.frameItem} resizeMode="contain" source={require('../../assets/img/flechaizq.png')} />
                     </View>
                 </Pressable>
                 <Text style={[styles.iniciarSesin1, styles.regstrate1Typo1]}>Iniciar Sesión</Text>
             </View>
             <KeyboardAwareScrollView>
                 <View style={styles.osito2Wrapper}>
-                    <Image style={styles.osito2Icon} resizeMode="contain" source={require('../assets/img/osito2.png')} />
+                    <Image style={styles.osito2Icon} resizeMode="contain" source={require('../../assets/img/osito2.png')} />
                 </View>
 
                 <View style={[styles.frameGroup, styles.frameGroupFlexBox]}>
@@ -32,8 +32,6 @@ const LogInScreen = () => {
                             </View>
 
                         </View>
-
-
                         <View style={[styles.contrasea, styles.email1SpaceBlock]}>
                             <Text style={[styles.email, styles.emailTypo]} >Contraseña</Text>
                             <View style={styles.fieldShadowBox}>
@@ -52,7 +50,7 @@ const LogInScreen = () => {
                             </Pressable>
                             <Text style={[styles.anNoTienes, styles.regstrate1Typo]}>¿Aún no tienes cuenta?</Text>
                         </View>
-                        <Pressable style={[styles.frame321, styles.frame321Bg]} onPress={() => { }}>
+                        <Pressable style={[styles.frame321]} onPress={() => { }}>
                             <Text style={[styles.iniciarSesin2, styles.iniciarSesin2FlexBox]}>Iniciar sesión</Text>
                         </Pressable>
                     </View>
@@ -62,13 +60,48 @@ const LogInScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    frame321Bg: {
-        backgroundColor: "#a6bccc",
+    parentAll: {
+        flex: 1,
+        width: wp("100%"),
+        height: hp("100%"),
+        paddingTop: wp("10%"),
+        alignItems: "center",
         overflow: "hidden",
+        backgroundColor: "#a6bccc"
+    },
+    gobackParent: {
+        width: wp("90%"),
+        height: 58,
+        paddingHorizontal: 12,
+        paddingVertical: 16,
+        flexDirection: "row",
+        alignItems: "center",
+        overflow: "hidden"
     },
     frameChildLayout: {
         height: 30,
         width: 30
+    },
+    frameChild: {
+        top: 0,
+        left: 0,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        backgroundColor: "#f1e6d5",
+        position: "absolute"
+    },
+    frameItem: {
+        top: 15,
+        left: 8,
+        maxHeight: "100%",
+        width: 15,
+        position: "absolute"
+    },
+    iniciarSesin1: {
+        fontSize: 20,
+        color: "rgba(13, 13, 13, 0.9)",
+        textAlign: "right",
+        marginLeft: 10
     },
     regstrate1Typo1: {
         fontFamily: "Inter-Bold",
@@ -122,36 +155,6 @@ const styles = StyleSheet.create({
     regstrate1Typo: {
         fontSize: 14,
         textAlign: "center"
-    },
-    frameChild: {
-        top: 0,
-        left: 0,
-        borderTopRightRadius: 10,
-        borderBottomLeftRadius: 10,
-        backgroundColor: "#f1e6d5",
-        position: "absolute"
-    },
-    frameItem: {
-        top: 15,
-        left: 8,
-        maxHeight: "100%",
-        width: 15,
-        position: "absolute"
-    },
-    iniciarSesin1: {
-        fontSize: 20,
-        color: "rgba(13, 13, 13, 0.9)",
-        textAlign: "right",
-        marginLeft: 10
-    },
-    frameParent: {
-        width: 367,
-        height: 58,
-        paddingHorizontal: 12,
-        paddingVertical: 16,
-        flexDirection: "row",
-        alignItems: "center",
-        overflow: "hidden"
     },
     osito2Icon: {
         top: 5,
@@ -286,14 +289,7 @@ const styles = StyleSheet.create({
         marginTop: 29,
         alignItems: "center"
     },
-    iniciarSesin: {
-        flex: 1,
-        width: "100%",
-        height: "100%",
-        paddingTop: 30,
-        alignItems: "center",
-        overflow: "hidden"
-    }
+
 });
 
 export default LogInScreen;

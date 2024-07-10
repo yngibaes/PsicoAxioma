@@ -2,9 +2,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeScreen from './views/welcome';
-import LogInScreen from './views/login';
-import SignUpScreen from './views/signup';
+import WelcomeScreen from './views/userRegistration/welcome';
+import LogInScreen from './views/userRegistration/login';
+import SignUpScreen from './views/userRegistration/signup';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator();
