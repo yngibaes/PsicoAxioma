@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TopBar from "../../components/topBar";
 import UserNavigation from "../../hooks/userNavigation";
-import ImageLogIn from "../../components/imageLogIn";
+import ImageBear from "../../components/imageBear";
 import FormLogIn from "../../components/formLogin";
 import ButtonLogin from "../../components/buttonLogIn";
 
@@ -13,10 +13,12 @@ const LogInScreen = () => {
     return (
             <View style={styles.parentAll}>
                 <TopBar goBack={goBack} text="Iniciar Sesión"/>
-                <ImageLogIn/>
-                <KeyboardAwareScrollView contentContainerStyle={styles.divForm} enableOnAndroid={true}       resetScrollToCoords={{ x: 0, y: 0 }} scrollEnabled={false}>
-                    <FormLogIn forget={forgetPassword}/>
-                    <ButtonLogin LogIn={homeScreen} SignUp={signUp}/>
+                <KeyboardAwareScrollView enableOnAndroid={true} scrollEnabled={false}>
+                    <ImageBear sizeHeightD="28%" sizeHeightI="28%" sizeWidhtI="50%"/>
+                    <View style={styles.divForm}>
+                        <FormLogIn forget={forgetPassword}/>
+                        <ButtonLogin LogIn={homeScreen} SignUp={signUp}/>
+                    </View>
                 </KeyboardAwareScrollView>
             </View>
        );

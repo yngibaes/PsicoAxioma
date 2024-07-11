@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import TitleWelcome from '../../components/tittleWelcome';
-import ImageWelcome from '../../components/imageWelcome';
+import ImageBear from '../../components/imageBear';
 import ButtonLogin from '../../components/buttonLogIn';
 import UserNavigation from '../../hooks/userNavigation';
 
@@ -11,7 +11,7 @@ const WelcomeScreen = () => {
 	return (
 		<View style={styles.parentAll}>
 			<TitleWelcome/>
-			<ImageWelcome/>
+			<ImageBear sizeHeightD="45%" sizeHeightI="42%" sizeWidhtI="80%"/>
 			<ButtonLogin LogIn={logIn} SignUp={signUp}/>
 		</View>);
 };

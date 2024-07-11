@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 interface propsFormLogIn {
 	forget: () => void,
-  }
+}
 
 const FormLogIn = (props:propsFormLogIn) => {
     return(
         <View style={styles.parentForm}>
-            <View>
+            <View style={styles.parentInput}>
                 <View style={styles.divInput}>
                     <Text style={styles.labelForm}>Email</Text>
                     <View style={[styles.sizeInput, styles.Input]}>
-                        <TextInput style={styles.label} placeholder="Escriba su email" keyboardType="email-address" placeholderTextColor="#000" />
+                        <TextInput style={styles.label} placeholder="Escriba su email" keyboardType="email-address" placeholderTextColor="#000" inputMode="email" data-name="userEmail"/>
                     </View>
                 </View>
                 <View style={styles.divInput}>
                     <Text style={styles.labelForm}>Contraseña</Text>
                     <View style={[styles.sizeInput, styles.Input]}>
-                        <TextInput style={styles.label} placeholder="Escriba su contraseña" keyboardType="default" secureTextEntry={true} placeholderTextColor="#000" />
+                        <TextInput style={styles.label} placeholder="Escriba su contraseña" keyboardType="default" secureTextEntry placeholderTextColor="#000" inputMode="text" data-name="userPassword"/>
                     </View>
                 </View>    
             </View>
@@ -39,10 +38,15 @@ const styles = StyleSheet.create({
         alignItems: "center", // Alineación de los elementos
         marginTop: hp("3%") // Margen superior
     },
+    parentInput: { // Estilos del contenedor del input
+        width: wp("100%"), // Ancho del contenedor
+        flexDirection: "column", // Orden de los elementos
+        alignItems: "center", // Alineación de los elementos
+    },
     divInput: { // Estilos del contenedor del input del formulario
-        width: wp("90%"), // Ancho del contenedor 
-        height: hp("14%"), // Altura del contenedor 
+        width: wp("90%"), // Ancho del contenedor
         paddingHorizontal: wp("5%"), // Relleno horizontal
+        marginTop: hp("2%") // Margen superior
     },
     labelForm: { // Estilos de la etiqueta del formulario 
         width: wp("90%"), // Ancho de la etiqueta 
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
         marginTop: hp("1%"), // Margen superior
         paddingHorizontal: "4%", // Relleno horizontal 
         borderWidth: 1, // Ancho del borde 
-        borderColor: "#e0e0e0", // Color del borde 
+        borderColor: "#b5d0ce", // Color del borde 
         borderStyle: "solid", // Estilo del borde
         backgroundColor: "#FFF", // Color de fondo
         borderRadius: 15, // Radio del borde
@@ -87,7 +91,8 @@ const styles = StyleSheet.create({
     },
     divForget: {
         width: wp("80%"),
-        height: hp("5%"),
+        height: hp("3%"),
+        marginTop: hp("0.9%"),
     },
     text: {
         fontSize: wp('3.5%'),
