@@ -1,18 +1,14 @@
 import * as React from "react";
 import { StyleSheet, View, Image, Pressable, Text } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import TopBar from "../../components/topBar";
+import UserNavigation from "../../hooks/userNavigation";
 
-const Registrarse = () => {
-    const navigation = useNavigation();
+const SignUp = () => {
+    const { goBack } = UserNavigation();
     return (
-        <View style={styles.registrarse}>
-            <View style={styles.frameParent}>
-                <Pressable style={styles.frameChildLayout} onPress={() => {navigation.goBack();}}>
-                    <View style={[styles.frameChild, styles.childPosition]} />
-                    <Image style={styles.frameItem} resizeMode="cover" source={require('../../assets/img/flechaizq.png')} />
-                </Pressable>
-                <Text style={styles.registrarse1}>Registrarse</Text>
-            </View>
+        <View style={styles.parentAll}>
+                <TopBar goBack={goBack} text="Regístrate"/>
             <View style={styles.frame21Parent}>
                 <View style={styles.frame21}>
                     <View style={[styles.frame21Child, styles.childPosition]} />
@@ -74,6 +70,17 @@ const Registrarse = () => {
 };
 
 const styles = StyleSheet.create({
+    parentAll: {
+        flex: 1,
+        width: wp("100%"),
+        height: hp("100%"),
+        paddingTop: wp("10%"),
+        alignItems: "center",
+        overflow: "hidden",
+        backgroundColor: "#b5d0ce",
+        flexDirection: "column", //	Orden de los elementos
+        //justifyContent: 'space-evenly', // Alineación de los elementos
+    },
     childPosition: {
         backgroundColor: "#a6bccc",
         left: 0,
@@ -363,15 +370,6 @@ const styles = StyleSheet.create({
         width: 390,
         overflow: "hidden"
     },
-    registrarse: {
-        flex: 1,
-        width: "100%",
-        height: 844,
-        paddingTop: 30,
-        alignItems: "center",
-        overflow: "hidden",
-        backgroundColor: "#e5ccba"
-    }
 });
 
-export default Registrarse;
+export default SignUp;

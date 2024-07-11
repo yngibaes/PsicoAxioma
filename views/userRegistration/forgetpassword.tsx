@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet, View, Pressable, Image, Text} from "react-native";
 
-const OlvidarContrasea = () => {
+const ForgetPassword = () => {
   	
   	return (
     		<View style={[styles.olvidarContrasea, styles.frame11ParentFlexBox]}>
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   	}
 });
 
-export default OlvidarContrasea;
+export default ForgetPassword;
