@@ -7,6 +7,7 @@ https://reactnavigation.org/docs/shared-element-transitions =  Para las animaci√
 https://reactnative.dev/docs/text-style-props = Documentaci√≥n de React para poder ver cada cosa
 
 npx react-native doctor - Para mirar los errores
+npx prettier --write "**/*.{ts,tsx,js,jsx}" - organizar codigo lerolero
 
 /*
            */

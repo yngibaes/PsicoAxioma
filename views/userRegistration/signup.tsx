@@ -1,28 +1,32 @@
-import * as React from 'react';
-import {StyleSheet, View, Image, Pressable, Text} from 'react-native';
+import * as React from 'react'
+import {StyleSheet, View} from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import TopBar from '../../components/topBar';
-import UserNavigation from '../../hooks/userNavigation';
-import FormSignUp from '../../components/userRegistration/formSignUp';
-import Button from '../../components/button';
-import ImageBear from '../../components/imageBear';
+} from 'react-native-responsive-screen'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import TopBar from '../../components/userRegistration/topBar'
+import UserNavigation from '../../hooks/userNavigation'
+import FormSignUp from '../../components/userRegistration/formSignUp'
+import Button from '../../components/otherComponents/button'
+import ImageBear from '../../components/userRegistration/imageBear'
+import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
+// Definición del componente SignUp
 const SignUp = () => {
-  const {goBack, logIn} = UserNavigation();
+  const {goBack, logIn} = UserNavigation()
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Regístrate" />
-      <View style={styles.parentForm}>
-        <View style={styles.childForm}>
+      <KeyboardAwareScrollView enableOnAndroid={true} scrollEnabled={false}>
+        <View style={styles.parentForm}>
+          <View style={styles.childForm}>
             <View style={styles.ellipseForm}>
-            <ImageBear sizeHeightD="19%" sizeHeightI="19%" sizeWidhtI="50%"/>
+              <ImageBear sizeHeightD="19%" sizeHeightI="19%" sizeWidhtI="50%" />
             </View>
             <View style={styles.backgroundForm}>
-                <FormSignUp/>
-                <Button
+              <FormSignUp />
+              <Button
                 function={logIn}
                 colorButton="#233333"
                 colorText="#FFF"
@@ -30,54 +34,56 @@ const SignUp = () => {
                 width="28%"
                 height="7%"
                 size="5.6%"
-                />
+              />
             </View>
+          </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </View>
-  );
-};
+  )
+}
 
+// Definición de los estilos
 const styles = StyleSheet.create({
-  parentAll: {
-    flex: 1,
-    width: wp('100%'),
-    height: hp('100%'),
-    paddingTop: wp('5%'),
+  backgroundForm: {
     alignItems: 'center',
+    backgroundColor: materialTheme.palettes.tertiary[70],
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    height: hp('80%'),
+    marginTop: hp('-10%'),
+    width: wp('100%'),
+  },
+  childForm: {
+    alignItems: 'center',
+    height: hp('100%'),
     overflow: 'hidden',
-    backgroundColor: '#b5d0ce',
+    position: 'absolute',
+  },
+  ellipseForm: {
+    backgroundColor: materialTheme.palettes.tertiary[70],
+    borderRadius: 100,
+    height: hp('23%'),
+    padding: 15,
+    width: wp('51%'),
+    zIndex: 1,
+  },
+  parentAll: {
+    alignItems: 'center',
+    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
+    flex: 1,
     flexDirection: 'column', //	Orden de los elementos
+    height: hp('100%'),
+    overflow: 'hidden',
+    paddingTop: wp('5%'),
+    width: wp('100%'),
     //justifyContent: 'space-evenly', // Alineación de los elementos
   },
   parentForm: {
     height: hp('100%'),
-    width: wp('100%'),
     overflow: 'hidden',
-  },
-  childForm: {
-    position: 'absolute',
-    height: hp("100%"),
-    overflow: 'hidden',
-    alignItems: 'center',
-  },
-  ellipseForm: {
-    zIndex: 1,
-    width: wp('51%'),
-    height: hp('23%'),
-    backgroundColor: '#9EACC2',
-    padding: 15,
-    borderRadius: 100
-  },
-  backgroundForm: {
-    marginTop: hp('-10%'),
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     width: wp('100%'),
-    height: hp('73%'),
-    alignItems: 'center',
-    backgroundColor: '#9EACC2'
   },
-});
+})
 
-export default SignUp;
+export default SignUp
