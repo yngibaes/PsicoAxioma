@@ -8,7 +8,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import TopBar from '../../components/userRegistration/topBar'
 import UserNavigation from '../../hooks/userNavigation'
 import ImageBear from '../../components/userRegistration/imageBear'
-import FormLogIn from '../../components/userRegistration/formLogin'
+import {FormLogIn} from '../../components/userRegistration/formLogin'
 import ButtonLogin from '../../components/userRegistration/buttonLogIn'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 

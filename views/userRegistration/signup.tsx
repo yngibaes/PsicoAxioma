@@ -11,10 +11,13 @@ import FormSignUp from '../../components/userRegistration/formSignUp'
 import Button from '../../components/otherComponents/button'
 import ImageBear from '../../components/userRegistration/imageBear'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import { useForm } from '../../hooks/userRegistration'
 
 // Definición del componente SignUp
 const SignUp = () => {
-  const {goBack, logIn} = UserNavigation()
+  const { goBack } = UserNavigation()
+  const { handleSubmit } = useForm()
+
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Regístrate" />
@@ -27,7 +30,7 @@ const SignUp = () => {
             <View style={styles.backgroundForm}>
               <FormSignUp />
               <Button
-                function={logIn}
+                function={handleSubmit}
                 colorButton="#233333"
                 colorText="#FFF"
                 text="Enviar"

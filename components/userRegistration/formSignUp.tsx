@@ -6,9 +6,11 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import { useForm } from '../../hooks/userRegistration'
 
 // Definición del componente FormSignUp
 const FormSignUp = () => {
+  const { form, handleChange } = useForm();
   return (
     <View style={styles.parentForm}>
       <View style={styles.parentInput}>
@@ -22,6 +24,8 @@ const FormSignUp = () => {
               placeholderTextColor="#828282"
               inputMode="text"
               data-name="userName"
+              value={form.userName}
+              onChangeText={(value) => handleChange('userName', value)}
             />
           </View>
         </View>
@@ -35,6 +39,8 @@ const FormSignUp = () => {
               placeholderTextColor="#828282"
               inputMode="email"
               data-name="userEmail"
+              value={form.userEmail}
+              onChangeText={(value) => handleChange('userEmail', value)}
             />
           </View>
         </View>
@@ -48,6 +54,8 @@ const FormSignUp = () => {
               placeholderTextColor="#828282"
               inputMode="numeric"
               data-name="userPhone"
+              value={form.userPhone}
+              onChangeText={(value) => handleChange('userPhone', value)}
             />
           </View>
         </View>
@@ -62,6 +70,8 @@ const FormSignUp = () => {
               placeholderTextColor="#828282"
               inputMode="text"
               data-name="userPassword"
+              value={form.userPassword}
+              onChangeText={(value) => handleChange('userPassword', value)}
             />
           </View>
         </View>
@@ -75,7 +85,8 @@ const FormSignUp = () => {
               secureTextEntry
               placeholderTextColor="#828282"
               inputMode="text"
-              data-name="userPassword"
+              data-name="confirmPassword"
+
             />
           </View>
         </View>
