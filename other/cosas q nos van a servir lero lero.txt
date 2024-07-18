@@ -9,6 +9,8 @@ https://reactnative.dev/docs/text-style-props = Documentación de React para pod
 npx react-native doctor - Para mirar los errores
 npx prettier --write "**/*.{ts,tsx,js,jsx}" - organizar codigo lerolero
 
+https://www.studytonight.com/post/how-to-use-yup-for-form-validation-without-formik-in-reactjs
+
 /*
            */
 

@@ -1,0 +1,7 @@
+Necesito terminar y arreglar el signup
+    - Enviar datos del signup
+    - organizar la vista
+    - Mira si si nos sirve el boton normal o se necesita crear uno nuevo
+Hacer el form de logIn
+El de forget
+Y empezar a traer datos de la base de datos

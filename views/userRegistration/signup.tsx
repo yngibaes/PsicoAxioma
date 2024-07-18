@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
-import {StyleSheet, View} from 'react-native'
+import React from 'react';
+import { StyleSheet, View } from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TopBar from '../../components/userRegistration/topBar'
 import UserNavigation from '../../hooks/userNavigation'
 import FormSignUp from '../../components/userRegistration/formSignUp'
-import Button from '../../components/otherComponents/button'
 import ImageBear from '../../components/userRegistration/imageBear'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
@@ -16,13 +15,6 @@ import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta s
 // Definición del componente SignUp
 const SignUp = () => {
   const { goBack } = UserNavigation()
-  const formRef = useRef(null);
-  const handlePress = () => {
-    if (formRef.current) {
-      formRef.current.handleSubmit();
-    }
-  };
-
 
   return (
     <View style={styles.parentAll}>
@@ -34,16 +26,7 @@ const SignUp = () => {
               <ImageBear sizeHeightD="19%" sizeHeightI="19%" sizeWidhtI="50%" />
             </View>
             <View style={styles.backgroundForm}>
-              <FormSignUp ref={formRef}/>
-              <Button
-                onPress={handlePress}
-                colorButton="#233333"
-                colorText="#FFF"
-                text="Enviar"
-                width="28%"
-                height="7%"
-                size="5.6%"
-              />
+              <FormSignUp/>
             </View>
           </View>
         </View>
@@ -92,6 +75,10 @@ const styles = StyleSheet.create({
     height: hp('100%'),
     overflow: 'hidden',
     width: wp('100%'),
+  },
+  errorText: {
+    fontSize: 10,
+    color: 'red',
   },
 })
 

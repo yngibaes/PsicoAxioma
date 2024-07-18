@@ -27,17 +27,16 @@ const Button = (props: PropsButton) => {
         style={[
           styles.parentButton,
           {
-            backgroundColor: props.colorButton,
-            width: wp(`${props.width}`),
-            height: hp(`${props.height}`),
+            backgroundColor: "#233333",
+            width: wp("28%"),
+            height: hp("7%"),
           },
-        ]}
-        onPress={props.onPress}>
+        ]}>
         <Text
           style={[
             styles.button,
             styles.title,
-            {color: props.colorText, fontSize: wp(`${props.size}`)},
+            {color: "#FFF", fontSize: wp("")},
           ]}>
           {props.text}
         </Text>

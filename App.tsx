@@ -1,7 +1,7 @@
 // Propósito: Archivo principal de la aplicación, se encarga de la navegación entre pantallas
-import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from './views/userRegistration/welcome'
 import LogInScreen from './views/userRegistration/login'
 import SignUp from './views/userRegistration/signup'

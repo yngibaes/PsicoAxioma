@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     parentForm: {
       alignItems: 'center',
-      height: hp('53%'),
+      height: hp('70%'),
       marginBottom: hp('2.5%'), // Margen inferior
       marginTop: hp('6%'), // Margen superior
       overflow: 'hidden',
@@ -72,6 +72,37 @@ const styles = StyleSheet.create({
     sizeInput: {
       // Estilos del tamaño del input
       height: hp('6%'), // Altura del input
+    },
+    button: {
+      // Estilos del botón
+      fontSize: wp('8%'), // Tamaño de la fuente, 15% del ancho de la pantalla
+      textAlign: 'center',
+    },
+    divButton: {
+      // Estilos del contenedor de los botones
+      alignItems: 'center',
+      width: wp('94%'), // Ancho del contenedor
+      marginTop: hp("2%r")
+    },
+    parentButton: {
+      // Estilos del contenedor del botón de inicio de sesión
+      alignItems: 'center',
+      borderRadius: 10, // Radio de las esquinas del botón
+      justifyContent: 'center',
+      overflow: 'hidden', // Ocultar elementos que sobresalgan
+      backgroundColor: "#233333",
+      width: wp("28%"),
+      height: hp("7%"),
+    },
+    title: {
+      // Estilos del título
+      fontFamily: 'InterBold',
+      fontWeight: '300', // Grosor del texto
+      fontSize: wp("5.6%")
+    },
+    errorText: {
+      fontSize: 10,
+      color: 'red',
     },
   })
 

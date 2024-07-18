@@ -18,7 +18,7 @@ const ForgetPassword = () => {
       <TopBar goBack={goBack} text="Olvidaste tu contraseña" />
       <FormForget />
       <Button
-        function={logIn}
+        onPress={logIn}
         colorButton="#233333" //materialTheme.palettes.secondary[20]
         colorText="#FFF"
         text="Enviar"
