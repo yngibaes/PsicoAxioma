@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useRef } from 'react';
 import {StyleSheet, View} from 'react-native'
 import {
   widthPercentageToDP as wp,
@@ -11,12 +11,18 @@ import FormSignUp from '../../components/userRegistration/formSignUp'
 import Button from '../../components/otherComponents/button'
 import ImageBear from '../../components/userRegistration/imageBear'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
-import { useForm } from '../../hooks/userRegistration'
+
 
 // Definición del componente SignUp
 const SignUp = () => {
   const { goBack } = UserNavigation()
-  const { handleSubmit } = useForm()
+  const formRef = useRef(null);
+  const handlePress = () => {
+    if (formRef.current) {
+      formRef.current.handleSubmit();
+    }
+  };
+
 
   return (
     <View style={styles.parentAll}>
@@ -28,9 +34,9 @@ const SignUp = () => {
               <ImageBear sizeHeightD="19%" sizeHeightI="19%" sizeWidhtI="50%" />
             </View>
             <View style={styles.backgroundForm}>
-              <FormSignUp />
+              <FormSignUp ref={formRef}/>
               <Button
-                function={handleSubmit}
+                onPress={handlePress}
                 colorButton="#233333"
                 colorText="#FFF"
                 text="Enviar"

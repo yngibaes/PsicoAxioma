@@ -8,7 +8,7 @@ import {
 
 // Definición de las props usando TypeScript
 interface PropsButton {
-  function: (event: GestureResponderEvent) => void | Promise<void>; // Función que ejecuta el botón
+  onPress: (event: GestureResponderEvent) => void | Promise<void>; // Función que ejecuta el botón
   colorButton: string
   colorText: string
   text: string
@@ -32,7 +32,7 @@ const Button = (props: PropsButton) => {
             height: hp(`${props.height}`),
           },
         ]}
-        onPress={props.function}>
+        onPress={props.onPress}>
         <Text
           style={[
             styles.button,
