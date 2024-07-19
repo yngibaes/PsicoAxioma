@@ -105,7 +105,7 @@ const hookSignup = () => {
                 console.log('Formulario inválido');
             }
         }
-        catch (error) {
+        catch (error) { 
             const errorMessage = (error.response?.data?.error || error.message) as string;
             if (errorMessage.includes("Duplicate entry")) {
                 // Aquí puedes personalizar el mensaje basado en si el error es por el email o el teléfono
@@ -120,6 +120,7 @@ const hookSignup = () => {
             } else {
                 // Maneja otros posibles errores
                 Alert.alert("Error", "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.");
+                console.log(error.message);
             }
         }
     };

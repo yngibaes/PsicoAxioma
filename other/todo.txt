@@ -5,3 +5,6 @@ Necesito terminar y arreglar el signup
 Hacer el form de logIn
 El de forget
 Y empezar a traer datos de la base de datos
+
+
+https://rnfirebase.io/auth/usage

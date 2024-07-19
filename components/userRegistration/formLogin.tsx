@@ -5,7 +5,6 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
-import { useForm } from '../../hooks/hookSignup'
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {
@@ -14,7 +13,6 @@ interface propsFormLogIn {
 
 // Definición del componente FormLogIn
 export const FormLogIn = (props: propsFormLogIn) => {
-  const { form, handleChange, handleSubmit } = useForm();
   return (
     <View style={styles.parentForm}>
       <View style={styles.parentInput}>
@@ -28,7 +26,6 @@ export const FormLogIn = (props: propsFormLogIn) => {
               placeholderTextColor="#000"
               inputMode="email"
               data-name="userEmail"
-              onChangeText={(value) => handleChange('userName', value)}
             />
           </View>
         </View>
