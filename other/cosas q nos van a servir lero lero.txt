@@ -187,3 +187,373 @@ https://www.studytonight.com/post/how-to-use-yup-for-form-validation-without-for
     		height: 57,
     		backgroundColor: "#a6bccc"
   	},
+
+    /* import { useState } from 'react';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
+
+const url = 'http://192.168.1.5:8000/api';
+
+export const useForm = () => {
+  const navigation = useNavigation()
+
+  const [form, setForm] = useState({
+    userName: '',
+    userEmail: '',
+    userPhone: '',
+    userPassword: '',
+    confirmPassword: ''
+  });
+
+  const [error, setError] = useState('');
+
+  const handleChange = (name: string, value: string) => {
+    setForm(prevForm => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event: GestureResponderEvent): Promise<void> => {
+    event.preventDefault();
+
+    if (form.userPassword !== form.confirmPassword) {
+      Alert.alert('Error', 'Las contraseñas no coinciden.');
+      console.log(error)
+    } else {
+      setError('');
+    }
+    try {
+      const response = await fetch(url + '/insertUser', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      navigation.navigate('LogIn')
+    } catch (error) {
+      let errorMessage = 'An unexpected error occurred. Please try again later.';
+      if (error instanceof TypeError) {
+        errorMessage = 'Network request failed. Please check your internet connection and try again.';
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      Alert.alert('Error', errorMessage);
+      console.error(errorMessage);
+    }
+  };
+
+  return { form, handleChange, handleSubmit };
+}; */
+
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text, Alert } from 'react-native';
+import * as yup from 'yup';
+import axios from 'axios';
+
+// Define your Yup schema
+const SignupSchema = yup.object().shape({
+  userName: yup.string().required('Requerido'),
+  userEmail: yup.string().email('Email inválido').required('Requerido'),
+  userPhone: yup.string().required('Requerido'),
+  userPassword: yup.string().min(6, 'Muy corta!').required('Requerido'),
+  confirmPassword: yup.string().oneOf([yup.ref('userPassword')], 'Las contraseñas no coinciden').required('Requerido'),
+  agreeToTermsAndConditions: yup.boolean().required('Debes estar de acuerdo').oneOf([true], 'Debes estar de acuerdo con los términos y condiciones'),
+});
+
+const FormSignUp = () => {
+  const [form, setForm] = useState({
+    userName: '',
+    userEmail: '',
+    userPhone: '',
+    userPassword: '',
+    confirmPassword: '',
+    agreeToTermsAndConditions: false,
+  });
+
+  const [error, setError] = useState<string[]>([]);
+
+  const handleSubmit = async () => {
+    try {
+      // Validate form
+      await SignupSchema.validate(form, { abortEarly: false });
+      // If validation is successful, proceed with form submission
+      const res = await axios.post('your-api-url', form);
+      console.log('Data:', res.data);
+      Alert.alert('Usuario registrado con éxito');
+      // Optionally clear form here
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        // Extract and set error messages from validation error
+        const errors = err.inner.map(e => e.message);
+        setError(errors);
+      } else {
+        // Handle other errors (e.g., network errors)
+        Alert.alert('Error', 'An error occurred during form submission');
+      }
+    }
+  };
+
+  // Function to update form state
+  const handleChange = (name, value) => {
+    setForm(prevForm => ({ ...prevForm, [name]: value }));
+  };
+
+  // Optionally, a function to clear form and errors
+  const clearForm = () => {
+    setForm({
+      userName: '',
+      userEmail: '',
+      userPhone: '',
+      userPassword: '',
+      confirmPassword: '',
+      agreeToTermsAndConditions: false,
+    });
+    setError([]);
+  };
+
+  return (
+    <View>
+      {/* Form fields */}
+      <TextInput onChangeText={(text) => handleChange('userName', text)} />
+      {/* Display errors, if any */}
+      {error.map((err, index) => (
+        <Text key={index} style={{ color: 'red' }}>{err}</Text>
+      ))}
+      <Button title="Submit" onPress={handleSubmit} />
+    </View>
+  );
+};
+
+export default FormSignUp;
+
+import * as yup from 'yup';
+
+const formSchema = yup.object().shape({
+  userName: yup.string().required('El nombre de usuario es requerido'),
+  userEmail: yup.string().email('Debe ser un correo electrónico válido').required('El correo electrónico es requerido'),
+  userPhone: yup.string().required('El teléfono es requerido'),
+  userPassword: yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es requerida'),
+  confirmPassword: yup.string().oneOf([yup.ref('userPassword'), null], 'Las contraseñas deben coincidir').required('La confirmación de la contraseña es requerida'),
+  agreeToTermsAndConditions: yup.bool().oneOf([true], 'Debe aceptar los términos y condiciones'),
+});
+
+const handleSubmit = async () => {
+        try {
+            await SignupSchema.validate(form, { abortEarly: false });
+            const res = await axios.post(url, form);
+            const { data } = res
+            console.log('Data:', data)
+            Alert.alert('Usuario registrado con éxito')
+            clear()
+
+        } catch (error) {
+            // Correcting the syntax error in the catch block
+            if (error instanceof yup.ValidationError) {
+                // Correctly initialize an object to store validation errors
+                const validationErrors: { [key: string]: string } = {}; // Correct syntax
+                error.inner.forEach((err) => {
+                    if (err.path) validationErrors[err.path] = err.message;
+                });
+                setError(validationErrors);
+            } else {
+                // Handle other errors (e.g., network errors)
+                Alert.alert('Error', 'Ha ocurrido un error al registrar el usuario');
+            }
+        }
+    };
+
+const [name, setName] = useState(''); 
+    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState(''); 
+    const [errors, setErrors] = useState({}); 
+    const [isFormValid, setIsFormValid] = useState(false); 
+
+useEffect(() => { 
+  
+        // Trigger form validation when name,  
+        // email, or password changes 
+        validateForm(); 
+    }, [name, email, password]); 
+  
+    const validateForm = () => { 
+        let errors = {}; 
+  
+        // Validate name field 
+        if (!name) { 
+            errors.name = 'Name is required.'; 
+        } 
+  
+        // Validate email field 
+        if (!email) { 
+            errors.email = 'Email is required.'; 
+        } else if (!/\S+@\S+\.\S+/.test(email)) { 
+            errors.email = 'Email is invalid.'; 
+        } 
+  
+        // Validate password field 
+        if (!password) { 
+            errors.password = 'Password is required.'; 
+        } else if (password.length < 6) { 
+            errors.password = 'Password must be at least 6 characters.'; 
+        } 
+  
+        // Set the errors and update form validity 
+        setErrors(errors); 
+        setIsFormValid(Object.keys(errors).length === 0); 
+    }; 
+  
+    const handleSubmit = () => { 
+        if (isFormValid) { 
+  
+            // Form is valid, perform the submission logic 
+            console.log('Form submitted successfully!'); 
+        } else { 
+              
+            // Form is invalid, display error messages 
+            console.log('Form has errors. Please correct them.'); 
+        } 
+    };
+
+    <TouchableOpacity 
+                style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]} 
+                disabled={!isFormValid} 
+                onPress={handleSubmit} 
+            > 
+                <Text style={styles.buttonText}>Submit</Text> 
+            </TouchableOpacity> 
+              
+            {/* Display error messages */} 
+            {Object.values(errors).map((error, index) => ( 
+                <Text key={index} style={styles.error}> 
+                    {error} 
+                </Text> 
+            ))} 
+
+            const SignupSchema = yup.object().shape({
+        userName: yup
+            .string()
+            .required('Requerido')
+            .min(2, 'Must have at least 2 characters'),
+        userEmail: yup
+            .string()
+            .email('Ingrese un email válido')
+            .required('Email requerido'),
+        userPhone: yup
+            .string()
+            .max(10, 'El télefono debe tener 10 carácteres').required('Requerido'),
+        userPassword: yup
+            .string()
+            .min(6, 'Muy corta!')
+            .required('Requerido'),
+        confirmPassword: yup
+            .string()
+            .oneOf([yup.ref('userPassword')], 'Las contraseñas no coinciden')
+            .required('Requerido'),
+        agreeToTermsAndConditions: yup.bool().oneOf([true], 'Debe aceptar los términos y condiciones'),
+
+    });
+
+
+    const handleSubmit = async () => {
+    // Enviar los datos del formulario
+    try {
+        if (isFormValid) {
+            // Suponiendo que tienes una función que envía el SMS y devuelve un booleano indicando si el número es válido
+            const isPhoneReal = await verifyPhoneNumberWithSMS(userPhone);
+            if (!isPhoneReal) {
+                Alert.alert('Error', 'El número de teléfono no es válido o no se pudo verificar.');
+                return;
+            }
+
+            const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
+            console.log(response.status);
+            if (response.status == 200) {
+                Alert.alert('Registro exitoso', 'Usuario registrado correctamente')
+                navigation.navigate('LogIn')
+                clearForm();
+            }
+        } else {
+            console.log('Formulario inválido');
+        }
+    }
+    catch (error) {
+        // Manejo de errores
+    }
+};
+
+
+const axios = require('axios');
+
+async function verificarCorreo(email) {
+  try {
+    const response = await axios.post('https://api.verificacioncorreo.com/v1/verify', {
+      email: email,
+      apiKey: 'TU_API_KEY'
+    });
+
+    if (response.data.is_valid && response.data.is_reachable) {
+      console.log('El correo existe y es alcanzable.');
+    } else {
+      console.log('El correo no existe o no es alcanzable.');
+    }
+  } catch (error) {
+    console.error('Error al verificar el correo:', error);
+  }
+}
+
+
+// useFormSignUp.js
+
+import * as yup from 'yup';
+
+export const SignupSchema = yup.object().shape({
+  userName: yup
+      .string()
+      .required('Requerido')
+      .min(2, 'Must have at least 2 characters'),
+  userEmail: yup
+      .string()
+      .email('Ingrese un email válido')
+      .required('Email requerido'),
+  userPhone: yup
+      .string()
+      .max(10, 'El télefono debe tener 10 carácteres').required('Requerido'),
+  userPassword: yup
+      .string()
+      .min(6, 'Muy corta!')
+      .required('Requerido'),
+  confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('userPassword')], 'Las contraseñas no coinciden')
+      .required('Requerido'),
+  agreeToTermsAndConditions: yup
+  .boolean()
+  .label('Términos y condiciones')
+  .test('is-true', 'Debes estar de acuerdo', value => value === true)
+
+});
+
+export const useFormSignUp = () => {
+
+  const handleSubmit = async() => {
+    try {
+      await SignupSchema.validate(form, { abortEarly: false });
+      console.log('Formulario válido');
+
+    } catch (error) {
+      console.log('Error:', error.errors);
+    }
+  };
+
+  // Aquí puedes agregar más lógica relacionada con el formulario
+
+  return { handleSubmit};
+};

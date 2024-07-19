@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
-import { useForm } from '../../hooks/userRegistration'
+import { useForm } from '../../hooks/hookSignup'
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {

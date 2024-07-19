@@ -1,69 +1,159 @@
 /* eslint-disable react-native/sort-styles */
-import * as React from 'react'
-import { Text, TextInput, View, Button, Alert, TouchableOpacity } from 'react-native'
-import { Formik } from 'formik';
-import styles from './style/styleFormSignUp' // Ajusta la ruta según tu estructura de archivos
-import * as yup from 'yup';
-
-const SignupSchema = yup.object().shape({
-    userName: yup
-        .string()
-        .required('Requerido')
-        .min(2, 'Must have at least 2 characters'),
-    userEmail: yup
-        .string()
-        .email('Ingrese un email válido')
-        .required('Email requerido'),
-    userPhone: yup
-        .string()
-        .max(10, 'El télefono debe tener 10 carácteres').required('Requerido'),
-    userPassword: yup
-        .string()
-        .min(6, 'Muy corta!')
-        .required('Requerido'),
-    confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('userPassword')], 'Las contraseñas no coinciden')
-        .required('Requerido'),
-    agreeToTermsAndConditions: yup
-		.boolean()
-		.label('Términos y condiciones')
-		.test('is-true', 'Debes estar de acuerdo', value => value === true)
-
-});
+import React from 'react'
+import { Text, TextInput, View, TouchableOpacity } from 'react-native'
+import styles from './style/styleFormSignUp'
+import hookSignup from '../../hooks/hookSignup'
 
 // Definición del componente FormSignUp
-
 const FormSignUp = () => {
-    return(
-        <Formik 
-            initialValues={{
-                userName: '',
-                userEmail: '',
-                userPhone: '',
-                userPassword: '',
-                confirmPassword: '',
-                agreeToTermsAndConditions: false
-            }}
-            validationSchema={SignupSchema}
-            onSubmit={(values) => {
-                console.log(`Nombre: ${values.userName}, Télefono: ${values.userPhone}, Email: ${values.userEmail}, Contraseña: ${values.userPassword}`)
-              }}>
-           {({ handleChange, handleBlur, handleSubmit, values }) => (
-                <View style={{marginTop: "30%"}}>
-                    <TextInput
-                    placeholder='ola'
-                    onChangeText={handleChange('userName')}
-                    onBlur={handleBlur('userName')}
-                    value={values.userName}
-                    />
-                    <TouchableOpacity onPress={() => handleSubmit()}>
-                        <Text>ola</Text>
+    const {
+        userName,
+        userEmail,
+        userPhone,
+        userPassword,
+        confirmPassword,
+        errors,
+        isFormValid,
+        setUserName,
+        setUserEmail,
+        setUserPhone,
+        setUserPassword,
+        setConfirmPassword,
+        handleSubmit,
+        userEmailRef,
+        userEmailNext,
+        userPhoneRef,
+        userPhoneNext,
+        userPasswordRef,
+        userPasswordNext,
+        confirmPasswordRef,
+        confirmPasswordNext,
+    } = hookSignup();
+
+    return (
+        <View style={styles.parentForm}>
+            <View style={styles.parentInput}>
+                <View style={styles.divInput}>
+                    <View style={styles.divLabel}>
+                        <Text style={styles.labelForm}>Nombre</Text>
+                        {errors.userName && <Text style={styles.error}>{errors.userName}</Text>}
+                    </View>
+                    <View style={[styles.sizeInput, styles.Input]}>
+                        <TextInput
+                            style={styles.label}
+                            placeholder="Escriba su nombre"
+                            keyboardType="default"
+                            placeholderTextColor="#828282"
+                            inputMode="text"
+                            data-name="userName"
+                            keyboardAppearance='dark'
+                            returnKeyType='next'
+                            value={userName}
+                            onChangeText={setUserName}
+                            onSubmitEditing={userEmailNext}
+                        />
+                    </View>
+                </View>
+                <View style={styles.divInput}>
+                    <View style={styles.divLabel}>
+                        <Text style={styles.labelForm}>Email</Text>
+                        {errors.userEmail && <Text style={styles.error}>{errors.userEmail}</Text>}
+                    </View>
+                    <View style={[styles.sizeInput, styles.Input]}>
+                        <TextInput
+                            style={styles.label}
+                            placeholder="Escriba su email"
+                            keyboardType="email-address"
+                            placeholderTextColor="#828282"
+                            inputMode="email"
+                            data-name="userEmail"
+                            keyboardAppearance='dark'
+                            returnKeyType='next'
+                            value={userEmail}
+                            onChangeText={setUserEmail}
+                            ref={userEmailRef}
+                            onSubmitEditing={userPhoneNext}
+                        />
+                    </View>
+                </View>
+                <View style={styles.divInput}>
+                    <View style={styles.divLabel}>
+                        <Text style={styles.labelForm}>Télefono</Text>
+                        {errors.userPhone && <Text style={styles.error}>{errors.userPhone}</Text>}
+                    </View>
+                    <View style={[styles.sizeInput, styles.Input]}>
+                        <TextInput
+                            style={styles.label}
+                            placeholder="Escriba su número de télefono"
+                            keyboardType="numeric"
+                            placeholderTextColor="#828282"
+                            inputMode="numeric"
+                            data-name="userPhone"
+                            keyboardAppearance='dark'
+                            returnKeyType='next'
+                            maxLength={10}
+                            value={userPhone}
+                            onChangeText={setUserPhone}
+                            ref={userPhoneRef}
+                            onSubmitEditing={userPasswordNext}
+                        />
+                    </View>
+                </View>
+                <View style={styles.divInput}>
+                    <View style={styles.divLabel}>
+                        <Text style={styles.labelForm}>Contraseña</Text>
+                        {errors.userPassword && <Text style={styles.error}>{errors.userPassword}</Text>}
+                    </View>
+                    <View style={[styles.sizeInput, styles.Input]}>
+                        <TextInput
+                            style={styles.label}
+                            placeholder="Escriba su contraseña"
+                            keyboardType="default"
+                            secureTextEntry
+                            placeholderTextColor="#828282"
+                            inputMode="text"
+                            data-name="userPassword"
+                            keyboardAppearance='dark'
+                            returnKeyType='next'
+                            value={userPassword}
+                            onChangeText={setUserPassword}
+                            ref={userPasswordRef}
+                            onSubmitEditing={confirmPasswordNext}
+                        />
+                    </View>
+                </View>
+                <View style={styles.divInput}>
+                    <View style={styles.divLabel}>
+                        <Text style={styles.labelForm}>Repetir Contraseña</Text>
+                        {errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword}</Text>}
+                    </View>
+                    <View style={[styles.sizeInput, styles.Input]}>
+                        <TextInput
+                            style={styles.label}
+                            placeholder="Repita su contraseña"
+                            keyboardType="default"
+                            secureTextEntry
+                            placeholderTextColor="#828282"
+                            inputMode="text"
+                            data-name="confirmPassword"
+                            keyboardAppearance='dark'
+                            returnKeyType='done'
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                            ref={confirmPasswordRef}
+                        />
+                    </View>
+                </View>
+                <View style={styles.divButton}>
+                    <TouchableOpacity style={styles.parentButton} onPress={handleSubmit}
+                        disabled={!isFormValid} >
+                        <Text style={[styles.button, styles.title]}>
+                            Enviar
+                        </Text>
                     </TouchableOpacity>
                 </View>
-     )}
-
-        </Formik>
+            </View>
+        </View>
     )
 }
 

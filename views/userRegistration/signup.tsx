@@ -19,7 +19,12 @@ const SignUp = () => {
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Regístrate" />
-      <KeyboardAwareScrollView enableOnAndroid={true} scrollEnabled={false}>
+      <KeyboardAwareScrollView enableOnAndroid={true}
+        scrollEnabled={false} // Deshabilita el scroll en la vista
+        extraScrollHeight={10} // Ajusta este valor según sea necesario
+        keyboardShouldPersistTaps="handled" // Mejora la interacción con los inputs cuando el teclado está visible
+        resetScrollToCoords={{ x: 0, y: 0 }} // Esta línea asegura que el scroll vuelva a su posición original
+        >
         <View style={styles.parentForm}>
           <View style={styles.childForm}>
             <View style={styles.ellipseForm}>
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: materialTheme.palettes.tertiary[70],
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    height: hp('80%'),
+    height: hp('100%'),
     marginTop: hp('-10%'),
     width: wp('100%'),
   },
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column', //	Orden de los elementos
     height: hp('100%'),
     overflow: 'hidden',
-    paddingTop: wp('5%'),
+    paddingTop: wp('1%'),
     width: wp('100%'),
     //justifyContent: 'space-evenly', // Alineación de los elementos
   },
@@ -75,10 +80,6 @@ const styles = StyleSheet.create({
     height: hp('100%'),
     overflow: 'hidden',
     width: wp('100%'),
-  },
-  errorText: {
-    fontSize: 10,
-    color: 'red',
   },
 })
 

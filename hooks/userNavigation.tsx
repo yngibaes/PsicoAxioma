@@ -1,6 +1,3 @@
-
-
-
 import {useNavigation} from '@react-navigation/native'
 import {Alert} from 'react-native'
 
@@ -11,6 +8,7 @@ function UserNavigation() {
   const logIn = () => navigation.navigate('LogIn')
   const signUp = () => navigation.navigate('SignUp')
   const forgetPassword = () => navigation.navigate('ForgetPassword')
+  const Welcome = () => navigation.navigate('Welcome')
   const goBack = () => {
     navigation.goBack()
   }
@@ -18,7 +16,7 @@ function UserNavigation() {
     Alert.alert('Fin del recorrido asjdhjas')
   }
 
-  return {logIn, signUp, forgetPassword, goBack, homeScreen}
+  return {logIn, signUp, forgetPassword, goBack, homeScreen, Welcome}
 }
 
 export default UserNavigation
