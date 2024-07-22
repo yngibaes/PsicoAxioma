@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Alert, TextInput } from 'react-native';
 import axios from 'axios';
 import UserNavigation from './userNavigation';
-import url from './config';
+import url from './config/config';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { auth } from './config/firebase'
 
 const hookSignup = () => {
 
@@ -87,25 +89,34 @@ const hookSignup = () => {
     }
 
     // Navegación
-    const { logIn } = UserNavigation()
+    const { goBack } = UserNavigation()
 
     // Enviar el formulario
     const handleSubmit = async () => {
         // Enviar los datos del formulario
         try {
             if (isFormValid) {
-                const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
-                console.log(response.status);
-                if (response.status == 200) {
-                    Alert.alert('Registro exitoso', 'Usuario registrado correctamente.')
-                    logIn()
-                    clearForm();
+                const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+                const user = userCredential.user;
+                console.log("Usuario registrado en Firebase Auth:", user.uid);
+                if (user) {
+                    await sendEmailVerification(user);
+                    console.log("Correo de verificación enviado.");
+                    const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
+                    console.log(response.status);
+                    if (response.status == 200) {
+                        Alert.alert('Registro exitoso', 'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.')
+                        goBack();
+                        clearForm();
+                    }
+                } else {
+                    console.log('Formulario inválido');
                 }
             } else {
-                console.log('Formulario inválido');
+                console.error('Error al momento de enviar a la base de datos')
             }
         }
-        catch (error) { 
+        catch (error) {
             const errorMessage = (error.response?.data?.error || error.message) as string;
             if (errorMessage.includes("Duplicate entry")) {
                 // Aquí puedes personalizar el mensaje basado en si el error es por el email o el teléfono

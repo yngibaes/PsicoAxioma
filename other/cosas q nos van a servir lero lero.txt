@@ -472,7 +472,6 @@ useEffect(() => {
                 Alert.alert('Error', 'El número de teléfono no es válido o no se pudo verificar.');
                 return;
             }
-
             const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
             console.log(response.status);
             if (response.status == 200) {

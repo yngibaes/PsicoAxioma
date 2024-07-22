@@ -11,10 +11,12 @@ import ImageBear from '../../components/userRegistration/imageBear'
 import {FormLogIn} from '../../components/userRegistration/formLogin'
 import ButtonLogin from '../../components/userRegistration/buttonLogIn'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import hookLogin from '../../hooks/hookLogin'
 
 // Definición del componente LogInScreen
 const LogInScreen = () => {
-  const {goBack, homeScreen, signUp, forgetPassword} = UserNavigation()
+  const {goBack, signUp, forgetPassword} = UserNavigation()
+  const { handleSubmit } = hookLogin()
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Iniciar Sesión" />
@@ -22,7 +24,7 @@ const LogInScreen = () => {
         <ImageBear sizeHeightD="28%" sizeHeightI="28%" sizeWidhtI="50%" />
         <View style={styles.divForm}>
           <FormLogIn forget={forgetPassword} />
-          <ButtonLogin LogIn={homeScreen} SignUp={signUp} />
+          <ButtonLogin LogIn={handleSubmit} SignUp={signUp} />
         </View>
       </KeyboardAwareScrollView>
     </View>

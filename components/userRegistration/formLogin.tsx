@@ -1,10 +1,11 @@
 import * as React from 'react'
-import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native'
+import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
 import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import hookLogin from '../../hooks/hookLogin'
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {
@@ -13,6 +14,11 @@ interface propsFormLogIn {
 
 // Definición del componente FormLogIn
 export const FormLogIn = (props: propsFormLogIn) => {
+  const { userEmail,
+    userPassword,
+    setUserEmail,
+    setUserPassword,
+  } = hookLogin()
   return (
     <View style={styles.parentForm}>
       <View style={styles.parentInput}>
@@ -26,6 +32,8 @@ export const FormLogIn = (props: propsFormLogIn) => {
               placeholderTextColor="#000"
               inputMode="email"
               data-name="userEmail"
+              value={userEmail}
+              onChangeText={setUserEmail}
             />
           </View>
         </View>
@@ -40,6 +48,8 @@ export const FormLogIn = (props: propsFormLogIn) => {
               placeholderTextColor="#000"
               inputMode="text"
               data-name="userPassword"
+              value={userPassword}
+              onChangeText={setUserPassword}
             />
           </View>
         </View>
