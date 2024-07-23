@@ -3,7 +3,7 @@ import { Alert, TextInput } from 'react-native';
 import axios from 'axios';
 import UserNavigation from '../userNavigation';
 import url from '../config/config';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, User } from 'firebase/auth';
 import { auth } from '../config/firebase'
 
 const hookSignup = () => {
@@ -91,48 +91,58 @@ const hookSignup = () => {
     // Navegación
     const { goBack } = UserNavigation()
 
+    // Verificar télefono
+    const verifyPhoneNumber = async (userPhone: string): Promise<boolean> => {
+        try {
+            const response = await axios.post(`${url}/verifyPhone`, { userPhone });
+            if (response.data.message !== 'El numero de télefono no existe en la base de datos.') {
+                // El número de teléfono ya está registrado
+                return false;
+            }
+            // El número de teléfono no está registrado
+            return true;
+        } catch (error) {
+            // Manejar otros posibles errores de la petición
+            console.error('Error al verificar el número de teléfono:', error);
+            throw new Error('Error al verificar el número de teléfono');
+        }
+    };
+
+    // Registrar usuario en firebase
+    const registerUserInFirebase = async (userEmail: string, userPassword: string) => {
+        console.log(userEmail)
+        const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+        return userCredential.user;
+    };
+
+    // Enviar verificación y registrar usuario
+    const sendVerificationAndRegisterUser = async (user: User) => {
+        await sendEmailVerification(user);
+        const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
+        if (response.status === 200) {
+            Alert.alert('Registro exitoso', 'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.');
+            goBack();
+            clearForm();
+        }
+    };
+
     // Enviar el formulario
     const handleSubmit = async () => {
-        // Enviar los datos del formulario
         try {
-            if (isFormValid) {
-                const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-                const user = userCredential.user;
-                console.log("Usuario registrado en Firebase Auth:", user.uid);
-                if (user) {
-                    await sendEmailVerification(user);
-                    console.log("Correo de verificación enviado.");
-                    const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
-                    console.log(response.status);
-                    if (response.status == 200) {
-                        Alert.alert('Registro exitoso', 'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.')
-                        goBack();
-                        clearForm();
-                    }
-                } else {
-                    console.log('Formulario inválido');
-                }
-            } else {
-                console.error('Error al momento de enviar a la base de datos')
+            if (!isFormValid) {
+                console.error('Error al momento de enviar a la base de datos');
+                return;
             }
-        }
-        catch (error) {
-            const errorMessage = (error.response?.data?.error || error.message) as string;
-            if (errorMessage.includes("Duplicate entry")) {
-                // Aquí puedes personalizar el mensaje basado en si el error es por el email o el teléfono
-                let fieldError = "email o teléfono";
-                console.log(errorMessage)
-                if (errorMessage.includes('userEmail')) {
-                    fieldError = "email";
-                } else if (errorMessage.includes('userPhone')) {
-                    fieldError = "télefono";
-                }
-                Alert.alert("Error", `La entrada para ${fieldError} ya existe.`);
+            await verifyPhoneNumber(userPhone);
+            const user = await registerUserInFirebase(userEmail, userPassword);
+            await sendVerificationAndRegisterUser(user);
+        } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                Alert.alert("Error", "El correo electrónico ya está registrado. Por favor, utiliza otro correo.");
             } else {
-                // Maneja otros posibles errores
-                Alert.alert("Error", "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.");
-                console.log(error.message);
+                Alert.alert("Error", error.message || "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.");
             }
+            console.log(error.message);
         }
     };
 

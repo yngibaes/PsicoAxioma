@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   divButton: {
     // Estilos del contenedor de los botones
     alignItems: 'center',
-    marginTop: hp('2%r'),
+    marginTop: hp('2%'),
     width: wp('94%'), // Ancho del contenedor
   },
   divInput: {

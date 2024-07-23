@@ -8,7 +8,7 @@ import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta s
 
 // Definición de las props usando TypeScript
 interface propsButtonLogin {
-  LogIn: () => void
+  LogIn: (userEmail: string, userPassword: string) => Promise<void>;
   SignUp: () => void
 }
 
@@ -18,7 +18,7 @@ const ButtonLogin: React.FC<propsButtonLogin> = ({LogIn, SignUp}) => {
     <View style={styles.divButton}>
       <Pressable
         style={styles.parentButton}
-        onPress={LogIn}>
+        onPress={(e)=>LogIn}>
         <Text style={[styles.button, styles.title]}>Iniciar sesión</Text>
       </Pressable>
       <View style={styles.divQuestion}>
@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('1.25%'), // Espaciado horizontal
 
     width: '100%', // Ancho del contenedor
+  },
+  error: {
+    color: materialTheme.schemes.dark.errorContainer,
+    fontSize: wp('2.6%'),
+    fontWeight: 'bold',
+    paddingHorizontal: wp('1.5%'),
   },
   marginText: {
     // Estilos del margen del texto

@@ -13,6 +13,7 @@ const FormLogIn = (props: propsFormLogIn) => {
   const {
     userEmail,
     userPassword,
+    errors,
     setUserEmail,
     setUserPassword,
     userPasswordRef,
@@ -22,19 +23,22 @@ const FormLogIn = (props: propsFormLogIn) => {
     <View style={styles.parentForm}>
       <View style={styles.parentInput}>
         <View style={styles.divInput}>
-          <Text style={styles.labelForm}>Email</Text>
+          <View style={styles.divLabel}>
+            <Text style={styles.labelForm}>Email</Text>
+            {errors.userEmail && <Text style={styles.error}>{errors.userEmail}</Text>}
+          </View>
           <View style={[styles.sizeInput, styles.input]}>
             <TextInput
               style={styles.label}
               placeholder="Escriba su email"
               keyboardType="email-address"
-              placeholderTextColor="#000"
+              placeholderTextColor="#828282"
               inputMode="email"
               data-name="userEmail"
               keyboardAppearance='dark'
               returnKeyType='next'
               value={userEmail}
-              onChangeText={setUserEmail}
+              onChangeText={(text)=>setUserEmail(text)}
               onSubmitEditing={userPasswordNext}
             />
           </View>

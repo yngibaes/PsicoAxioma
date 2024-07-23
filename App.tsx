@@ -29,7 +29,7 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Navigator initialRouteName="LogIn">
           <Stack.Screen
             name="Welcome"
             options={{ headerShown: false }}

@@ -14,6 +14,13 @@ const hookLogin = () => {
     const userPasswordRef = useRef<TextInput>(null);
     const userPasswordNext = () => userPasswordRef.current?.focus();
 
+    const clearForm = () => {
+        setUserEmail('');
+        setUserPassword('');
+        setErrors({});
+        setIsFormValid(false);
+    }
+
     useEffect(() => {
         validateForm();
     }, [userEmail, userPassword]);
@@ -31,25 +38,19 @@ const hookLogin = () => {
 
         if (!userEmail) {
             errors.userEmail = '*Email es requerido.';
-        } else if (!/\S+@\S+\.\S+/.test(userEmail)) {
-            errors.userEmail = '*Email es inválido.';
-        } else if (!/(@gmail\.com|@outlook\.com|@yahoo\.com)$/.test(userEmail)) {
-            errors.userEmail = '*Debe ser de un dominio permitido';
         }
         // Actualizar los errores 
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (userEmail:string, userPassword:string) => {
         // Enviar los datos del formulario
         try {
-            if (userEmail && userPassword) {
-                await signInWithEmailAndPassword(auth, userEmail, userPassword);
-                console.log('Usuario logueado');
-            } else {
-                console.error('Error al loguearse')
-            }
+            console.log(userEmail)
+            await signInWithEmailAndPassword(auth, userEmail, userPassword);
+            console.log('Usuario logueado');
+            clearForm()
         }
         catch (error) {
             Alert.alert("Error", "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.");

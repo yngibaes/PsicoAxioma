@@ -14,9 +14,20 @@ const styles = StyleSheet.create({
   },
   divInput: {
     // Estilos del contenedor del input del formulario
-    marginTop: hp('2%'), // Margen superior
+    marginTop: hp('1.5%'), // Margen superior
     paddingHorizontal: wp('5%'), // Relleno horizontal
     width: wp('90%'), // Ancho del contenedor
+  },
+  divLabel: {
+    alignItems: 'center', // Alinea los elementos hijos al centro
+    flexDirection: 'row', // Alinea los elementos hijos en fila
+    width: wp('59%'), // Ancho del contenedor
+  },
+  error: {
+    color: materialTheme.schemes.dark.errorContainer,
+    fontSize: wp('2.6%'),
+    fontWeight: 'bold',
+    paddingHorizontal: wp('1.5%'),
   },
   input: {
     // Estilos del input
@@ -28,7 +39,7 @@ const styles = StyleSheet.create({
     color: materialTheme.palettes.primary[0], // Color del texto
     elevation: 2, // Elevación
     flexDirection: 'row', // Orden de los elementos
-    marginTop: hp('1%'), // Margen superior
+    marginTop: hp('0.5%'), // Margen superior
     paddingHorizontal: '4%', // Relleno horizontal
     shadowOffset: {
       // Desplazamiento de la sombra
@@ -57,7 +68,6 @@ const styles = StyleSheet.create({
     lineHeight: 19, // Altura de la línea
     marginLeft: wp('1%'), // Margen izquierdo
     textAlign: 'left', // Alineación del texto
-    width: wp('90%'), // Ancho de la etiqueta
   },
   parentForm: {
     // Estilos del contenedor del formulario
