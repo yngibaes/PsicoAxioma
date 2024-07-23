@@ -1,65 +1,9 @@
-import * as React from 'react'
-import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native'
+import { StyleSheet } from 'react-native' // Importación de la librería react-native
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen'
-import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
-import hookLogin from '../../hooks/hookLogin'
-
-// Definición de las props usando TypeScript
-interface propsFormLogIn {
-  forget: () => void
-}
-
-// Definición del componente FormLogIn
-export const FormLogIn = (props: propsFormLogIn) => {
-  const { userEmail,
-    userPassword,
-    setUserEmail,
-    setUserPassword,
-  } = hookLogin()
-  return (
-    <View style={styles.parentForm}>
-      <View style={styles.parentInput}>
-        <View style={styles.divInput}>
-          <Text style={styles.labelForm}>Email</Text>
-          <View style={[styles.sizeInput, styles.input]}>
-            <TextInput
-              style={styles.label}
-              placeholder="Escriba su email"
-              keyboardType="email-address"
-              placeholderTextColor="#000"
-              inputMode="email"
-              data-name="userEmail"
-              value={userEmail}
-              onChangeText={setUserEmail}
-            />
-          </View>
-        </View>
-        <View style={styles.divInput}>
-          <Text style={styles.labelForm}>Contraseña</Text>
-          <View style={[styles.sizeInput, styles.input]}>
-            <TextInput
-              style={styles.label}
-              placeholder="Escriba su contraseña"
-              keyboardType="default"
-              secureTextEntry
-              placeholderTextColor="#000"
-              inputMode="text"
-              data-name="userPassword"
-              value={userPassword}
-              onChangeText={setUserPassword}
-            />
-          </View>
-        </View>
-      </View>
-      <Pressable style={styles.divForget} onPress={props.forget}>
-        <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
-      </Pressable>
-    </View>
-  )
-}
+import materialTheme from '../../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
 // Definición de los estilos
 const styles = StyleSheet.create({
@@ -141,3 +85,5 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 })
+
+export default styles // Exporta los estilos

@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
+import { useState, useEffect, useRef } from 'react';
+import { Alert, TextInput } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './config/firebase';
+import { auth } from '../config/firebase';
 
 const hookLogin = () => {
-
 
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [isFormValid, setIsFormValid] = useState(false);
+
+    // Referencias
+    const userPasswordRef = useRef<TextInput>(null);
+    const userPasswordNext = () => userPasswordRef.current?.focus();
 
     useEffect(() => {
         validateForm();
@@ -61,14 +64,8 @@ const hookLogin = () => {
         setUserEmail,
         setUserPassword,
         handleSubmit,
-        /*  userEmailRef,
-         userEmailNext,
-         userPhoneRef,
-         userPhoneNext,
-         userPasswordRef,
-         userPasswordNext,
-         confirmPasswordRef,
-         confirmPasswordNext, */
+        userPasswordRef,
+        userPasswordNext
     };
 }
 

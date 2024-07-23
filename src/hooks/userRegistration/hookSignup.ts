@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Alert, TextInput } from 'react-native';
 import axios from 'axios';
-import UserNavigation from './userNavigation';
-import url from './config/config';
+import UserNavigation from '../userNavigation';
+import url from '../config/config';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { auth } from './config/firebase'
+import { auth } from '../config/firebase'
 
 const hookSignup = () => {
 

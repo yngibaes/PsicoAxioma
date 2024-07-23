@@ -14,7 +14,7 @@ import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta s
 const WelcomeScreen = () => {
   const {logIn, signUp} = UserNavigation()
   return (
-    <View style={styles.parentAll}>
+    <View style={styles.parentEll}>
       <TitleWelcome />
       <ImageBear sizeHeightD="45%" sizeHeightI="42%" sizeWidhtI="80%" />
       <ButtonLogin LogIn={logIn} SignUp={signUp} />
@@ -24,7 +24,7 @@ const WelcomeScreen = () => {
 
 // Definición de los estilos
 const styles = StyleSheet.create({
-  parentAll: {
+  parentEll: {
     // Estilos del contenedor principal
     alignItems: 'center', // Alineación de los elementos
     backgroundColor: materialTheme.palettes.tertiary[70], // Color de fondo

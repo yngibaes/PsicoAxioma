@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native' // Importación de la librería react-native
+import { StyleSheet } from 'react-native' // Importación de la librería react-native
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

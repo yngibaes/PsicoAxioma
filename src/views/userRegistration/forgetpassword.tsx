@@ -22,7 +22,7 @@ const ForgetPassword = () => {
         colorButton="#233333" //materialTheme.palettes.secondary[20]
         colorText="#FFF"
         text="Enviar"
-        width="28%"
+        width="26%"
         height="7%"
         size="5.6%"
       />
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     height: hp('100%'), // Altura del contenedor
     justifyContent: 'flex-start', // Alineación de los elementos
     overflow: 'hidden', // Ocultar elementos que sobresalgan
-    paddingTop: wp('5%'),
+    paddingTop: wp('1%'),
     width: wp('100%'), // Ancho del contenedor
   },
 })

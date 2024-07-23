@@ -1,0 +1,16 @@
+- SignUp:
+    - Que verifique primero si existe o el numero existe en la base de datos o que lo verifique firebase
+    
+- LogIn
+    - Hacer consulta de logIn en la API 
+    - Verificar que la función estebien de firebase y anexar la url de la consulta
+
+- Forget
+    - Realizar consulta en la API, función de firebase y verificar que funciones
+
+- Organizar vistas en un archivo aparte de la APP 
+- Organizar diseños, primero preguntar si se puede
+- Anexar una vista de espera
+- Anexar tutorial
+
+Ya casi se termina todo de registro

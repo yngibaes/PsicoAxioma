@@ -2,26 +2,26 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import WelcomeScreen from './views/userRegistration/welcome'
-import LogInScreen from './views/userRegistration/login'
-import SignUp from './views/userRegistration/signup'
-import ForgetPassword from './views/userRegistration/forgetpassword'
-import Home from './views/AllNavegation/home';
-import useAuth from './hooks/useAuth';
+import WelcomeScreen from './src/views/userRegistration/welcome'
+import LogInScreen from './src/views/userRegistration/login'
+import SignUp from './src/views/userRegistration/signup'
+import ForgetPassword from './src/views/userRegistration/forgetpassword'
+import HomeScreen from './src/views/userPrincipal/homeScreen';
+import useAuth from './src/hooks/useAuth';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
 
 export default function App() {
-  const { user } = useAuth();
-  if (user) {
+  const { isLoggedIn } = useAuth();
+  if (isLoggedIn) {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="Home"
             options={{ headerShown: false }}
-            component={Home}
+            component={HomeScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
