@@ -44,46 +44,58 @@ const hookSignup = () => {
         validateForm();
     }, [userName, userEmail, userPhone, userPassword, confirmPassword]);
 
-    // Definición de la interfaz ErrorObject
-    type ErrorObject = {
-        [key: string]: string;
+    const ERROR_MESSAGES = {
+        userName: '*Por favor ingresa tu nombre completo.',
+        userEmailRequired: '*Email es requerido.',
+        userEmailInvalid: '*Email es inválido.',
+        userEmailDomain: '*Debe ser de un dominio permitido',
+        userPhoneRequired: '*Télefono es requerido.',
+        userPhoneInvalid: '*Debe tener 10 dígitos.',
+        userPasswordRequired: '*Contraseña es requerida.',
+        userPasswordInvalid: '*Al menos una letra mayúscula y letra minúscula, un carácter especial (!?$@&%) y al menos dos números.',
+        confirmPassword: '*Las contraseñas no coinciden.'
+    };
+
+    const REGEX = {
+        userName: /^\S+\s+\S+/,
+        userEmail: /\S+@\S+\.\S+/,
+        userEmailDomain: /(@gmail\.com|@outlook\.com|@yahoo\.com)$/,
+        userPhone: /^3\d{9}$/,
+        userPassword: /(?=.*[A-Z])(?=.*[a-z])(?=.*[!?$@&%])(?=.*\d.*\d)/
     };
 
     // Validar el formulario
     const validateForm = () => {
+        const errors: { [key: string]: string } = {};
 
-        // Definición de los errores
-        const errors: ErrorObject = {};
-
-        if (!userName || !/^\S+\s+\S+/.test(userName)) {
-            errors.userName = '*Por favor ingresa tu nombre completo.';
+        if (!userName || !REGEX.userName.test(userName)) {
+            errors.userName = ERROR_MESSAGES.userName;
         }
 
         if (!userEmail) {
-            errors.userEmail = '*Email es requerido.';
-        } else if (!/\S+@\S+\.\S+/.test(userEmail)) {
-            errors.userEmail = '*Email es inválido.';
-        } else if (!/(@gmail\.com|@outlook\.com|@yahoo\.com)$/.test(userEmail)) {
-            errors.userEmail = '*Debe ser de un dominio permitido';
+            errors.userEmail = ERROR_MESSAGES.userEmailRequired;
+        } else if (!REGEX.userEmail.test(userEmail)) {
+            errors.userEmail = ERROR_MESSAGES.userEmailInvalid;
+        } else if (!REGEX.userEmailDomain.test(userEmail)) {
+            errors.userEmail = ERROR_MESSAGES.userEmailDomain;
         }
 
         if (!userPhone) {
-            errors.userPhone = '*Télefono es requerido.';
-        } else if (!/^3\d{9}$/.test(userPhone)) {
-            errors.userPhone = '*Debe tener 10 dígitos.';
+            errors.userPhone = ERROR_MESSAGES.userPhoneRequired;
+        } else if (!REGEX.userPhone.test(userPhone)) {
+            errors.userPhone = ERROR_MESSAGES.userPhoneInvalid;
         }
 
         if (!userPassword) {
-            errors.userPassword = '*Contraseña es requerida.';
-        } if (!/[A-Z]/.test(userPassword) || !/[a-z]/.test(userPassword) || !/[!?$@&%]/.test(userPassword) || !/(\d.*\d)/.test(userPassword)) {
-            errors.userPassword = '*Al menos una letra mayúscula y letra minúscula, un carácter especial (!?$@&%) y al menos dos números.';
+            errors.userPassword = ERROR_MESSAGES.userPasswordRequired;
+        } else if (!REGEX.userPassword.test(userPassword)) {
+            errors.userPassword = ERROR_MESSAGES.userPasswordInvalid;
         }
 
         if (confirmPassword !== userPassword) {
-            errors.confirmPassword = '*Las contraseñas no coinciden.';
+            errors.confirmPassword = ERROR_MESSAGES.confirmPassword;
         }
 
-        // Actualizar los errores 
         setErrors(errors);
         setIsFormValid(Object.keys(errors).length === 0);
     }
@@ -110,7 +122,6 @@ const hookSignup = () => {
 
     // Registrar usuario en firebase
     const registerUserInFirebase = async (userEmail: string, userPassword: string) => {
-        console.log(userEmail)
         const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
         return userCredential.user;
     };
@@ -133,15 +144,18 @@ const hookSignup = () => {
                 console.error('Error al momento de enviar a la base de datos');
                 return;
             }
-            await verifyPhoneNumber(userPhone);
+            const phoneValid = await verifyPhoneNumber(userPhone);
+            if (!phoneValid) {
+                Alert.alert("Error", "El número de teléfono ya está registrado. Por favor, utiliza otro número.");
+                return;
+            }
             const user = await registerUserInFirebase(userEmail, userPassword);
             await sendVerificationAndRegisterUser(user);
         } catch (error) {
-            if (error.code === 'auth/email-already-in-use') {
-                Alert.alert("Error", "El correo electrónico ya está registrado. Por favor, utiliza otro correo.");
-            } else {
-                Alert.alert("Error", error.message || "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.");
-            }
+            const errorMessage = error.code === 'auth/email-already-in-use'
+                ? "El correo electrónico ya está registrado. Por favor, utiliza otro correo."
+                : "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.";
+            Alert.alert("Error", errorMessage);
             console.log(error.message);
         }
     };

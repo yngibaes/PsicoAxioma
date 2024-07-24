@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Text, View, TextInput, Pressable } from 'react-native'
 import styles from './style/styleFormLogIn'
 import hookLogin from '../../hooks/userRegistration/hookLogin'
+import stylesButton from './style/styleButtonLogIn';
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {
@@ -17,7 +18,9 @@ const FormLogIn = (props: propsFormLogIn) => {
     setUserEmail,
     setUserPassword,
     userPasswordRef,
-    userPasswordNext
+    userPasswordNext,
+    handleSubmit,
+    signUp,
   } = hookLogin()
   return (
     <View style={styles.parentForm}>
@@ -38,7 +41,7 @@ const FormLogIn = (props: propsFormLogIn) => {
               keyboardAppearance='dark'
               returnKeyType='next'
               value={userEmail}
-              onChangeText={(text)=>setUserEmail(text)}
+              onChangeText={setUserEmail}
               onSubmitEditing={userPasswordNext}
             />
           </View>
@@ -66,6 +69,21 @@ const FormLogIn = (props: propsFormLogIn) => {
       <Pressable style={styles.divForget} onPress={props.forget}>
         <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
       </Pressable>
+      <View style={stylesButton.divButton}>
+        <Pressable
+          style={stylesButton.parentButton}
+          onPress={() => handleSubmit(userEmail, userPassword)}>
+          <Text style={[stylesButton.button, stylesButton.title]}>Iniciar sesión</Text>
+        </Pressable>
+        <View style={stylesButton.divQuestion}>
+          <Text style={[stylesButton.sizeText, stylesButton.text]}>
+            ¿Aún no tienes cuenta?
+          </Text>
+          <Pressable style={stylesButton.marginText} onPress={signUp}>
+            <Text style={[stylesButton.optionsText, stylesButton.text]}>Regístrate</Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   )
 }

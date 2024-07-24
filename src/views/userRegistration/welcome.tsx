@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View} from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -12,7 +12,7 @@ import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta s
 
 // Definición del componente WelcomeScreen
 const WelcomeScreen = () => {
-  const {logIn, signUp} = UserNavigation()
+  const { logIn, signUp } = UserNavigation()
   return (
     <View style={styles.parentEll}>
       <TitleWelcome />

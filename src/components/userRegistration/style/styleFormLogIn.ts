@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     height: hp('3%'),
     marginTop: hp('0.9%'),
     width: wp('80%'),
+    marginBottom: hp('5.5%'),
   },
   divInput: {
     // Estilos del contenedor del input del formulario
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     // Estilos del contenedor del formulario
     alignItems: 'center', // Alineación de los elementos
     alignSelf: 'stretch', // Ajuste del contenedor
-    height: hp('33%'), // Altura del contenedor
+    height: hp('60%'), // Altura del contenedor
     marginTop: hp('3%'), // Margen superior
     overflow: 'hidden', // Ocultar elementos que sobresalgan
   },

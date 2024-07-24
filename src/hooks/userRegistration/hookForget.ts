@@ -1,31 +1,22 @@
 import { useState } from 'react';
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
-import axios from 'axios';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../config/firebase';
+import { Alert } from 'react-native';
 
-// Asume que ya has inicializado Firebase en otro lugar de tu aplicación
-
-const useForgetPassword = () => {
-    const [userEmail, setUserEmail] = useState('');
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+const hookForgetPassword = () => {
+	const [userEmail, setUserEmail] = useState('');
 
 	const resetPassword = async (email: string) => {
-		setLoading(true);
-		setError(null);
-
 		try {
-			const auth = getAuth();
 			await sendPasswordResetEmail(auth, email);
-			// Opcional: Registrar el intento de restablecimiento en MySQL
-			await axios.post('tu_endpoint_para_registrar_el_intento', { email });
-			setLoading(false);
+			Alert.alert('Correo enviado', 'Se ha enviado un correo para restablecer tu contraseña');
 		} catch (error: any) {
-			setError(error.message);
-			setLoading(false);
+			Alert.alert('Error', 'Ocurrió un error al enviar el correo de restablecimiento. Inténtalo de nuevo.');
+			console.log(error.message);
 		}
 	};
 
-	return { resetPassword, loading, error, userEmail, setUserEmail};
+	return { resetPassword, userEmail, setUserEmail };
 };
 
-export default useForgetPassword;
+export default hookForgetPassword;

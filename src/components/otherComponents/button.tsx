@@ -1,6 +1,6 @@
 // Objetivo: Componente de botón para la aplicación móvil de React Native.
 import * as React from 'react'
-import {StyleSheet, Pressable, Text, View, GestureResponderEvent} from 'react-native'
+import { StyleSheet, Pressable, Text, View, GestureResponderEvent } from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,8 +16,6 @@ interface PropsButton {
   height: string
   size: string
 }
-
-
 
 // Definición del componente Button
 const Button = (props: PropsButton) => {
@@ -36,7 +34,7 @@ const Button = (props: PropsButton) => {
           style={[
             styles.button,
             styles.title,
-            {color: props.colorText, fontSize: wp(props.size)},
+            { color: props.colorText, fontSize: wp(props.size) },
           ]}>
           {props.text}
         </Text>
