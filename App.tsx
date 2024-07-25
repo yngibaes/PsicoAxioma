@@ -10,6 +10,7 @@ import HomeScreen from './src/views/userPrincipal/homeScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './src/hooks/config/firebase'
 import { Alert } from 'react-native';
+import Scroll from './src/views/scrollTutorial';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -24,6 +25,7 @@ export default function App() {
         if (user.emailVerified) {
           setIsLoggedIn(true);
           console.log('email verificado')
+          console.log(user)
         } else {
           // Puedes mostrar un mensaje de error aquí si lo deseas
           console.log('Email no verificado');
@@ -47,7 +49,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={isLoggedIn ? "Home" : "Welcome"}>
+      <Stack.Navigator initialRouteName={isLoggedIn ? "Home" : "Scroll"}>
         {isLoggedIn ? (
           <Stack.Screen
             name="Home"
@@ -56,6 +58,11 @@ export default function App() {
           />
         ) : (
           <>
+            <Stack.Screen
+              name="Scroll"
+              options={{ headerShown: false }}
+              component={Scroll}
+            />
             <Stack.Screen
               name="Welcome"
               options={{ headerShown: false }}

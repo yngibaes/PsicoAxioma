@@ -12,7 +12,7 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handleLogout}>
-                <Text style={styles.text}>HOLA</Text>
+                <Text style={styles.text}>Cierra sesión</Text>
             </TouchableOpacity>
         </View>
     );
@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'black', // Aplica el color al texto
+        padding: 20,
+        backgroundColor: 'red'
+
     }
 });
 

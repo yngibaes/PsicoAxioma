@@ -107,6 +107,8 @@ const hookSignup = () => {
     const verifyPhoneNumber = async (userPhone: string): Promise<boolean> => {
         try {
             const response = await axios.post(`${url}/verifyPhone`, { userPhone });
+            console.log(response.data.message);
+            console.log(userPhone)
             if (response.data.message !== 'El numero de télefono no existe en la base de datos.') {
                 // El número de teléfono ya está registrado
                 return false;
@@ -145,7 +147,7 @@ const hookSignup = () => {
                 return;
             }
             const phoneValid = await verifyPhoneNumber(userPhone);
-            if (!phoneValid) {
+            if (phoneValid) {
                 Alert.alert("Error", "El número de teléfono ya está registrado. Por favor, utiliza otro número.");
                 return;
             }
