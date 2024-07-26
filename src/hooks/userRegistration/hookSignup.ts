@@ -52,7 +52,6 @@ const hookSignup = () => {
         userPhoneRequired: '*Télefono es requerido.',
         userPhoneInvalid: '*Debe tener 10 dígitos.',
         userPasswordRequired: '*Contraseña es requerida.',
-        userPasswordInvalid: '*Al menos una letra mayúscula y letra minúscula, un carácter especial (!?$@&%) y al menos dos números.',
         confirmPassword: '*Las contraseñas no coinciden.'
     };
 
@@ -61,7 +60,6 @@ const hookSignup = () => {
         userEmail: /\S+@\S+\.\S+/,
         userEmailDomain: /(@gmail\.com|@outlook\.com|@yahoo\.com)$/,
         userPhone: /^3\d{9}$/,
-        userPassword: /(?=.*[A-Z])(?=.*[a-z])(?=.*[!?$@&%])(?=.*\d.*\d)/
     };
 
     // Validar el formulario
@@ -88,8 +86,6 @@ const hookSignup = () => {
 
         if (!userPassword) {
             errors.userPassword = ERROR_MESSAGES.userPasswordRequired;
-        } else if (!REGEX.userPassword.test(userPassword)) {
-            errors.userPassword = ERROR_MESSAGES.userPasswordInvalid;
         }
 
         if (confirmPassword !== userPassword) {
@@ -131,7 +127,7 @@ const hookSignup = () => {
     // Enviar verificación y registrar usuario
     const sendVerificationAndRegisterUser = async (user: User) => {
         await sendEmailVerification(user);
-        const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone, userPassword });
+        const response = await axios.post(`${url}/insertUser`, { userName, userEmail, userPhone });
         if (response.status === 200) {
             Alert.alert('Registro exitoso', 'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             goBack();

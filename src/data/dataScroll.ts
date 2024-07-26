@@ -11,36 +11,41 @@ export interface OnboardingData {
   text: string;
   textColor: string;
   backgroundColor: string;
+  margintop: number;
 }
 
 const data: OnboardingData[] = [
   {
     id: 1,
-    image: require('../assets/img/call.png'),
-    text: 'Bienvenido a PsicoAxioma',
-    textColor: '#f8dac2',
-    backgroundColor: '#6750A4', //Aca se le pude modificar los colores a cada componente de las paginas 
+    image: require('../assets/img/logo.png'),
+    text: '¡Bienvenido a PsicoAxioma!',
+    textColor: '#000',
+    backgroundColor: '#cce8e8', //Aca se le pude modificar los colores a cada componente de las paginas 
+    margintop: 55
   },
   {
     id: 2,
-    image: require('../assets/img/call.png'),
-    text: 'Encontras las lineas de ayuda en salud mental',
-    textColor: '#154f40',
-    backgroundColor: '#031222',
+    image: require('../assets/img/call1.jpg'),
+    text: 'Encontrarás líneas de atención de salud mental',
+    textColor: '#FFF',
+    backgroundColor: '#458281',
+    margintop: 30
   },
   {
     id: 3,
-    image: require('../assets/img/diary.png'),
-    text: 'Sientete con libertad de expresar lo que sientes en tu diario emocional',
+    image: require('../assets/img/diary1.png'),
+    text: 'Con tu diario emocional, podrás expresarte de cualquiera manera',
     textColor: 'black',
-    backgroundColor: '#f8dac2',
+    backgroundColor: '#e0c7b4',
+    margintop: 1
   },
   {
     id: 4,
-    image: require('../assets/img/recog.png'),
-    text: 'Reconoce tu estado de animo mediante nuestra Inteligencia Artificial',
-    textColor: 'black',
-    backgroundColor: '#f8dac2',
+    image: require('../assets/img/recognition.png'),
+    text: 'Reconoce tu estado de ánimo con Inteligencia Artificial',
+    textColor: '#000',
+    backgroundColor: '#c1cde0',
+    margintop: 20
   },
 ];
 

@@ -1,6 +1,6 @@
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useState, useEffect } from 'react';
-import { auth }  from './config/firebase';
+import { auth } from './config/firebase';
 
 const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -18,7 +18,7 @@ const useAuth = () => {
       }
     });
     return unsub;
-  }, []); 
+  }, []);
 
   // Función para actualizar el estado de inicio de sesión, podría ser llamad/*  */a después de un inicio de sesión exitoso
   const login = () => {

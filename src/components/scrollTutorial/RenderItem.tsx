@@ -28,7 +28,7 @@ const RenderItem = ({ item }: Props) => {
         style={[styles.imageStyle, { width: SCREEN_WIDTH, height: imageHeight }]}
         resizeMode="contain" // El componente resizMode es para ajustar la imagen en el tamaño de la pantalla
       />
-      <Text style={[styles.itemText, { color: item.textColor }]}>
+      <Text style={[styles.itemText, { color: item.textColor, marginTop: item.margintop }]}>
         {item.text}
       </Text>
     </View>
@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
     paddingTop: 110, //posocion de la imagen junto al texto 
   },
   itemText: { //Apartado especial para el texto 
-    fontSize: 30,//Tamaño del texto
-    fontWeight: 'bold', //Tipo de fuente
+    fontFamily: 'InterBold',
+    fontSize: 35,//Tamaño del texto
+    fontWeight: '600', //Tipo de fuente
     marginHorizontal: 35,
-    marginTop: 15,//Este se utiliza para poder ajustar la posicion del texto alrededor de la imagen
     textAlign: 'center',
   },
 });

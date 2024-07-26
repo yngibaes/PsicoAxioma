@@ -9,9 +9,9 @@ import materialTheme from '../../../assets/material-theme.json' // Ajusta la rut
 const styles = StyleSheet.create({
   divForget: {
     height: hp('3%'),
+    marginBottom: hp('5.5%'),
     marginTop: hp('0.9%'),
     width: wp('80%'),
-    marginBottom: hp('5.5%'),
   },
   divInput: {
     // Estilos del contenedor del input del formulario

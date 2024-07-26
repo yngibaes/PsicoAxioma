@@ -2,6 +2,7 @@ import { StyleSheet, useWindowDimensions } from 'react-native'
 import React from 'react'
 import Animated, { interpolate, interpolateColor, SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { Extrapolate } from '@shopify/react-native-skia';
+import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
 type Props = {
     index: number;
@@ -45,7 +46,7 @@ const Dot = ({ index, buttonVal }: Props) => {
         const backgroundColor = interpolateColor(
             buttonVal.value,
             [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT],
-            ['#fd94b2', '#f8dac2', '#154f40', '#F4340B']//Se cambian los colores de la paginacion que se da con el cursor del boton de scroll 
+            ['#098f91', '#f8dac2', '#5a71a3', '#F4340B']//Se cambian los colores de la paginacion que se da con el cursor del boton de scroll 
         );
         return {
             backgroundColor: backgroundColor,
@@ -60,7 +61,7 @@ export default Dot
 
 const styles = StyleSheet.create({
     dot: {
-        backgroundColor: 'black',
+        backgroundColor: materialTheme.palettes.primary[0],
         borderRadius: 5,
         bottom: -10,
         height: 10,

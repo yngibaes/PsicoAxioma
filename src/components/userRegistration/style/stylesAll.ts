@@ -7,6 +7,17 @@ import materialTheme from '../../../assets/material-theme.json' // Ajusta la rut
 
 // Definición de los estilos
 const styles = StyleSheet.create({
+    divImage: {
+        borderRadius: 50, // Radio de las esquinas de la imagen
+        width: '100%', // Ancho del contenedor
+    },
+    divTitle: {
+        // Estilos del contenedor del título
+        height: hp('25%'), // Altura del contenedor
+        justifyContent: 'center', // Alineación de los elementos
+        overflow: 'hidden', // Ocultar elementos que sobresalgan
+        width: wp('90%'), // Ancho del contenedor, 90% del ancho de la pantalla
+    },
     gobackChild: {
         backgroundColor: materialTheme.palettes.secondary[20],
         borderBottomLeftRadius: 10,
@@ -38,12 +49,10 @@ const styles = StyleSheet.create({
         marginLeft: '2.5%',
         textAlign: 'center',
     },
-    divTitle: {
-        // Estilos del contenedor del título
-        height: hp('25%'), // Altura del contenedor
-        justifyContent: 'center', // Alineación de los elementos
+    image: {
+        // Estilos de la imagen
+        alignSelf: 'center', // Alineación de la imagen
         overflow: 'hidden', // Ocultar elementos que sobresalgan
-        width: wp('90%'), // Ancho del contenedor, 90% del ancho de la pantalla
     },
     sizeTitle: {
         // Estilos del tamaño del título
@@ -56,15 +65,6 @@ const styles = StyleSheet.create({
         // Estilos del título
         fontFamily: 'InterBold', // Tipo de fuente
         fontWeight: '300', // Grosor del texto
-    },
-    divImage: {
-        borderRadius: 50, // Radio de las esquinas de la imagen
-        width: '100%', // Ancho del contenedor
-    },
-    image: {
-        // Estilos de la imagen
-        alignSelf: 'center', // Alineación de la imagen
-        overflow: 'hidden', // Ocultar elementos que sobresalgan
     },
 })
 

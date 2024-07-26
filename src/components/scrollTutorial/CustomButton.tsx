@@ -12,6 +12,7 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 /*  import { interpolateColor, SharedValue, useAnimatedStyle } from 'react-native-reanimated';  */
+import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
 type Props = {
     handlerPress: () => void;
@@ -24,7 +25,7 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
         const backgroundColor = interpolateColor(
             buttonVal.value,
             [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT],
-            ['#fd94b2', '#f8dac2', '#154f40', '#F4340B'] /*Aqui se le da el color al boton de scroll */
+            ['#098f91', '#f8dac2', '#5a71a3', '#F4340B'] /*Aqui se le da el color al boton de scroll */
         );
         return {
             backgroundColor: backgroundColor,
@@ -85,7 +86,7 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
             <Animated.View style={[styles.container, animatedColor, buttonAnimationStyle]}>
 
                 <Animated.Text style={[styles.textButton, textAnimationStyle]}>
-                    Comencemos !!!
+                    ¡Comencemos!
                 </Animated.Text>
                 <Animated.Image
                     style={arrowAnimationStyle}
@@ -100,7 +101,7 @@ export default CustomButton
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: materialTheme.palettes.tertiary[100],
         borderRadius: 100,
         bottom: 68,
         height: 120,
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     textButton: {
-        color: 'black',
+        color: materialTheme.palettes.tertiary[100],
         fontSize: 25,
         position: 'absolute',
     },

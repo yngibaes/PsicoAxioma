@@ -9,7 +9,6 @@ import ForgetPassword from './src/views/userRegistration/forgetpassword'
 import HomeScreen from './src/views/userPrincipal/homeScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './src/hooks/config/firebase'
-import { Alert } from 'react-native';
 import Scroll from './src/views/scrollTutorial';
 
 //Esto nos ayuda a navegar entre pantallas
@@ -29,7 +28,6 @@ export default function App() {
         } else {
           // Puedes mostrar un mensaje de error aquí si lo deseas
           console.log('Email no verificado');
-          Alert.alert('Error', 'Correo no ha sido verificado')
           setIsLoggedIn(false);
         }
       } else {

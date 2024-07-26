@@ -28,10 +28,21 @@ const styles = StyleSheet.create({
     shadowRadius: 2, // Radio de la sombra
     width: wp('80%'), // Ancho
   },
+  button: {
+    // Estilos del botón
+    fontSize: wp('8%'), // Tamaño de la fuente, 15% del ancho de la pantalla
+    textAlign: 'center',
+  },
   childEmail: {
     borderRadius: 30,
     paddingHorizontal: wp('0.5%'), // Relleno horizontal
     paddingTop: hp('0.5%'), // Relleno superior 
+  },
+  divButton: {
+    alignItems: 'center',
+    marginTop: hp('2%'), // Margen superior
+    // Estilos del contenedor de los botones
+    width: wp('94%'), // Ancho del contenedor
   },
   divLabel: {
     color: materialTheme.palettes.primary[0], // Color del texto
@@ -51,41 +62,30 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     textAlign: 'left',
   },
+  parentButton: {
+    // Estilos del contenedor del botón de inicio de sesión
+    alignItems: 'center',
+    backgroundColor: materialTheme.palettes.secondary[20], // Color de fondo
+    borderRadius: 10, // Radio de las esquinas del botón
+    height: hp('7%'), // Altura del contenedor
+    justifyContent: 'center',
+    overflow: 'hidden', // Ocultar elementos que sobresalgan
+    width: wp('26%'), // Ancho del contenedor
+  },
   parentEmail: {
+    alignItems: 'center', // Alineación de los elementos
     height: hp('30%'), // Altura del contenedor 
     overflow: 'hidden', // Ocultar elementos que sobresalen
     width: wp('80%'), // Ancho del contenedor
-    alignItems: 'center', // Alineación de los elementos
   },
   sizeInput: {
     height: hp('7%'), // Altura del input
   },
-  button: {
-    // Estilos del botón
-    fontSize: wp('8%'), // Tamaño de la fuente, 15% del ancho de la pantalla
-    textAlign: 'center',
-  },
-  divButton: {
-    marginTop: hp('2%'), // Margen superior
-    // Estilos del contenedor de los botones
-    alignItems: 'center',
-    width: wp('94%'), // Ancho del contenedor
-  },
-  parentButton: {
-    // Estilos del contenedor del botón de inicio de sesión
-    alignItems: 'center',
-    borderRadius: 10, // Radio de las esquinas del botón
-    justifyContent: 'center',
-    overflow: 'hidden', // Ocultar elementos que sobresalgan
-    backgroundColor: materialTheme.palettes.secondary[20], // Color de fondo
-    width: wp('26%'), // Ancho del contenedor
-    height: hp('7%'), // Altura del contenedor
-  },
   title: {
     // Estilos del título
     color: materialTheme.palettes.primary[100], // Color del texto
-    fontSize: wp('5.6%'), // Tamaño de la fuente
     fontFamily: 'InterBold',
+    fontSize: wp('5.6%'), // Tamaño de la fuente
     fontWeight: '300', // Grosor del texto
   },
 })

@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     height: hp('70%'),
     marginTop: hp('5%'),
-    paddingTop: hp('2%'),
     overflow: 'hidden',
+    paddingTop: hp('2%'),
     width: wp('100%'),
   },
   parentAll: {

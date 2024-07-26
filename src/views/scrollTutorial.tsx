@@ -21,6 +21,7 @@ import {
 import { useSharedValue, withTiming } from 'react-native-reanimated';
 import Pagination from '../components/scrollTutorial/Pagination';
 import UserNavigation from '../hooks/userNavigation';
+import materialTheme from '../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
 
 const Scroll = () => {
     const pd = PixelRatio.get();
@@ -32,7 +33,6 @@ const Scroll = () => {
     const mask = useSharedValue(0);
     const buttonVal = useSharedValue(0);
 
-    ;
     const wait = async (ms: number) =>
         new Promise(resolve => setTimeout(resolve, ms));
 
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     },
     credit: {
         bottom: 12,
-        color: 'white',
-        position: 'absolute',
+        color: materialTheme.palettes.primary[0],
         fontSize: 14,
+        position: 'absolute',
     },
 });
