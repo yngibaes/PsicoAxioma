@@ -23,11 +23,11 @@ export default function App() {
       if (user) {
         if (user.emailVerified) {
           setIsLoggedIn(true);
-          console.log('email verificado')
+          console.log('Se ha iniciado sesión')
           console.log(user)
         } else {
           // Puedes mostrar un mensaje de error aquí si lo deseas
-          console.log('Email no verificado');
+          console.log('No se ha iniciado sesión');
           setIsLoggedIn(false);
         }
       } else {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native'
 import { signOut } from 'firebase/auth';
 import { auth } from '../../hooks/config/firebase';
+import NavBar from '../../components/otherComponents/navBar';
 
 // Definición del componente SignUp
 const HomeScreen = () => {
@@ -14,6 +15,7 @@ const HomeScreen = () => {
             <TouchableOpacity onPress={handleLogout}>
                 <Text style={styles.text}>Cierra sesión</Text>
             </TouchableOpacity>
+            <NavBar></NavBar>
         </View>
     );
 }
