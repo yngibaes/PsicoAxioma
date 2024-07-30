@@ -1,26 +1,28 @@
 import * as React from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
-import style from './style/navBar'
+import { Image, View, Pressable } from "react-native";
+import styles from './style/styleNavBar'
+import UserNavigation from "../../hooks/userNavigation";
 
 const NavBar = () => {
+	const { HomeScreen, CalendaryScreen, CameraScreen, DiaryScreen, RoutesScreen } = UserNavigation()
 	return (
-		<View style={style.nav}>
-			<Pressable style={style.option} onPress={() => { }}>
-				<Image style={style.icon} resizeMode="contain" source={require('../../assets/img/nav/home.png')} />
+		<View style={styles.nav}>
+			<Pressable style={styles.option} onPress={HomeScreen}>
+				<Image style={styles.icon} resizeMode="contain" source={require('../../assets/img/nav/home.png')} />
 			</Pressable>
-			<Pressable style={style.option} onPress={() => { }}>
-				<Image style={style.icon} resizeMode="contain" source={require('../../assets/img/nav/calendary.png')} />
+			<Pressable style={styles.option} onPress={CalendaryScreen}>
+				<Image style={styles.icon} resizeMode="contain" source={require('../../assets/img/nav/calendary.png')} />
 			</Pressable>
-			<Pressable style={style.option} onPress={() => { }}>
-				<View style={style.ellipse}>
-					<Image style={style.icon} resizeMode="contain" source={require('../../assets/img/nav/more.png')} />
+			<Pressable style={styles.option} onPress={CameraScreen}>
+				<View style={styles.ellipse}>
+					<Image style={styles.icon} resizeMode="contain" source={require('../../assets/img/nav/more.png')} />
 				</View>
 			</Pressable>
-			<Pressable style={style.option} onPress={() => { }}>
-				<Image style={style.icon} resizeMode="contain" source={require('../../assets/img/nav/diary.png')} />
+			<Pressable style={styles.option} onPress={DiaryScreen}>
+				<Image style={styles.icon} resizeMode="contain" source={require('../../assets/img/nav/diary.png')} />
 			</Pressable>
-			<Pressable style={style.option} onPress={() => { }}>
-				<Image style={style.icon} resizeMode="contain" source={require('../../assets/img/nav/call.png')} />
+			<Pressable style={styles.option} onPress={RoutesScreen}>
+				<Image style={styles.icon} resizeMode="contain" source={require('../../assets/img/nav/call.png')} />
 			</Pressable>
 		</View>);
 };

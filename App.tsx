@@ -10,6 +10,10 @@ import HomeScreen from './src/views/userPrincipal/homeScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './src/hooks/config/firebase'
 import Scroll from './src/views/scrollTutorial';
+import RoutesScreen from './src/views/userPrincipal/rutesScreen';
+import CalendaryScreen from './src/views/userPrincipal/calendaryScreen';
+import CameraScreen from './src/views/userPrincipal/cameraScreen';
+import DiaryScreen from './src/views/userPrincipal/diaryScreen';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -49,11 +53,33 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={isLoggedIn ? "Home" : "Scroll"}>
         {isLoggedIn ? (
+          <>
           <Stack.Screen
             name="Home"
             options={{ headerShown: false }}
             component={HomeScreen}
           />
+          <Stack.Screen
+            name="Calendary"
+            options={{ headerShown: false }}
+            component={CalendaryScreen}
+          />
+          <Stack.Screen
+            name="Camera"
+            options={{ headerShown: false }}
+            component={CameraScreen}
+          />
+          <Stack.Screen
+            name="Diary"
+            options={{ headerShown: false }}
+            component={DiaryScreen}
+          />
+          <Stack.Screen
+            name="Routes"
+            options={{ headerShown: false }}
+            component={RoutesScreen}
+          />
+          </>
         ) : (
           <>
             <Stack.Screen

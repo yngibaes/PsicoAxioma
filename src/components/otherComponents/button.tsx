@@ -1,6 +1,6 @@
 // Objetivo: Componente de botón para la aplicación móvil de React Native.
 import * as React from 'react'
-import { StyleSheet, Pressable, Text, View, GestureResponderEvent } from 'react-native'
+import { StyleSheet, Pressable, Text, View } from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,7 +8,7 @@ import {
 
 // Definición de las props usando TypeScript
 interface PropsButton {
-  onPress: (event: GestureResponderEvent) => void | Promise<void>; // Función que ejecuta el botón
+  onPress: () => void // Función que ejecuta el botón
   colorButton: string
   colorText: string
   text: string
