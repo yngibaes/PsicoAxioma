@@ -20,7 +20,7 @@ const CardDiary = () => {
             </View>
             
             <View style={styles.parentDescri}>  
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum ornare suscipit. Cras eget diam neque. Donec dui eros, ornare id pulvinar quis, dapibus sit amet tortor. Donec consectetur...</Text>
+                <Text style={styles.description}>Loresdsadm ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum ornare suscipit. Cras eget diam neque. Donec dui eros, ornare id pulvinar quis, dapibus sit amet tortor. Donec consectetur...</Text>
             </View>
         </View>);
 };
