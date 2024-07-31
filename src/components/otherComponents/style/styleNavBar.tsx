@@ -12,11 +12,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         height: hp('5%'),
         justifyContent: 'center',
-        width: wp('11%'),
-    },
-    icon: {
-        overflow: "hidden",
-        width: wp('8%'),
+        width: wp('12%'),
     },
     nav: {
         alignItems: "center",
@@ -25,17 +21,17 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 18,
         flexDirection: "row",
         height: hp('6.5%'),
-        justifyContent: 'space-between',
         width: wp('100%')
     },
     option: {
         alignItems: 'center',
-        height: hp('10%'),
+        height: hp('5%'),
         justifyContent: 'center',
+        marginHorizontal: wp('3.8%'),
         overflow: "hidden",
-        width: wp('16%'),
+        width: wp('12%'),
         /*borderColor: 'black',
-        borderWidth: 1*/
+        borderWidth: 1 */
     },
 })
 

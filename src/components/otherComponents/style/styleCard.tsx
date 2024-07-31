@@ -8,7 +8,7 @@ import materialTheme from '../../../assets/material-theme.json' // Ajusta la rut
 const styles = StyleSheet.create({
     cardImage: {
         borderRadius: 8,
-        height: hp('100%'),
+        height: hp('20%'),
         width: wp('100%'),
     },
     cardInfo: {
@@ -25,10 +25,14 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     cardTitle: {
-        fontSize: 18,
+        fontSize: 30,
         fontWeight: 'bold',
         marginTop: 10,
     },
+    layout: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },  
 });
 
 export default styles

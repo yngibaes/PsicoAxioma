@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ScrollView,
   Text,
+  View,
   Image,
   TouchableOpacity,
   Linking,
@@ -23,9 +24,11 @@ const Card = (props: CardProps) => {
   return (
     <TouchableOpacity style={styles.cardInfo} onPress={handlePress}>
       <ScrollView style={styles.cardInfo}>
-        <Image style={styles.cardImage} source={props.imageSource} resizeMode="contain"/>
-        <Text style={styles.cardTitle}>{props.cardTitle}</Text>
-        <Text style={styles.cardText}>{props.cardText}</Text>
+        <View style={styles.layout}>
+          <Image style={styles.cardImage} source={props.imageSource} resizeMode="contain" />
+          <Text style={styles.cardTitle}>{props.cardTitle}</Text>
+          <Text style={styles.cardText}>{props.cardText}</Text>
+        </View>
       </ScrollView>
     </TouchableOpacity>
   );

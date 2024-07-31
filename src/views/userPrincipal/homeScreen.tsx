@@ -15,12 +15,12 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handleLogout}>
-                <Text style={[styles.text, {backgroundColor: materialTheme.schemes.darkmediumcontrast.error}]}>Cierra sesión</Text>
+                <Text style={[styles.text, { backgroundColor: materialTheme.schemes.darkmediumcontrast.error }]}>Cierra sesión</Text>
             </TouchableOpacity>
             <ScrollView>
                 <Text style={styles.text}>Home</Text>
             </ScrollView>
-            <NavBar/>
+            <NavBar />
         </View>
     );
 }
