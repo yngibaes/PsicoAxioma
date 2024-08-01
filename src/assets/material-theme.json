@@ -260,7 +260,8 @@
             "surfaceContainerLow": "#161D1C",
             "surfaceContainer": "#1A2120",
             "surfaceContainerHigh": "#252B2B",
-            "surfaceContainerHighest": "#2F3636"
+            "surfaceContainerHighest": "#2F3636",
+            "diaryAndroid": "#e0c7b4"
         },
         "darkhighcontrast": {
             "primary": "#EAFFFD",

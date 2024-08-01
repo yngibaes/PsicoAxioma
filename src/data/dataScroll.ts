@@ -17,7 +17,7 @@ export interface OnboardingData {
 const data: OnboardingData[] = [
   {
     id: 1,
-    image: require('../assets/img/logo.png'),
+    image: require('../assets/img/scroll/logo.png'),
     text: '¡Bienvenido a PsicoAxioma!',
     textColor: '#000',
     backgroundColor: '#cce8e8', //Aca se le pude modificar los colores a cada componente de las paginas 
@@ -25,7 +25,7 @@ const data: OnboardingData[] = [
   },
   {
     id: 2,
-    image: require('../assets/img/call1.jpg'),
+    image: require('../assets/img/scroll/call.jpg'),
     text: 'Encontrarás líneas de atención de salud mental',
     textColor: '#FFF',
     backgroundColor: '#458281',
@@ -33,7 +33,7 @@ const data: OnboardingData[] = [
   },
   {
     id: 3,
-    image: require('../assets/img/diary1.png'),
+    image: require('../assets/img/scroll/diary.png'),
     text: 'Con tu diario emocional, podrás expresarte de cualquiera manera',
     textColor: 'black',
     backgroundColor: '#e0c7b4',
@@ -41,7 +41,7 @@ const data: OnboardingData[] = [
   },
   {
     id: 4,
-    image: require('../assets/img/recognition.png'),
+    image: require('../assets/img/scroll/recognition.png'),
     text: 'Reconoce tu estado de ánimo con Inteligencia Artificial',
     textColor: '#000',
     backgroundColor: '#c1cde0',

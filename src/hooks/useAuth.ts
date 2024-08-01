@@ -31,7 +31,9 @@ const useAuth = () => {
     // Aquí deberías implementar el cierre de sesión de Firebase Auth
   };
 
-  return { user, isLoggedIn, login, logout };
+  const userEmail = user?.email || '';
+
+  return { user, isLoggedIn, login, logout, userEmail };
 };
 
 export default useAuth;

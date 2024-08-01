@@ -48,7 +48,7 @@ const RoutesScreen = () => {
                     {/* Añade más cartas según sea necesario */}
                 </View>
             </ScrollView>
-            <NavBar/>
+            <NavBar />
         </View>
     );
 }

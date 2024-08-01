@@ -4,7 +4,7 @@ import materialTheme from '../../../assets/material-theme.json' // Ajusta la rut
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center', // Centra horizontalmente
-        backgroundColor: materialTheme.schemes.darkmediumcontrast.surface,
+        backgroundColor: materialTheme.schemes.darkmediumcontrast.onSurface,
         flex: 1, // Asegura que el contenedor use todo el espacio disponible
         justifyContent: 'center', // Centra verticalmente
     },

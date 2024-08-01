@@ -17,7 +17,7 @@ const TopBar = (props: propsTopBar) => {
           <Image
             style={styles.gobackIcon}
             resizeMode="contain"
-            source={require('../../assets/img/arrowBack.png')}
+            source={require('../../assets/img/userRegistration/arrowBack.png')}
           />
         </View>
       </Pressable>

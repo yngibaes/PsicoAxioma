@@ -90,7 +90,7 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
                 </Animated.Text>
                 <Animated.Image
                     style={arrowAnimationStyle}
-                    source={require('../../assets/img/arrowright.png')} />
+                    source={require('../../assets/img/scroll/arrowright.png')} />
             </Animated.View>
         </TouchableWithoutFeedback>
     )

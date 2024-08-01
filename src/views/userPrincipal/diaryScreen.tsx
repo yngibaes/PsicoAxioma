@@ -2,14 +2,14 @@ import React from 'react';
 import { View, ScrollView } from 'react-native'
 import NavBar from '../../components/otherComponents/navBar';
 import styles from './style/styleScreen';
-import CardDiary from '../../components/otherComponents/cardDiary';
+import ContentDiary from '../../components/otherComponents/diary';
 
 // Definición del componente SignUp
 const DiaryScreen = () => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <CardDiary></CardDiary>
+                <ContentDiary />
             </ScrollView>
             <NavBar />
         </View>
