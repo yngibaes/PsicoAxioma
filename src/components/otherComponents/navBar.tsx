@@ -29,7 +29,7 @@ const NavBar = () => {
       </View>
       <View style={[styles.ellipse, styles.option]}>
         <Icon
-          name="add-circle-outline"
+          name="aperture-outline"
           type="ionicon"
           color="#000"
           onPress={CameraScreen}

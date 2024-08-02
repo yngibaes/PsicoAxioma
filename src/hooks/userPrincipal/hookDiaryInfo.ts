@@ -4,7 +4,7 @@ import useAuth from '../useAuth';
 
 // Definición de la interfaz
 interface DiaryEntry {
-  diaryId: string
+  diaryID: string
   diaryTitle: string
   diaryContent: string
   diaryDate: string

@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginTop: 25,
-    borderWidth: 2,
-    borderColor: '#000',
+    /*     borderWidth: 2,
+        borderColor: '#000', */
   },
 })
 

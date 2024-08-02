@@ -27,7 +27,7 @@ const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
     <View style={styles.container}>
       {limitedData.length > 0 ? (
         limitedData.map(item => (
-          <View key={item.diaryId} style={styles.parentAll}>
+          <View key={item.diaryID} style={styles.parentAll}>
             <View style={styles.parentTitle}>
               <Icon name="ellipse" type="ionicon" color="#47708D" size={15} />
               <Text style={styles.title}>{item.diaryTitle}</Text>

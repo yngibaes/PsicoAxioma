@@ -14,6 +14,7 @@ import RoutesScreen from './src/views/userPrincipal/routesScreen'
 import CalendaryScreen from './src/views/userPrincipal/calendaryScreen'
 import CameraScreen from './src/views/userPrincipal/cameraScreen'
 import DiaryScreen from './src/views/userPrincipal/diaryScreen'
+import CreateDiaryScreen from './src/views/userPrincipal/createDiaryScreen'
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -78,6 +79,11 @@ export default function App() {
               name="Routes"
               options={{ headerShown: false }}
               component={RoutesScreen}
+            />
+            <Stack.Screen
+              name="CreateDiaryScreen"
+              options={{ headerShown: false }}
+              component={CreateDiaryScreen}
             />
           </>
         ) : (
