@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Text, View } from 'react-native'
-import styles from './style/stylesAll'
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import styles from './style/stylesAll';
 
 const TitleWelcome = () => {
   return (

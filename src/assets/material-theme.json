@@ -228,7 +228,7 @@
             "onError": "#370001",
             "errorContainer": "#FF5449",
             "onErrorContainer": "#000000",
-            "background": "#0E1514",
+            /*             "background": "#0E1514", */
             "onBackground": "#DDE4E3",
             "surface": "#4E5554",
             "onSurface": "#F6FCFB",
@@ -261,7 +261,9 @@
             "surfaceContainer": "#1A2120",
             "surfaceContainerHigh": "#252B2B",
             "surfaceContainerHighest": "#2F3636",
-            "diaryAndroid": "#e0c7b4"
+            "diaryAndroid": "#e0c7b4",
+            "background": "#DDD6D2",
+            "date": "#A1A1A1"
         },
         "darkhighcontrast": {
             "primary": "#EAFFFD",

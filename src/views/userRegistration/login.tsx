@@ -1,15 +1,12 @@
-import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import TopBar from '../../components/userRegistration/topBar'
-import UserNavigation from '../../hooks/userNavigation'
-import ImageBear from '../../components/userRegistration/imageBear'
-import FormLogIn from '../../components/userRegistration/formLogin'
-import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from 'react-native-responsive-screen';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import TopBar from '../../components/userRegistration/topBar';
+import ImageBear from '../../components/userRegistration/imageBear';
+import FormLogIn from '../../components/userRegistration/formLogin';
+import UserNavigation from '../../hooks/userNavigation';
+import materialTheme from '../../assets/material-theme.json';
 
 // Definición del componente LogInScreen
 const LogInScreen = () => {
@@ -17,7 +14,8 @@ const LogInScreen = () => {
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Iniciar Sesión" />
-      <KeyboardAwareScrollView enableOnAndroid={true}
+      <KeyboardAwareScrollView
+        enableOnAndroid={true}
         scrollEnabled={false} // Deshabilita el scroll en la vista
         extraScrollHeight={10} // Ajusta este valor según sea necesario
         keyboardShouldPersistTaps="handled" // Mejora la interacción con los inputs cuando el teclado está visible
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
     flex: 1,
-    flexDirection: 'column', //	Orden de los elementos
+    flexDirection: 'column',
     height: hp('100%'),
     overflow: 'hidden',
     paddingTop: wp('1%'),

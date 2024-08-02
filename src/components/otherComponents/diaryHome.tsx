@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { Icon } from 'react-native-elements';
+import {Text, View} from 'react-native';
+import {Icon} from 'react-native-elements';
 import styles from './style/styleDiary';
 import CardDiary from './cardDiary';
 
-const ContentDiary = () => {
+const ContentDiaryHome = () => {
   return (
     <View style={styles.parentDiary}>
       <View style={styles.childText}>
@@ -19,9 +19,9 @@ const ContentDiary = () => {
           />
         </View>
       </View>
-      <CardDiary />
+      <CardDiary limit={3} />
     </View>
   )
 }
 
-export default ContentDiary
+export default ContentDiaryHome

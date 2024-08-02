@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Text, View, TextInput, Pressable } from 'react-native'
-import styles from './style/styleFormLogIn'
-import hookLogin from '../../hooks/userRegistration/hookLogin'
+import * as React from 'react';
+import { Text, View, TextInput, Pressable } from 'react-native';
+import styles from './style/styleFormLogIn';
+import hookLogin from '../../hooks/userRegistration/hookLogin';
 import stylesButton from './style/styleButtonLogIn';
 
 // Definición de las props usando TypeScript
@@ -28,7 +28,9 @@ const FormLogIn = (props: propsFormLogIn) => {
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
             <Text style={styles.labelForm}>Email</Text>
-            {errors.userEmail && <Text style={styles.error}>{errors.userEmail}</Text>}
+            {errors.userEmail && (
+              <Text style={styles.error}>{errors.userEmail}</Text>
+            )}
           </View>
           <View style={[styles.sizeInput, styles.input]}>
             <TextInput
@@ -38,8 +40,8 @@ const FormLogIn = (props: propsFormLogIn) => {
               placeholderTextColor="#828282"
               inputMode="email"
               data-name="userEmail"
-              keyboardAppearance='dark'
-              returnKeyType='next'
+              keyboardAppearance="dark"
+              returnKeyType="next"
               value={userEmail}
               onChangeText={setUserEmail}
               onSubmitEditing={userPasswordNext}
@@ -57,8 +59,8 @@ const FormLogIn = (props: propsFormLogIn) => {
               placeholderTextColor="#000"
               inputMode="text"
               data-name="userPassword"
-              keyboardAppearance='dark'
-              returnKeyType='done'
+              keyboardAppearance="dark"
+              returnKeyType="done"
               value={userPassword}
               onChangeText={setUserPassword}
               ref={userPasswordRef}
@@ -73,14 +75,18 @@ const FormLogIn = (props: propsFormLogIn) => {
         <Pressable
           style={stylesButton.parentButton}
           onPress={() => handleSubmit(userEmail, userPassword)}>
-          <Text style={[stylesButton.button, stylesButton.title]}>Iniciar sesión</Text>
+          <Text style={[stylesButton.button, stylesButton.title]}>
+            Iniciar sesión
+          </Text>
         </Pressable>
         <View style={stylesButton.divQuestion}>
           <Text style={[stylesButton.sizeText, stylesButton.text]}>
             ¿Aún no tienes cuenta?
           </Text>
           <Pressable style={stylesButton.marginText} onPress={signUp}>
-            <Text style={[stylesButton.optionsText, stylesButton.text]}>Regístrate</Text>
+            <Text style={[stylesButton.optionsText, stylesButton.text]}>
+              Regístrate
+            </Text>
           </Pressable>
         </View>
       </View>

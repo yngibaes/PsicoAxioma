@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Text, View, TextInput, Pressable } from 'react-native'
-import styles from './style/styleFormForget'
-import hookForgetPassword from '../../hooks/userRegistration/hookForget'
+import * as React from 'react';
+import { Text, View, TextInput, Pressable } from 'react-native';
+import styles from './style/styleFormForget';
+import hookForgetPassword from '../../hooks/userRegistration/hookForget';
 
 // Definición del componente FormForget
 const FormForget = () => {
@@ -20,8 +20,8 @@ const FormForget = () => {
             placeholderTextColor="#828282"
             inputMode="email"
             data-name="userEmail"
-            keyboardAppearance='dark'
-            returnKeyType='next'
+            keyboardAppearance="dark"
+            returnKeyType="next"
             value={userEmail}
             onChangeText={setUserEmail}
           />
@@ -29,15 +29,9 @@ const FormForget = () => {
       </View>
       <View style={styles.divButton}>
         <Pressable
-          style={
-            styles.parentButton} onPress={() => resetPassword(userEmail)}>
-          <Text
-            style={
-              [styles.button,
-              styles.title,]
-            }>
-            Enviar
-          </Text>
+          style={styles.parentButton}
+          onPress={() => resetPassword(userEmail)}>
+          <Text style={[styles.button, styles.title]}>Enviar</Text>
         </Pressable>
       </View>
     </View>

@@ -1,9 +1,6 @@
-import { StyleSheet } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import materialTheme from '../../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
+import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import materialTheme from '../../../assets/material-theme.json';
 
 // Definición de los estilos
 const styles = StyleSheet.create({
@@ -36,7 +33,7 @@ const styles = StyleSheet.create({
   childEmail: {
     borderRadius: 30,
     paddingHorizontal: wp('0.5%'), // Relleno horizontal
-    paddingTop: hp('0.5%'), // Relleno superior 
+    paddingTop: hp('0.5%'), // Relleno superior
   },
   divButton: {
     alignItems: 'center',
@@ -46,7 +43,7 @@ const styles = StyleSheet.create({
   },
   divLabel: {
     color: materialTheme.palettes.primary[0], // Color del texto
-    width: wp('80%'), // Ancho de la etiqueta 
+    width: wp('80%'), // Ancho de la etiqueta
   },
   label: {
     color: materialTheme.palettes.primary[0], // Color del texto
@@ -74,7 +71,7 @@ const styles = StyleSheet.create({
   },
   parentEmail: {
     alignItems: 'center', // Alineación de los elementos
-    height: hp('30%'), // Altura del contenedor 
+    height: hp('30%'), // Altura del contenedor
     overflow: 'hidden', // Ocultar elementos que sobresalen
     width: wp('80%'), // Ancho del contenedor
   },

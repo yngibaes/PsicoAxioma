@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Image, View, Pressable, Text } from 'react-native'
-import styles from './style/stylesAll'
+import * as React from 'react';
+import { Image, View, Pressable, Text } from 'react-native';
+import styles from './style/stylesAll';
 
 // Definición de las props usando TypeScript
 interface propsTopBar {

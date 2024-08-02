@@ -1,25 +1,21 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import TopBar from '../../components/userRegistration/topBar'
-import UserNavigation from '../../hooks/userNavigation'
-import FormSignUp from '../../components/userRegistration/formSignUp'
-import ImageBear from '../../components/userRegistration/imageBear'
-import materialTheme from '../../assets/material-theme.json' // Ajusta la ruta según tu estructura de archivos
-
+import { StyleSheet, View } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import TopBar from '../../components/userRegistration/topBar';
+import FormSignUp from '../../components/userRegistration/formSignUp';
+import ImageBear from '../../components/userRegistration/imageBear';
+import UserNavigation from '../../hooks/userNavigation';
+import materialTheme from '../../assets/material-theme.json';
 
 // Definición del componente SignUp
 const SignUp = () => {
   const { goBack } = UserNavigation()
-
   return (
     <View style={styles.parentAll}>
       <TopBar goBack={goBack} text="Regístrate" />
-      <KeyboardAwareScrollView enableOnAndroid={true}
+      <KeyboardAwareScrollView
+        enableOnAndroid={true}
         scrollEnabled={false} // Deshabilita el scroll en la vista
         extraScrollHeight={10} // Ajusta este valor según sea necesario
         keyboardShouldPersistTaps="handled" // Mejora la interacción con los inputs cuando el teclado está visible
