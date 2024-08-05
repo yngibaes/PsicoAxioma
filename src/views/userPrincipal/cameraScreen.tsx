@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import styles from './style/styleScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Image } from 'react-native-elements';
-
-import { useEffect, useRef, useState } from 'react'
 import { Linking } from 'react-native';
-import { Camera, getCameraDevice, useCameraDevice, NoCameraDeviceError } from 'react-native-vision-camera'
+import { Camera, PhotoFile, useCameraDevice } from 'react-native-vision-camera'
+import { useFocusEffect } from '@react-navigation/native';
 
 // Definición del componente SignUp
 const CameraScreen = () => {
   const camera = useRef<Camera>(null)
-  /*   const devices = Camera.getAvailableCameraDevices()
-    const device = getCameraDevice(devices, 'front') */
-  const device = useCameraDevice('front')
   const [showCamera, setShowCamera] = useState(false);
-  const [imageSource, setImageSource] = useState('');
+  const [imageSource, setImageSource] = useState<PhotoFile>();
+
+  const device = useCameraDevice('front', {
+    physicalDevices: ['wide-angle-camera', 'ultra-wide-angle-camera', 'telephoto-camera']
+  });
 
   //https://github.com/mrousavy/react-native-vision-camera/blob/main/package/example/src/CameraPage.tsx
+
+  useFocusEffect(
+    useCallback(() => {
+      setShowCamera(true);
+      return () => {
+        console.log('CameraScreen: cleanup');
+        setShowCamera(false);
+      }
+    }, [])
+  );
+
   useEffect(() => {
     async function getPermission() {
       const cameraPermission = await Camera.requestCameraPermission();
@@ -30,13 +41,21 @@ const CameraScreen = () => {
   }, [])
 
   const capturePhoto = async () => {
-    if (camera.current !== null) {
-      const photo = await camera.current.takePhoto({});
-      setImageSource(photo.path);
-      setShowCamera(false);
-      console.log('Foto tomada: ', photo.path);
-    }
+    const photo = await camera.current?.takePhoto();
+    setImageSource(photo);
+    setShowCamera(false);
+    console.log('Foto tomada: ', photo);
   }
+
+  const render = async () => {
+    if (!imageSource) {
+      return <Text>Presiona el botón para tomar una foto</Text>
+    }
+    const res = await fetch(`file://${imageSource.path}`);
+  }
+
+  if (!device) return <Text>Dispositivo no encontrado</Text>
+
   return (
     <View style={styles.container}>
       {showCamera ? (
@@ -56,11 +75,18 @@ const CameraScreen = () => {
         </>
       ) : (
         <>
-          {imageSource !== '' ? (
-            <Image
-              source={{ uri: `file://${imageSource}` }}
-              style={{ width: 200, height: 200 }}
-            />
+          {imageSource ? (
+            <>
+              <Image
+                source={{ uri: `file://${imageSource.path}` }}
+                style={StyleSheet.absoluteFill}
+              />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => render()}>
+                <Text>Renderizar</Text>
+              </TouchableOpacity>
+            </>
           ) : (
             <Text>Presiona el botón para tomar una foto</Text>
           )}

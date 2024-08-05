@@ -16,6 +16,7 @@ import CameraScreen from './src/views/userPrincipal/cameraScreen'
 import DiaryScreen from './src/views/userPrincipal/diaryScreen'
 import CreateDiaryScreen from './src/views/userPrincipal/createDiaryScreen'
 import ReadDiaryIDScreen from './src/views/userPrincipal/readDiaryIDScreen'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -52,6 +53,7 @@ export default function App() {
   }
 
   return (
+    <GestureHandlerRootView>
     <NavigationContainer>
       <Stack.Navigator initialRouteName={isLoggedIn ? 'Home' : 'Scroll'}>
         {isLoggedIn ? (
@@ -123,5 +125,6 @@ export default function App() {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+    </GestureHandlerRootView>
   )
 }
