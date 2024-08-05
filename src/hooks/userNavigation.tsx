@@ -19,6 +19,7 @@ function UserNavigation() {
 
   // Diary Screens
   const CreateDiaryScreen = () => navigation.navigate('CreateDiaryScreen')
+  const ReadDiaryIDScreen = () => navigation.navigate('ReadDiaryIDScreen')
 
   const goBack = () => navigation.goBack()
 
@@ -33,7 +34,8 @@ function UserNavigation() {
     CameraScreen,
     DiaryScreen,
     RoutesScreen,
-    CreateDiaryScreen
+    CreateDiaryScreen,
+    ReadDiaryIDScreen
   }
 }
 

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../hooks/type/type'; // ajusta la ruta según sea necesario
 import styles from './style/styleCardDiary';
 import hookDiaryInfo from '../../hooks/userPrincipal/hookDiaryInfo';
 
@@ -11,6 +13,7 @@ interface CardDiaryProps {
 
 const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
   const { data, loading, error, formatDate } = hookDiaryInfo()
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   if (loading) return <ActivityIndicator size="large" color="#479E9C" /> // Si loading es true, se muestra un ActivityIndicator
   if (error) return <Text style={styles.error}>Error: {error}</Text> // Si error es true, se muestra un mensaje de error
@@ -27,7 +30,7 @@ const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
     <View style={styles.container}>
       {limitedData.length > 0 ? (
         limitedData.map(item => (
-          <View key={item.diaryID} style={styles.parentAll}>
+          <TouchableOpacity key={item.diaryID} style={styles.parentAll} onPress={() => navigation.navigate('ReadDiaryIDScreen', { diaryID: item.diaryID })}>
             <View style={styles.parentTitle}>
               <Icon name="ellipse" type="ionicon" color="#47708D" size={15} />
               <Text style={styles.title}>{item.diaryTitle}</Text>
@@ -40,7 +43,7 @@ const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
                 {item.diaryContent}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))
       ) : (
         <Text style={styles.title}>No hay entradas.</Text>
