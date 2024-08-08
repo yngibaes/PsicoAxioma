@@ -1,13 +1,16 @@
-import * as React from 'react'
-import { Image, StyleSheet, Text, View, Pressable } from 'react-native'
-import { Icon } from 'react-native-elements'
+import * as React from 'react';
+import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 
 const Menu = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={[styles.frame12Parent, styles.frame12FlexBox]}>
       <Pressable
         style={[styles.frame12, styles.frame12FlexBox]}
-        onPress={() => { }}>
+        onPress={() => {navigation.dispatch(DrawerActions.openDrawer())}}>
         <Image
           style={styles.userIcon}
           resizeMode="cover"
@@ -20,18 +23,17 @@ const Menu = () => {
           </Text>
         </Text>
       </Pressable>
-      <Pressable style={styles.bell36021231} onPress={() => { }}>
+      <Pressable style={styles.bell36021231} onPress={() => {}}>
         <Icon
           name="notifications"
           type="ionicon"
           color="#000"
-          onPress={() => console.log('ola')}
           size={28}
         />
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   frame12FlexBox: {
@@ -88,9 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginTop: 25,
-    /*     borderWidth: 2,
-        borderColor: '#000', */
   },
-})
+});
 
-export default Menu
+export default Menu;
