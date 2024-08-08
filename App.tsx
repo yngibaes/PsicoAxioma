@@ -54,6 +54,7 @@ export default function App() {
   }, [])
 
   if (loading) {
+    //Hola
     // Puedes mostrar un spinner o una pantalla de carga aquí
     return null
   }
