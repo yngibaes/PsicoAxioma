@@ -17,6 +17,13 @@ import DiaryScreen from './src/views/userPrincipal/diaryScreen'
 import CreateDiaryScreen from './src/views/userPrincipal/createDiaryScreen'
 import ReadDiaryIDScreen from './src/views/userPrincipal/readDiaryIDScreen'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SideBar from './src/components/otherComponents/sideBar';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import StatisticsScreen from './src/views/userAccount/statisticsScreen'
+import ProfileScreen from './src/views/userAccount/profileScreen'
+import SettingsScreen from './src/views/userAccount/settingsScreen'
+import { Icon } from 'react-native-elements'
+
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -31,7 +38,6 @@ export default function App() {
         if (user.emailVerified) {
           setIsLoggedIn(true)
           console.log('Se ha iniciado sesión')
-          console.log(user)
         } else {
           // Puedes mostrar un mensaje de error aquí si lo deseas
           console.log('No se ha iniciado sesión')
@@ -51,80 +57,95 @@ export default function App() {
     // Puedes mostrar un spinner o una pantalla de carga aquí
     return null
   }
-
+  const Drawer = createDrawerNavigator();
   return (
     <GestureHandlerRootView>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName={isLoggedIn ? 'Home' : 'Scroll'}>
+      <NavigationContainer>
         {isLoggedIn ? (
-          <>
-            <Stack.Screen
-              name="Home"
-              options={{ headerShown: false }}
-              component={HomeScreen}
+          <Drawer.Navigator
+            drawerContent={props => <SideBar {...props} />}
+            screenOptions={{
+              headerShown: false,
+              drawerActiveBackgroundColor: '#B5D0CE',
+              drawerActiveTintColor: '#fff',
+              drawerInactiveTintColor: '#000',
+              drawerLabelStyle: {
+                fontFamily: 'InterBold',
+                fontSize: 15
+              }
+            }}
+            initialRouteName='Home'>
+            <>
+              <Drawer.Screen name="Home" component={HomeScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="Calendary" component={CalendaryScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="Camera" component={CameraScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="Diary" component={DiaryScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="Routes" component={RoutesScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="CreateDiaryScreen" component={CreateDiaryScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="ReadDiaryIDScreen" component={ReadDiaryIDScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+            </>
+            <Drawer.Screen name="Estadísticas" component={StatisticsScreen}
+              options={{
+                drawerIcon: () => (
+                  <Icon
+                    name="stats-chart-outline"
+                    type="ionicon"
+                    color="#000"
+                    size={24}
+                  />
+                )
+              }}
             />
-            <Stack.Screen
-              name="Calendary"
-              options={{ headerShown: false }}
-              component={CalendaryScreen}
+            <Drawer.Screen name="Perfil" component={ProfileScreen}
+              options={{
+                drawerIcon: () => (
+                  <Icon
+                    name="person-outline"
+                    type="ionicon"
+                    color="#000"
+                    size={24}
+                  />
+                )
+              }}
             />
-            <Stack.Screen
-              name="Camera"
-              options={{ headerShown: false }}
-              component={CameraScreen}
+            <Drawer.Screen name="Configuración" component={SettingsScreen}
+              options={{
+                drawerIcon: () => (
+                  <Icon
+                    name="settings-outline"
+                    type="ionicon"
+                    color="#000"
+                    size={24}
+                  />
+                )
+              }}
             />
-            <Stack.Screen
-              name="Diary"
-              options={{ headerShown: false }}
-              component={DiaryScreen}
-            />
-            <Stack.Screen
-              name="Routes"
-              options={{ headerShown: false }}
-              component={RoutesScreen}
-            />
-            <Stack.Screen
-              name="CreateDiaryScreen"
-              options={{ headerShown: false }}
-              component={CreateDiaryScreen}
-            />
-            <Stack.Screen
-              name="ReadDiaryIDScreen"
-              options={{ headerShown: false }}
-              component={ReadDiaryIDScreen}
-            />
-          </>
+
+          </Drawer.Navigator>
         ) : (
-          <>
-            <Stack.Screen
-              name="Scroll"
-              options={{ headerShown: false }}
-              component={Scroll}
-            />
-            <Stack.Screen
-              name="Welcome"
-              options={{ headerShown: false }}
-              component={WelcomeScreen}
-            />
-            <Stack.Screen
-              name="LogIn"
-              options={{ headerShown: false }}
-              component={LogInScreen}
-            />
-            <Stack.Screen
-              name="SignUp"
-              options={{ headerShown: false }}
-              component={SignUp}
-            />
-            <Stack.Screen
-              name="ForgetPassword"
-              options={{ headerShown: false }}
-              component={ForgetPassword}
-            />
-          </>
+          <Stack.Navigator initialRouteName="Scroll">
+            <Stack.Screen name="Scroll" options={{ headerShown: false }} component={Scroll} />
+            <Stack.Screen name="Welcome" options={{ headerShown: false }} component={WelcomeScreen} />
+            <Stack.Screen name="LogIn" options={{ headerShown: false }} component={LogInScreen} />
+            <Stack.Screen name="SignUp" options={{ headerShown: false }} component={SignUp} />
+            <Stack.Screen name="ForgetPassword" options={{ headerShown: false }} component={ForgetPassword} />
+          </Stack.Navigator>
         )}
-      </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
     </GestureHandlerRootView>
   )
 }

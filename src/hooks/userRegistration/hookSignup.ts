@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Alert, TextInput } from 'react-native';
 import axios from 'axios';
-import { createUserWithEmailAndPassword, sendEmailVerification, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, User, updateProfile } from 'firebase/auth';
 import UserNavigation from '../userNavigation';
 import url from '../config/config';
 import { auth } from '../config/firebase';
@@ -145,6 +145,15 @@ const hookSignup = () => {
             userPhone,
         })
         if (response.status === 200) {
+            if (auth.currentUser) {
+                updateProfile(auth.currentUser, {
+                    displayName: userName,
+                }).then(() => {
+                    console.log('Usuario con nombre')
+                }).catch((error) => {
+                    console.log(error)
+                });
+            }
             Alert.alert(
                 'Registro exitoso',
                 'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.',

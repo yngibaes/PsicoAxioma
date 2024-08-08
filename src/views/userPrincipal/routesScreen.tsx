@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import Card from '../../components/otherComponents/card';
-import Menu from '../../components/otherComponents/menu';
 import NavBar from '../../components/otherComponents/navBar';
 import dataCall from '../../data/dataCall';
 import styles from './style/styleScreen';
@@ -9,7 +8,6 @@ import styles from './style/styleScreen';
 const RoutesScreen = () => {
   return (
     <View style={styles.container}>
-      <Menu />
       <ScrollView>
         <View>
           {dataCall.map((card, index) => (

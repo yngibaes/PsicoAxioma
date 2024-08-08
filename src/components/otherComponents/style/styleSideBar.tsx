@@ -4,42 +4,47 @@ import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
     background: {
-        backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary
-    },
-    backgroundImage: {
-        padding: 16,
-        paddingTop: 48,
-        width: undefined,
+        backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiaryContainer
     },
     buttonLogOut: {
-        borderTopColor: materialTheme.schemes.darkmediumcontrast.surface,
-        borderTopWidth: 1,
-        padding: 20,
+        backgroundColor: materialTheme.schemes.dark.errorContainer,
+        height: hp('6.5%'),
+        paddingVertical: wp('4%'),
     },
     icon: {
         borderRadius: 40,
-        height: 80,
-        marginBottom: 10,
-        width: 80,
+        height: hp('15%'),
+        width: wp('28%'),
+    }, 
+    iconContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginLeft: wp('1.5%'),
+    },
+    logoutContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginLeft: wp('8%'),
     },
     parentAll: {
         flex: 1
     },
-
     spaces: {
         backgroundColor: materialTheme.palettes.secondary[100],
         flex: 1,
-        padding: 10
+        padding: wp('1%')
     },
     textLogOut: {
-        color: materialTheme.palettes.secondary[0],
+        color: materialTheme.palettes.secondary[100],
         fontFamily: 'InterBold',
-        fontSize: 16,
+        fontSize: wp('4%'),
+        marginLeft: wp('2%')
     },
     userName: {
-        color: materialTheme.palettes.secondary[0],
+        color: materialTheme.palettes.secondary[100],
         fontFamily: 'InterBold',
-        fontSize: 18,
+        fontSize: wp('4.5%'),
+        marginLeft: wp('2%')
     },
 })
 

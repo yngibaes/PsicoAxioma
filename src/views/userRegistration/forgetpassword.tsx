@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     overflow: 'hidden', // Ocultar elementos que sobresalgan
     paddingTop: wp('1%'),
-    width: wp('100%'), 
+    width: wp('100%'),
   },
 })
 
