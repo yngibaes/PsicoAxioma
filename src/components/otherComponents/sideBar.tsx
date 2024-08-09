@@ -9,11 +9,14 @@ import styles from './style/styleSideBar';
 
 const CustomDrawer = (props: any) => {
     const [displayName, setDisplayName] = useState<string | null>(null);
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+
 
     useEffect(() => {
         const user = auth.currentUser;
         if (user) {
             setDisplayName(user.displayName);
+            setUserEmail(user.email);
         }
     }, []);
 
@@ -22,10 +25,15 @@ const CustomDrawer = (props: any) => {
     }
     return (
         <View style={styles.parentAll}>
-            <DrawerContentScrollView {...props} contentContainerStyle={styles.background}>
+            <DrawerContentScrollView {...props}>
                 <View style={styles.iconContainer}>
-                    <Image source={require('../../assets/img/icon.png')} style={styles.icon} />
-                    <Text style={styles.userName}>{displayName || 'Usuario'}</Text>
+                    <View style={styles.iconChild}>
+                        <Image source={require('../../assets/img/icon.png')} style={styles.icon} />
+                        <View style={styles.textChild}>
+                            <Text style={[styles.text, styles.userName]}>{displayName || 'Usuario'}</Text>
+                            <Text style={[styles.text, styles.userEmail]}>{userEmail || 'Email'}</Text>
+                        </View>
+                    </View>
                 </View>
                 <View style={styles.spaces}>
                     <DrawerItemList {...props} />

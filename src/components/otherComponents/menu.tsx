@@ -23,14 +23,6 @@ const Menu = () => {
           </Text>
         </Text>
       </Pressable>
-      <Pressable style={styles.bell36021231} onPress={() => {}}>
-        <Icon
-          name="notifications"
-          type="ionicon"
-          color="#000"
-          size={28}
-        />
-      </Pressable>
     </View>
   );
 };
