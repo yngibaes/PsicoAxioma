@@ -25,12 +25,11 @@ const styles = StyleSheet.create({
     fontSize: wp('3%'),
   },
   parentAll: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: materialTheme.palettes.tertiary[100],
     borderRadius: 10,
     flex: 1,
     height: hp('15%'),
-    justifyContent: 'center',
     marginBottom: hp('2%'),
     paddingHorizontal: wp('2.1%'),
     paddingVertical: hp('2.1%'),

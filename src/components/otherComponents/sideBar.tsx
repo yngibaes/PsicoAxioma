@@ -10,13 +10,14 @@ import styles from './style/styleSideBar';
 const CustomDrawer = (props: any) => {
     const [displayName, setDisplayName] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
-
+    const [photoURL, setPhotoURL] = useState<string | null>(null);
 
     useEffect(() => {
         const user = auth.currentUser;
         if (user) {
             setDisplayName(user.displayName);
             setUserEmail(user.email);
+            setPhotoURL(user.photoURL)
         }
     }, []);
 
@@ -28,7 +29,9 @@ const CustomDrawer = (props: any) => {
             <DrawerContentScrollView {...props}>
                 <View style={styles.iconContainer}>
                     <View style={styles.iconChild}>
-                        <Image source={require('../../assets/img/icon.png')} style={styles.icon} />
+                        {photoURL ? (
+                          <Image source={{ uri: photoURL }} resizeMode='center' style={styles.icon} />
+                        ) : null}
                         <View style={styles.textChild}>
                             <Text style={[styles.text, styles.userName]}>{displayName || 'Usuario'}</Text>
                             <Text style={[styles.text, styles.userEmail]}>{userEmail || 'Email'}</Text>
@@ -44,7 +47,7 @@ const CustomDrawer = (props: any) => {
                     <Icon
                         name="log-out-outline"
                         type="ionicon"
-                        color="#FFF"
+                        color="#C50713"
                         size={22}
                     />
                     <Text style={styles.textLogOut}>

@@ -223,6 +223,7 @@
             "tertiary": "#B6CCEC",
             "onTertiary": "#00172E",
             "tertiaryContainer": "#7C92B0",
+            "CardDiary": "#95B9E760",
             "backgroundprofile": "#D9D9D9",
             "onTertiaryContainer": "#000000",
             "error": "#FFBAB1",
@@ -264,7 +265,8 @@
             "surfaceContainerHighest": "#2F3636",
             "diaryAndroid": "#e0c7b4",
             "background": "#DDD6D2",
-            "date": "#A1A1A1"
+            "date": "#A1A1A1",
+            "card": "#CCBFB6"
         },
         "darkhighcontrast": {
             "primary": "#EAFFFD",

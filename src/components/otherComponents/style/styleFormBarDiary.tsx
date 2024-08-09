@@ -39,9 +39,12 @@ const styles = StyleSheet.create({
     width: wp('65%'),
   },
   inputContent: {
+    backgroundColor: materialTheme.schemes.darkmediumcontrast.CardDiary,
+    borderRadius: 20,
     color: materialTheme.palettes.primary[0],
     height: hp('100%'),
     marginLeft: wp('5%'),
+    padding: 12,
     width: wp('90%'),
   },
   label: {

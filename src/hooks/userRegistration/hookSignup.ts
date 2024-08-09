@@ -146,8 +146,10 @@ const hookSignup = () => {
         })
         if (response.status === 200) {
             if (auth.currentUser) {
+                const userPhoto = 'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
                 updateProfile(auth.currentUser, {
                     displayName: userName,
+                    photoURL: userPhoto,
                 }).then(() => {
                     console.log('Usuario con nombre')
                 }).catch((error) => {

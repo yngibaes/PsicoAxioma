@@ -21,7 +21,7 @@ import SideBar from './src/components/otherComponents/sideBar';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import StatisticsScreen from './src/views/userAccount/statisticsScreen'
 import ProfileScreen from './src/views/userAccount/profileScreen'
-import SettingsScreen from './src/views/userAccount/settingsScreen'
+//import SettingsScreen from './src/views/userAccount/settingsScreen'
 import { Icon } from 'react-native-elements'
 
 
@@ -123,7 +123,7 @@ export default function App() {
                 )
               }}
             />
-            <Drawer.Screen name="Configuración" component={SettingsScreen}
+            {/* <Drawer.Screen name="Configuración" component={SettingsScreen}
               options={{
                 drawerIcon: () => (
                   <Icon
@@ -134,7 +134,7 @@ export default function App() {
                   />
                 )
               }}
-            />
+            /> */}
 
           </Drawer.Navigator>
         ) : (
