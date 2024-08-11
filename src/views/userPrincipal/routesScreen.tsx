@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import Menu from '../../components/otherComponents/menu';
 import Card from '../../components/otherComponents/card';
-import NavBar from '../../components/otherComponents/navBar';
 import dataCall from '../../data/dataCall';
 import styles from './style/styleScreen';
-import Menu from '../../components/otherComponents/menu';
 
 const RoutesScreen = () => {
   return (
     <View style={styles.container}>
-      <Menu/>
+      <Menu />
       <ScrollView>
         <View>
           {dataCall.map((card, index) => (
@@ -23,7 +22,6 @@ const RoutesScreen = () => {
           ))}
         </View>
       </ScrollView>
-      <NavBar />
     </View>
   )
 }

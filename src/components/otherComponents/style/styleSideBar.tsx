@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         height: hp('15.5%'),
         width: wp('30%'),
-    }, 
-    iconChild:{
+    },
+    iconChild: {
         alignItems: 'center',
         flexDirection: 'column',
         marginTop: hp('2%'),
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
         fontSize: wp('4%'),
         marginLeft: wp('2%'),
     },
-    userEmail:{
+    userEmail: {
         fontSize: wp('2.8%'),
     },
-    userName:{
+    userName: {
         fontSize: wp('4.5%'),
     },
 })

@@ -228,7 +228,7 @@
             "onTertiaryContainer": "#000000",
             "error": "#FFBAB1",
             "onError": "#370001",
-            "errorContainer": "#FF5449",
+            "errorContainer": "#CB3B30",
             "onErrorContainer": "#000000",
             /*             "background": "#0E1514", */
             "onBackground": "#DDE4E3",

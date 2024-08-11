@@ -47,6 +47,7 @@ const hookLogin = () => {
     const handleSubmit = async (userEmail: string, userPassword: string) => {
         // Enviar los datos del formulario
         try {
+                  //Que ponga primero si escribio un correo ono
             await signInWithEmailAndPassword(auth, userEmail, userPassword)
             console.log('Usuario logueado')
             clearForm()

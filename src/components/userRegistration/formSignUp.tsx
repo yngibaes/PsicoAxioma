@@ -3,6 +3,19 @@ import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import styles from './style/styleFormSignUp';
 import hookSignup from '../../hooks/userRegistration/hookSignup';
 
+const labelName = 'Nombre';
+const placeholderName = 'Escriba su nombre';
+const labelEmail = 'Email';
+const placeholderEmail = 'Escriba su email';
+const labelPhone = 'Télefono';
+const placeholderPhone = 'Escriba su número de télefono';
+const labelPassword = 'Contraseña';
+const placeholderPassword = 'Escriba su contraseña';
+const labelConfirmPassword = 'Repetir Contraseña';
+const placeholderConfirmPassword = 'Repita su contraseña';
+const placeholderColor = '#828282';
+const buttonText = 'Enviar';
+
 // Definición del componente FormSignUp
 const FormSignUp = () => {
   const {
@@ -34,7 +47,7 @@ const FormSignUp = () => {
       <View style={styles.parentInput}>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Nombre</Text>
+            <Text style={styles.labelForm}>{labelName}</Text>
             {errors.userName && (
               <Text style={styles.error}>{errors.userName}</Text>
             )}
@@ -42,9 +55,9 @@ const FormSignUp = () => {
           <View style={[styles.sizeInput, styles.Input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su nombre"
+              placeholder={placeholderName}
               keyboardType="default"
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="text"
               data-name="userName"
               keyboardAppearance="dark"
@@ -57,7 +70,7 @@ const FormSignUp = () => {
         </View>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Email</Text>
+            <Text style={styles.labelForm}>{labelEmail}</Text>
             {errors.userEmail && (
               <Text style={styles.error}>{errors.userEmail}</Text>
             )}
@@ -65,9 +78,9 @@ const FormSignUp = () => {
           <View style={[styles.sizeInput, styles.Input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su email"
+              placeholder={placeholderEmail}
               keyboardType="email-address"
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="email"
               data-name="userEmail"
               keyboardAppearance="dark"
@@ -81,7 +94,7 @@ const FormSignUp = () => {
         </View>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Télefono</Text>
+            <Text style={styles.labelForm}>{labelPhone}</Text>
             {errors.userPhone && (
               <Text style={styles.error}>{errors.userPhone}</Text>
             )}
@@ -89,9 +102,9 @@ const FormSignUp = () => {
           <View style={[styles.sizeInput, styles.Input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su número de télefono"
+              placeholder={placeholderPhone}
               keyboardType="numeric"
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="numeric"
               data-name="userPhone"
               keyboardAppearance="dark"
@@ -106,7 +119,7 @@ const FormSignUp = () => {
         </View>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Contraseña</Text>
+            <Text style={styles.labelForm}>{labelPassword}</Text>
             {errors.userPassword && (
               <Text style={styles.error}>{errors.userPassword}</Text>
             )}
@@ -114,10 +127,10 @@ const FormSignUp = () => {
           <View style={[styles.sizeInput, styles.Input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su contraseña"
+              placeholder={placeholderPassword}
               keyboardType="default"
               secureTextEntry
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="text"
               data-name="userPassword"
               keyboardAppearance="dark"
@@ -131,7 +144,7 @@ const FormSignUp = () => {
         </View>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Repetir Contraseña</Text>
+            <Text style={styles.labelForm}>{labelConfirmPassword}</Text>
             {errors.confirmPassword && (
               <Text style={styles.error}>{errors.confirmPassword}</Text>
             )}
@@ -139,10 +152,10 @@ const FormSignUp = () => {
           <View style={[styles.sizeInput, styles.Input]}>
             <TextInput
               style={styles.label}
-              placeholder="Repita su contraseña"
+              placeholder={placeholderConfirmPassword}
               keyboardType="default"
               secureTextEntry
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="text"
               data-name="confirmPassword"
               keyboardAppearance="dark"
@@ -158,7 +171,7 @@ const FormSignUp = () => {
             style={styles.parentButton}
             onPress={handleSubmit}
             disabled={!isFormValid}>
-            <Text style={[styles.button, styles.title]}>Enviar</Text>
+            <Text style={[styles.button, styles.title]}>{buttonText}</Text>
           </TouchableOpacity>
         </View>
       </View>

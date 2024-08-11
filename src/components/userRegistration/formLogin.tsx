@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View, TextInput, Pressable } from 'react-native';
 import styles from './style/styleFormLogIn';
 import hookLogin from '../../hooks/userRegistration/hookLogin';
@@ -8,6 +8,16 @@ import stylesButton from './style/styleButtonLogIn';
 interface propsFormLogIn {
   forget: () => void
 }
+
+const labelEmail = 'Email';
+const placeholderEmail = 'Escriba su email';
+const placeholderColor = '#828282';
+const labelPassword = 'Contraseña';
+const placeholderPassword = 'Escriba su contraseña';
+const forgotText = '¿Olvidaste tu contraseña?';
+const loginButtonText = 'Iniciar sesión';
+const signunPrompText = '¿Aún no tienes cuenta?';
+const signupText = 'Regístrate';
 
 // Definición del componente FormLogIn
 const FormLogIn = (props: propsFormLogIn) => {
@@ -27,7 +37,7 @@ const FormLogIn = (props: propsFormLogIn) => {
       <View style={styles.parentInput}>
         <View style={styles.divInput}>
           <View style={styles.divLabel}>
-            <Text style={styles.labelForm}>Email</Text>
+            <Text style={styles.labelForm}>{labelEmail}</Text>
             {errors.userEmail && (
               <Text style={styles.error}>{errors.userEmail}</Text>
             )}
@@ -35,9 +45,9 @@ const FormLogIn = (props: propsFormLogIn) => {
           <View style={[styles.sizeInput, styles.input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su email"
+              placeholder={placeholderEmail}
               keyboardType="email-address"
-              placeholderTextColor="#828282"
+              placeholderTextColor={placeholderColor}
               inputMode="email"
               data-name="userEmail"
               keyboardAppearance="dark"
@@ -49,14 +59,14 @@ const FormLogIn = (props: propsFormLogIn) => {
           </View>
         </View>
         <View style={styles.divInput}>
-          <Text style={styles.labelForm}>Contraseña</Text>
+          <Text style={styles.labelForm}>{labelPassword}</Text>
           <View style={[styles.sizeInput, styles.input]}>
             <TextInput
               style={styles.label}
-              placeholder="Escriba su contraseña"
+              placeholder={placeholderPassword}
               keyboardType="default"
               secureTextEntry
-              placeholderTextColor="#000"
+              placeholderTextColor={placeholderColor}
               inputMode="text"
               data-name="userPassword"
               keyboardAppearance="dark"
@@ -69,23 +79,23 @@ const FormLogIn = (props: propsFormLogIn) => {
         </View>
       </View>
       <Pressable style={styles.divForget} onPress={props.forget}>
-        <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
+        <Text style={styles.text}>{forgotText}</Text>
       </Pressable>
       <View style={stylesButton.divButton}>
         <Pressable
           style={stylesButton.parentButton}
           onPress={() => handleSubmit(userEmail, userPassword)}>
           <Text style={[stylesButton.button, stylesButton.title]}>
-            Iniciar sesión
+            {loginButtonText}
           </Text>
         </Pressable>
         <View style={stylesButton.divQuestion}>
           <Text style={[stylesButton.sizeText, stylesButton.text]}>
-            ¿Aún no tienes cuenta?
+            {signunPrompText}
           </Text>
           <Pressable style={stylesButton.marginText} onPress={signUp}>
             <Text style={[stylesButton.optionsText, stylesButton.text]}>
-              Regístrate
+              {signupText}
             </Text>
           </Pressable>
         </View>

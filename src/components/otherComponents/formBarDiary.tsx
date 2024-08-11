@@ -1,10 +1,19 @@
-import * as React from "react";
+import React from 'react';
 import { View, TextInput, ScrollView, KeyboardAvoidingView } from "react-native";
-import { Icon } from 'react-native-elements'
-import styles from "./style/styleFormBarDiary";
 import hookCreateDiary from "../../hooks/userPrincipal/hookCreateDiary";
+import styles from "./style/styleFormBarDiary";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const TopBarDiary = () => {
+const iconColor = "#000";
+const placeholderColor = "#828282";
+const iconGoBack = 25;
+const iconSend = 36;
+const placeholderTitle = "Título";
+const placeholderContent = "Escribe lo que sientas...";
+const keyboardBehavior = "padding";
+const keyboardVerticalOffset = 60;
+
+const FormDiary = () => {
     const { diaryContent, setdiaryContent, diaryTitle, setdiaryTitle, handleSubmit, diaryContentRef, diaryContentNext, handleExit } = hookCreateDiary();
     return (
         <View style={styles.container}>
@@ -12,21 +21,20 @@ const TopBarDiary = () => {
                 <View style={styles.flexBox}>
                     <View>
                         <View style={styles.goback}>
-                            <Icon
+                            <Ionicons
                                 name="arrow-back-outline"
-                                type="ionicon"
-                                color="#000"
+                                color={iconColor}
                                 onPress={handleExit}
-                                size={25}
+                                size={iconGoBack}
                             />
                         </View>
                     </View>
                     <View style={styles.input}>
                         <TextInput
                             style={styles.label}
-                            placeholder="Título"
+                            placeholder={placeholderTitle}
                             keyboardType="default"
-                            placeholderTextColor="#828282"
+                            placeholderTextColor={placeholderColor}
                             inputMode="text"
                             data-name="diaryTitle"
                             keyboardAppearance="dark"
@@ -37,18 +45,16 @@ const TopBarDiary = () => {
                         />
                     </View>
                 </View>
-                <Icon
+                <Ionicons
                     name="arrow-down-circle-outline"
-                    type="ionicon"
-                    color="#000"
+                    color={iconColor}
                     onPress={handleSubmit}
-                    size={36}
+                    size={iconSend}
                 />
             </View>
             <KeyboardAvoidingView
-                style={styles.container}
-                behavior="padding" // Ajusta el comportamiento del KeyboardAvoidingView
-                keyboardVerticalOffset={60}
+                behavior={keyboardBehavior}
+                keyboardVerticalOffset={keyboardVerticalOffset}
             >
                 <ScrollView style={styles.scrollableContent} keyboardShouldPersistTaps="handled" // Asegura que los toques en el teclado no cierren el teclado
                 >
@@ -56,9 +62,9 @@ const TopBarDiary = () => {
                         <View style={styles.inputContent}>
                             <TextInput
                                 style={styles.labelContent}
-                                placeholder="Escribe lo que sientas..."
+                                placeholder={placeholderContent}
                                 keyboardType="default"
-                                placeholderTextColor="#828282"
+                                placeholderTextColor={placeholderColor}
                                 inputMode="text"
                                 data-name="diaryContent"
                                 keyboardAppearance="dark"
@@ -77,4 +83,4 @@ const TopBarDiary = () => {
 };
 
 
-export default TopBarDiary;
+export default FormDiary;

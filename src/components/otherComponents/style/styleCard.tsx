@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: materialTheme.schemes.darkmediumcontrast.card,
     borderRadius: 8,
     elevation: 1,
-    margin: 10,
+    margin: wp('3%'),
     padding: 10,
     shadowOpacity: 0.25,
     shadowRadius: 5,

@@ -21,13 +21,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   gobackChildLayout: {
+    alignItems: 'center',
     height: hp('4%'),
+    justifyContent: 'center',
     width: wp('8%'),
-  },
-  gobackIcon: {
-    alignSelf: 'center',
-    maxHeight: '100%',
-    width: wp('6%'),
   },
   gobackParent: {
     alignItems: 'center',

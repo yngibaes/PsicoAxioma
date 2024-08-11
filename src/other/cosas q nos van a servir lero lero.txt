@@ -180,3 +180,94 @@ const CardDiary = ({ data, error, limit }) => {
 };
 
 export default CardDiary;
+
+
+ <View style={styles.nav}>
+      <View style={styles.option}>
+        <Icon
+          name="home-outline"
+          type="ionicon"
+          color="#000"
+          onPress={HomeScreen}
+          size={28}
+        />
+      </View>
+      <View style={styles.option}>
+        <Icon
+          name="calendar-outline"
+          type="ionicon"
+          color="#000"
+          onPress={CalendaryScreen}
+          size={28}
+        />
+      </View>
+      <View style={[styles.ellipse, styles.option]}>
+        <Icon
+          name="aperture-outline"
+          type="ionicon"
+          color="#000"
+          onPress={CameraScreen}
+          size={28}
+        />
+      </View>
+      <View style={styles.option}>
+        <Icon
+          name="reader-outline"
+          type="ionicon"
+          color="#000"
+          onPress={DiaryScreen}
+          size={28}
+        />
+      </View>
+      <View style={styles.option}>
+        <Icon
+          name="call-outline"
+          type="ionicon"
+          color="#000"
+          onPress={RoutesScreen}
+          size={28}
+        />
+      </View>
+    </View>
+
+
+    import React from 'react';
+import { Image, Text, View, Pressable } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import hookMenu from '../../hooks/userPrincipal/hookMenu';
+import styles from './style/styleMenu';
+
+const GREETING = '¡Hola';
+
+const Menu = () => {
+  const { displayName, photoURL, navigation } = hookMenu();
+
+  const handlePress = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
+
+  const renderUserIcon = () => {
+    if (photoURL) {
+      return <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userIcon} />;
+    }
+    return null;
+  };
+
+  const renderGreeting = () => (
+    <Text style={styles.textParent}>
+      <Text style={styles.hello}>{GREETING}</Text>
+      <Text style={styles.name}>, {displayName}!</Text>
+    </Text>
+  );
+
+  return (
+    <View style={[styles.parentAll, styles.layout]}>
+      <Pressable style={styles.layout} onPress={handlePress}>
+        {renderUserIcon()}
+        {renderGreeting()}
+      </Pressable>
+    </View>
+  );
+};
+
+export default Menu;

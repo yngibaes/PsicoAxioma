@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: hp('2%'),
     overflow: 'hidden',
     paddingBottom: hp('2%'),
-    width: wp('100%'),
+    width: wp('95%'),
   },
   text: {
     alignItems: 'center',

@@ -22,7 +22,7 @@ const hookCreateDiary = () => {
 
     // Navegación
     const { goBack } = UserNavigation()
-    
+
     const handleExit = () => {
         Alert.alert(
             'Confirmación',

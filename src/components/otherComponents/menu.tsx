@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Image, Text, View, Pressable } from 'react-native';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { auth } from '../../hooks/config/firebase';
+import { DrawerActions } from '@react-navigation/native';
+import hookMenu from '../../hooks/userPrincipal/hookMenu';
 import styles from './style/styleMenu';
 
-const Menu = () => {
-  const navigation = useNavigation();
-  const [displayName, setDisplayName] = useState<string | null>(null);
-  const [photoURL, setPhotoURL] = useState<string | null>(null);
+const gretting = '¡Hola';
 
-  useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setDisplayName(user.displayName);
-      setPhotoURL(user.photoURL)
-    }
-  }, []);
+const Menu = () => {
+  const { displayName, photoURL, navigation } = hookMenu();
   return (
     <View style={[styles.parentAll, styles.layout]}>
       <Pressable
@@ -25,8 +17,8 @@ const Menu = () => {
           <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userIcon} />
         ) : null}
         <Text style={styles.textParent}>
-            <Text style={styles.hello}>¡Hola</Text>
-            <Text style={styles.name}>, {displayName}!</Text>
+          <Text style={styles.hello}>{gretting}</Text>
+          <Text style={styles.name}>, {displayName}!</Text>
         </Text>
       </Pressable>
     </View>

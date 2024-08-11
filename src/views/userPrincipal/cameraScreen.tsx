@@ -7,7 +7,6 @@ import { Linking } from 'react-native';
 import { Camera, PhotoFile, useCameraDevice } from 'react-native-vision-camera'
 import { useFocusEffect } from '@react-navigation/native';
 
-// Definición del componente SignUp
 const CameraScreen = () => {
   const camera = useRef<Camera>(null)
   const [showCamera, setShowCamera] = useState(false);

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   error: {
-    color: materialTheme.schemes.darkmediumcontrast.error,
+    color: materialTheme.schemes.darkmediumcontrast.errorContainer,
     fontSize: wp('3%'),
   },
   flexBox: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   goback: {
+    alignItems: "center",
     backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -42,9 +43,8 @@ const styles = StyleSheet.create({
     backgroundColor: materialTheme.schemes.darkmediumcontrast.CardDiary,
     borderRadius: 20,
     color: materialTheme.palettes.primary[0],
-    height: hp('100%'),
     marginLeft: wp('5%'),
-    padding: 12,
+    padding: wp('3%'),
     width: wp('90%'),
   },
   label: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   parentForm: {
     flexGrow: 1,
-    height: hp('100%'),
+    marginBottom: hp('5%'),
     width: wp('100%'),
   },
   parentTopBar: {
@@ -86,11 +86,9 @@ const styles = StyleSheet.create({
     position: "static",
     width: wp("95%"),
     zIndex: 2, // Asegura que el topbar esté por encima del contenido scrollable
-
   },
   scrollableContent: {
     flexGrow: 1,
-    height: hp('100%'),
   },
 });
 export default styles

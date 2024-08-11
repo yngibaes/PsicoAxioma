@@ -1,39 +1,49 @@
-import * as React from "react";
+import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, ActivityIndicator } from "react-native";
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../../hooks/type/type';
 import hookReadDiaryID from '../../hooks/userPrincipal/hookReadDiaryID';
-import { Icon } from 'react-native-elements';
 import styles from "./style/styleFormBarDiary";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type ReadDiaryIDScreenRouteProp = RouteProp<RootStackParamList, 'ReadDiaryIDScreen'>;
+
+const activityIndicatorColor = "#479E9C";
+const iconColor = "#000";
+const iconSize = 25;
 
 const readDiaryID: React.FC = () => {
     const route = useRoute<ReadDiaryIDScreenRouteProp>();
     const { diaryID } = route.params;
     const { data, loading, error, goBack } = hookReadDiaryID(diaryID);
 
-    if (loading) return <ActivityIndicator size="large" color="#479E9C" />;
-    if (error) return <Text style={styles.error}>Error: {error}</Text>;
+    const renderLoading = () => (
+        <ActivityIndicator size="large" color={activityIndicatorColor} />
+    );
 
-    return (
+    const renderError = (error: string) => (
+        <Text style={styles.error}>Error: {error}</Text>
+    );
+
+    const renderContent = () => (
         <View>
             <View style={styles.container}>
                 <View style={[styles.parentTopBar, styles.flexBox]}>
                     <View style={styles.flexBox}>
                         <View>
                             <View style={styles.goback}>
-                                <Icon
+                                <Ionicons
                                     name="arrow-back-outline"
-                                    type="ionicon"
-                                    color="#000"
+                                    color={iconColor}
                                     onPress={goBack}
-                                    size={25}
+                                    size={iconSize}
                                 />
                             </View>
                         </View>
                         <View style={styles.input}>
-                            <Text style={styles.labelText}>{data[0].diaryTitle} <Text style={styles.date}>{data[0].diaryDate} </Text></Text>
+                            <Text style={styles.labelText}>
+                                {data[0].diaryTitle} <Text style={styles.date}>{data[0].diaryDate}</Text>
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -53,6 +63,11 @@ const readDiaryID: React.FC = () => {
             </View>
         </View>
     );
+
+    if (loading) return renderLoading();
+    if (error) return renderError(error);
+
+    return renderContent();
 };
 
 export default readDiaryID;

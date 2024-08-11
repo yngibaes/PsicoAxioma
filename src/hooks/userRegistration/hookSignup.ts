@@ -145,6 +145,7 @@ const hookSignup = () => {
             userPhone,
         })
         if (response.status === 200) {
+                  //Que ponga primero si escribio un correo ono
             if (auth.currentUser) {
                 const userPhoto = 'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
                 updateProfile(auth.currentUser, {

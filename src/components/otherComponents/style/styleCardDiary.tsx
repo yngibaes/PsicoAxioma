@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   error: {
-    color: materialTheme.schemes.darkmediumcontrast.error,
-    fontSize: wp('3%'),
+    color: materialTheme.schemes.darkmediumcontrast.errorContainer,
+    fontSize: wp('4%'),
   },
   parentAll: {
     alignItems: 'flex-start',

@@ -1,13 +1,13 @@
-import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import React, { useRef, useState } from 'react';
-import data from '../data/dataScroll';
-import RenderItem from '../components/scrollTutorial/RenderItem';
-import CustomButton from '../components/scrollTutorial/CustomButton';
+import { PixelRatio, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import data from '../../data/dataScroll';
+import RenderItem from '../../components/scrollTutorial/RenderItem';
+import CustomButton from '../../components/scrollTutorial/CustomButton';
 import { Canvas, Circle, Group, Image, Mask, SkImage, makeImageFromView } from '@shopify/react-native-skia';
 import { useSharedValue, withTiming } from 'react-native-reanimated';
-import Pagination from '../components/scrollTutorial/Pagination';
-import UserNavigation from '../hooks/userNavigation';
-import materialTheme from '../assets/material-theme.json';
+import Pagination from '../../components/scrollTutorial/Pagination';
+import UserNavigation from '../../hooks/userNavigation';
+import styles from './style/styleAll';
 
 const Scroll = () => {
   const pd = PixelRatio.get()
@@ -93,22 +93,3 @@ const Scroll = () => {
 }
 
 export default Scroll
-
-{
-  /* Este es el css que se le da a los botones que se le dan a la paginacion de los scroll 
-    el container es el contenedor de la paginacion el color del mismo
-    el credit es para el footer*/
-}
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  credit: {
-    bottom: 12,
-    color: materialTheme.palettes.primary[0],
-    fontSize: 14,
-    position: 'absolute',
-  },
-})

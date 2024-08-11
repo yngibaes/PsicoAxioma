@@ -1,18 +1,15 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import NavBar from '../../components/otherComponents/navBar';
-import styles from '../userPrincipal/style/styleScreen';
 import Menu from '../../components/otherComponents/menu';
+import styles from '../userPrincipal/style/styleScreen';
 
-// Definición del componente SignUp
 const SettingsScreen = () => {
   return (
     <View style={styles.container}>
-      <Menu/>
+      <Menu />
       <ScrollView>
-        <Text style={styles.text}>Configuración</Text>
+        <Text>Configuración</Text>
       </ScrollView>
-      <NavBar />
     </View>
   )
 }

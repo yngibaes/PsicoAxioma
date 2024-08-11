@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { RootStackParamList } from '../../hooks/type/type'; // ajusta la ruta según sea necesario
-import styles from './style/styleCardDiary';
+import { RootStackParamList } from '../../hooks/type/type';
 import hookDiaryInfo from '../../hooks/userPrincipal/hookDiaryInfo';
+import styles from './style/styleCardDiary';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Definición de la interfaz CardDiaryProps
 interface CardDiaryProps {
@@ -16,7 +16,7 @@ const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   if (loading) return <ActivityIndicator size="large" color="#479E9C" /> // Si loading es true, se muestra un ActivityIndicator
-  if (error) return <Text style={styles.error}>Error: {error}</Text> // Si error es true, se muestra un mensaje de error
+  if (error) return <Text style={styles.error}>Error: Conexión fallida</Text> // Si error es true, se muestra un mensaje de error
 
   // Se ordena la data por fecha de manera descendente
   const sortedData = data.sort(
@@ -32,7 +32,7 @@ const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
         limitedData.map(item => (
           <TouchableOpacity key={item.diaryID} style={styles.parentAll} onPress={() => navigation.navigate('ReadDiaryIDScreen', { diaryID: item.diaryID })}>
             <View style={styles.parentTitle}>
-              <Icon name="ellipse" type="ionicon" color="#47708D" size={15} />
+              <Ionicons name="ellipse" color="#47708D" size={15} />
               <Text style={styles.title}>{item.diaryTitle}</Text>
             </View>
             <View style={styles.parentDate}>

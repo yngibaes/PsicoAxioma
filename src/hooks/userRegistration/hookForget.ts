@@ -10,6 +10,7 @@ const hookForgetPassword = () => {
 
   const resetPassword = async (email: string) => {
     try {
+      //Que ponga primero si escribio un correo ono
       await sendPasswordResetEmail(auth, email)
       Alert.alert(
         'Correo enviado',

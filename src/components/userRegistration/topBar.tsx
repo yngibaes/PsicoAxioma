@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { Image, View, Pressable, Text } from 'react-native';
+import React from 'react';
+import { View, Pressable, Text } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './style/stylesAll';
 
 // Definición de las props usando TypeScript
@@ -14,11 +15,7 @@ const TopBar = (props: propsTopBar) => {
     <View style={styles.gobackParent}>
       <Pressable style={styles.gobackChildLayout} onPress={props.goBack}>
         <View style={[styles.gobackChild, styles.gobackChildLayout]}>
-          <Image
-            style={styles.gobackIcon}
-            resizeMode="contain"
-            source={require('../../assets/img/userRegistration/arrowBack.png')}
-          />
+          <Ionicons name='arrow-back' size={28} color='#FFF' />
         </View>
       </Pressable>
       <Text style={styles.gobackText}>{props.text}</Text>

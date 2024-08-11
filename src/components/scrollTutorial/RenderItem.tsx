@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import React from 'react';
+import { Image, Text, View, useWindowDimensions } from 'react-native';
 import { OnboardingData } from '../../data/dataScroll';
+import styles from './style/stylesAll';
 
 type Props = {
   item: OnboardingData
@@ -42,24 +43,3 @@ const RenderItem = ({ item }: Props) => {
 }
 
 export default RenderItem
-
-const styles = StyleSheet.create({
-  imageStyle: {
-    // Puedes ajustar estos estilos según sea necesario
-    marginBottom: 30, // Ajusta el espacio entre la imagen y el texto
-  },
-  itemContainer: {
-    //apartado especial para la imgen y texto
-    alignItems: 'center',
-    flex: 1, // Cambiado a 1 para ocupar todo el espacio disponible
-    paddingTop: 110, //posocion de la imagen junto al texto
-  },
-  itemText: {
-    //Apartado especial para el texto
-    fontFamily: 'InterBold',
-    fontSize: 35, //Tamaño del texto
-    fontWeight: '600', //Tipo de fuente
-    marginHorizontal: 35,
-    textAlign: 'center',
-  },
-})

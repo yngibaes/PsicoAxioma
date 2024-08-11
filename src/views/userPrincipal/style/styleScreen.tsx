@@ -3,9 +3,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
-  button:{
-    
-  },
   container: {
     alignItems: 'center',
     backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
@@ -13,12 +10,6 @@ const styles = StyleSheet.create({
     height: hp('100%'),
     justifyContent: 'center', // Centra verticalmente,
     width: wp('100%'),
-  },
-  text: {
-    color: materialTheme.palettes.primary[0], // Aplica el color al texto
-    fontFamily: 'InterBold',
-    fontWeight: '200',
-    padding: 20,
   },
 })
 

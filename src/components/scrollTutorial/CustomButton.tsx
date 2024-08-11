@@ -1,26 +1,22 @@
-import { StyleSheet, TouchableWithoutFeedback, useWindowDimensions, } from 'react-native';
 import React from 'react';
+import { TouchableWithoutFeedback, useWindowDimensions, } from 'react-native';
 import Animated, { SharedValue, interpolateColor, useAnimatedStyle, withSpring, withTiming, } from 'react-native-reanimated';
-/*  import { interpolateColor, SharedValue, useAnimatedStyle } from 'react-native-reanimated';  */
-import materialTheme from '../../assets/material-theme.json';
+import styles from './style/stylesAll';
 
 type Props = {
   handlerPress: () => void
   buttonVal: SharedValue<number>
 }
 
+const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0'];
+
 const CustomButton = ({ handlerPress, buttonVal }: Props) => {
-  const { height: SCREEN_HEIGHT } = useWindowDimensions()
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
+
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       buttonVal.value,
-      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT],
-      [
-        '#098f91',
-        '#f8dac2',
-        '#5a71a3',
-        '#F4340B',
-      ] /*Aqui se le da el color al boton de scroll */,
+      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT], colors
     )
     return {
       backgroundColor: backgroundColor,
@@ -90,22 +86,3 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
 }
 
 export default CustomButton
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: materialTheme.palettes.tertiary[100],
-    borderRadius: 100,
-    bottom: 68,
-    height: 120,
-    justifyContent: 'center',
-    position: 'absolute',
-    width: 120,
-    zIndex: 1,
-  },
-  textButton: {
-    color: materialTheme.palettes.tertiary[100],
-    fontSize: 25,
-    position: 'absolute',
-  },
-})

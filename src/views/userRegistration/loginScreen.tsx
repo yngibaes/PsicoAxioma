@@ -1,18 +1,17 @@
-import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from 'react-native-responsive-screen';
+import React from 'react';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TopBar from '../../components/userRegistration/topBar';
 import ImageBear from '../../components/userRegistration/imageBear';
 import FormLogIn from '../../components/userRegistration/formLogin';
 import UserNavigation from '../../hooks/userNavigation';
-import materialTheme from '../../assets/material-theme.json';
+import styles from './style/styleAll';
 
 // Definición del componente LogInScreen
 const LogInScreen = () => {
   const { goBack, forgetPassword } = UserNavigation()
   return (
-    <View style={styles.parentAll}>
+    <View style={styles.parentLogIn}>
       <TopBar goBack={goBack} text="Iniciar Sesión" />
       <KeyboardAwareScrollView
         enableOnAndroid={true}
@@ -29,31 +28,5 @@ const LogInScreen = () => {
     </View>
   )
 }
-
-// Definición de los estilos
-const styles = StyleSheet.create({
-  divForm: {
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    backgroundColor: materialTheme.palettes.tertiary[70],
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    height: hp('70%'),
-    marginTop: hp('5%'),
-    overflow: 'hidden',
-    paddingTop: hp('2%'),
-    width: wp('100%'),
-  },
-  parentAll: {
-    alignItems: 'center',
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
-    flex: 1,
-    flexDirection: 'column',
-    height: hp('100%'),
-    overflow: 'hidden',
-    paddingTop: wp('1%'),
-    width: wp('100%'),
-  },
-})
 
 export default LogInScreen
