@@ -10,8 +10,9 @@ interface DiaryRead {
   diaryTitle: string
 }
 
+// Hook para leer un diario por ID
 const hookReadDiaryID = (diaryID: string) => {
-  const [data, setData] = useState<DiaryRead[]>([]); // Cambiado para asegurar que se registren los datos correctos
+  const [data, setData] = useState<DiaryRead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,7 +25,7 @@ const hookReadDiaryID = (diaryID: string) => {
         }
         const result: DiaryRead[] = await response.json();
         setData(result);
-        console.log(result); // Cambiado para asegurar que se registren los datos correctos
+        console.log('Datos por ID:', result); 
       } catch (err) {
         setError(err);
       } finally {

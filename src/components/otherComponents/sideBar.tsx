@@ -3,13 +3,13 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import styles from './style/styleSideBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import hookSideBar from '../../hooks/userPrincipal/hookSideBar';
+import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
 
 const defaultDisplayName = 'Usuario';
 const defaultEmail = 'Email';
 
 const CustomDrawer = (props: any) => {
-    const { displayName, photoURL, userEmail, handleLogout } = hookSideBar();
+    const { displayName, photoURL, userEmail, handleLogout } = hookDataUser();
     return (
         <View style={styles.parentAll}>
             <DrawerContentScrollView {...props}>

@@ -5,6 +5,7 @@ import UserNavigation from '../userNavigation';
 import url from '../config/config';
 import useAuth from '../useAuth';
 
+// En este hook se podrá encontrar la función para crear un diario, en la cual se podrá encontrar el contenido del diario, el título del diario, el correo del usuario, la limpieza del formulario, la referencia del contenido del diario, la navegación, la salida, el envío del formulario y la referencia del contenido del diario.
 const hookCreateDiary = () => {
     // Definición de los estados
     const [diaryContent, setdiaryContent] = useState('');
@@ -51,7 +52,6 @@ const hookCreateDiary = () => {
             Alert.alert('Error', 'Por favor, complete todos los campos.');
             return;
         }
-
         try {
             const response = await axios.post(`${url}/insertsDiary`, {
                 diaryContent,

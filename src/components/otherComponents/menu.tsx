@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image, Text, View, Pressable } from 'react-native';
 import { DrawerActions } from '@react-navigation/native';
-import hookMenu from '../../hooks/userPrincipal/hookMenu';
 import styles from './style/styleMenu';
+import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
 
 const gretting = '¡Hola';
 
 const Menu = () => {
-  const { displayName, photoURL, navigation } = hookMenu();
+  const { displayName, photoURL, navigation } = hookDataUser();
   return (
     <View style={[styles.parentAll, styles.layout]}>
       <Pressable

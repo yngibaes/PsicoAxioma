@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Centra verticalmente,
     width: wp('100%'),
   },
+  text: {
+    color: materialTheme.palettes.primary[0],
+    fontFamily: 'InterBold',
+    fontSize: wp('4.2%'),
+  },
 })
 
 export default styles

@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
 
-const hookSideBar = () => {
+// En este hook se podrá encontrar la información del usuario, como su nombre, correo y foto de perfil, además de la función para cerrar sesión.
+const hookDataUser = () => {
+    const navigation = useNavigation();
     const [displayName, setDisplayName] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [photoURL, setPhotoURL] = useState<string | null>(null);
@@ -20,7 +23,7 @@ const hookSideBar = () => {
         await signOut(auth)
     }
 
-    return { displayName, userEmail, photoURL, handleLogout };
+    return { displayName, userEmail, photoURL, handleLogout, navigation };
 }
 
-export default hookSideBar;
+export default hookDataUser;

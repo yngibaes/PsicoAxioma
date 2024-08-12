@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -17,40 +17,21 @@ import ProfileScreen from './src/views/userAccount/profileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './src/hooks/config/firebase';
-import { Text } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
+import useAuth from './src/hooks/useAuth';
+import styles from './src/views/userRegistration/style/styleAll';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        if (user.emailVerified) {
-          setIsLoggedIn(true)
-          console.log('Se ha iniciado sesión')
-        } else {
-          // Puedes mostrar un mensaje de error aquí si lo deseas
-          console.log('No se ha iniciado sesión')
-          setIsLoggedIn(false)
-        }
-      } else {
-        setIsLoggedIn(false)
-      }
-      setLoading(false)
-    })
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe()
-  }, [])
+  const { loading, isLoggedIn } = useAuth();
 
   if (loading) {
-    <Text> Estoy cargando pipipi </Text>
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#213751" />
+      </View>)
   }
   const Drawer = createDrawerNavigator();
   return (

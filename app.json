@@ -5,7 +5,7 @@
     [
       "react-native-vision-camera",
       {
-        "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+        "cameraPermissionText": "$(PRODUCT_NAME) necesita acceso a tu cámara para el escaneo facial."
       }
     ]
   ]

@@ -11,7 +11,6 @@ interface DiaryEntry {
 }
 
 // Hook para obtener la información del diario
-
 const hookDiaryInfo = () => {
   // Estados para almacenar la información de la API
   const [data, setData] = useState<DiaryEntry[]>([])

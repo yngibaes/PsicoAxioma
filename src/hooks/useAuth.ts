@@ -3,47 +3,52 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './config/firebase';
 
 const useAuth = () => {
-  // Estado para almacenar el usuario actual
-  const [user, setUser] = useState<User | null>(null)
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
 
-  // Efecto para verificar si el usuario está autenticado
   useEffect(() => {
-    // Suscribirse a los cambios de estado de autenticación
-    const unsub = onAuthStateChanged(auth, users => {
-      console.log('Este es el usuario: ', users)
-      if (users) {
-        setUser(users)
-        setIsLoggedIn(true)
+    console.log('useEffect called');
+    const unsub = onAuthStateChanged(auth, user => {
+      if (user) {
+        if (user.emailVerified) {
+          console.log('Iniciado sesión');
+          setUser(user);
+          setIsLoggedIn(true);
+        } else {
+          console.log('No se ha iniciado sesión');
+          setUser(null);
+          setIsLoggedIn(false);
+        }
       } else {
-        setUser(null)
-        setIsLoggedIn(false) // Asegúrate de restablecer el estado de inicio de sesión cuando el usuario cierra sesión
+        setUser(null);
+        setIsLoggedIn(false);
       }
-    })
-    return unsub
-  }, [])
+      setLoading(false);
+    });
+    return () => unsub();
+  }, []); // Array de dependencias vacío para ejecutar el efecto solo una vez
 
-  // Función para actualizar el estado de inicio de sesión, podría ser llamada después de un inicio de sesión exitoso
   const login = () => {
-    setIsLoggedIn(true)
-  }
+    console.log('login called');
+    setIsLoggedIn(true);
+  };
 
-  // Función para manejar el cierre de sesión
   const logout = () => {
-    setIsLoggedIn(false)
-    // Aquí deberías implementar el cierre de sesión de Firebase Auth
-  }
+    console.log('logout called');
+    setIsLoggedIn(false);
+  };
 
-  // Obtener el correo electrónico del usuario
-  const userEmail = user?.email || ''
+  const userEmail = user?.email || '';
 
   return {
     user,
     isLoggedIn,
     login,
     logout,
-    userEmail
-  }
-}
+    userEmail,
+    loading
+  };
+};
 
-export default useAuth
+export default useAuth;
