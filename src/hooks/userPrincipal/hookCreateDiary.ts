@@ -11,6 +11,7 @@ const hookCreateDiary = () => {
     const [diaryContent, setdiaryContent] = useState('');
     const [diaryTitle, setdiaryTitle] = useState('');
     const { userEmail } = useAuth();
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     // Limpiar el formulario
     const clearForm = () => {
@@ -22,7 +23,7 @@ const hookCreateDiary = () => {
     const diaryContentNext = () => diaryContentRef.current?.focus()
 
     // Navegación
-    const { goBack } = UserNavigation()
+    const { DiaryScreen } = UserNavigation()
 
     const handleExit = () => {
         Alert.alert(
@@ -38,7 +39,7 @@ const hookCreateDiary = () => {
                     onPress: () => {
                         setdiaryContent('');
                         setdiaryTitle('');
-                        goBack();
+                        DiaryScreen();
                     },
                 },
             ],
@@ -48,8 +49,10 @@ const hookCreateDiary = () => {
 
     // Enviar el formulario
     const handleSubmit = async () => {
+        setIsButtonDisabled(true);
         if (!diaryContent || !diaryTitle) {
             Alert.alert('Error', 'Por favor, complete todos los campos.');
+            setIsButtonDisabled(false);
             return;
         }
         try {
@@ -63,12 +66,13 @@ const hookCreateDiary = () => {
                     'Enviado',
                     'Diario enviado.',
                 );
-                goBack();
+                DiaryScreen();
                 clearForm();
             }
         } catch (error) {
             Alert.alert('Error', 'No pudo ser enviado el diario. Intentelo nuevamente.');
             console.log(error.message);
+            setIsButtonDisabled(false); // Rehabilitar el botón si hay un error
         }
     }
 
@@ -78,11 +82,11 @@ const hookCreateDiary = () => {
         diaryTitle,
         setdiaryContent,
         setdiaryTitle,
-        goBack,
         handleSubmit,
         diaryContentRef,
         diaryContentNext,
         handleExit,
+        isButtonDisabled,
     }
 }
 

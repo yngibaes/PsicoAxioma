@@ -20,6 +20,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { View, ActivityIndicator } from 'react-native';
 import useAuth from './src/hooks/useAuth';
 import styles from './src/views/userRegistration/style/styleAll';
+import UptadeEmailScreen from './src/views/userAccount/updateEmailScreen';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator()
@@ -51,14 +52,6 @@ export default function App() {
               }
             }}
             initialRouteName='Inicio'>
-            <>
-              <Drawer.Screen name="CreateDiaryScreen" component={CreateDiaryScreen} options={{
-                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
-              }} />
-              <Drawer.Screen name="ReadDiaryIDScreen" component={ReadDiaryIDScreen} options={{
-                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
-              }} />
-            </>
             <Drawer.Screen name="Inicio" component={TabNavigator}
               options={{
                 drawerIcon: ({ focused }) => (
@@ -91,6 +84,17 @@ export default function App() {
                 )
               }}
             />
+            <>
+              <Drawer.Screen name="CreateDiaryScreen" component={CreateDiaryScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="ReadDiaryIDScreen" component={ReadDiaryIDScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+              <Drawer.Screen name="UpdateEmailScreen" component={UptadeEmailScreen} options={{
+                drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
+              }} />
+            </>
           </Drawer.Navigator>
         ) : (
           <Stack.Navigator initialRouteName="Scroll">

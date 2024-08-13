@@ -15,7 +15,7 @@ const iconSize = 25;
 const readDiaryID: React.FC = () => {
     const route = useRoute<ReadDiaryIDScreenRouteProp>();
     const { diaryID } = route.params;
-    const { data, loading, error, goBack } = hookReadDiaryID(diaryID);
+    const { data, loading, error, DiaryScreen } = hookReadDiaryID(diaryID);
 
     const renderLoading = () => (
         <ActivityIndicator size="large" color={activityIndicatorColor} />
@@ -35,7 +35,7 @@ const readDiaryID: React.FC = () => {
                                 <Ionicons
                                     name="arrow-back-outline"
                                     color={iconColor}
-                                    onPress={goBack}
+                                    onPress={DiaryScreen}
                                     size={iconSize}
                                 />
                             </View>

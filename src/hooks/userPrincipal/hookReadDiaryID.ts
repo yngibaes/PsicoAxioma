@@ -35,9 +35,9 @@ const hookReadDiaryID = (diaryID: string) => {
     fetchDiary();
   }, [diaryID]);
 
-  const { goBack } = UserNavigation()
+  const { DiaryScreen } = UserNavigation()
 
-  return { data, loading, error, goBack };
+  return { data, loading, error, DiaryScreen };
 };
 
 export default hookReadDiaryID;

@@ -21,6 +21,10 @@ function UserNavigation() {
   const CreateDiaryScreen = () => navigation.navigate('CreateDiaryScreen')
   const ReadDiaryIDScreen = () => navigation.navigate('ReadDiaryIDScreen')
 
+  //User Screens
+  const UpdateEmailScreen = () => navigation.navigate('UpdateEmailScreen')
+
+
   const goBack = () => navigation.goBack()
 
   return {
@@ -35,7 +39,8 @@ function UserNavigation() {
     DiaryScreen,
     RoutesScreen,
     CreateDiaryScreen,
-    ReadDiaryIDScreen
+    ReadDiaryIDScreen,
+    UpdateEmailScreen
   }
 }
 

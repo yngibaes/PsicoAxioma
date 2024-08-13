@@ -15,6 +15,7 @@ const useAuth = () => {
           console.log('Iniciado sesión');
           setUser(user);
           setIsLoggedIn(true);
+          console.log(user)
         } else {
           console.log('No se ha iniciado sesión');
           setUser(null);

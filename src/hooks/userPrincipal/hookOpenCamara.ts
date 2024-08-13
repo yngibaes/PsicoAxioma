@@ -138,6 +138,47 @@ const camera = useRef<Camera>(null)
       )
       }
 
-
 */
 
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCameraPermission } from 'react-native-vision-camera';
+import { Camera, PhotoFile, useCameraDevice } from 'react-native-vision-camera';
+
+const hookOpenCamara = () => {
+  const { hasPermission, requestPermission } = useCameraPermission();
+  const camera = useRef<Camera>(null);
+  const [showCamera, setShowCamera] = useState(false);
+  const [imageSource, setImageSource] = useState<PhotoFile>();
+
+  console.log('Permiso de camara: ', hasPermission);
+
+  const device = useCameraDevice('front');
+  useEffect(() => {
+    if (!hasPermission) {
+      requestPermission();
+    }
+  }, [hasPermission]);
+
+  useFocusEffect(
+    useCallback(() => {
+      setShowCamera(true);
+      return () => {
+        setShowCamera(false);
+      }
+    }, [])
+  );
+
+  const capturePhoto = async () => {
+    if (camera.current !== null) {
+      const photo = await camera.current?.takePhoto({});
+      setImageSource(photo);
+      console.log('Foto tomada: ', photo);
+      setShowCamera(false);
+    }
+  }
+
+  return { camera, hasPermission, showCamera, imageSource, capturePhoto, device }
+}
+
+export default hookOpenCamara

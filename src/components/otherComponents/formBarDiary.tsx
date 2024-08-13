@@ -14,7 +14,7 @@ const keyboardBehavior = "padding";
 const keyboardVerticalOffset = 60;
 
 const FormDiary = () => {
-    const { diaryContent, setdiaryContent, diaryTitle, setdiaryTitle, handleSubmit, diaryContentRef, diaryContentNext, handleExit } = hookCreateDiary();
+    const { diaryContent, setdiaryContent, diaryTitle, setdiaryTitle, handleSubmit, diaryContentRef, diaryContentNext, handleExit, isButtonDisabled } = hookCreateDiary();
     return (
         <View style={styles.container}>
             <View style={[styles.parentTopBar, styles.flexBox]}>
@@ -50,6 +50,7 @@ const FormDiary = () => {
                     color={iconColor}
                     onPress={handleSubmit}
                     size={iconSend}
+                    disabled={isButtonDisabled}
                 />
             </View>
             <KeyboardAvoidingView

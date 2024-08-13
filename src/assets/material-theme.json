@@ -241,7 +241,7 @@
             "shadow": "#000000",
             "scrim": "#000000",
             "inverseSurface": "#DDE4E3",
-            "inverseOnSurface": "#252B2B",
+            "inverseOnSurface": "#252B2B94",
             "inversePrimary": "#005150",
             "primaryFixed": "#9CF1EE",
             "onPrimaryFixed": "#001414",
@@ -266,7 +266,8 @@
             "diaryAndroid": "#e0c7b4",
             "background": "#DDD6D2",
             "date": "#A1A1A1",
-            "card": "#CCBFB6"
+            "card": "#CCBFB6",
+            "another": "#AFAFAF"
         },
         "darkhighcontrast": {
             "primary": "#EAFFFD",

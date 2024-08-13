@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Menu from '../../components/otherComponents/menu';
 import styles from '../userPrincipal/style/styleScreen';
+import ProfileUser from '../../components/otherComponents/profileUser';
 
 const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Menu />
       <ScrollView>
-        <Text>Perfil</Text>
+        <ProfileUser />
       </ScrollView>
     </View>
   )
