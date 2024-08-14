@@ -23,6 +23,7 @@ module.exports = {
     // e.g., "@typescript-eslint/explicit-function-return-type": "off",
     '@typescript-eslint/no-explicit-any': 'off',
     'no-inline-styles': 'off', // Ficticia: Desactiva la regla de estilos en línea, como ejemplo
+    'semi': ['error', 'always'], // Ensure semicolons are used
   },
   env: {
     'react-native/react-native': true, // Enables react-native global variables
@@ -35,4 +36,4 @@ module.exports = {
       },
     },
   ],
-}
+};

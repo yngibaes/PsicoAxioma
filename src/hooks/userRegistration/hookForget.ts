@@ -21,7 +21,7 @@ const hookForgetPassword = () => {
       message: 'Ocurrió un error al enviar el correo de restablecimiento. Inténtalo de nuevo.'
     }
   };
-  
+
   const resetPassword = async (email: string) => {
     if (!email) {
       Alert.alert(alertMessages.confirmEmail.title, alertMessages.confirmEmail.message);

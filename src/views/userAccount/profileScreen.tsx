@@ -12,7 +12,7 @@ const ProfileScreen = () => {
         <ProfileUser />
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default ProfileScreen
+export default ProfileScreen;

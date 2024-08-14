@@ -13,11 +13,11 @@ const firebaseConfig = {
   storageBucket: 'psicoaxioma.appspot.com',
   messagingSenderId: '857562269853',
   appId: '1:857562269853:web:3408d1359cf25a992dec74',
-}
+};
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 
 export const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
-})
+});

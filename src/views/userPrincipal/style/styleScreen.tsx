@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     fontFamily: 'InterBold',
     fontSize: wp('4.2%'),
   },
-})
+});
 
-export default styles
+export default styles;

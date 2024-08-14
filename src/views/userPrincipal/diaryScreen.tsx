@@ -12,7 +12,7 @@ const DiaryScreen = () => {
         <ContentDiary />
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default DiaryScreen
+export default DiaryScreen;

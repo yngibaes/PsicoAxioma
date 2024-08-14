@@ -12,14 +12,14 @@ const CameraScreen = () => {
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color="#213751" />
-      </View>)
+      </View>);
   }
 
   if (!device) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Dispositivo no encontrado</Text>
-      </View>)
+      </View>);
   }
 
   return (
@@ -63,7 +63,7 @@ const CameraScreen = () => {
       )
       }
     </View>
-  )
-}
+  );
+};
 
-export default CameraScreen
+export default CameraScreen;

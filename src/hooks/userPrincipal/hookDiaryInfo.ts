@@ -13,33 +13,33 @@ interface DiaryEntry {
 // Hook para obtener la información del diario
 const hookDiaryInfo = () => {
   // Estados para almacenar la información de la API
-  const [data, setData] = useState<DiaryEntry[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
-  const { userEmail } = useAuth()
+  const [data, setData] = useState<DiaryEntry[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const { userEmail } = useAuth();
 
   // Efecto para obtener la información
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${url}/diary?userEmail=${userEmail}`)
+        const response = await fetch(`${url}/diary?userEmail=${userEmail}`);
         if (!response.ok) {
-          throw new Error('Salió mal la conexión')
+          throw new Error('Salió mal la conexión');
         }
-        const result = await response.json()
-        setData(result)
+        const result = await response.json();
+        setData(result);
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     if (userEmail) {
       // Asegúrate de que el email esté disponible antes de hacer la consulta
-      fetchData()
+      fetchData();
     }
-  }, [userEmail])
+  }, [userEmail]);
 
   // Función para formatear la fecha
   const formatDate = (date: any) => {
@@ -47,15 +47,15 @@ const hookDiaryInfo = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    })
-  }
+    });
+  };
 
   return {
     data,
     loading,
     error,
     formatDate
-  }
-}
+  };
+};
 
-export default hookDiaryInfo
+export default hookDiaryInfo;

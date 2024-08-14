@@ -15,15 +15,15 @@ const hookCreateDiary = () => {
 
     // Limpiar el formulario
     const clearForm = () => {
-        setdiaryContent('')
-        setdiaryTitle('')
-    }
+        setdiaryContent('');
+        setdiaryTitle('');
+    };
 
-    const diaryContentRef = useRef<TextInput>(null)
-    const diaryContentNext = () => diaryContentRef.current?.focus()
+    const diaryContentRef = useRef<TextInput>(null);
+    const diaryContentNext = () => diaryContentRef.current?.focus();
 
     // Navegación
-    const { DiaryScreen } = UserNavigation()
+    const { DiaryScreen } = UserNavigation();
 
     const handleExit = () => {
         Alert.alert(
@@ -74,7 +74,7 @@ const hookCreateDiary = () => {
             console.log(error.message);
             setIsButtonDisabled(false); // Rehabilitar el botón si hay un error
         }
-    }
+    };
 
     // Retornar los valores y funciones necesarios
     return {
@@ -87,7 +87,7 @@ const hookCreateDiary = () => {
         diaryContentNext,
         handleExit,
         isButtonDisabled,
-    }
-}
+    };
+};
 
-export default hookCreateDiary
+export default hookCreateDiary;

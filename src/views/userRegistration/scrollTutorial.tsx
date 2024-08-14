@@ -10,49 +10,49 @@ import UserNavigation from '../../hooks/userNavigation';
 import styles from './style/styleAll';
 
 const Scroll = () => {
-  const pd = PixelRatio.get()
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions()
-  const ref = useRef(null)
-  const [active, setActive] = useState(false)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [overlay, setOverlay] = useState<SkImage | null>(null)
-  const mask = useSharedValue(0)
-  const buttonVal = useSharedValue(0)
+  const pd = PixelRatio.get();
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
+  const ref = useRef(null);
+  const [active, setActive] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [overlay, setOverlay] = useState<SkImage | null>(null);
+  const mask = useSharedValue(0);
+  const buttonVal = useSharedValue(0);
 
   const wait = async (ms: number) =>
-    new Promise(resolve => setTimeout(resolve, ms))
+    new Promise(resolve => setTimeout(resolve, ms));
 
-  const { Welcome } = UserNavigation()
+  const { Welcome } = UserNavigation();
 
   const handlePress = async () => {
     if (currentIndex === data.length - 1 && !active) {
-      Welcome()
-      return
+      Welcome();
+      return;
     }
     if (!active) {
-      setActive(true)
+      setActive(true);
 
-      const snapshot1 = await makeImageFromView(ref)
-      setOverlay(snapshot1)
-      await wait(80)
+      const snapshot1 = await makeImageFromView(ref);
+      setOverlay(snapshot1);
+      await wait(80);
 
-      setCurrentIndex(prev => prev + 1)
-      mask.value = withTiming(SCREEN_HEIGHT, { duration: 1000 })
-      buttonVal.value = withTiming(buttonVal.value + SCREEN_HEIGHT)
-      await wait(1000)
+      setCurrentIndex(prev => prev + 1);
+      mask.value = withTiming(SCREEN_HEIGHT, { duration: 1000 });
+      buttonVal.value = withTiming(buttonVal.value + SCREEN_HEIGHT);
+      await wait(1000);
 
-      setOverlay(null)
-      mask.value = 0
-      setActive(false)
+      setOverlay(null);
+      mask.value = 0;
+      setActive(false);
     }
-  }
+  };
   return (
     <View style={styles.container}>
       <View ref={ref} collapsable={false}>
         {data.map((item, index) => {
           return (
             currentIndex === index && <RenderItem item={item} key={index} />
-          )
+          );
         })}
       </View>
       {overlay && (
@@ -89,7 +89,7 @@ const Scroll = () => {
       <Pagination data={data} buttonVal={buttonVal} />
       <Text style={styles.credit}>© TypeByte Ⓡ 2024</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Scroll
+export default Scroll;

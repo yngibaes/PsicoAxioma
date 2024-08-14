@@ -12,7 +12,7 @@ const HomeScreen = () => {
         <ContentDiaryHome />
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

@@ -23,7 +23,7 @@ const RoutesScreen = () => {
         </View>
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default RoutesScreen
+export default RoutesScreen;

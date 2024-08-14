@@ -9,7 +9,7 @@ import styles from './style/styleAll';
 
 // Definición del componente SignUpScreen
 const SignUpScreen = () => {
-  const { goBack } = UserNavigation()
+  const { goBack } = UserNavigation();
   return (
     <View style={styles.parentSignUp}>
       <TopBar goBack={goBack} text="Regístrate" />
@@ -32,7 +32,7 @@ const SignUpScreen = () => {
         </View>
       </KeyboardAwareScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default SignUpScreen
+export default SignUpScreen;

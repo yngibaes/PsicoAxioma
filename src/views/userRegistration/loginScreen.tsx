@@ -9,7 +9,7 @@ import styles from './style/styleAll';
 
 // Definición del componente LogInScreen
 const LogInScreen = () => {
-  const { goBack, forgetPassword } = UserNavigation()
+  const { goBack, forgetPassword } = UserNavigation();
   return (
     <View style={styles.parentLogIn}>
       <TopBar goBack={goBack} text="Iniciar Sesión" />
@@ -26,7 +26,7 @@ const LogInScreen = () => {
         </View>
       </KeyboardAwareScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default LogInScreen
+export default LogInScreen;

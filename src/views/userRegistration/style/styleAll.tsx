@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('6%'), // Espaciado horizontal
     width: wp('100%'),
   },
+});
 
-})
-
-export default styles
+export default styles;

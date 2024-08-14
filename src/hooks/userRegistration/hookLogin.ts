@@ -39,7 +39,7 @@ const hookLogin = () => {
         setUserPassword('');
         setErrors({});
         setIsFormValid(false);
-    }
+    };
 
     // Validar el formulario al cambiar
     useEffect(() => {

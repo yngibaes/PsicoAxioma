@@ -8,7 +8,7 @@ const CreateDiaryScreen = () => {
     <View style={styles.container} >
       <FormDiary />
     </View>
-  )
-}
+  );
+};
 
-export default CreateDiaryScreen
+export default CreateDiaryScreen;

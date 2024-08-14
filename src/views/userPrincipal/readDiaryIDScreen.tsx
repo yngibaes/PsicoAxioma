@@ -8,7 +8,7 @@ const ReadDiaryIDScreen = () => {
         <View style={styles.container}>
             <ReadDiaryID />
         </View>
-    )
-}
+    );
+};
 
-export default ReadDiaryIDScreen
+export default ReadDiaryIDScreen;

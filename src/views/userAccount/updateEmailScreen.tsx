@@ -1,12 +1,14 @@
 import React from "react";
-import { Text } from "react-native";
+import { View } from "react-native";
+import UpdateEmail from "../../components/otherComponents/updateEmail";
+import styles from "../userPrincipal/style/styleScreen";
 
 const UptadeEmailScreen = () => {
     return (
-        <Text>
-            OLA
-        </Text>
-    )
-}
+        <View style={styles.container}>
+            <UpdateEmail />
+        </View>
+    );
+};
 
-export default UptadeEmailScreen
+export default UptadeEmailScreen;

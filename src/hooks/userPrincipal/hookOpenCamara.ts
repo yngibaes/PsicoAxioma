@@ -165,7 +165,7 @@ const hookOpenCamara = () => {
       setShowCamera(true);
       return () => {
         setShowCamera(false);
-      }
+      };
     }, [])
   );
 
@@ -176,9 +176,9 @@ const hookOpenCamara = () => {
       console.log('Foto tomada: ', photo);
       setShowCamera(false);
     }
-  }
+  };
 
-  return { camera, hasPermission, showCamera, imageSource, capturePhoto, device }
-}
+  return { camera, hasPermission, showCamera, imageSource, capturePhoto, device };
+};
 
-export default hookOpenCamara
+export default hookOpenCamara;

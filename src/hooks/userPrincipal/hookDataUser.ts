@@ -18,38 +18,38 @@ const hookDataUser = () => {
         if (user) {
             setDisplayName(user.displayName);
             setUserEmail(user.email);
-            setPhotoURL(user.photoURL)
+            setPhotoURL(user.photoURL);
         }
     }, []);
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`${url}/readPhone?userEmail=${userEmail}`)
+            const response = await fetch(`${url}/readPhone?userEmail=${userEmail}`);
             if (!response.ok) {
-              throw new Error('Salió mal la conexión')
+              throw new Error('Salió mal la conexión');
             }
-            const [result] = await response.json()
-            setUserPhone(result.userPhone)
-            console.log(result.userPhone)
+            const [result] = await response.json();
+            setUserPhone(result.userPhone);
+            console.log(result.userPhone);
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
-        }
+        };
     
         if (userEmail) {
           // Asegúrate de que el email esté disponible antes de hacer la consulta
-          fetchData()
+          fetchData();
         }
-      }, [userEmail])
+      }, [userEmail]);
 
     const handleLogout = async () => {
-        await signOut(auth)
-    }
+        await signOut(auth);
+    };
 
     const { UpdateEmailScreen } = UserNavigation();
 
     return { displayName, userEmail, photoURL, userPhone, handleLogout, navigation, UpdateEmailScreen };
-}
+};
 
 export default hookDataUser;

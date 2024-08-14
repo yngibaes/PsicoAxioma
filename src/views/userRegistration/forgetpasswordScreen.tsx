@@ -7,13 +7,13 @@ import styles from './style/styleAll';
 
 // Definición del componente ForgetPasswordScreen
 const ForgetPasswordScreen = () => {
-  const { goBack } = UserNavigation()
+  const { goBack } = UserNavigation();
   return (
     <View style={styles.parentForget}>
       <TopBar goBack={goBack} text="Olvidaste tu contraseña" />
       <FormForget />
     </View>
-  )
-}
+  );
+};
 
-export default ForgetPasswordScreen
+export default ForgetPasswordScreen;

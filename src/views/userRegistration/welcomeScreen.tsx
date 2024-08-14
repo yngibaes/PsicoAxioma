@@ -8,14 +8,14 @@ import styles from './style/styleAll';
 
 // Definición del componente WelcomeScreen
 const WelcomeScreen = () => {
-  const { logIn, signUp } = UserNavigation()
+  const { logIn, signUp } = UserNavigation();
   return (
     <View style={styles.parentWelcome}>
       <TitleWelcome />
       <ImageBear sizeHeightD="45%" sizeHeightI="42%" sizeWidhtI="80%" />
       <ButtonLogin LogIn={logIn} SignUp={signUp} />
     </View>
-  )
-}
+  );
+};
 
-export default WelcomeScreen
+export default WelcomeScreen;
