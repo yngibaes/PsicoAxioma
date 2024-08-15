@@ -22,7 +22,7 @@ const ContentDiary = () => {
       </View>
       <CardDiary />
     </View>
-  )
-}
+  );
+};
 
-export default ContentDiary
+export default ContentDiary;

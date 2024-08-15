@@ -3,10 +3,22 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
+    buttonDelete: {
+        alignItems: 'center',
+        backgroundColor: materialTheme.schemes.darkmediumcontrast.errorContainer,
+        borderRadius: 20,
+        height: hp('6%'),
+        justifyContent: 'center',
+        marginTop: hp('2%'),
+        width: wp('40%')
+    },
     container: {
         alignItems: 'center',
         justifyContent: 'center',
         width: wp('100%')
+    },
+    deleteContainer: {
+        flexDirection: 'row',
     },
     imageContainer: {
         alignItems: 'center',
@@ -14,11 +26,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: wp('50%')
     },
-    parentText:{
+    parentText: {
         alignItems: 'center',
         flexDirection: 'row',
     },
-    text:{
+    text: {
         backgroundColor: materialTheme.schemes.darkmediumcontrast.card,
         borderRadius: 10,
         color: materialTheme.palettes.secondary[0],
@@ -28,11 +40,17 @@ const styles = StyleSheet.create({
         padding: 10,
         width: wp('70%')
     },
-    textContainer:{
+    textContainer: {
         justifyContent: 'center',
-        marginVertical: hp('3.5%')
+        marginVertical: hp('3.1%')
     },
-    textName:{
+    textDelete: {
+        color: materialTheme.palettes.secondary[100],
+        fontFamily: 'InterBold',
+        fontSize: wp('3.5%'),
+        marginLeft: wp('1%')
+    },
+    textName: {
         color: materialTheme.palettes.secondary[0],
         fontFamily: 'InterBold',
         fontSize: wp('5%'),
@@ -40,7 +58,7 @@ const styles = StyleSheet.create({
         textDecorationColor: materialTheme.palettes.secondary[0],
         textDecorationLine: 'underline',
     },
-    textTitle:{
+    textTitle: {
         color: materialTheme.palettes.secondary[0],
         fontFamily: 'InterBold',
         fontSize: wp('4.5%'),
@@ -54,6 +72,6 @@ const styles = StyleSheet.create({
         height: hp('19%'),
         width: wp('40%'),
     }
-})
+});
 
-export default styles
+export default styles;

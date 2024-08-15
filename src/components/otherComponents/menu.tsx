@@ -12,7 +12,7 @@ const Menu = () => {
     <View style={[styles.parentAll, styles.layout]}>
       <Pressable
         style={styles.layout}
-        onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }}>
+        onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
         {photoURL ? (
           <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userIcon} />
         ) : null}

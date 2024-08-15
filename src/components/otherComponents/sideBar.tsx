@@ -42,6 +42,6 @@ const CustomDrawer = (props: any) => {
             </View>
         </View>
     );
-}
+};
 
 export default CustomDrawer; 

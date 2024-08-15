@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     textAlign: 'left',
   },
-})
+});
 
-export default styles
+export default styles;

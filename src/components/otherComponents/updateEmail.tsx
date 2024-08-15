@@ -1,25 +1,48 @@
 import React from "react";
 import { View, Pressable, Text, TextInput } from "react-native";
-import styles from '../userRegistration/style/styleFormForget'
+import styles from './style/styleUpdateEmail';
 import hookUpdateEmail from "../../hooks/userPrincipal/hookUpdateEmail";
 
-const emailPromptText = 'Digite su email para recuperar su contraseña';
-const placeholderEmail = 'Escriba su email';
+const userEmailText = 'Digite su email actual';
+const userEmailPlaceHolder = 'Escriba su email actual';
+const newEmailText = 'Digite el nuevo email';
+const newEmailPlaceHolder = 'Escriba el nuevo email';
+const userPasswordText = 'Digite su contraseña';
+const userPasswordPlaceHolder = 'Escriba su contraseña';
 const placeholderColor = '#828282';
 const buttonText = 'Enviar';
 
 const UpdateEmail = () => {
-    const { newEmail, setNewEmail, userPassword, setUserPassword, updateEmailUser } = hookUpdateEmail();
+    const { newEmail, setNewEmail, userPassword, setUserPassword, updateEmailUser, userEmail, setUserEmail } = hookUpdateEmail();
     return (
         <View style={styles.parentEmail}>
             <View style={styles.childEmail}>
                 <Text style={[styles.divLabel, styles.labelText]}>
-                    {emailPromptText}
+                    {userEmailText}
                 </Text>
                 <View style={[styles.Input, styles.sizeInput]}>
                     <TextInput
                         style={styles.label}
-                        placeholder={placeholderEmail}
+                        placeholder={userEmailPlaceHolder}
+                        keyboardType="email-address"
+                        placeholderTextColor={placeholderColor}
+                        inputMode="email"
+                        data-name="userEmail"
+                        keyboardAppearance="dark"
+                        returnKeyType="next"
+                        value={userEmail}
+                        onChangeText={setUserEmail}
+                    />
+                </View>
+            </View>
+            <View style={styles.childEmail}>
+                <Text style={[styles.divLabel, styles.labelText]}>
+                    {newEmailText}
+                </Text>
+                <View style={[styles.Input, styles.sizeInput]}>
+                    <TextInput
+                        style={styles.label}
+                        placeholder={newEmailPlaceHolder}
                         keyboardType="email-address"
                         placeholderTextColor={placeholderColor}
                         inputMode="email"
@@ -33,19 +56,19 @@ const UpdateEmail = () => {
             </View>
             <View style={styles.childEmail}>
                 <Text style={[styles.divLabel, styles.labelText]}>
-                    {emailPromptText}
+                    {userPasswordText}
                 </Text>
                 <View style={[styles.Input, styles.sizeInput]}>
                     <TextInput
                         style={styles.label}
-                        placeholder={placeholderEmail}
+                        placeholder={userPasswordPlaceHolder}
                         keyboardType="visible-password"
                         placeholderTextColor={placeholderColor}
                         inputMode="text"
                         data-name="userPassword"
                         keyboardAppearance="dark"
                         returnKeyType="next"
-                        value={userPassword }
+                        value={userPassword}
                         onChangeText={setUserPassword}
                     />
                 </View>
@@ -54,7 +77,7 @@ const UpdateEmail = () => {
             <View style={styles.divButton}>
                 <Pressable
                     style={styles.parentButton}
-                    onPress={() => updateEmailUser(newEmail)}>
+                    onPress={() => updateEmailUser(newEmail, userEmail, userPassword)}>
                     <Text style={[styles.button, styles.title]}>{buttonText}</Text>
                 </Pressable>
             </View>

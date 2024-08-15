@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
         borderColor: materialTheme.schemes.darkmediumcontrast.background,
         borderRadius: 60,
         borderWidth: 3,
-        height: hp('15.5%'),
-        width: wp('30%'),
+        height: hp('16%'),
+        width: wp('32.9%'),
     },
     iconChild: {
         alignItems: 'center',
@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         backgroundColor: materialTheme.schemes.darkmediumcontrast.secondaryContainer,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-        height: hp('25%'), // La mitad de la altura del contenedor
-        marginTop: hp('-0.5%'),
+        borderRadius: 20,
+        height: hp('26.5%'), // La mitad de la altura del contenedor
+        marginHorizontal: wp('1%'),
+        overflow: 'hidden',
     },
     logoutContainer: {
         alignItems: 'center',
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     },
     textChild: {
         flexDirection: 'column',
+        marginTop: hp('1%'),
         width: wp('50%'), // Ancho del contenedor
     },
     textLogOut: {
@@ -60,11 +61,11 @@ const styles = StyleSheet.create({
         marginLeft: wp('2%'),
     },
     userEmail: {
-        fontSize: wp('2.8%'),
+        fontSize: wp('3%'),
     },
     userName: {
-        fontSize: wp('4.5%'),
+        fontSize: wp('5%'),
     },
-})
+});
 
-export default styles
+export default styles;

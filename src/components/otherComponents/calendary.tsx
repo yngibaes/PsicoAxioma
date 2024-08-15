@@ -1,16 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
 import { getFormatedDate } from 'react-native-modern-datepicker';
-
-const Header = ({ title = 'Default Title' }) => {
-  return (
-    <View>
-      <Text>{title}</Text>
-    </View>
-  );
-};
 
 export default function Calendary() {
   const today = new Date();
@@ -30,35 +21,20 @@ export default function Calendary() {
 
   return (
     <View style={styles.container}>
-      <Header title="Calendario" />
-      <Text>Open: {open.toString()}</Text>
-
-      <TouchableOpacity onPress={handleOnPress} style={styles.button}>
-        <Text>Open Modal</Text>
-      </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={open}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <DatePicker
-              mode="calendar"
-              minimumDate={startDate}
-              selected={date}
-              onDateChange={handleChange}
-            />
-
-            <TouchableOpacity onPress={handleOnPress} style={styles.button}>
-              <Text>Close Modal</Text>
-            </TouchableOpacity>
-          </View>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <DatePicker
+            mode="calendar"
+            minimumDate={startDate}
+            selected={date}
+            onDateChange={handleChange}
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
+          />
         </View>
-      </Modal>
-
-      <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
@@ -66,15 +42,18 @@ export default function Calendary() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
+    height: '200%'
   },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
+    width: '100%',
+    height: '100%'
   },
   modalView: {
     margin: 20,
@@ -91,6 +70,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    width: '100%',
+    height: '100%'
   },
   button: {
     backgroundColor: '#2196F3',
@@ -98,5 +79,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 10,
   },
- 
+
 });

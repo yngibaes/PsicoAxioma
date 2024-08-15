@@ -91,4 +91,5 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 });
-export default styles
+
+export default styles;

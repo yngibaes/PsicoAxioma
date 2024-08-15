@@ -13,8 +13,8 @@ const Card = (props: CardProps) => {
 
   // Función para abrir el marcador con el número de teléfono
   const handlePress = () => {
-    Linking.openURL(`tel:${props.phoneNumber}`) //Acá es donde se define la funcion de LinKing que es una liberia de React-Native para poder interactuar con enlaces de aplicaciones entrantes y salientes
-  }
+    Linking.openURL(`tel:${props.phoneNumber}`); //Acá es donde se define la funcion de LinKing que es una liberia de React-Native para poder interactuar con enlaces de aplicaciones entrantes y salientes
+  };
   return (
     <TouchableOpacity style={styles.cardInfo} onPress={handlePress}>
       <ScrollView style={styles.cardInfo}>
@@ -29,7 +29,7 @@ const Card = (props: CardProps) => {
         </View>
       </ScrollView>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     marginLeft: wp('1.5%'),
     textAlign: 'left',
   },
-})
+});
 
-export default styles
+export default styles;

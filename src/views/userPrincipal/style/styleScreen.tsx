@@ -29,6 +29,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Centra verticalmente,
     width: wp('100%'),
   },
+  parentUpdate: {
+    alignItems: 'center',
+    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    flex: 1,
+    flexDirection: 'column', //	Orden de los elementos
+    height: hp('100%'),
+    justifyContent: 'flex-start',
+    overflow: 'hidden', // Ocultar elementos que sobresalgan
+    paddingTop: wp('1%'),
+    width: wp('100%'),
+  },
   photo: {
     borderRadius: 20,
     height: hp('80%'),

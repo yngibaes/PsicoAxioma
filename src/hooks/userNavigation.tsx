@@ -22,6 +22,7 @@ function UserNavigation() {
   const ReadDiaryIDScreen = () => navigation.navigate('ReadDiaryIDScreen');
 
   //User Screens
+  const ProfileScreen = () => navigation.navigate('Perfil');
   const UpdateEmailScreen = () => navigation.navigate('UpdateEmailScreen');
 
 
@@ -40,7 +41,8 @@ function UserNavigation() {
     RoutesScreen,
     CreateDiaryScreen,
     ReadDiaryIDScreen,
-    UpdateEmailScreen
+    UpdateEmailScreen,
+    ProfileScreen
   };
 }
 

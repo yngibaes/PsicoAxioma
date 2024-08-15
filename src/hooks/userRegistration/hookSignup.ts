@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Alert, TextInput } from 'react-native';
 import axios from 'axios';
-import { createUserWithEmailAndPassword, sendEmailVerification, User, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, User, updateProfile, updatePassword } from 'firebase/auth';
 import url from '../config/config';
 import { auth } from '../config/firebase';
 import UserNavigation from '../userNavigation';
-import { updatePassword } from 'firebase/auth/cordova';
 
 // En este apartado de la app se podra encontrar el hook de registro, en el cual se podra encontrar la funcion de registro, el nombre del usuario, el correo del usuario, el télefono del usuario, la contraseña del usuario, la confirmación de la contraseña, los errores, si el formulario es valido, las referencias y las funciones de navegación.
 const hookSignup = () => {

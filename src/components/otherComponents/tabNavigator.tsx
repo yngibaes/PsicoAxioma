@@ -72,7 +72,7 @@ const TabNavigator = () => {
         <Tab.Screen name="Routes" component={RoutesScreen} />
       </Tab.Navigator>
     </View>
-  )
-}
+  );
+};
 
 export default TabNavigator;

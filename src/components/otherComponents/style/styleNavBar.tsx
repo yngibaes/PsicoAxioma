@@ -6,6 +6,6 @@ const styles = StyleSheet.create({
     backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
     flex: 1, // Asegura que el contenedor use todo el espacio disponible
   },
-})
+});
 
-export default styles
+export default styles;

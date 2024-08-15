@@ -22,7 +22,7 @@ const ContentDiaryHome = () => {
       </View>
       <CardDiary limit={3} />
     </View>
-  )
-}
+  );
+};
 
-export default ContentDiaryHome
+export default ContentDiaryHome;
