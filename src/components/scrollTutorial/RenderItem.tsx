@@ -8,13 +8,13 @@ type Props = {
 }
 
 const RenderItem = ({ item }: Props) => {
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions()
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
 
   {
     /* Se hace la relación de aspecto de la iamgen es decir el valor que se modique entre 12/ 16 afectara unicmanete la 
   imagen, al modificar el primer valor este afectara el espacio de la imagen y el segundo valor afectara el tamaño de la imagen*/
   }
-  const imageHeight = SCREEN_WIDTH * (10 / 14)
+  const imageHeight = SCREEN_WIDTH * (10 / 14);
 
   return (
     <View
@@ -39,7 +39,7 @@ const RenderItem = ({ item }: Props) => {
         {item.text}
       </Text>
     </View>
-  )
-}
+  );
+};
 
-export default RenderItem
+export default RenderItem;

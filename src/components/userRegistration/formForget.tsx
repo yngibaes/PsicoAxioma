@@ -40,7 +40,7 @@ const FormForget = () => {
         </Pressable>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default FormForget
+export default FormForget;

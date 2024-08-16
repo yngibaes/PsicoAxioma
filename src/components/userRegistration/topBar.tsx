@@ -20,7 +20,7 @@ const TopBar = (props: propsTopBar) => {
       </Pressable>
       <Text style={styles.gobackText}>{props.text}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default TopBar
+export default TopBar;

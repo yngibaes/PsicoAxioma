@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Centra verticalmente,
     width: wp('100%'),
   },
+  containerResult: {
+    alignItems: 'center',
+    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    flex: 1,
+    flexDirection: 'column',
+    height: hp('100%'),
+    overflow: 'hidden',
+    paddingTop: wp('1%'),
+    width: wp('100%'),
+  },
   parentUpdate: {
     alignItems: 'center',
     backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
@@ -42,13 +52,27 @@ const styles = StyleSheet.create({
   },
   photo: {
     borderRadius: 20,
-    height: hp('80%'),
+    height: hp('60%'),
+    width: wp('90%'),
+  },
+  resultsContainer: {
+    alignItems: 'center',
+    backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
+    borderRadius: wp('2%'),
+    height: hp('20%'),
+    marginTop: hp('1.5%'),
     width: wp('90%'),
   },
   text: {
     color: materialTheme.palettes.primary[0],
     fontFamily: 'InterBold',
     fontSize: wp('4.2%'),
+  },
+  textResult: {
+    color: materialTheme.palettes.primary[0],
+    fontFamily: 'InterBold',
+    fontSize: wp('4%'),
+    fontWeight: '200'
   },
 });
 

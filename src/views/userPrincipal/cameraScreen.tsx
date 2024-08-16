@@ -4,9 +4,10 @@ import { Camera } from 'react-native-vision-camera';
 import hookOpenCamara from '../../hooks/userPrincipal/hookOpenCamara';
 import styles from './style/styleScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import TopBar from '../../components/userRegistration/topBar';
 
 const CameraScreen = () => {
-  const { camera, hasPermission, showCamera, imageSource, capturePhoto, device } = hookOpenCamara();
+  const { camera, hasPermission, showCamera, imageSource, capturePhoto, device, HomeScreen } = hookOpenCamara();
 
   if (!hasPermission) {
     return (
@@ -47,13 +48,16 @@ const CameraScreen = () => {
       ) : (
         <View>
           {imageSource ? (
-            <>
+            <View style={styles.containerResult}>
+            <TopBar goBack={HomeScreen} text="Resultados" />
               <Image
                 source={{ uri: `file://${imageSource.path}` }}
                 style={styles.photo}
               />
-
-            </>
+              <View style={styles.resultsContainer}>
+                <Text style={styles.textResult}>Resultados:</Text>
+              </View>
+            </View>
           ) : (
             <View style={styles.container}>
               <Text style={styles.text}>Imagen no encontrado</Text>

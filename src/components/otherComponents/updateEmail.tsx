@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Pressable, Text, TextInput } from "react-native";
 import styles from './style/styleUpdateEmail';
-import hookUpdateEmail from "../../hooks/userPrincipal/hookUpdateEmail";
+import hookUpdateEmail from "../../hooks/userPrincipal/hookUpdateEmail.ts";
 
 const userEmailText = 'Digite su email actual';
 const userEmailPlaceHolder = 'Escriba su email actual';

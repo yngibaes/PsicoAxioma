@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Alert, TextInput } from 'react-native';
+import { Alert, DevSettings, TextInput } from 'react-native';
 import axios from 'axios';
 import UserNavigation from '../userNavigation';
 import url from '../config/config';
@@ -68,6 +68,7 @@ const hookCreateDiary = () => {
                 );
                 DiaryScreen();
                 clearForm();
+                DevSettings.reload();
             }
         } catch (error) {
             Alert.alert('Error', 'No pudo ser enviado el diario. Intentelo nuevamente.');

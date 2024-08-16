@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'right',
   },
-})
+});
 
-export default styles // Exporta los estilos
+export default styles; // Exporta los estilos

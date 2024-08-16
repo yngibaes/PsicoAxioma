@@ -17,11 +17,11 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
     const backgroundColor = interpolateColor(
       buttonVal.value,
       [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT], colors
-    )
+    );
     return {
       backgroundColor: backgroundColor,
-    }
-  })
+    };
+  });
 
   const buttonAnimationStyle = useAnimatedStyle(() => {
     /*Animacion que se le da al boton de scroll para que  este cambie
@@ -36,8 +36,8 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
         buttonVal.value === 3 * SCREEN_HEIGHT
           ? withSpring(80)
           : withSpring(120),
-    }
-  })
+    };
+  });
 
   const arrowAnimationStyle = useAnimatedStyle(() => {
     return {
@@ -51,8 +51,8 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
               : withTiming(0),
         },
       ],
-    }
-  })
+    };
+  });
 
   const textAnimationStyle = useAnimatedStyle(() => {
     return {
@@ -66,8 +66,8 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
               : withTiming(-100),
         },
       ],
-    }
-  })
+    };
+  });
 
   return (
     <TouchableWithoutFeedback onPress={handlerPress}>
@@ -82,7 +82,7 @@ const CustomButton = ({ handlerPress, buttonVal }: Props) => {
         />
       </Animated.View>
     </TouchableWithoutFeedback>
-  )
-}
+  );
+};
 
-export default CustomButton
+export default CustomButton;

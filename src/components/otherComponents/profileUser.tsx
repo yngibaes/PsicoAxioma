@@ -6,24 +6,28 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 const ProfileUser = () => {
-    const { photoURL, displayName, userEmail, userPhone, UpdateEmailScreen } = hookDataUser();
-    const PhotoDefault = 'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
-    
-    launchImageLibrary(mediaType, callback)
-
-// You can also use as a promise without 'callback':
-const result = await launchImageLibrary(options?);
+    const { photoURL, displayName, userEmail, userPhone, UpdateEmailScreen, updatePhoto, PhotoDefault } = hookDataUser();
 
     return (
         <View style={styles.container}>
-            <View style={styles.imageContainer}>
-                {//https://www.npmjs.com/package/react-native-image-picker
-                }
+            <TouchableOpacity style={styles.imageContainer} onPress={() =>
+                launchImageLibrary(
+                    {
+                        mediaType: 'photo',
+                        includeBase64: false,
+                        maxHeight: 500,
+                        maxWidth: 500,
+                    },
+                    response => {
+                        updatePhoto(response);
+                    },
+                )}>
                 {photoURL ? (
-                    <Image source={{ uri: photoURL }} resizeMode='center' style={styles.userPhoto} defaultSource={{ uri: PhotoDefault }} />
+                    <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userPhoto} defaultSource={{ uri: PhotoDefault }} 
+                     />
                 ) : null}
                 <Text style={styles.textName}>{displayName}</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.textContainer}>
                 <View style={styles.parentText}>
                     <Ionicons name='mail-outline' size={27} color='#000' />
@@ -51,7 +55,7 @@ const result = await launchImageLibrary(options?);
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View >
     );
 };
 

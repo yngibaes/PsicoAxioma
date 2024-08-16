@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Dot = ({ index, buttonVal }: Props) => {
-  const { height: SCREEN_HEIGHT } = useWindowDimensions()
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
   const animatedDotStyle = useAnimatedStyle(() => {
     const widthAnimation = interpolate(
@@ -22,7 +22,7 @@ const Dot = ({ index, buttonVal }: Props) => {
       ],
       [10, 30, 10],
       Extrapolate.CLAMP,
-    )
+    );
 
     const opacityAnimation = interpolate(
       buttonVal.value,
@@ -33,27 +33,27 @@ const Dot = ({ index, buttonVal }: Props) => {
       ],
       [0.5, 1, 0.5],
       Extrapolate.CLAMP,
-    )
+    );
 
     return {
       width: widthAnimation,
       opacity: opacityAnimation,
-    }
-  })
+    };
+  });
 
-  const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0'] //Se cambian los colores de la paginacion que se da con el cursor del boton de scroll
+  const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0']; //Se cambian los colores de la paginacion que se da con el cursor del boton de scroll
 
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       buttonVal.value,
       [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT], colors,
-    )
+    );
     return {
       backgroundColor: backgroundColor,
-    }
-  })
-  return <Animated.View style={[styles.dot, animatedColor, animatedDotStyle]} />
-}
+    };
+  });
+  return <Animated.View style={[styles.dot, animatedColor, animatedDotStyle]} />;
+};
 
-export default Dot
+export default Dot;
 

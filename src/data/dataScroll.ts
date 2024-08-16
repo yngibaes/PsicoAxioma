@@ -52,6 +52,6 @@ const data: OnboardingData[] = [
     backgroundColor: backgroundColor4,
     margintop: 20,
   },
-]
+];
 
-export default data
+export default data;

@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     fontFamily: 'InterBold', // Tipo de fuente
     fontWeight: '300', // Grosor del texto
   },
-})
+});
 
-export default styles
+export default styles;

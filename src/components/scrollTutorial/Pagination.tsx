@@ -14,10 +14,10 @@ const Pagination = ({ data, buttonVal }: Props) => {
   return (
     <View style={styles.paginationContainer}>
       {data.map((_, index) => {
-        return <Dot index={index} buttonVal={buttonVal} key={index} />
+        return <Dot index={index} buttonVal={buttonVal} key={index} />;
       })}
     </View>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

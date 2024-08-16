@@ -40,7 +40,7 @@ const FormSignUp = () => {
     userPasswordNext,
     confirmPasswordRef,
     confirmPasswordNext,
-  } = hookSignup()
+  } = hookSignup();
 
   return (
     <View style={styles.parentForm}>
@@ -176,7 +176,7 @@ const FormSignUp = () => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default FormSignUp
+export default FormSignUp;

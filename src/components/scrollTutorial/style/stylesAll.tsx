@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
         fontSize: wp('7%'),
         position: 'absolute',
     },
-})
+});
 
 export default styles;

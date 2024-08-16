@@ -110,6 +110,6 @@ const styles = StyleSheet.create({
     fontSize: wp('6.6%'),
     fontWeight: '300', // Grosor del texto
   },
-})
+});
 
-export default styles
+export default styles;

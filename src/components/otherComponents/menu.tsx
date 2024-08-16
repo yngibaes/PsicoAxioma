@@ -7,14 +7,14 @@ import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
 const gretting = '¡Hola';
 
 const Menu = () => {
-  const { displayName, photoURL, navigation } = hookDataUser();
+  const { displayName, photoURL, navigation, PhotoDefault } = hookDataUser();
   return (
     <View style={[styles.parentAll, styles.layout]}>
       <Pressable
         style={styles.layout}
         onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
         {photoURL ? (
-          <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userIcon} />
+          <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userIcon} defaultSource={{ uri: PhotoDefault }} />
         ) : null}
         <Text style={styles.textParent}>
           <Text style={styles.hello}>{gretting}</Text>

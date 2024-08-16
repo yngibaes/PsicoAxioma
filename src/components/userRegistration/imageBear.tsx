@@ -26,7 +26,7 @@ const ImageLogIn = (props: propsImage) => {
         source={require('../../assets/img/userRegistration/osito.png')}
       />
     </View>
-  )
-}
+  );
+};
 
-export default ImageLogIn
+export default ImageLogIn;

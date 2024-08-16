@@ -9,14 +9,14 @@ const defaultDisplayName = 'Usuario';
 const defaultEmail = 'Email';
 
 const CustomDrawer = (props: any) => {
-    const { displayName, photoURL, userEmail, handleLogout } = hookDataUser();
+    const { displayName, photoURL, userEmail, handleLogout, PhotoDefault } = hookDataUser();
     return (
         <View style={styles.parentAll}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.iconContainer}>
                     <View style={styles.iconChild}>
                         {photoURL ? (
-                            <Image source={{ uri: photoURL }} resizeMode='center' style={styles.icon} />
+                            <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.icon} defaultSource={{ uri: PhotoDefault }} />
                         ) : null}
                         <View style={styles.textChild}>
                             <Text style={[styles.text, styles.userName]}>{displayName || defaultDisplayName}</Text>

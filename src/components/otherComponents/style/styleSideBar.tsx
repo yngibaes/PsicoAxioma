@@ -10,11 +10,13 @@ const styles = StyleSheet.create({
         paddingVertical: wp('1%'),
     },
     icon: {
+        alignItems: 'center',
         borderColor: materialTheme.schemes.darkmediumcontrast.background,
         borderRadius: 60,
         borderWidth: 3,
         height: hp('16%'),
-        width: wp('32.9%'),
+        justifyContent: 'center',
+        width: wp('32%'),
     },
     iconChild: {
         alignItems: 'center',

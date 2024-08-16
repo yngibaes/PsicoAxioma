@@ -27,7 +27,7 @@ const ButtonLogin: React.FC<propsButtonLogin> = ({ LogIn, SignUp }) => {
         </Pressable>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default ButtonLogin
+export default ButtonLogin;

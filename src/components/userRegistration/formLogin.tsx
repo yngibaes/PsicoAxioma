@@ -31,7 +31,7 @@ const FormLogIn = (props: propsFormLogIn) => {
     userPasswordNext,
     handleSubmit,
     signUp,
-  } = hookLogin()
+  } = hookLogin();
   return (
     <View style={styles.parentForm}>
       <View style={styles.parentInput}>
@@ -101,7 +101,7 @@ const FormLogIn = (props: propsFormLogIn) => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default FormLogIn
+export default FormLogIn;

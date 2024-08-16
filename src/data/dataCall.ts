@@ -52,6 +52,6 @@ const dataCall: OnboardingData[] = [
       'Aborda el consumo de sustancias psicoactivas. Horario de atención: 8:00 a.m a 12:00 p.m y 2:00 p.m a 5:30 p.m.',
     phoneNumber: '01 8000 112 439',
   },
-]
+];
 
-export default dataCall
+export default dataCall;

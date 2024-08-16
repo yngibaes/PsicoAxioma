@@ -11,7 +11,7 @@ const TitleWelcome = () => {
         {welcome}
       </Text>
     </View>
-  )
-}
+  );
+};
 
-export default TitleWelcome
+export default TitleWelcome;

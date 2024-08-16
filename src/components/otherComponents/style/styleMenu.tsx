@@ -26,15 +26,16 @@ const styles = StyleSheet.create({
         color: materialTheme.palettes.primary[0],
         fontSize: wp('4%'),
         height: hp('5.5%'),
+        marginLeft: wp('2%'),
         paddingTop: hp('1%'),
         textAlign: 'left',
         width: wp('50%'),
         zIndex: 1,
     },
     userIcon: {
-        borderRadius: 50,
-        height: hp('6%'),
-        width: wp('17%'),
+        borderRadius: 80,
+        height: hp('7%'),
+        width: hp('7%'),
     },
 });
 
