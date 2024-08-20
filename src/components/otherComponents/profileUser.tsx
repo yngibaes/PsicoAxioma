@@ -41,7 +41,7 @@ const ProfileUser = () => {
                     <Ionicons name='call-outline' size={30} color='#000' />
                     <Text style={styles.textTitle}>Télefono</Text>
                 </View>
-                <Text style={styles.text}>{userPhone}</Text>
+                <Text style={styles.text}>{userPhone ? userPhone : 'No se encuentra'}</Text>
             </View>
             <View style={styles.buttonDelete}>
                 <TouchableOpacity onPress={() => { console.log('ninini, cuenta borrada'); }} style={styles.deleteContainer}>
