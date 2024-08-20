@@ -1,4 +1,4 @@
-/* import React, { useState } from "react";
+/* /* import React, { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
 import { getFormatedDate } from 'react-native-modern-datepicker';
@@ -82,98 +82,152 @@ const styles = StyleSheet.create({
 
 }); */
 
-import React from "react";
-import { Calendar } from 'react-native-calendars';
-import { View } from "react-native";
-import { Direction } from "react-native-calendars/src/types";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+/* import React from "react";
+import { CalendarList } from 'react-native-calendars';
+import styles from './style/styleCalendary';
 
-
-
+const initialDate = new Date().toISOString().split('T')[0];
+const RANGE = 12;
 
 const Calendary = () => {
   return (
-    <View style={{ width: '100%', height: '100%' }}>
-      <Calendar
-        style={{ width: '100%', height: '100%' }}
-        // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-        minDate={'2023-01-01'}
-        // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-        maxDate={'2030-12-31'}
-        // Handler which gets executed on day press. Default = undefined
-
-        // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-        monthFormat={'MMMM yyyy'}
-        // Replace default arrows with custom ones (direction can be 'left' or 'right')
-        renderArrow={(direction: Direction) => direction === 'left' ?  <Ionicons name='caret-back-outline' size={27} color='#000' /> :  <Ionicons name='caret-forward-outline' size={27} color='#000' />}
-        // Do not show days of other months in month page. Default = false
-        hideExtraDays={true}
-        // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
-        // day from another month that is visible in calendar page. Default = false
-        disableMonthChange={true}
-        // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-        firstDay={0}
-        // Enable the option to swipe between months. Default = false
-        enableSwipeMonths={true}
-        markedDates={{
-          
-        }}
-        displayLoadingIndicator={true}
-      />
-    </View>
+    <CalendarList
+      current={initialDate}
+      pastScrollRange={RANGE}
+      futureScrollRange={RANGE}
+      onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
+      renderHeader={!horizontalView ? renderCustomHeader : undefined}
+      calendarHeight={!horizontalView ? 390 : undefined}
+      theme={!horizontalView ? theme : undefined}
+      horizontal={horizontalView}
+      pagingEnabled={horizontalView}
+      staticHeader={horizontalView}
+    />
   );
 };
 
 export default Calendary;
 
-const styles = StyleSheet.create({
-  calendar: {
-    marginBottom: 10
-  },
-  switchContainer: {
-    flexDirection: 'row',
-    margin: 10,
-    alignItems: 'center'
-  },
-  switchText: {
-    margin: 10,
-    fontSize: 16
-  },
-  text: {
-    textAlign: 'center',
-    padding: 10,
-    backgroundColor: 'lightgrey',
-    fontSize: 16
-  },
-  disabledText: {
-    color: 'grey'
-  },
-  defaultText: {
-    color: 'purple'
-  },
-  customCalendar: {
-    height: 250,
-    borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey'
-  },
-  customDay: {
-    textAlign: 'center'
-  },
-  customHeader: {
-    backgroundColor: '#FCC',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginHorizontal: -4,
-    padding: 8
-  },
-  customTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10
-  },
-  customTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#00BBF2'
-  }
-});
+
+import React, { useState } from "react";
+import { View, Button, Text } from "react-native";
+import { CalendarList } from 'react-native-calendars';
+import styles from './style/styleCalendarHome';
+
+const Calendary = () => {
+  const [horizontalView, setHorizontalView] = useState(false);
+
+  const toggleView = () => {
+    setHorizontalView(!horizontalView);
+  };
+
+  const renderCustomHeader = (date: any) => {
+    const month = new Date(date).toLocaleString('default', { month: 'long' });
+    const year = new Date(date).getFullYear();
+    return (
+      <View>
+        <Text>{`${month} ${year}`}</Text>
+      </View>
+    );
+  };
+
+  const theme = {
+    stylesheet: {
+      calendar: {
+        header: {
+          dayHeader: {
+            fontWeight: '600',
+            color: '#48BFE3'
+          }
+        }
+      }
+    },
+    'stylesheet.day.basic': {
+      today: {
+        borderColor: '#48BFE3',
+        borderWidth: 0.8
+      },
+      todayText: {
+        color: '#5390D9',
+        fontWeight: '800'
+      }
+    }
+
+  };
+
+  const initialDate = new Date().toISOString().split('T')[0];
+  const RANGE = 12;
+
+
+  return (
+    <View>
+      <Button title="Toggle View" onPress={toggleView} />
+      <CalendarList
+        current={initialDate}
+        pastScrollRange={RANGE}
+        futureScrollRange={RANGE}
+        renderHeader={!horizontalView ? renderCustomHeader : undefined}
+        calendarHeight={!horizontalView ? 390 : undefined}
+        theme={!horizontalView ? theme : undefined}
+        horizontal={horizontalView}
+        pagingEnabled={horizontalView}
+        staticHeader={horizontalView}
+      />
+    </View>
+  );
+};
+
+export default Calendary; */
+
+import React, {useCallback} from "react";
+import { CalendarProvider, ExpandableCalendar, AgendaList } from 'react-native-calendars';
+import styles from './style/styleCalendar';
+import { agendaItems } from './agendaItem';
+import AgentaItem from "./AgentaItem";
+
+const ITEMS: any[] = agendaItems;
+
+const Calendary = () => {
+
+  // const onDateChanged = useCallback((date, updateSource) => {
+  //   console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
+  // }, []);
+
+  // const onMonthChange = useCallback(({dateString}) => {
+  //   console.log('ExpandableCalendarScreen onMonthChange: ', dateString);
+  // }, []);
+
+  const renderItem = useCallback(({ item }: any) => {
+    return <AgentaItem item={item} />;
+  }, []);
+
+  return (
+    <CalendarProvider date={new Date().toISOString().split('T')[0]} style={styles.calendary}>
+      <ExpandableCalendar
+        // horizontal={false}
+        // hideArrows
+        // disablePan
+        // hideKnob
+        initialPosition={ExpandableCalendar.positions.OPEN}
+        // calendarStyle={styles.calendar}
+        // headerStyle={styles.header} // for horizontal only
+        // disableWeekScroll
+        // disableAllTouchEventsForDisabledDays
+        firstDay={1}
+        
+        // closeOnDayPress={false} 
+        animateScroll
+      />
+      <AgendaList
+        sections={ITEMS}
+        renderItem={renderItem}
+        // scrollToNextEvent
+        sectionStyle={styles.section}
+       dayFormat={'yyyy-MM-d'}
+      />
+    </CalendarProvider>
+  );
+};
+
+export default Calendary;
+

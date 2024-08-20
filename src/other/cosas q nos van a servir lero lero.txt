@@ -110,3 +110,104 @@ const styles = StyleSheet.create({
 
 export default Button
 
+
+
+To address the performance warning from VirtualizedList, you should ensure that the renderItem function renders components that follow React performance best practices. One way to do this is by using React.memo to memoize the AgentaItem component, which will prevent unnecessary re-renders.
+
+Step-by-Step Plan:
+Wrap the AgentaItem component with React.memo.
+Ensure that AgentaItem only re-renders when its props change.
+Example Code:
+Before:
+
+const AgentaItem = ({ item }) => {
+  // component implementation
+};
+
+import React from 'react';
+
+const AgentaItem = React.memo(({ item }) => {
+  // component implementation
+});
+
+import React, { useCallback } from 'react';
+import { CalendarProvider, ExpandableCalendar, AgendaList } from 'react-native-calendars';
+import { StyleSheet } from 'react-native';
+import AgentaItem from './AgentaItem'; // Ensure this path is correct
+
+const styles = StyleSheet.create({
+  calendary: {
+    // your styles here
+  },
+  section: {
+    // your styles here
+  }
+});
+
+const Calendary = () => {
+  const renderItem = useCallback(({ item }) => {
+    return <AgentaItem item={item} />;
+  }, []);
+
+  return (
+    <CalendarProvider date={new Date().toISOString().split('T')[0]} style={styles.calendary}>
+      <ExpandableCalendar
+        // horizontal={false}
+        // hideArrows
+        // disablePan
+        // hideKnob
+        // initialPosition={ExpandableCalendar.positions.OPEN}
+        // calendarStyle={styles.calendar}
+        // headerStyle={styles.header} // for horizontal only
+        // disableWeekScroll
+        // disableAllTouchEventsForDisabledDays
+        firstDay={1}
+        // closeOnDayPress={false} 
+        animateScroll
+      />
+      <AgendaList
+        sections={ITEMS}
+        renderItem={renderItem}
+        // scrollToNextEvent
+        sectionStyle={styles.section}
+        dayFormat={'yyyy-MM-d'}
+      />
+    </CalendarProvider>
+  );
+};
+
+export default Calendary;
+
+AgentaItem Component:
+Ensure that the AgentaItem component is defined in a separate file (e.g., AgentaItem.tsx) and wrapped with React.memo:
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const AgentaItem = React.memo(({ item }) => {
+  return (
+    <View>
+      <Text>{item.name}</Text>
+      {/* Render other item properties as needed
+     */}
+    </View>
+  );
+});
+
+export default AgentaItem;
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const AgentaItem = React.memo(({ item }) => {
+  return (
+    <View>
+      <Text>{item.name}</Text>
+      {/* Render other item properties as needed */}
+    </View>
+  );
+});
+
+export default AgentaItem;
+
+By wrapping AgentaItem with React.memo, it will only re-render when its props change, improving the performance of the VirtualizedList.
