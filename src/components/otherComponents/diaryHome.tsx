@@ -20,7 +20,7 @@ const ContentDiaryHome = () => {
           />
         </View>
       </View>
-      <CardDiary limit={3} />
+      <CardDiary limit={1} />
     </View>
   );
 };
