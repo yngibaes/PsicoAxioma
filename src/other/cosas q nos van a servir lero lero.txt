@@ -211,3 +211,6 @@ const AgentaItem = React.memo(({ item }) => {
 export default AgentaItem;
 
 By wrapping AgentaItem with React.memo, it will only re-render when its props change, improving the performance of the VirtualizedList.
+
+-Fecha de guardado de diario
+-Fuente de scroll en unos muy grande

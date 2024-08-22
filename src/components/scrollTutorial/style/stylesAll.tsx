@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     textButton: {
         color: materialTheme.palettes.tertiary[100],
-        fontSize: wp('7%'),
+        fontSize: wp('6%'),
         position: 'absolute',
     },
 });

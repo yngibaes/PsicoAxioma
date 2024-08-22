@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     parentAll: {
         flex: 1,
-        width: wp('68.1%'), // Ancho total del contenedor
+        /* width: wp('68.1%'), // Ancho total del contenedor */
     },
     spaces: {
         backgroundColor: materialTheme.palettes.secondary[100],
