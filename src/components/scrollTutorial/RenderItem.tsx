@@ -31,13 +31,15 @@ const RenderItem = ({ item }: Props) => {
         style={[styles.imageStyle, { width: SCREEN_WIDTH, height: imageHeight }]}
         resizeMode="contain" // El componente resizMode es para ajustar la imagen en el tamaño de la pantalla
       />
-      <Text
-        style={[
-          styles.itemText,
-          { color: item.textColor, marginTop: item.margintop },
-        ]}>
-        {item.text}
-      </Text>
+      <View style={styles.textContainer}>
+        <Text
+          style={[
+            styles.itemText,
+            { color: item.textColor},
+          ]}>
+          {item.text}
+        </Text>
+      </View>
     </View>
   );
 };

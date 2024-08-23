@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Pressable } from 'react-native';
+import {Text, View, TextInput, Pressable} from 'react-native';
 import styles from './style/styleFormLogIn';
 import hookLogin from '../../hooks/userRegistration/hookLogin';
 import stylesButton from './style/styleButtonLogIn';
@@ -59,7 +59,12 @@ const FormLogIn = (props: propsFormLogIn) => {
           </View>
         </View>
         <View style={styles.divInput}>
-          <Text style={styles.labelForm}>{labelPassword}</Text>
+          <View style={styles.divLabel}>
+            <Text style={styles.labelForm}>{labelPassword}</Text>
+            {errors.userPassword && (
+              <Text style={styles.error}>{errors.userPassword}</Text>
+            )}
+          </View>
           <View style={[styles.sizeInput, styles.input]}>
             <TextInput
               style={styles.label}

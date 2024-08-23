@@ -47,29 +47,34 @@ const hookSignup = () => {
 
     // Definición de los mensajes de error
     const ERROR_MESSAGES = {
-        userName: '*Por favor ingresa tu nombre completo.',
+        userName: '*Por favor ingresa tu nombre o un apodo.',
+        userNameMax: '*Máximo 25 cáracteres.',
         userEmailRequired: '*Email es requerido.',
         userEmailInvalid: '*Email es inválido.',
         userEmailDomain: '*Debe ser de un dominio permitido',
         userPhoneRequired: '*Télefono es requerido.',
         userPhoneInvalid: '*Debe tener 10 dígitos.',
         userPasswordRequired: '*Contraseña es requerida.',
+        userPasswordMin: '*Mínimo 6 cáracteres.',
         confirmPassword: '*Las contraseñas no coinciden.',
     };
 
     // Definición de las expresiones regulares
     const REGEX = {
-        userName: /^\S+\s+\S+/,
+        userName: /^\S.{0,23}\S$/,
         userEmail: /\S+@\S+\.\S+/,
         userEmailDomain: /(@gmail\.com|@outlook\.com|@yahoo\.com|@yahoo\.es)$/,
         userPhone: /^3\d{9}$/,
+        userPassword: /^.{6,}$/,
     };
 
     // Validar el formulario
     const validateForm = () => {
         const errors: { [key: string]: string } = {};
-        if (!userName || !REGEX.userName.test(userName)) {
+        if (!userName) {
             errors.userName = ERROR_MESSAGES.userName;
+        } else if (!REGEX.userName.test(userName)) {
+            errors.userName = ERROR_MESSAGES.userNameMax;
         }
 
         if (!userEmail) {
@@ -88,6 +93,8 @@ const hookSignup = () => {
 
         if (!userPassword) {
             errors.userPassword = ERROR_MESSAGES.userPasswordRequired;
+        } else if (!REGEX.userPassword.test(userPassword)) {
+            errors.userPassword = ERROR_MESSAGES.userPasswordMin;
         }
 
         if (confirmPassword !== userPassword) {
@@ -167,6 +174,7 @@ const hookSignup = () => {
             );
             goBack();
             clearForm();
+            auth.signOut();
         }
     };
 

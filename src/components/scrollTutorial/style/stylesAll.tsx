@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     itemText: {
         // Apartado especial para el texto
         fontFamily: 'InterBold',
-        fontSize: wp('9.1%'), // Tamaño del texto
+        fontSize: wp('9%'), // Tamaño del texto
         fontWeight: '600', // Tipo de fuente
-        marginHorizontal: hp('3%'), // Ajusta el espacio entre el texto y los bordes
         textAlign: 'center',
     },
     paginationContainer: {
@@ -49,6 +48,12 @@ const styles = StyleSheet.create({
         fontSize: wp('6%'),
         position: 'absolute',
     },
+    textContainer: {
+        alignItems: 'center',
+        height: hp('28.5%'),
+        justifyContent: 'center',
+        width: wp('100%')
+    }
 });
 
 export default styles;

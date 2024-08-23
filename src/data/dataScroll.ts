@@ -8,7 +8,6 @@ export interface OnboardingData {
   text: string
   textColor: string
   backgroundColor: string
-  margintop: number
 }
 
 const path = '../assets/img/scroll/';
@@ -26,7 +25,6 @@ const data: OnboardingData[] = [
     text: '¡Bienvenido a PsicoAxioma!',
     textColor: textBlack,
     backgroundColor: backgroundColor1, //Aca se le pude modificar los colores a cada componente de las paginas
-    margintop: 55,
   },
   {
     id: 2,
@@ -34,7 +32,6 @@ const data: OnboardingData[] = [
     text: 'Encontrarás líneas de atención de salud mental',
     textColor: TextWhite,
     backgroundColor: backgroundColor2,
-    margintop: 30,
   },
   {
     id: 3,
@@ -42,7 +39,6 @@ const data: OnboardingData[] = [
     text: 'Con tu diario emocional, podrás expresarte de cualquiera manera',
     textColor: textBlack,
     backgroundColor: backgroundColor3,
-    margintop: 1,
   },
   {
     id: 4,
@@ -50,7 +46,6 @@ const data: OnboardingData[] = [
     text: 'Reconoce tu estado de ánimo con Inteligencia Artificial',
     textColor: textBlack,
     backgroundColor: backgroundColor4,
-    margintop: 20,
   },
 ];
 

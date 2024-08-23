@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Alert, TextInput } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import UserNavigation from '../userNavigation';
 
@@ -14,7 +14,8 @@ const alertMessages = {
     maxAttemptsReached: "Has alcanzado el número máximo de intentos. Redirigiendo a 'Olvidar Contraseña'.",
     invalidCredentials: 'Credenciales incorrectas. Por favor, inténtalo de nuevo.',
     formError: 'Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.',
-    emptyInputs: 'Por favor, llena todos los campos.'
+    emptyInputs: 'Por favor, llena todos los campos.',
+    verifyEmail: 'Email no ha sido verificado. Correo nuevamente enviado.'
 };
 
 const erorrCodes = {
@@ -72,23 +73,29 @@ const hookLogin = () => {
             return;
         }
         // Enviar los datos del formulario
-        try {
-            await signInWithEmailAndPassword(auth, userEmail, userPassword);
-            console.log(alertMessages.userLoggedIn);
-            clearForm();
-            setFailedAttempts(0);
-        } catch (error: any) {
-            setFailedAttempts(prev => prev + 1); // Incrementar el contador de intentos fallidos
-            if (failedAttempts + 1 >= 3) {
-                Alert.alert((alertMessages.error, alertMessages.maxAttemptsReached));
-                forgetPassword();
-            } else {
-                const errorMessage =
-                    error.code === erorrCodes.invalidCredential
-                        ? alertMessages.invalidCredentials
-                        : error.message ||
-                        alertMessages.formError;
-                Alert.alert(alertMessages.error, errorMessage);
+        if (auth.currentUser?.emailVerified === false) {
+            console.log(auth.currentUser);
+            Alert.alert(alertMessages.error, alertMessages.verifyEmail);
+            await sendEmailVerification(auth.currentUser);
+        } else {
+            try {
+                await signInWithEmailAndPassword(auth, userEmail, userPassword);
+                console.log(alertMessages.userLoggedIn);
+                clearForm();
+                setFailedAttempts(0);
+            } catch (error: any) {
+                setFailedAttempts(prev => prev + 1); // Incrementar el contador de intentos fallidos
+                if (failedAttempts + 1 >= 3) {
+                    Alert.alert((alertMessages.error, alertMessages.maxAttemptsReached));
+                    forgetPassword();
+                } else {
+                    const errorMessage =
+                        error.code === erorrCodes.invalidCredential
+                            ? alertMessages.invalidCredentials
+                            : error.message ||
+                            alertMessages.formError;
+                    Alert.alert(alertMessages.error, errorMessage);
+                }
             }
         }
     };

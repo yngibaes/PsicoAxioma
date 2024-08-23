@@ -19,11 +19,11 @@ const hookOpenCamara = () => {
 
   console.log('Permiso de camara: ', hasPermission);
 
- /* const handleFaceDetection = (Worklets.createRunInJsFn as unknown as (fn: (face: Face) => void) => (face: Face) => void)((face) => {
-    setFaces(face);
-  });*/
+  /* const handleFaceDetection = (Worklets.createRunInJsFn as unknown as (fn: (face: Face) => void) => (face: Face) => void)((face) => {
+     setFaces(face);
+   });*/
 
-  
+
 
   const device = useCameraDevice('front');
   useEffect(() => {

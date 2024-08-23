@@ -25,7 +25,7 @@ const hookReadDiaryID = (diaryID: string) => {
         }
         const result: DiaryRead[] = await response.json();
         setData(result);
-        console.log('Datos por ID:', result); 
+        console.log('Datos por ID:', result);
       } catch (err) {
         setError(err);
       } finally {

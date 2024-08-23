@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import {View, Pressable, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './style/stylesAll';
 
@@ -15,7 +15,7 @@ const TopBar = (props: propsTopBar) => {
     <View style={styles.gobackParent}>
       <Pressable style={styles.gobackChildLayout} onPress={props.goBack}>
         <View style={[styles.gobackChild, styles.gobackChildLayout]}>
-          <Ionicons name='arrow-back' size={28} color='#FFF' />
+          <Ionicons name="arrow-back" size={28} color="#FFF" />
         </View>
       </Pressable>
       <Text style={styles.gobackText}>{props.text}</Text>
