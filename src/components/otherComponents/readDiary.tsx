@@ -1,11 +1,17 @@
-const WebSocket = require('ws');
-import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import hookDiaryInfo from '../../hooks/userPrincipal/hookDiaryInfo';
 
 const EmotionAnalyzer = () => {
-  const [emotions, setEmotions] = useState([]);
+  const [emotions, setEmotions] = useState<{ name: string, score: number }[]>([]);
+  const { data } = hookDiaryInfo();
 
   useEffect(() => {
+    if (!data || data.length === 0) {
+      console.error('No hay datos disponibles');
+      return;
+    }
+
     const apiKey = 'ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU';
     const humeai = `wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`;
     const ws = new WebSocket(humeai);
@@ -13,7 +19,7 @@ const EmotionAnalyzer = () => {
     ws.onopen = () => {
       console.log('conectado');
       const postData = {
-        data: "I'm very glad to be your friend. Here’s to many more laughs and great times ahead!",
+        data: JSON.stringify(data[0].diaryContent),
         models: {
           language: {
             granularity: 'passage',
@@ -24,19 +30,20 @@ const EmotionAnalyzer = () => {
       ws.send(JSON.stringify(postData));
     };
 
-    ws.onmessage = (event:any) => {
+    ws.onmessage = (event: any) => {
       const data = JSON.parse(event.data);
       const detectedEmotions = data.language.predictions[0].emotions;
 
-      detectedEmotions.sort((a:any, b:any) => b.score - a.score);
+      detectedEmotions.sort((a: any, b: any) => b.score - a.score);
       const top = detectedEmotions.slice(0, 5);
 
       console.log('Emociones mas fuertes detectadas:', top);
+      setEmotions(top);
 
       ws.close();
     };
 
-    ws.onerror = (error:any) => {
+    ws.onerror = (error: Event) => {
       console.error('WebSocket error:', error);
     };
 
@@ -44,11 +51,10 @@ const EmotionAnalyzer = () => {
       console.log('WebSocket connection closed.');
     };
 
-    // Cerrar la conexión WebSocket cuando se desmonta el componente
     return () => {
       ws.close();
     };
-  }, []);
+  }, [data]);
 
   return (
     <View>

@@ -1,9 +1,6 @@
-import {StyleSheet} from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import materialTheme from '../../../assets/material-theme.json'
+import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
   buttonLogOut: {
@@ -56,11 +53,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textChild: {
-    borderColor: '#FFF',
-    borderWidth: 5,
     flexDirection: 'column',
     marginTop: hp('1%'),
-    width: wp('55%'), // Ancho del contenedor
   },
   textLogOut: {
     color: materialTheme.schemes.dark.errorContainer,
@@ -74,6 +68,6 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: wp('5%'),
   },
-})
+});
 
-export default styles
+export default styles;

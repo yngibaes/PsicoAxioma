@@ -23,8 +23,8 @@ const ProfileUser = () => {
                     },
                 )}>
                 {photoURL ? (
-                    <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userPhoto} defaultSource={{ uri: PhotoDefault }} 
-                     />
+                    <Image source={{ uri: photoURL }} resizeMode='contain' style={styles.userPhoto} defaultSource={{ uri: PhotoDefault }}
+                    />
                 ) : null}
                 <Text style={styles.textName}>{displayName}</Text>
             </TouchableOpacity>

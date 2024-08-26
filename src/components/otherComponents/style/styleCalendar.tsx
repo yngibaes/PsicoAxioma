@@ -3,6 +3,9 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
+  border:{
+    borderRadius: 20,
+  },
   calendar: {
     alignSelf: 'center',
     borderRadius: 20,
@@ -13,9 +16,6 @@ const styles = StyleSheet.create({
   calendary: {
     alignSelf: 'center',
     padding: wp('2%'),
-  },
-  border:{
-    borderRadius: 20,
   },
   section: {
     backgroundColor: materialTheme.schemes.light.background,

@@ -1,6 +1,6 @@
-import {ViewStyle, TextStyle} from 'react-native';
-import {MarkingProps} from './calendar/day/marking';
-import {CalendarContextProps} from './expandableCalendar/Context';
+import { ViewStyle, TextStyle } from 'react-native';
+import { MarkingProps } from './calendar/day/marking';
+import { CalendarContextProps } from './expandableCalendar/Context';
 
 export type ContextProp = {
   context?: CalendarContextProps;
@@ -77,11 +77,11 @@ export interface Theme {
   reservationsBackgroundColor?: string;
   stylesheet?: {
     calendar?: {
-      main?: object; 
+      main?: object;
       header?: object;
     };
     day?: {
-      basic?: object; 
+      basic?: object;
       period?: object;
     };
     dot?: object;
@@ -90,7 +90,7 @@ export interface Theme {
       main?: object;
     };
     agenda?: {
-      main?: object; 
+      main?: object;
       list?: object;
     };
     expandable?: {

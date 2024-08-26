@@ -62,6 +62,10 @@ const hookCreateDiary = () => {
                 userEmail
             });
             if (response.status === 200) {
+                console.log('Diario enviado:', response.data);
+                const diaryID = response.data.diaryID; // Capturar el ID del diario desde la respuesta
+                console.log('Diario enviado:', diaryID);
+                setupWebSocket(diaryID);
                 Alert.alert(
                     'Enviado',
                     'Diario enviado.',
@@ -75,6 +79,50 @@ const hookCreateDiary = () => {
             console.log(error.message);
             setIsButtonDisabled(false); // Rehabilitar el botón si hay un error
         }
+    };
+
+    const setupWebSocket = (diaryID: string) => {
+        const apiKey = 'ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU';
+        const humeai = `wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`;
+        const ws = new WebSocket(humeai);
+
+        ws.onopen = () => {
+            console.log('conectado');
+            const postData = {
+                data: JSON.stringify(diaryContent),
+                models: { language: { granularity: 'passage' } },
+                raw_text: true,
+            };
+            ws.send(JSON.stringify(postData));
+        };
+
+        ws.onmessage = async (event: any) => {
+            const data = JSON.parse(event.data);
+            const detectedEmotions = data.language.predictions[0].emotions;
+            detectedEmotions.sort((a: any, b: any) => b.score - a.score);
+            const top = detectedEmotions.slice(0, 5);
+            console.log('Emociones mas fuertes detectadas:', top);
+            const ResultDiary = JSON.stringify(top);
+            const response = await axios.post(`${url}/insertsResultsDiary`, {
+                ResultDiary, diaryID
+            });
+            if (response.status === 200) {
+                console.log('Emociones enviadas.');
+            }
+            ws.close();
+        };
+
+        ws.onerror = (error: Event) => {
+            console.error('WebSocket error:', error);
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket connection closed.');
+        };
+
+        return () => {
+            ws.close();
+        };
     };
 
     // Retornar los valores y funciones necesarios

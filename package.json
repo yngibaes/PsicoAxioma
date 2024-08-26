@@ -59,6 +59,7 @@
     "@types/react": "^18.2.6",
     "@types/react-native-modern-datepicker": "^1.0.5",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/web": "^0.0.157",
     "@types/ws": "^8.5.12",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
