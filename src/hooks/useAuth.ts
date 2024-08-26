@@ -8,14 +8,14 @@ const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('useEffect called');
+    //console.log('useEffect called');
     const unsub = onAuthStateChanged(auth, user => {
       if (user) {
         if (user.emailVerified) {
-          console.log('Iniciado sesión');
+          //console.log('Iniciado sesión');
           setUser(user);
           setIsLoggedIn(true);
-          console.log(user);
+          //console.log(user);
         } else {
           console.log('No se ha iniciado sesión');
           setUser(null);
@@ -31,12 +31,12 @@ const useAuth = () => {
   }, []); // Array de dependencias vacío para ejecutar el efecto solo una vez
 
   const login = () => {
-    console.log('login called');
+    //console.log('login called');
     setIsLoggedIn(true);
   };
 
   const logout = () => {
-    console.log('logout called');
+    //console.log('logout called');
     setIsLoggedIn(false);
   };
 

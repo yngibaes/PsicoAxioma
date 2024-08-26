@@ -27,23 +27,22 @@ const hookDataUser = () => {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${url}/readPhone?userEmail=${userEmail}`);
-        if (!response.ok) {
-          throw new Error('Salió mal la conexión');
+    const fetchData = async () => { //if si lo que hay en el userphone esta vacio si no que no lo ejecute. 
+      if (!userPhone) {
+        try {
+          const response = await fetch(`${url}/readPhone?userEmail=${userEmail}`);
+          if (!response.ok) {
+            throw new Error('Salió mal la conexión');
+          }
+          const [result] = await response.json();
+          setUserPhone(result.userPhone);
+          console.log(result.userPhone);
+        } catch (error) {
+          console.log(error);
         }
-        const [result] = await response.json();
-        setUserPhone(result.userPhone);
-        console.log(result.userPhone);
-      } catch (error) {
-        console.log(error);
       }
     };
-    if (userEmail) {
-      // Asegúrate de que el email esté disponible antes de hacer la consulta
-      fetchData();
-    }
+    fetchData();
   }, [userEmail]);
 
   const storage = getStorage();

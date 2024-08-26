@@ -1,11 +1,40 @@
-import React from "react";
-import { LineChart } from "react-native-gifted-charts";
-
+import React, {useEffect, useState} from "react";
+import { Text, View } from 'react-native';
+import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
+import url from "../../hooks/config/config";
 
 const Statistics = () => {
-    const data = [{ value: 15 }, { value: 30 }, { value: 26 }, { value: 40 }];
+    const [emotions, setEmotion] = useState<{ resultDiary: string, diaryFK: number }[]>([]);
+    const {userEmail} = hookDataUser();
+    useEffect(() => {
+        const fetchData = async () => { //if si lo que hay en el userphone esta vacio si no que no lo ejecute. 
+            try {
+              const response = await fetch(`${url}/resultDiary?userEmail=${userEmail}`);
+              if (!response.ok) {
+                throw new Error('Salió mal la conexión');
+              }
+              const result = await response.json();
+              if (!result || result.length === 0) {
+                console.error('No hay datos disponibles');
+                return;
+              }
+              console.log(result);
+              setEmotion(result);
+            } catch (error) {
+              console.log(error);
+            }
+        };
+        fetchData();
+      },[userEmail]);
     return (
-        <LineChart data={data} />
+        <View>
+      <Text>Emociones detectadas:</Text>
+      {emotions.map((emotion, index) => (
+        <Text key={index} style={{color: '#000', marginVertical: 20}}>
+          {index}, {emotion.resultDiary}, {emotion.diaryFK}
+        </Text>
+      ))}
+    </View>
     );
 };
 

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     height: hp('15%'),
     marginBottom: hp('2%'),
     paddingHorizontal: wp('2.1%'),
-    paddingVertical: hp('2.1%'),
+    paddingVertical: hp('1%'),
     width: wp('85%'),
   },
   parentDate: {

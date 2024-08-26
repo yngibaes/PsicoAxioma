@@ -12,6 +12,8 @@ const hookCreateDiary = () => {
     const [diaryTitle, setdiaryTitle] = useState('');
     const { userEmail } = useAuth();
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const { DiaryScreen } = UserNavigation();
+    const diaryContentRef = useRef<TextInput>(null);
 
     // Limpiar el formulario
     const clearForm = () => {
@@ -19,11 +21,7 @@ const hookCreateDiary = () => {
         setdiaryTitle('');
     };
 
-    const diaryContentRef = useRef<TextInput>(null);
     const diaryContentNext = () => diaryContentRef.current?.focus();
-
-    // Navegación
-    const { DiaryScreen } = UserNavigation();
 
     const handleExit = () => {
         Alert.alert(
@@ -37,8 +35,7 @@ const hookCreateDiary = () => {
                 {
                     text: 'Salir',
                     onPress: () => {
-                        setdiaryContent('');
-                        setdiaryTitle('');
+                        clearForm();
                         DiaryScreen();
                     },
                 },
@@ -62,17 +59,9 @@ const hookCreateDiary = () => {
                 userEmail
             });
             if (response.status === 200) {
-                console.log('Diario enviado:', response.data);
                 const diaryID = response.data.diaryID; // Capturar el ID del diario desde la respuesta
-                console.log('Diario enviado:', diaryID);
+                //console.log(diaryID);
                 setupWebSocket(diaryID);
-                Alert.alert(
-                    'Enviado',
-                    'Diario enviado.',
-                );
-                DiaryScreen();
-                clearForm();
-                DevSettings.reload();
             }
         } catch (error) {
             Alert.alert('Error', 'No pudo ser enviado el diario. Intentelo nuevamente.');
@@ -87,29 +76,42 @@ const hookCreateDiary = () => {
         const ws = new WebSocket(humeai);
 
         ws.onopen = () => {
-            console.log('conectado');
+            console.log('Conectado');
             const postData = {
                 data: JSON.stringify(diaryContent),
                 models: { language: { granularity: 'passage' } },
                 raw_text: true,
             };
+            //console.log('Enviando datos:', postData);
             ws.send(JSON.stringify(postData));
         };
 
         ws.onmessage = async (event: any) => {
-            const data = JSON.parse(event.data);
-            const detectedEmotions = data.language.predictions[0].emotions;
-            detectedEmotions.sort((a: any, b: any) => b.score - a.score);
-            const top = detectedEmotions.slice(0, 5);
-            console.log('Emociones mas fuertes detectadas:', top);
-            const ResultDiary = JSON.stringify(top);
-            const response = await axios.post(`${url}/insertsResultsDiary`, {
-                ResultDiary, diaryID
-            });
-            if (response.status === 200) {
-                console.log('Emociones enviadas.');
+            try {
+                const data = JSON.parse(event.data);
+                const detectedEmotions = data.language.predictions[0].emotions;
+                detectedEmotions.sort((a: any, b: any) => b.score - a.score);
+                const top = detectedEmotions.slice(0, 5);
+                console.log('Emociones más fuertes detectadas:', top);
+                const ResultDiary = JSON.stringify(top);
+                const response = await axios.post(`${url}/insertsResultDiary`, {
+                    ResultDiary, diaryID
+                });
+                if (response.status === 200) {
+                    Alert.alert(
+                        'Enviado',
+                        'Diario enviado.',
+                    );
+                    clearForm();
+                    DiaryScreen();
+                    DevSettings.reload();
+                }
+            } catch (error) {
+                console.error('Error al procesar el mensaje:', error);
+                Alert.alert('Error', 'No fue posible tener las emociones del diario.');
+            } finally {
+                ws.close();
             }
-            ws.close();
         };
 
         ws.onerror = (error: Event) => {
