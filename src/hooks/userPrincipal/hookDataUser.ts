@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DevSettings } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { signOut, updateProfile } from 'firebase/auth';
+import { signOut, updateProfile, deleteUser } from 'firebase/auth';
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { auth } from '../config/firebase';
 import url from '../config/config';
@@ -123,6 +123,14 @@ const hookDataUser = () => {
       }
     }
   };
+
+  /* const deleteUsers = async () => {
+    if (auth.currentUser){
+      deleteUser(user).then(()=>{
+        const response = await fetch(`${url}/deleteUser`);
+      })
+    }
+  }; */
 
   const handleLogout = async () => {
     await signOut(auth);

@@ -90,8 +90,13 @@ const hookCreateDiary = () => {
             try {
                 const data = JSON.parse(event.data);
                 const detectedEmotions = data.language.predictions[0].emotions;
-                detectedEmotions.sort((a: any, b: any) => b.score - a.score);
-                const top = detectedEmotions.slice(0, 5);
+                const spanish = ['Admiración', 'Adoración', 'Apreciación estética', 'Diversión', 'Enojo', 'Molestia', 'Ansiedad', 'Asombro', 'Incomodidad', 'Aburrimiento', 'Calma', 'Concentración', 'Confusión', 'Contemplación', 'Desprecio', 'Alegría', 'Antojo', 'Determinación', 'Decepción', 'Desaprobación', 'Repulsión', 'Angustia', 'Duda', 'Éxtasis', 'Vergüenza', 'Dolor empático', 'Entusiasmo', 'Fascinación', 'Envidia', 'Emoción', 'Temor', 'Gratitud', 'Culpa', 'Horror', 'Interés', 'Regocijo', 'Amor', 'Nostalgia', 'Dolor', 'Orgullo', 'Plenitud', 'Alivio', 'Romance', 'Tristeza', 'Sarcasmo', 'Satisfacción', 'Deseo', 'Lástima', 'Sorpresa (negativa)', 'Sorpresa (positiva)', 'Simpatía', 'Cansancio', 'Triunfo'];
+                const emotions = detectedEmotions.map((item: any, index: number) => ({
+                    name: spanish[index],
+                    score: Math.round(item.score * 100)
+                }));
+                emotions.sort((a: any, b: any) => b.score - a.score);
+                const top = emotions.slice(0, 5);
                 console.log('Emociones más fuertes detectadas:', top);
                 const ResultDiary = JSON.stringify(top);
                 const response = await axios.post(`${url}/insertsResultDiary`, {

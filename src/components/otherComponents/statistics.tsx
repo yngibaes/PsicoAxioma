@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Text, View } from 'react-native';
 import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 import url from "../../hooks/config/config";
+import {LineChart} from 'react-native-gifted-charts';
 
 const Statistics = () => {
     const [emotions, setEmotion] = useState<{ resultDiary: string, diaryFK: number }[]>([]);
@@ -18,7 +19,7 @@ const Statistics = () => {
                 console.error('No hay datos disponibles');
                 return;
               }
-              console.log(result);
+              console.log(result[0][1]);
               setEmotion(result);
             } catch (error) {
               console.log(error);
@@ -34,6 +35,11 @@ const Statistics = () => {
           {index}, {emotion.resultDiary}, {emotion.diaryFK}
         </Text>
       ))}
+{/*       {emotions.map((emotion, index) => (
+        <View key={index}>
+          <LineChart data={[{ value: Number(emotion.resultDiary) }]}/>
+        </View>
+      ))} */}
     </View>
     );
 };
