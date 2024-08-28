@@ -22,6 +22,8 @@ const Statistics = () => {
         });
         setEmotion(processedEmotions);
         console.log(processedEmotions);
+        console.log(typeof processedEmotions);
+        console.log(Array.isArray(processedEmotions));
       } catch (error) {
         console.log(error);
       } finally {
@@ -31,25 +33,18 @@ const Statistics = () => {
     fetchData();
   }, [userEmail]);
 
-  // Filtrar datos inválidos antes de pasarlos al LineChart
-  const validData = emotions.filter(item => {
-    const score = Number(item.score);
-    return !isNaN(score) && isFinite(score);
-  }).map(item => ({ value: item.score }));
-
   return (
     <View>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <>
-          <Text>Emociones detectadas:</Text>
-          <LineChart 
+{/*           <LineChart 
             data={validData}
             color={'#177AD5'}
             thickness={3}
             dataPointsColor={'red'}
-          /> 
+          />  */}
           {emotions.map((emotion, index) => (
             <Text key={index} style={{ color: '#000', marginVertical: 20 }}>
               Diario ID: {emotion.diaryFK} - Emoción: {emotion.name} - Puntuación: {emotion.score}

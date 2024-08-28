@@ -20,7 +20,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { View, ActivityIndicator } from 'react-native';
 import useAuth from '../../src/hooks/useAuth';
 import styles from '../../src/views/userPrincipal/style/styleScreen';
-import UptadeEmailScreen from '../../src/views/userAccount/updateEmailScreen';
+//import UptadeEmailScreen from '../../src/views/userAccount/updateEmailScreen';
 
 //Esto nos ayuda a navegar entre pantallas
 const Stack = createNativeStackNavigator();
@@ -91,9 +91,9 @@ export default function Navigation() {
               <Drawer.Screen name="ReadDiaryIDScreen" component={ReadDiaryIDScreen} options={{
                 drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
               }} />
-              <Drawer.Screen name="UpdateEmailScreen" component={UptadeEmailScreen} options={{
+{/*               <Drawer.Screen name="UpdateEmailScreen" component={UptadeEmailScreen} options={{
                 drawerItemStyle: { display: 'none' } // Oculta esta pantalla del drawer
-              }} />
+              }} /> */}
             </>
           </Drawer.Navigator>
         ) : (

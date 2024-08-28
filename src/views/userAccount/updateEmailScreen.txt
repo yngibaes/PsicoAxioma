@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import TopBar from '../../components/userRegistration/topBar';
 
-import UpdateEmail from "../../components/otherComponents/updateEmail";
+import UpdateEmail from "../../components/otherComponents/updateEmail.tst";
 import styles from "../userPrincipal/style/styleScreen";
 import UserNavigation from "../../hooks/userNavigation";
 

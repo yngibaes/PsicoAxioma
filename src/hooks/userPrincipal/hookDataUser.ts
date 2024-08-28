@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DevSettings } from 'react-native';
+import { Alert, DevSettings } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { signOut, updateProfile, deleteUser } from 'firebase/auth';
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
@@ -124,13 +124,37 @@ const hookDataUser = () => {
     }
   };
 
-  /* const deleteUsers = async () => {
-    if (auth.currentUser){
-      deleteUser(user).then(()=>{
-        const response = await fetch(`${url}/deleteUser`);
-      })
+  const deleteUsers = async () => {
+    Alert.alert(
+      'Confirmación',
+      '¿Estás seguro de que quieres eliminar tu cuenta?, Se borrarán todos tus datos.',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Eliminar',
+          onPress: () => {
+            functionDelete();
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const functionDelete = async () => {
+    if (auth.currentUser) {
+      deleteUser(auth.currentUser).then(async () => {
+        const response = await fetch(`${url}/deleteUser?userEmail=${userEmail}`);
+        if (response.status === 200) {
+          Alert.alert('Exito', 'Cuenta eliminada.');
+          await auth.signOut();
+        }
+      });
     }
-  }; */
+  };
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -138,7 +162,7 @@ const hookDataUser = () => {
 
   const { UpdateEmailScreen } = UserNavigation();
 
-  return { displayName, userEmail, photoURL, userPhone, handleLogout, navigation, UpdateEmailScreen, updatePhoto, PhotoDefault };
+  return { displayName, userEmail, photoURL, userPhone, handleLogout, navigation, UpdateEmailScreen, updatePhoto, PhotoDefault, deleteUsers };
 };
 
 export default hookDataUser;
