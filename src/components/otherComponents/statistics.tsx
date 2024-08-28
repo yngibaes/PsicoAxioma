@@ -1,47 +1,64 @@
-import React, {useEffect, useState} from "react";
-import { Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { Text, View, ActivityIndicator } from 'react-native';
 import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 import url from "../../hooks/config/config";
-import {LineChart} from 'react-native-gifted-charts';
+import { LineChart } from 'react-native-gifted-charts';
 
 const Statistics = () => {
-    const [emotions, setEmotion] = useState<{ resultDiary: string, diaryFK: number }[]>([]);
-    const {userEmail} = hookDataUser();
-    useEffect(() => {
-        const fetchData = async () => { //if si lo que hay en el userphone esta vacio si no que no lo ejecute. 
-            try {
-              const response = await fetch(`${url}/resultDiary?userEmail=${userEmail}`);
-              if (!response.ok) {
-                throw new Error('Salió mal la conexión');
-              }
-              const result = await response.json();
-              if (!result || result.length === 0) {
-                console.error('No hay datos disponibles');
-                return;
-              }
-              console.log(result[0][1]);
-              setEmotion(result);
-            } catch (error) {
-              console.log(error);
-            }
-        };
-        fetchData();
-      },[userEmail]);
-    return (
-        <View>
-      <Text>Emociones detectadas:</Text>
-      {emotions.map((emotion, index) => (
-        <Text key={index} style={{color: '#000', marginVertical: 20}}>
-          {index}, {emotion.resultDiary}, {emotion.diaryFK}
-        </Text>
-      ))}
-{/*       {emotions.map((emotion, index) => (
-        <View key={index}>
-          <LineChart data={[{ value: Number(emotion.resultDiary) }]}/>
-        </View>
-      ))} */}
+  const [emotions, setEmotion] = useState<{ score: number, diaryFK: number, name: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { userEmail } = hookDataUser();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${url}/resultDiary?userEmail=${userEmail}`);
+        const result = await response.json();
+        // Procesar los datos para extraer las emociones principales de cada diario
+        const processedEmotions = result.map((diary: { resultDiary: string, diaryFK: number }) => {
+          const emotions = JSON.parse(diary.resultDiary);
+          const topEmotion = emotions[0]; // Tomar la primera emoción
+          return { ...topEmotion, diaryFK: diary.diaryFK };
+        });
+        setEmotion(processedEmotions);
+        console.log(processedEmotions);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [userEmail]);
+
+  // Filtrar datos inválidos antes de pasarlos al LineChart
+  const validData = emotions.filter(item => {
+    const score = Number(item.score);
+    return !isNaN(score) && isFinite(score);
+  }).map(item => ({ value: item.score }));
+
+  return (
+    <View>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <>
+          <Text>Emociones detectadas:</Text>
+          <LineChart 
+            data={validData}
+            color={'#177AD5'}
+            thickness={3}
+            dataPointsColor={'red'}
+          /> 
+          {emotions.map((emotion, index) => (
+            <Text key={index} style={{ color: '#000', marginVertical: 20 }}>
+              Diario ID: {emotion.diaryFK} - Emoción: {emotion.name} - Puntuación: {emotion.score}
+            </Text>
+          ))}
+        </>
+      )}
     </View>
-    );
+  );
 };
 
 export default Statistics;
