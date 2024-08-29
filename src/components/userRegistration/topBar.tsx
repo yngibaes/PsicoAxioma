@@ -5,8 +5,8 @@ import styles from './style/stylesAll';
 
 // Definición de las props usando TypeScript
 interface propsTopBar {
-  goBack: () => void
-  text: string
+  goBack: () => void;
+  text: string;
 }
 
 // Definición del componente TopBar

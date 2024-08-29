@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import url from '../config/config';
 import UserNavigation from '../userNavigation';
 
 // Definición de la interfaz
 interface DiaryRead {
-  diaryContent: string
-  diaryDate: string
-  diaryID: string
-  diaryTitle: string
+  diaryContent: string;
+  diaryDate: string;
+  diaryID: string;
+  diaryTitle: string;
 }
 
 // Hook para leer un diario por ID
@@ -35,9 +35,9 @@ const hookReadDiaryID = (diaryID: string) => {
     fetchDiary();
   }, [diaryID]);
 
-  const { DiaryScreen } = UserNavigation();
+  const {DiaryScreen} = UserNavigation();
 
-  return { data, loading, error, DiaryScreen };
+  return {data, loading, error, DiaryScreen};
 };
 
 export default hookReadDiaryID;

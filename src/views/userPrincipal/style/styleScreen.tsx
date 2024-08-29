@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {StyleSheet} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
@@ -9,7 +12,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     height: hp('10%'),
     justifyContent: 'center',
-    width: wp('20%')
+    width: wp('20%'),
   },
   capturePhoto: {
     alignItems: 'center',
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     color: materialTheme.palettes.primary[0],
     fontFamily: 'InterBold',
     fontSize: wp('4%'),
-    fontWeight: '200'
+    fontWeight: '200',
   },
 });
 

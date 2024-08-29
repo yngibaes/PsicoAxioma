@@ -1,22 +1,29 @@
 import React from 'react';
-import { TouchableWithoutFeedback, useWindowDimensions, } from 'react-native';
-import Animated, { SharedValue, interpolateColor, useAnimatedStyle, withSpring, withTiming, } from 'react-native-reanimated';
+import {TouchableWithoutFeedback, useWindowDimensions} from 'react-native';
+import Animated, {
+  SharedValue,
+  interpolateColor,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import styles from './style/stylesAll';
 
 type Props = {
-  handlerPress: () => void
-  buttonVal: SharedValue<number>
-}
+  handlerPress: () => void;
+  buttonVal: SharedValue<number>;
+};
 
 const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0'];
 
-const CustomButton = ({ handlerPress, buttonVal }: Props) => {
-  const { height: SCREEN_HEIGHT } = useWindowDimensions();
+const CustomButton = ({handlerPress, buttonVal}: Props) => {
+  const {height: SCREEN_HEIGHT} = useWindowDimensions();
 
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       buttonVal.value,
-      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT], colors
+      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT],
+      colors,
     );
     return {
       backgroundColor: backgroundColor,

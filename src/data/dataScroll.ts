@@ -1,13 +1,13 @@
-import { ImageProps } from 'react-native';
+import {ImageProps} from 'react-native';
 
 //En este apartado de la app se podra encontrar el tema de los slaider con sus respectivos ID esto puesto que el ID es el que se va a mostrar la tarjeta por orden, la imagen que se va a mostrar, el texto que se va a mostrar, el color del texto, el color de fondo y el margen superior de la tarjeta
 
 export interface OnboardingData {
-  id: number
-  image: ImageProps
-  text: string
-  textColor: string
-  backgroundColor: string
+  id: number;
+  image: ImageProps;
+  text: string;
+  textColor: string;
+  backgroundColor: string;
 }
 
 const path = '../assets/img/scroll/';

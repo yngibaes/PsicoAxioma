@@ -1,11 +1,11 @@
-import { ImageProps } from 'react-native';
+import {ImageProps} from 'react-native';
 
 export interface OnboardingData {
-  id: number
-  imageSource: ImageProps
-  cardTitle: string
-  cardText: string
-  phoneNumber: string
+  id: number;
+  imageSource: ImageProps;
+  cardTitle: string;
+  cardText: string;
+  phoneNumber: string;
 }
 
 const path = '../assets/img/routesCall/';

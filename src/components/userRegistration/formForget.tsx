@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Pressable } from 'react-native';
+import {Text, View, TextInput, Pressable} from 'react-native';
 import hookForgetPassword from '../../hooks/userRegistration/hookForget';
 import styles from './style/styleFormForget';
 
@@ -10,7 +10,7 @@ const buttonText = 'Enviar';
 
 // Definición del componente FormForget
 const FormForget = () => {
-  const { resetPassword, userEmail, setUserEmail } = hookForgetPassword();
+  const {resetPassword, userEmail, setUserEmail} = hookForgetPassword();
   return (
     <View style={styles.parentEmail}>
       <View style={styles.childEmail}>

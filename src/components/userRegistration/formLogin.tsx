@@ -6,7 +6,7 @@ import stylesButton from './style/styleButtonLogIn';
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {
-  forget: () => void
+  forget: () => void;
 }
 
 const labelEmail = 'Email';

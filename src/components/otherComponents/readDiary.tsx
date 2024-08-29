@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text} from 'react-native';
 import hookDiaryInfo from '../../hooks/userPrincipal/hookDiaryInfo';
 
 const EmotionAnalyzer = () => {
-  const [emotions, setEmotions] = useState<{ name: string, score: number }[]>([]);
-  const { data } = hookDiaryInfo();
+  const [emotions, setEmotions] = useState<{name: string; score: number}[]>([]);
+  const {data} = hookDiaryInfo();
 
   useEffect(() => {
     if (!data || data.length === 0) {

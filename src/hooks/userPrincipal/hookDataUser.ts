@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Alert, DevSettings } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { signOut, updateProfile, deleteUser } from 'firebase/auth';
-import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { auth } from '../config/firebase';
+import {useEffect, useState} from 'react';
+import {Alert, DevSettings} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {signOut, updateProfile, deleteUser} from 'firebase/auth';
+import {getStorage, ref, getDownloadURL, uploadBytes} from 'firebase/storage';
+import {auth} from '../config/firebase';
 import url from '../config/config';
 import UserNavigation from '../userNavigation';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -11,7 +11,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 // En este hook se podrá encontrar la información del usuario, como su nombre, correo y foto de perfil, además de la función para cerrar sesión.
 const hookDataUser = () => {
   const navigation = useNavigation();
-  const PhotoDefault = 'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
+  const PhotoDefault =
+    'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
   const [displayName, setDisplayName] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
@@ -27,10 +28,13 @@ const hookDataUser = () => {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => { //if si lo que hay en el userphone esta vacio si no que no lo ejecute. 
+    const fetchData = async () => {
+      //if si lo que hay en el userphone esta vacio si no que no lo ejecute.
       if (!userPhone) {
         try {
-          const response = await fetch(`${url}/readPhone?userEmail=${userEmail}`);
+          const response = await fetch(
+            `${url}/readPhone?userEmail=${userEmail}`,
+          );
           if (!response.ok) {
             throw new Error('Salió mal la conexión');
           }
@@ -76,7 +80,6 @@ const hookDataUser = () => {
     }
   };
 
-
   const updatePhoto = async (response: any) => {
     console.log(response);
     if (response.assets && response.assets.length > 0) {
@@ -111,7 +114,7 @@ const hookDataUser = () => {
         // Actualizar el perfil del usuario con la nueva foto
         if (auth.currentUser) {
           await updateProfile(auth.currentUser, {
-            photoURL: downloadURL
+            photoURL: downloadURL,
           });
           console.log('Foto de perfil actualizada');
 
@@ -140,22 +143,28 @@ const hookDataUser = () => {
           },
         },
       ],
-      { cancelable: false }
+      {cancelable: false},
     );
   };
 
   const functionDelete = async () => {
     if (auth.currentUser) {
       deleteUser(auth.currentUser).then(async () => {
-        const response = await fetch(`${url}/deleteUser?userEmail=${userEmail}`, {
-          method: 'DELETE',
-        });
+        const response = await fetch(
+          `${url}/deleteUser?userEmail=${userEmail}`,
+          {
+            method: 'DELETE',
+          },
+        );
         if (response.status === 200) {
           Alert.alert('Exito', 'Cuenta eliminada. Datos guardados.');
           await auth.signOut();
-        }else {
+        } else {
           const errorMessage = await response.text();
-          Alert.alert('Error', `No se pudo eliminar la cuenta: ${errorMessage}`);
+          Alert.alert(
+            'Error',
+            `No se pudo eliminar la cuenta: ${errorMessage}`,
+          );
         }
       });
     }
@@ -165,9 +174,20 @@ const hookDataUser = () => {
     await signOut(auth);
   };
 
-  const { UpdateEmailScreen } = UserNavigation();
+  const {UpdateEmailScreen} = UserNavigation();
 
-  return { displayName, userEmail, photoURL, userPhone, handleLogout, navigation, UpdateEmailScreen, updatePhoto, PhotoDefault, deleteUsers };
+  return {
+    displayName,
+    userEmail,
+    photoURL,
+    userPhone,
+    handleLogout,
+    navigation,
+    UpdateEmailScreen,
+    updatePhoto,
+    PhotoDefault,
+    deleteUsers,
+  };
 };
 
 export default hookDataUser;

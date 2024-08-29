@@ -1,16 +1,21 @@
 import React from 'react';
-import { useWindowDimensions } from 'react-native';
-import Animated, { interpolate, interpolateColor, SharedValue, useAnimatedStyle, } from 'react-native-reanimated';
-import { Extrapolate } from '@shopify/react-native-skia';
+import {useWindowDimensions} from 'react-native';
+import Animated, {
+  interpolate,
+  interpolateColor,
+  SharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import {Extrapolate} from '@shopify/react-native-skia';
 import styles from './style/stylesAll';
 
 type Props = {
-  index: number
-  buttonVal: SharedValue<number>
-}
+  index: number;
+  buttonVal: SharedValue<number>;
+};
 
-const Dot = ({ index, buttonVal }: Props) => {
-  const { height: SCREEN_HEIGHT } = useWindowDimensions();
+const Dot = ({index, buttonVal}: Props) => {
+  const {height: SCREEN_HEIGHT} = useWindowDimensions();
 
   const animatedDotStyle = useAnimatedStyle(() => {
     const widthAnimation = interpolate(
@@ -46,14 +51,16 @@ const Dot = ({ index, buttonVal }: Props) => {
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       buttonVal.value,
-      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT], colors,
+      [0, SCREEN_HEIGHT, 3 * SCREEN_HEIGHT],
+      colors,
     );
     return {
       backgroundColor: backgroundColor,
     };
   });
-  return <Animated.View style={[styles.dot, animatedColor, animatedDotStyle]} />;
+  return (
+    <Animated.View style={[styles.dot, animatedColor, animatedDotStyle]} />
+  );
 };
 
 export default Dot;
-

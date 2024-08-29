@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import {View, ScrollView} from 'react-native';
 import Menu from '../../components/otherComponents/menu';
 import Card from '../../components/otherComponents/card';
 import dataCall from '../../data/dataCall';

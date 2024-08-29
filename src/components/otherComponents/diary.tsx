@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 import CardDiary from './cardDiary';
 import UserNavigation from '../../hooks/userNavigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './style/styleDiary';
 
 const ContentDiary = () => {
-  const { CreateDiaryScreen } = UserNavigation();
+  const {CreateDiaryScreen} = UserNavigation();
   return (
     <View style={styles.parentDiary}>
       <View style={styles.childText}>

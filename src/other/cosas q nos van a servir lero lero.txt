@@ -214,3 +214,26 @@ By wrapping AgentaItem with React.memo, it will only re-render when its props ch
 
 -Fecha de guardado de diario
 -Fuente de scroll en unos muy grande
+
+ {/*  */}
+
+ hideRules={true}
+              spacing={45}
+              color={'#213751'}
+              thickness={3}
+              dataPointsColor={'purple'}
+              isAnimated={true}
+              curved={true}
+              textColor={'#000'}
+              textFontSize={10}
+              textColor1="red"
+              textShiftY={-6}
+              yAxisTextStyle={{color: 'black'}}
+              maxValue={100}
+              startFillColor={'rgb(84,219,234)'}
+              endFillColor={'rgb(84,219,234)'}
+              startOpacity={0.4}
+              endOpacity={0.4}
+              backgroundColor="#FFF"
+              rulesColor="gray"
+              rulesType="solid"

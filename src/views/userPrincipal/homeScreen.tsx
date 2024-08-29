@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import {View, ScrollView} from 'react-native';
 import Menu from '../../components/otherComponents/menu';
 import ContentDiaryHome from '../../components/otherComponents/diaryHome';
 import CalendarHome from '../../components/otherComponents/calendarHome';

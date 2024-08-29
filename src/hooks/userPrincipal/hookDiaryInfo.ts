@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import url from '../config/config';
 import useAuth from '../useAuth';
 
 // Definición de la interfaz
 interface DiaryEntry {
-  diaryID: string
-  diaryTitle: string
-  diaryContent: string
-  diaryDate: string
+  diaryID: string;
+  diaryTitle: string;
+  diaryContent: string;
+  diaryDate: string;
 }
 
 // Hook para obtener la información del diario
@@ -16,7 +16,7 @@ const hookDiaryInfo = () => {
   const [data, setData] = useState<DiaryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { userEmail } = useAuth();
+  const {userEmail} = useAuth();
 
   // Efecto para obtener la información
   useEffect(() => {
@@ -54,7 +54,7 @@ const hookDiaryInfo = () => {
     data,
     loading,
     error,
-    formatDate
+    formatDate,
   };
 };
 

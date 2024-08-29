@@ -1,14 +1,14 @@
 import React from 'react';
-import { Image, Text, View, useWindowDimensions } from 'react-native';
-import { OnboardingData } from '../../data/dataScroll';
+import {Image, Text, View, useWindowDimensions} from 'react-native';
+import {OnboardingData} from '../../data/dataScroll';
 import styles from './style/stylesAll';
 
 type Props = {
-  item: OnboardingData
-}
+  item: OnboardingData;
+};
 
-const RenderItem = ({ item }: Props) => {
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
+const RenderItem = ({item}: Props) => {
+  const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = useWindowDimensions();
 
   {
     /* Se hace la relación de aspecto de la iamgen es decir el valor que se modique entre 12/ 16 afectara unicmanete la 
@@ -28,15 +28,11 @@ const RenderItem = ({ item }: Props) => {
       ]}>
       <Image
         source={item.image}
-        style={[styles.imageStyle, { width: SCREEN_WIDTH, height: imageHeight }]}
+        style={[styles.imageStyle, {width: SCREEN_WIDTH, height: imageHeight}]}
         resizeMode="contain" // El componente resizMode es para ajustar la imagen en el tamaño de la pantalla
       />
       <View style={styles.textContainer}>
-        <Text
-          style={[
-            styles.itemText,
-            { color: item.textColor},
-          ]}>
+        <Text style={[styles.itemText, {color: item.textColor}]}>
           {item.text}
         </Text>
       </View>

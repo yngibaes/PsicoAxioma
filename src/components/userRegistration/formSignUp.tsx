@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import {Text, TextInput, View, TouchableOpacity} from 'react-native';
 import styles from './style/styleFormSignUp';
 import hookSignup from '../../hooks/userRegistration/hookSignup';
 

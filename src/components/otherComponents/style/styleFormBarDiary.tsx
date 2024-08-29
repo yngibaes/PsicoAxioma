@@ -1,10 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {StyleSheet} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import materialTheme from '../../../assets/material-theme.json';
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1, // Asegura que el contenedor ocupe todo el espacio disponible
     flexDirection: 'column',
     height: hp('100%'),
@@ -21,17 +24,17 @@ const styles = StyleSheet.create({
     fontSize: wp('3%'),
   },
   flexBox: {
-    alignItems: "center",
-    flexDirection: "row"
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   goback: {
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
     height: hp('5%'),
     justifyContent: 'center',
-    width: wp('8.8%')
+    width: wp('8.8%'),
   },
   input: {
     color: materialTheme.palettes.primary[0],
@@ -78,13 +81,13 @@ const styles = StyleSheet.create({
     width: wp('100%'),
   },
   parentTopBar: {
-    alignItems: "center",
+    alignItems: 'center',
     height: hp('8%'),
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     marginTop: hp('1.5%'),
     paddingHorizontal: wp('1%'),
-    position: "static",
-    width: wp("95%"),
+    position: 'static',
+    width: wp('95%'),
     zIndex: 2, // Asegura que el topbar esté por encima del contenido scrollable
   },
   scrollableContent: {

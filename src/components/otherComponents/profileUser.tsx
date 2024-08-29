@@ -47,7 +47,7 @@ const ProfileUser = () => {
         <View style={styles.parentText}>
           <Ionicons name="mail-outline" size={27} color="#000" />
           <Text style={styles.textTitle}>Email</Text>
-{/*           <Ionicons
+          {/*           <Ionicons
             name="pencil-outline"
             size={18}
             color="#000"

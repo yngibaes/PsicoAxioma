@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, ViewStyle } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {View, ViewStyle} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../views/userPrincipal/homeScreen';
 import CalendaryScreen from '../../views/userPrincipal/calendaryScreen';
 import CameraScreen from '../../views/userPrincipal/cameraScreen';
 import DiaryScreen from '../../views/userPrincipal/diaryScreen';
 import RoutesScreen from '../../views/userPrincipal/routesScreen';
 import styles from './style/styleNavBar';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import materialTheme from '../../assets/material-theme.json';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -54,17 +57,17 @@ const TabNavigator = () => {
     <View style={styles.container}>
       <Tab.Navigator
         initialRouteName={routeName}
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused }) => {
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused}) => {
             const iconName = getIconName(route.name, focused);
-            return <Ionicons name={iconName} size={iconSize} color={iconColor} />;
+            return (
+              <Ionicons name={iconName} size={iconSize} color={iconColor} />
+            );
           },
           tabBarShowLabel: false,
           headerShown: false,
           tabBarStyle: getTabBarStyle(route.name),
-
-        })}
-      >
+        })}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Calendary" component={CalendaryScreen} />
         <Tab.Screen name="Camera" component={CameraScreen} />
