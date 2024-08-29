@@ -127,7 +127,7 @@ const hookDataUser = () => {
   const deleteUsers = async () => {
     Alert.alert(
       'Confirmación',
-      '¿Estás seguro de que quieres eliminar tu cuenta?, Se borrarán todos tus datos.',
+      '¿Estás seguro de que quieres eliminar tu cuenta?, Se descargaran tus datos, y luego se eliminaran de nuestra base de datos.',
       [
         {
           text: 'Cancelar',
@@ -147,10 +147,15 @@ const hookDataUser = () => {
   const functionDelete = async () => {
     if (auth.currentUser) {
       deleteUser(auth.currentUser).then(async () => {
-        const response = await fetch(`${url}/deleteUser?userEmail=${userEmail}`);
+        const response = await fetch(`${url}/deleteUser?userEmail=${userEmail}`, {
+          method: 'DELETE',
+        });
         if (response.status === 200) {
-          Alert.alert('Exito', 'Cuenta eliminada.');
+          Alert.alert('Exito', 'Cuenta eliminada. Datos guardados.');
           await auth.signOut();
+        }else {
+          const errorMessage = await response.text();
+          Alert.alert('Error', `No se pudo eliminar la cuenta: ${errorMessage}`);
         }
       });
     }
