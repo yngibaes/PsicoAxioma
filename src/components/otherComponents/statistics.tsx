@@ -4,11 +4,23 @@ import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 import url from "../../hooks/config/config";
 import { LineChart, PieChart } from "react-native-gifted-charts";
 import styles from "./style/styleStatics";
+import data from "../../data/dataColor";
 
 // Estrucutra de los datos para la gráfica de línea
 type lineDataItem = {
   value: number;
   text?: string | undefined; // Update the type to be string | undefined
+  color?: string;
+  label?: string;
+  score?: string;
+};
+
+const renderDot = (colorDot: any) => {
+  return <View style={[styles.dot, { backgroundColor: colorDot }]} />;
+};
+
+const renderLegendComponent = () => {
+  return <></>;
 };
 
 const Statistics = () => {
@@ -77,6 +89,20 @@ const Statistics = () => {
   }));
   //console.log(lineData);
 
+  const lineDataScanner: lineDataItem[] = emotions.map((item, index) => ({
+    value: item.score,
+    color: data[index % data.length].color,
+    score: `${item.score}%`,
+    label: item.name,
+    labelComponent: () => customLabel(`${item.score}%`),
+  }));
+
+  const maxScoreItem = lineDataScanner.reduce(
+    (prev, current) => (prev.value > current.value ? prev : current),
+    { value: 0 },
+  );
+  console.log(maxScoreItem);
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -92,7 +118,7 @@ const Statistics = () => {
                 <LineChart
                   initialSpacing={30}
                   data={lineData}
-                  height={280} // Altura de la gráfica
+                  height={300} // Altura de la gráfica
                   spacing={45} // Espacio entre los puntos
                   color={"#98C0BF"} // Color de la línea
                   thickness={2} // Grosor de la línea
@@ -115,6 +141,7 @@ const Statistics = () => {
                     pointerColor: "#B0CCCA",
                     radius: 6,
                     pointerLabelWidth: 100,
+                    activatePointersDelay: 50,
                     pointerLabelHeight: 90,
                     activatePointersOnLongPress: true,
                     pointerLabelComponent: (items: any) => {
@@ -141,15 +168,51 @@ const Statistics = () => {
             {emotions.length > 0 ? (
               <View style={styles.parentLine}>
                 <PieChart
-                  data={lineData}
-                  textSize={20}
-                  showText
-                  textColor="black"
+                  data={lineDataScanner}
+                  donut
                   showValuesAsLabels
+                  innerRadius={70}
+                  textSize={15}
+                  textColor="white
+                  "
+                  showText
                   textBackgroundRadius={26}
-                  onPress={(item:any) => Alert.alert(`Value: ${item.score}`)}
-                  onLabelPress = { (item:any) => Alert.alert(item[0].score)}
+                  onPress={(item: any) => Alert.alert(`Value: ${item.score}`)}
+                  onLabelPress={(item: any) => Alert.alert(item[0].score)}
+                  innerCircleColor={"#CACACA"}
+                  centerLabelComponent={() => {
+                    return (
+                      <View
+                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={{ fontSize: 14, color: "black" }}>
+                          {maxScoreItem.score}
+                        </Text>
+                        <Text style={{ fontSize: 14, color: "black" }}>
+                          {maxScoreItem.label}
+                        </Text>
+                      </View>
+                    );
+                  }}
                 />
+                <View style={styles.child}>
+                  {lineDataScanner.slice(0, 7).map((item, index) => (
+                    <View
+                      key={index}
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        width: 120,
+                      }}
+                    >
+                      {renderDot(item.color)}
+                      <Text style={{ color: "black" }}>{item.label}: {item.score}</Text>
+                    </View>
+                  ))}
+                </View>
               </View>
             ) : (
               <ActivityIndicator size="small" color="#213751" />

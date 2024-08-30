@@ -4,6 +4,8 @@
 - Crear vista posterior a la toma de la foto con los resultados (No dentro de la vista de cámara)
     - Buscar sobre como pasar el dato de la ruta.
     - Mirar si se puede hacer que tan solo con que encuentre una cara tome la foto
+
+
 - Hacer estadísticas de la cámara tipo pie
     - Hacer dataset de colores bonitos.
     - Que cuando toque una parte de la torta muestre la emocion y el dia.
@@ -18,7 +20,10 @@ https://gifted-charts.web.app/static/media/legendPie.ac6dea62ec6ff4f83a80.png
     - Que muestre los días que scaneo la jeta y los días que dijo cuando se quería morir (CalendaryScreen)
     - Que se muestre los puntos de lo mismo de arriba (HomeScreen)
 
+- Verificar errores en el apk.
 - Eliminar dependencias no se están utilizando.
 - Verificar el clean code.
+
+- Mirar todos los tonos que se utilizan del material, y hacer el material original.
 
 - Hacer testeos en APIPsicoAi y en este.

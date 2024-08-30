@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
     marginBottom: hp("4%"),
     width: wp("100%"),
   },
+  dot:{
+    borderRadius: 5,
+    height: wp('2.5%'),
+    marginRight: wp('1%'),
+    width: wp('2.5%'),
+  },
   labelLine: {
     color: materialTheme.palettes.primary[0],
     fontFamily: "InterBold",
@@ -29,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     marginLeft: wp("-10%"),
-    marginTop: hp("-0.5%"),
+    marginTop: hp("-0.3%"),
     padding: wp("1%"),
     width: wp("25%"),
   },
@@ -39,6 +45,7 @@ const styles = StyleSheet.create({
     height: hp("40%"),
     justifyContent: "center",
     marginTop: hp("1%"),
+    zIndex: 10
   },
   score: {
     backgroundColor: materialTheme.palettes.tertiary[80],
