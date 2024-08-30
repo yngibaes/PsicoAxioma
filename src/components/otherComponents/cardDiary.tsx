@@ -1,18 +1,18 @@
-import React from 'react';
-import {Text, View, ActivityIndicator, TouchableOpacity} from 'react-native';
-import {useNavigation, NavigationProp} from '@react-navigation/native';
-import {RootStackParamList} from '../../hooks/type/type';
-import hookDiaryInfo from '../../hooks/userPrincipal/hookDiaryInfo';
-import styles from './style/styleCardDiary';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React from "react";
+import { Text, View, ActivityIndicator, TouchableOpacity } from "react-native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../../hooks/type/type";
+import hookDiaryInfo from "../../hooks/userPrincipal/hookDiaryInfo";
+import styles from "./style/styleCardDiary";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 // Definición de la interfaz CardDiaryProps
 interface CardDiaryProps {
   limit?: number;
 }
 
-const CardDiary: React.FC<CardDiaryProps> = ({limit}) => {
-  const {data, loading, error, formatDate} = hookDiaryInfo();
+const CardDiary: React.FC<CardDiaryProps> = ({ limit }) => {
+  const { data, loading, error, formatDate } = hookDiaryInfo();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   if (loading) return <ActivityIndicator size="large" color="#479E9C" />; // Si loading es true, se muestra un ActivityIndicator
@@ -34,10 +34,11 @@ const CardDiary: React.FC<CardDiaryProps> = ({limit}) => {
             key={item.diaryID}
             style={styles.parentAll}
             onPress={() =>
-              navigation.navigate('ReadDiaryIDScreen', {
+              navigation.navigate("ReadDiaryIDScreen", {
                 diaryID: item.diaryID,
               })
-            }>
+            }
+          >
             <View style={styles.parentTitle}>
               <Ionicons name="ellipse" color="#47708D" size={15} />
               <Text style={styles.title}>{item.diaryTitle}</Text>

@@ -1,22 +1,22 @@
-import {useEffect, useState} from 'react';
-import {Alert, DevSettings} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {signOut, updateProfile, deleteUser} from 'firebase/auth';
-import {getStorage, ref, getDownloadURL, uploadBytes} from 'firebase/storage';
-import {auth} from '../config/firebase';
-import url from '../config/config';
-import UserNavigation from '../userNavigation';
-import ImagePicker from 'react-native-image-crop-picker';
+import { useEffect, useState } from "react";
+import { Alert, DevSettings } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { signOut, updateProfile, deleteUser } from "firebase/auth";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { auth } from "../config/firebase";
+import url from "../config/config";
+import UserNavigation from "../userNavigation";
+import ImagePicker from "react-native-image-crop-picker";
 
 // En este hook se podrá encontrar la información del usuario, como su nombre, correo y foto de perfil, además de la función para cerrar sesión.
 const hookDataUser = () => {
   const navigation = useNavigation();
   const PhotoDefault =
-    'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
+    "https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e";
   const [displayName, setDisplayName] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
-  const [userPhone, setUserPhone] = useState('');
+  const [userPhone, setUserPhone] = useState("");
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -30,13 +30,12 @@ const hookDataUser = () => {
   useEffect(() => {
     const fetchData = async () => {
       //if si lo que hay en el userphone esta vacio si no que no lo ejecute.
-      if (!userPhone) {
         try {
           const response = await fetch(
             `${url}/readPhone?userEmail=${userEmail}`,
           );
           if (!response.ok) {
-            throw new Error('Salió mal la conexión');
+            throw new Error("Salió mal la conexión");
           }
           const [result] = await response.json();
           setUserPhone(result.userPhone);
@@ -44,8 +43,8 @@ const hookDataUser = () => {
         } catch (error) {
           console.log(error);
         }
-      }
     };
+    
     fetchData();
   }, [userEmail]);
 
@@ -59,7 +58,7 @@ const hookDataUser = () => {
         height: 400,
         cropping: true,
         cropperCircleOverlay: true, // Opcional: para recorte circular
-        mediaType: 'photo',
+        mediaType: "photo",
         compressImageQuality: 1.0, // Ajusta la calidad de la imagen (1.0 es la máxima calidad)
         compressImageMaxWidth: 1000, // Ajusta la resolución máxima de la imagen
         compressImageMaxHeight: 1000, // Ajusta la resolución máxima de la imagen
@@ -75,7 +74,7 @@ const hookDataUser = () => {
         ],
       };
     } catch (error) {
-      console.error('Error al recortar la imagen:', error);
+      console.error("Error al recortar la imagen:", error);
       throw error;
     }
   };
@@ -87,7 +86,7 @@ const hookDataUser = () => {
       const uri = asset.uri;
 
       if (!uri) {
-        console.error('URI no existe');
+        console.error("URI no existe");
         return;
       }
 
@@ -105,45 +104,45 @@ const hookDataUser = () => {
         const storageRef = ref(storage, `userPhoto/${croppedAsset.fileName}`);
         // Subir el blob
         await uploadBytes(storageRef, blob);
-        console.log('Se ha subido la imagen');
+        console.log("Se ha subido la imagen");
 
         // Obtener la URL de descarga de la imagen subida
         const downloadURL = await getDownloadURL(storageRef);
-        console.log('URL de descarga:', downloadURL);
+        console.log("URL de descarga:", downloadURL);
 
         // Actualizar el perfil del usuario con la nueva foto
         if (auth.currentUser) {
           await updateProfile(auth.currentUser, {
             photoURL: downloadURL,
           });
-          console.log('Foto de perfil actualizada');
+          console.log("Foto de perfil actualizada");
 
           // Recargar la aplicación
           DevSettings.reload();
         }
       } catch (error) {
-        console.error('Error al subir la imagen:', error);
+        console.error("Error al subir la imagen:", error);
       }
     }
   };
 
   const deleteUsers = async () => {
     Alert.alert(
-      'Confirmación',
-      '¿Estás seguro de que quieres eliminar tu cuenta?, Se descargaran tus datos, y luego se eliminaran de nuestra base de datos.',
+      "Confirmación",
+      "¿Estás seguro de que quieres eliminar tu cuenta?, Se descargaran tus datos, y luego se eliminaran de nuestra base de datos.",
       [
         {
-          text: 'Cancelar',
-          style: 'cancel',
+          text: "Cancelar",
+          style: "cancel",
         },
         {
-          text: 'Eliminar',
+          text: "Eliminar",
           onPress: () => {
             functionDelete();
           },
         },
       ],
-      {cancelable: false},
+      { cancelable: false },
     );
   };
 
@@ -153,16 +152,16 @@ const hookDataUser = () => {
         const response = await fetch(
           `${url}/deleteUser?userEmail=${userEmail}`,
           {
-            method: 'DELETE',
+            method: "DELETE",
           },
         );
         if (response.status === 200) {
-          Alert.alert('Exito', 'Cuenta eliminada. Datos guardados.');
+          Alert.alert("Exito", "Cuenta eliminada. Datos guardados.");
           await auth.signOut();
         } else {
           const errorMessage = await response.text();
           Alert.alert(
-            'Error',
+            "Error",
             `No se pudo eliminar la cuenta: ${errorMessage}`,
           );
         }
@@ -174,7 +173,7 @@ const hookDataUser = () => {
     await signOut(auth);
   };
 
-  const {UpdateEmailScreen} = UserNavigation();
+  const { UpdateEmailScreen } = UserNavigation();
 
   return {
     displayName,

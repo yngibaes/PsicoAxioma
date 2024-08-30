@@ -1,35 +1,38 @@
-import {useState, useEffect, useRef} from 'react';
-import {Alert, TextInput} from 'react-native';
-import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
-import {auth} from '../config/firebase';
-import UserNavigation from '../userNavigation';
+import { useState, useEffect, useRef } from "react";
+import { Alert, TextInput } from "react-native";
+import {
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+import { auth } from "../config/firebase";
+import UserNavigation from "../userNavigation";
 
 // En este apartado de la app se podra encontrar el hook de login, en el cual se podra encontrar la funcion de loguear al usuario, el correo del usuario, la contraseña del usuario, los errores, si el formulario es valido, los intentos fallidos y las referencias. Ademas de las alertas que se mostraran en caso de que el usuario no ingrese el correo, la contraseña, se loguee, haya un error, haya alcanzado el numero maximo de intentos, las credenciales sean incorrectas, haya un error al enviar el formulario o haya campos vacios.
 
 const alertMessages = {
-  emailRequired: '*Email es requerido.',
-  passwordRequired: '*Contraseña es requerida.',
-  userLoggedIn: 'Usuario logueado',
-  error: 'Error',
+  emailRequired: "*Email es requerido.",
+  passwordRequired: "*Contraseña es requerida.",
+  userLoggedIn: "Usuario logueado",
+  error: "Error",
   maxAttemptsReached:
     "Has alcanzado el número máximo de intentos. Redirigiendo a 'Olvidar Contraseña'.",
   invalidCredentials:
-    'Credenciales incorrectas. Por favor, inténtalo de nuevo.',
+    "Credenciales incorrectas. Por favor, inténtalo de nuevo.",
   formError:
-    'Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.',
-  emptyInputs: 'Por favor, llena todos los campos.',
-  verifyEmail: 'Email no ha sido verificado. Correo nuevamente enviado.',
+    "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.",
+  emptyInputs: "Por favor, llena todos los campos.",
+  verifyEmail: "Email no ha sido verificado. Correo nuevamente enviado.",
 };
 
 const erorrCodes = {
-  invalidCredential: 'auth/invalid-credential',
+  invalidCredential: "auth/invalid-credential",
 };
 
 const hookLogin = () => {
   // Estados
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isFormValid, setIsFormValid] = useState(false);
   const [failedAttempts, setFailedAttempts] = useState(0);
 
@@ -39,8 +42,8 @@ const hookLogin = () => {
 
   // Limpiar el formulario
   const clearForm = () => {
-    setUserEmail('');
-    setUserPassword('');
+    setUserEmail("");
+    setUserPassword("");
     setErrors({});
     setIsFormValid(false);
   };
@@ -58,7 +61,7 @@ const hookLogin = () => {
   // Validar el formulario
   const validateForm = () => {
     // Definición de los errores
-    const errors: {[key: string]: string} = {};
+    const errors: { [key: string]: string } = {};
     if (!userEmail) errors.userEmail = alertMessages.emailRequired;
     if (!userPassword) errors.userPassword = alertMessages.passwordRequired;
     setErrors(errors);
@@ -66,7 +69,7 @@ const hookLogin = () => {
   };
 
   // Navegación
-  const {signUp, forgetPassword} = UserNavigation();
+  const { signUp, forgetPassword } = UserNavigation();
 
   // Enviar el formulario
   const handleSubmit = async (userEmail: string, userPassword: string) => {

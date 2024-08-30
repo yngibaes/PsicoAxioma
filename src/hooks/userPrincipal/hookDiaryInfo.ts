@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
-import url from '../config/config';
-import useAuth from '../useAuth';
+import { useState, useEffect } from "react";
+import url from "../config/config";
+import useAuth from "../useAuth";
 
 // Definición de la interfaz
 interface DiaryEntry {
@@ -16,7 +16,7 @@ const hookDiaryInfo = () => {
   const [data, setData] = useState<DiaryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const {userEmail} = useAuth();
+  const { userEmail } = useAuth();
 
   // Efecto para obtener la información
   useEffect(() => {
@@ -24,7 +24,7 @@ const hookDiaryInfo = () => {
       try {
         const response = await fetch(`${url}/diary?userEmail=${userEmail}`);
         if (!response.ok) {
-          throw new Error('Salió mal la conexión');
+          throw new Error("Salió mal la conexión");
         }
         const result = await response.json();
         setData(result);
@@ -43,10 +43,10 @@ const hookDiaryInfo = () => {
 
   // Función para formatear la fecha
   const formatDate = (date: any) => {
-    return new Date(date).toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(date).toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 

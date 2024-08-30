@@ -1,23 +1,23 @@
-import React from 'react';
-import {TouchableWithoutFeedback, useWindowDimensions} from 'react-native';
+import React from "react";
+import { TouchableWithoutFeedback, useWindowDimensions } from "react-native";
 import Animated, {
   SharedValue,
   interpolateColor,
   useAnimatedStyle,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import styles from './style/stylesAll';
+} from "react-native-reanimated";
+import styles from "./style/stylesAll";
 
 type Props = {
   handlerPress: () => void;
   buttonVal: SharedValue<number>;
 };
 
-const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0'];
+const colors = ["#458281", "#f8dac2", "#5a71a3", "#c1cde0"];
 
-const CustomButton = ({handlerPress, buttonVal}: Props) => {
-  const {height: SCREEN_HEIGHT} = useWindowDimensions();
+const CustomButton = ({ handlerPress, buttonVal }: Props) => {
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
@@ -79,13 +79,14 @@ const CustomButton = ({handlerPress, buttonVal}: Props) => {
   return (
     <TouchableWithoutFeedback onPress={handlerPress}>
       <Animated.View
-        style={[styles.container, animatedColor, buttonAnimationStyle]}>
+        style={[styles.container, animatedColor, buttonAnimationStyle]}
+      >
         <Animated.Text style={[styles.textButton, textAnimationStyle]}>
           ¡Comencemos!
         </Animated.Text>
         <Animated.Image
           style={arrowAnimationStyle}
-          source={require('../../assets/img/scroll/arrowright.png')}
+          source={require("../../assets/img/scroll/arrowright.png")}
         />
       </Animated.View>
     </TouchableWithoutFeedback>

@@ -1,8 +1,8 @@
-import React from 'react';
-import {View, ScrollView} from 'react-native';
-import Menu from '../../components/otherComponents/menu';
-import ContentDiary from '../../components/otherComponents/diary';
-import styles from './style/styleScreen';
+import React from "react";
+import { View, ScrollView } from "react-native";
+import Menu from "../../components/otherComponents/menu";
+import ContentDiary from "../../components/otherComponents/diary";
+import styles from "./style/styleScreen";
 
 const DiaryScreen = () => {
   return (

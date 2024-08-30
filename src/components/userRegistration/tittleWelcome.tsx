@@ -1,8 +1,8 @@
-import React from 'react';
-import {Text, View} from 'react-native';
-import styles from './style/stylesAll';
+import React from "react";
+import { Text, View } from "react-native";
+import styles from "./style/stylesAnother";
 
-const welcome = '¡Bienvenido a PsicoAxioma!';
+const welcome = "¡Bienvenido a PsicoAxioma!";
 
 const TitleWelcome = () => {
   return (

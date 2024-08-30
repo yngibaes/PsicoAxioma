@@ -1,16 +1,21 @@
-import React from 'react';
-import {View, TextInput, ScrollView, KeyboardAvoidingView} from 'react-native';
-import hookCreateDiary from '../../hooks/userPrincipal/hookCreateDiary';
-import styles from './style/styleFormBarDiary';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React from "react";
+import {
+  View,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
+import hookCreateDiary from "../../hooks/userPrincipal/hookCreateDiary";
+import styles from "./style/styleFormBarDiary";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-const iconColor = '#000';
-const placeholderColor = '#828282';
+const iconColor = "#000";
+const placeholderColor = "#828282";
 const iconGoBack = 25;
 const iconSend = 36;
-const placeholderTitle = 'Título';
-const placeholderContent = 'Escribe lo que sientas...';
-const keyboardBehavior = 'padding';
+const placeholderTitle = "Título";
+const placeholderContent = "Escribe lo que sientas...";
+const keyboardBehavior = "padding";
 const keyboardVerticalOffset = 60;
 
 const FormDiary = () => {
@@ -65,7 +70,8 @@ const FormDiary = () => {
       </View>
       <KeyboardAvoidingView
         behavior={keyboardBehavior}
-        keyboardVerticalOffset={keyboardVerticalOffset}>
+        keyboardVerticalOffset={keyboardVerticalOffset}
+      >
         <ScrollView
           style={styles.scrollableContent}
           keyboardShouldPersistTaps="handled" // Asegura que los toques en el teclado no cierren el teclado

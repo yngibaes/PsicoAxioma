@@ -1,26 +1,26 @@
-import {useState, useEffect, useRef} from 'react';
-import {Alert, TextInput} from 'react-native';
-import axios from 'axios';
+import { useState, useEffect, useRef } from "react";
+import { Alert, TextInput } from "react-native";
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   User,
   updateProfile,
   updatePassword,
-} from 'firebase/auth';
-import url from '../config/config';
-import {auth} from '../config/firebase';
-import UserNavigation from '../userNavigation';
+} from "firebase/auth";
+import url from "../config/config";
+import { auth } from "../config/firebase";
+import UserNavigation from "../userNavigation";
 
 // En este apartado de la app se podra encontrar el hook de registro, en el cual se podra encontrar la funcion de registro, el nombre del usuario, el correo del usuario, el télefono del usuario, la contraseña del usuario, la confirmación de la contraseña, los errores, si el formulario es valido, las referencias y las funciones de navegación.
 const hookSignup = () => {
   // Definición de los estados
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isFormValid, setIsFormValid] = useState(false);
 
   // Referencias
@@ -37,11 +37,11 @@ const hookSignup = () => {
 
   // Limpiar el formulario
   const clearForm = () => {
-    setUserName('');
-    setUserEmail('');
-    setUserPhone('');
-    setUserPassword('');
-    setConfirmPassword('');
+    setUserName("");
+    setUserEmail("");
+    setUserPhone("");
+    setUserPassword("");
+    setConfirmPassword("");
     setErrors({});
     setIsFormValid(false);
   };
@@ -53,16 +53,16 @@ const hookSignup = () => {
 
   // Definición de los mensajes de error
   const ERROR_MESSAGES = {
-    userName: '*Por favor ingresa tu nombre o un apodo.',
-    userNameMax: '*Máximo 25 cáracteres.',
-    userEmailRequired: '*Email es requerido.',
-    userEmailInvalid: '*Email es inválido.',
-    userEmailDomain: '*Debe ser de un dominio permitido',
-    userPhoneRequired: '*Télefono es requerido.',
-    userPhoneInvalid: '*Debe tener 10 dígitos.',
-    userPasswordRequired: '*Contraseña es requerida.',
-    userPasswordMin: '*Mínimo 6 cáracteres.',
-    confirmPassword: '*Las contraseñas no coinciden.',
+    userName: "*Por favor ingresa tu nombre o un apodo.",
+    userNameMax: "*Máximo 25 cáracteres.",
+    userEmailRequired: "*Email es requerido.",
+    userEmailInvalid: "*Email es inválido.",
+    userEmailDomain: "*Debe ser de un dominio permitido",
+    userPhoneRequired: "*Télefono es requerido.",
+    userPhoneInvalid: "*Debe tener 10 dígitos.",
+    userPasswordRequired: "*Contraseña es requerida.",
+    userPasswordMin: "*Mínimo 6 cáracteres.",
+    confirmPassword: "*Las contraseñas no coinciden.",
   };
 
   // Definición de las expresiones regulares
@@ -76,7 +76,7 @@ const hookSignup = () => {
 
   // Validar el formulario
   const validateForm = () => {
-    const errors: {[key: string]: string} = {};
+    const errors: { [key: string]: string } = {};
     if (!userName) {
       errors.userName = ERROR_MESSAGES.userName;
     } else if (!REGEX.userName.test(userName)) {
@@ -112,15 +112,15 @@ const hookSignup = () => {
   };
 
   // Navegación
-  const {goBack} = UserNavigation();
+  const { goBack } = UserNavigation();
 
   // Verificar télefono
   const verifyPhoneNumber = async (userPhone: string): Promise<boolean> => {
     try {
-      const response = await axios.post(`${url}/verifyPhone`, {userPhone});
+      const response = await axios.post(`${url}/verifyPhone`, { userPhone });
       if (
         response.data.message !==
-        'El numero de télefono no existe en la base de datos.'
+        "El numero de télefono no existe en la base de datos."
       ) {
         // El número de teléfono ya está registrado
         return false;
@@ -129,8 +129,8 @@ const hookSignup = () => {
       return true;
     } catch (error) {
       // Manejar otros posibles errores de la petición
-      console.error('Error al verificar el número de teléfono:', error);
-      throw new Error('Error al verificar el número de teléfono');
+      console.error("Error al verificar el número de teléfono:", error);
+      throw new Error("Error al verificar el número de teléfono");
     }
   };
 
@@ -158,20 +158,20 @@ const hookSignup = () => {
       //Que ponga primero si escribio un correo ono
       if (auth.currentUser) {
         const userPhoto =
-          'https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e';
+          "https://firebasestorage.googleapis.com/v0/b/psicoaxioma.appspot.com/o/user.png?alt=media&token=bf2e35a6-ff00-490b-9750-0242667ab50e";
         updateProfile(auth.currentUser, {
           displayName: userName,
           photoURL: userPhoto,
         })
           .then(() => {
-            console.log('Usuario actualizado');
+            console.log("Usuario actualizado");
           })
           .catch(error => {
             console.log(error);
           });
         updatePassword(auth.currentUser, userPassword)
           .then(() => {
-            console.log('Usuario con contraseña');
+            console.log("Usuario con contraseña");
           })
           .catch(error => {
             console.log(error);
@@ -179,8 +179,8 @@ const hookSignup = () => {
         await sendEmailVerification(user);
       }
       Alert.alert(
-        'Registro exitoso',
-        'Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.',
+        "Registro exitoso",
+        "Usuario registrado correctamente. Por favor, verifica tu correo electrónico antes de iniciar sesión.",
       );
       goBack();
       clearForm();
@@ -192,15 +192,15 @@ const hookSignup = () => {
   const handleSubmit = async () => {
     try {
       if (!isFormValid) {
-        console.error('Error al momento de enviar a la base de datos');
+        console.error("Error al momento de enviar a la base de datos");
         return;
       }
       // Verificar si el número de teléfono ya está registrado
       const phoneValid = await verifyPhoneNumber(userPhone);
       if (phoneValid) {
         Alert.alert(
-          'Error',
-          'El número de teléfono ya está registrado. Por favor, utiliza otro número.',
+          "Error",
+          "El número de teléfono ya está registrado. Por favor, utiliza otro número.",
         );
         return;
       }
@@ -210,10 +210,10 @@ const hookSignup = () => {
       await sendVerificationAndRegisterUser(user);
     } catch (error) {
       const errorMessage =
-        error.code === 'auth/email-already-in-use'
-          ? 'El correo electrónico ya está registrado. Por favor, utiliza otro correo.'
-          : 'Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.';
-      Alert.alert('Error', errorMessage);
+        error.code === "auth/email-already-in-use"
+          ? "El correo electrónico ya está registrado. Por favor, utiliza otro correo."
+          : "Ocurrió un error al enviar el formulario. Por favor, inténtalo de nuevo.";
+      Alert.alert("Error", errorMessage);
       console.log(error.message);
     }
   };

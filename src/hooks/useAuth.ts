@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
-import {onAuthStateChanged, User} from 'firebase/auth';
-import {auth} from './config/firebase';
+import { useState, useEffect } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "./config/firebase";
 
 const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -12,12 +12,12 @@ const useAuth = () => {
     const unsub = onAuthStateChanged(auth, user => {
       if (user) {
         if (user.emailVerified) {
-          //console.log('Iniciado sesión');
+          console.log('Iniciado sesión');
           setUser(user);
           setIsLoggedIn(true);
           //console.log(user);
         } else {
-          console.log('No se ha iniciado sesión');
+          console.log("No se ha iniciado sesión");
           setUser(null);
           setIsLoggedIn(false);
         }
@@ -40,7 +40,7 @@ const useAuth = () => {
     setIsLoggedIn(false);
   };
 
-  const userEmail = user?.email || '';
+  const userEmail = user?.email || "";
 
   return {
     user,

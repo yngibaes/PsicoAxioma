@@ -1,9 +1,9 @@
-import React from 'react';
-import {View, ScrollView} from 'react-native';
-import Menu from '../../components/otherComponents/menu';
-import Card from '../../components/otherComponents/card';
-import dataCall from '../../data/dataCall';
-import styles from './style/styleScreen';
+import React from "react";
+import { View, ScrollView } from "react-native";
+import Menu from "../../components/otherComponents/menu";
+import CardRoute from "../../components/otherComponents/cardRoute";
+import dataCall from "../../data/dataCall";
+import styles from "./style/styleScreen";
 
 const RoutesScreen = () => {
   return (
@@ -12,7 +12,7 @@ const RoutesScreen = () => {
       <ScrollView>
         <View>
           {dataCall.map((card, index) => (
-            <Card
+            <CardRoute
               key={index}
               imageSource={card.imageSource}
               cardTitle={card.cardTitle}

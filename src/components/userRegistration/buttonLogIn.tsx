@@ -1,18 +1,18 @@
-import React from 'react';
-import {Pressable, Text, View} from 'react-native';
-import styles from './style/styleButtonLogIn';
+import React from "react";
+import { Pressable, Text, View } from "react-native";
+import styles from "./style/styleButtonLogIn";
 
 // Definición de las props usando TypeScript
 interface propsButtonLogin {
   LogIn: () => void;
   SignUp: () => void;
 }
-const loginText = 'Iniciar sesión';
-const signunPrompText = '¿Aún no tienes cuenta?';
-const signupText = 'Regístrate';
+const loginText = "Iniciar sesión";
+const signunPrompText = "¿Aún no tienes cuenta?";
+const signupText = "Regístrate";
 
 // Definición del componente ButtonLogin
-const ButtonLogin: React.FC<propsButtonLogin> = ({LogIn, SignUp}) => {
+const ButtonLogin: React.FC<propsButtonLogin> = ({ LogIn, SignUp }) => {
   return (
     <View style={styles.divButton}>
       <Pressable style={styles.parentButton} onPress={LogIn}>

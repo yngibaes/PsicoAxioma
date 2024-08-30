@@ -1,7 +1,7 @@
-import React from 'react';
-import {View, Pressable, Text} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import styles from './style/stylesAll';
+import React from "react";
+import { View, Pressable, Text } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import styles from "./style/stylesAnother";
 
 // Definición de las props usando TypeScript
 interface propsTopBar {

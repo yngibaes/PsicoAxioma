@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ScrollView,
   Text,
@@ -6,8 +6,8 @@ import {
   Image,
   TouchableOpacity,
   Linking,
-} from 'react-native';
-import styles from './style/styleCard';
+} from "react-native";
+import styles from "./style/styleCardRoute";
 
 //El llamado que se va a realizar en las tarjetas para que sean despues llamados y modificados en el partado de abajo
 interface CardProps {
@@ -16,7 +16,7 @@ interface CardProps {
   cardText: string; //Aca se indica que es el apartado para la información de las líneas de atención que contiene las cards
   phoneNumber: string; // Nueva propiedad para el número de teléfono
 }
-const Card = (props: CardProps) => {
+const CardRoute = (props: CardProps) => {
   // Función para abrir el marcador con el número de teléfono
   const handlePress = () => {
     Linking.openURL(`tel:${props.phoneNumber}`); //Acá es donde se define la funcion de LinKing que es una liberia de React-Native para poder interactuar con enlaces de aplicaciones entrantes y salientes
@@ -38,4 +38,4 @@ const Card = (props: CardProps) => {
   );
 };
 
-export default Card;
+export default CardRoute;

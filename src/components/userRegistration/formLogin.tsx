@@ -1,23 +1,23 @@
-import React from 'react';
-import {Text, View, TextInput, Pressable} from 'react-native';
-import styles from './style/styleFormLogIn';
-import hookLogin from '../../hooks/userRegistration/hookLogin';
-import stylesButton from './style/styleButtonLogIn';
+import React from "react";
+import { Text, View, TextInput, Pressable } from "react-native";
+import styles from "./style/styleFormLogIn";
+import hookLogin from "../../hooks/userRegistration/hookLogin";
+import stylesButton from "./style/styleButtonLogIn";
 
 // Definición de las props usando TypeScript
 interface propsFormLogIn {
   forget: () => void;
 }
 
-const labelEmail = 'Email';
-const placeholderEmail = 'Escriba su email';
-const placeholderColor = '#828282';
-const labelPassword = 'Contraseña';
-const placeholderPassword = 'Escriba su contraseña';
-const forgotText = '¿Olvidaste tu contraseña?';
-const loginButtonText = 'Iniciar sesión';
-const signunPrompText = '¿Aún no tienes cuenta?';
-const signupText = 'Regístrate';
+const labelEmail = "Email";
+const placeholderEmail = "Escriba su email";
+const placeholderColor = "#828282";
+const labelPassword = "Contraseña";
+const placeholderPassword = "Escriba su contraseña";
+const forgotText = "¿Olvidaste tu contraseña?";
+const loginButtonText = "Iniciar sesión";
+const signunPrompText = "¿Aún no tienes cuenta?";
+const signupText = "Regístrate";
 
 // Definición del componente FormLogIn
 const FormLogIn = (props: propsFormLogIn) => {
@@ -89,7 +89,8 @@ const FormLogIn = (props: propsFormLogIn) => {
       <View style={stylesButton.divButton}>
         <Pressable
           style={stylesButton.parentButton}
-          onPress={() => handleSubmit(userEmail, userPassword)}>
+          onPress={() => handleSubmit(userEmail, userPassword)}
+        >
           <Text style={[stylesButton.button, stylesButton.title]}>
             {loginButtonText}
           </Text>

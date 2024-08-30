@@ -1,7 +1,7 @@
-import React from 'react';
-import {View} from 'react-native';
-import ReadDiaryID from '../../components/otherComponents/readDiaryID';
-import styles from './style/styleScreen';
+import React from "react";
+import { View } from "react-native";
+import ReadDiaryID from "../../components/otherComponents/readDiaryID";
+import styles from "./style/styleScreen";
 
 const ReadDiaryIDScreen = () => {
   return (

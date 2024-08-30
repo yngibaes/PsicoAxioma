@@ -1,26 +1,27 @@
-import React from 'react';
-import {Image, Text, View, Pressable} from 'react-native';
-import {DrawerActions} from '@react-navigation/native';
-import styles from './style/styleMenu';
-import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
+import React from "react";
+import { Image, Text, View, Pressable } from "react-native";
+import { DrawerActions } from "@react-navigation/native";
+import styles from "./style/styleMenu";
+import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 
-const gretting = '¡Hola';
+const gretting = "¡Hola";
 
 const Menu = () => {
-  const {displayName, photoURL, navigation, PhotoDefault} = hookDataUser();
+  const { displayName, photoURL, navigation, PhotoDefault } = hookDataUser();
   return (
     <View style={[styles.parentAll, styles.layout]}>
       <Pressable
         style={styles.layout}
         onPress={() => {
           navigation.dispatch(DrawerActions.openDrawer());
-        }}>
+        }}
+      >
         {photoURL ? (
           <Image
-            source={{uri: photoURL}}
+            source={{ uri: photoURL }}
             resizeMode="contain"
             style={styles.userIcon}
-            defaultSource={{uri: PhotoDefault}}
+            defaultSource={{ uri: PhotoDefault }}
           />
         ) : null}
         <Text style={styles.textParent}>

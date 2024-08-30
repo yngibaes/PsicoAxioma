@@ -1,21 +1,21 @@
-import React from 'react';
-import {useWindowDimensions} from 'react-native';
+import React from "react";
+import { useWindowDimensions } from "react-native";
 import Animated, {
   interpolate,
   interpolateColor,
   SharedValue,
   useAnimatedStyle,
-} from 'react-native-reanimated';
-import {Extrapolate} from '@shopify/react-native-skia';
-import styles from './style/stylesAll';
+} from "react-native-reanimated";
+import { Extrapolate } from "@shopify/react-native-skia";
+import styles from "./style/stylesAll";
 
 type Props = {
   index: number;
   buttonVal: SharedValue<number>;
 };
 
-const Dot = ({index, buttonVal}: Props) => {
-  const {height: SCREEN_HEIGHT} = useWindowDimensions();
+const Dot = ({ index, buttonVal }: Props) => {
+  const { height: SCREEN_HEIGHT } = useWindowDimensions();
 
   const animatedDotStyle = useAnimatedStyle(() => {
     const widthAnimation = interpolate(
@@ -46,7 +46,7 @@ const Dot = ({index, buttonVal}: Props) => {
     };
   });
 
-  const colors = ['#458281', '#f8dac2', '#5a71a3', '#c1cde0']; //Se cambian los colores de la paginacion que se da con el cursor del boton de scroll
+  const colors = ["#458281", "#f8dac2", "#5a71a3", "#c1cde0"]; //Se cambian los colores de la paginacion que se da con el cursor del boton de scroll
 
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(

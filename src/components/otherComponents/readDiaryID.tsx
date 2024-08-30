@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
   ScrollView,
   KeyboardAvoidingView,
   ActivityIndicator,
-} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import {RootStackParamList} from '../../hooks/type/type';
-import hookReadDiaryID from '../../hooks/userPrincipal/hookReadDiaryID';
-import styles from './style/styleFormBarDiary';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+} from "react-native";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { RootStackParamList } from "../../hooks/type/type";
+import hookReadDiaryID from "../../hooks/userPrincipal/hookReadDiaryID";
+import styles from "./style/styleFormBarDiary";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 type ReadDiaryIDScreenRouteProp = RouteProp<
   RootStackParamList,
-  'ReadDiaryIDScreen'
+  "ReadDiaryIDScreen"
 >;
 
-const activityIndicatorColor = '#479E9C';
-const iconColor = '#000';
+const activityIndicatorColor = "#479E9C";
+const iconColor = "#000";
 const iconSize = 25;
 
 const readDiaryID: React.FC = () => {
   const route = useRoute<ReadDiaryIDScreenRouteProp>();
-  const {diaryID} = route.params;
-  const {data, loading, error, DiaryScreen} = hookReadDiaryID(diaryID);
+  const { diaryID } = route.params;
+  const { data, loading, error, DiaryScreen } = hookReadDiaryID(diaryID);
 
   const renderLoading = () => (
     <ActivityIndicator size="large" color={activityIndicatorColor} />
@@ -51,7 +51,7 @@ const readDiaryID: React.FC = () => {
             </View>
             <View style={styles.input}>
               <Text style={styles.labelText}>
-                {data[0].diaryTitle}{' '}
+                {data[0].diaryTitle}{" "}
                 <Text style={styles.date}>{data[0].diaryDate}</Text>
               </Text>
             </View>
@@ -60,10 +60,12 @@ const readDiaryID: React.FC = () => {
         <KeyboardAvoidingView
           style={styles.container}
           behavior="padding"
-          keyboardVerticalOffset={60}>
+          keyboardVerticalOffset={60}
+        >
           <ScrollView
             style={styles.scrollableContent}
-            keyboardShouldPersistTaps="handled">
+            keyboardShouldPersistTaps="handled"
+          >
             <View style={styles.parentForm}>
               <View style={styles.inputContent}>
                 <Text style={styles.labelContent}>{data[0].diaryContent}</Text>

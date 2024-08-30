@@ -1,20 +1,20 @@
-import React from 'react';
-import {Text, TextInput, View, TouchableOpacity} from 'react-native';
-import styles from './style/styleFormSignUp';
-import hookSignup from '../../hooks/userRegistration/hookSignup';
+import React from "react";
+import { Text, TextInput, View, TouchableOpacity } from "react-native";
+import styles from "./style/styleFormSignUp";
+import hookSignup from "../../hooks/userRegistration/hookSignup";
 
-const labelName = 'Nombre';
-const placeholderName = 'Escriba su nombre';
-const labelEmail = 'Email';
-const placeholderEmail = 'Escriba su email';
-const labelPhone = 'Télefono';
-const placeholderPhone = 'Escriba su número de télefono';
-const labelPassword = 'Contraseña';
-const placeholderPassword = 'Escriba su contraseña';
-const labelConfirmPassword = 'Repetir Contraseña';
-const placeholderConfirmPassword = 'Repita su contraseña';
-const placeholderColor = '#828282';
-const buttonText = 'Enviar';
+const labelName = "Nombre";
+const placeholderName = "Escriba su nombre";
+const labelEmail = "Email";
+const placeholderEmail = "Escriba su email";
+const labelPhone = "Télefono";
+const placeholderPhone = "Escriba su número de télefono";
+const labelPassword = "Contraseña";
+const placeholderPassword = "Escriba su contraseña";
+const labelConfirmPassword = "Repetir Contraseña";
+const placeholderConfirmPassword = "Repita su contraseña";
+const placeholderColor = "#828282";
+const buttonText = "Enviar";
 
 // Definición del componente FormSignUp
 const FormSignUp = () => {
@@ -170,7 +170,8 @@ const FormSignUp = () => {
           <TouchableOpacity
             style={styles.parentButton}
             onPress={handleSubmit}
-            disabled={!isFormValid}>
+            disabled={!isFormValid}
+          >
             <Text style={[styles.button, styles.title]}>{buttonText}</Text>
           </TouchableOpacity>
         </View>

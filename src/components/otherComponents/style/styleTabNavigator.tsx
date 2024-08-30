@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import materialTheme from '../../../assets/material-theme.json';
+import { StyleSheet } from "react-native";
+import materialTheme from "../../../assets/material-theme.json";
 
 const styles = StyleSheet.create({
   container: {

@@ -217,23 +217,44 @@ By wrapping AgentaItem with React.memo, it will only re-render when its props ch
 
  {/*  */}
 
- hideRules={true}
-              spacing={45}
-              color={'#213751'}
-              thickness={3}
-              dataPointsColor={'purple'}
-              isAnimated={true}
-              curved={true}
-              textColor={'#000'}
-              textFontSize={10}
-              textColor1="red"
-              textShiftY={-6}
-              yAxisTextStyle={{color: 'black'}}
-              maxValue={100}
-              startFillColor={'rgb(84,219,234)'}
-              endFillColor={'rgb(84,219,234)'}
-              startOpacity={0.4}
-              endOpacity={0.4}
-              backgroundColor="#FFF"
-              rulesColor="gray"
-              rulesType="solid"
+ 
+  const renderLegend = (text: any, color: any) => {
+    return (
+      <View style={{flexDirection: 'row', marginBottom: 12}}>
+        <View
+          style={{
+            height: 18,
+            width: 18,
+            marginRight: 10,
+            borderRadius: 4,
+            backgroundColor: color || 'white',
+          }}
+        />
+        <Text style={{color: 'white', fontSize: 16}}>{text || ''}</Text>
+      </View>
+    );
+  };
+
+              <PieChart
+                  data={lineData}
+                  textSize={20}
+                  showText
+                  textColor="black"
+                  focusOnPress
+                  showValuesAsLabels
+                />
+                <View>
+                  {emotions.map((emotion, index) => (
+                    <View key={index}>
+                      <View
+                        style={{
+                          width: '100%',
+                          flexDirection: 'row',
+                          justifyContent: 'space-evenly',
+                          marginTop: 20,
+                        }}>
+                        {renderLegend(emotion.diaryDate.toLocaleDateString(), 'rgb(84,219,234)')}
+                      </View>
+                    </View>
+                  ))}
+                </View>

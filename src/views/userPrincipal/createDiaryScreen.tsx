@@ -1,7 +1,7 @@
-import React from 'react';
-import {View} from 'react-native';
-import FormDiary from '../../components/otherComponents/formBarDiary';
-import styles from './style/styleScreen';
+import React from "react";
+import { View } from "react-native";
+import FormDiary from "../../components/otherComponents/formBarDiary";
+import styles from "./style/styleScreen";
 
 const CreateDiaryScreen = () => {
   return (

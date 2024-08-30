@@ -1,9 +1,9 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
-import styles from './style/styleProfileUser';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {launchImageLibrary} from 'react-native-image-picker';
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
+import styles from "./style/styleProfileUser";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { launchImageLibrary } from "react-native-image-picker";
 
 const ProfileUser = () => {
   const {
@@ -23,7 +23,7 @@ const ProfileUser = () => {
         onPress={() =>
           launchImageLibrary(
             {
-              mediaType: 'photo',
+              mediaType: "photo",
               includeBase64: false,
               maxHeight: 500,
               maxWidth: 500,
@@ -32,13 +32,14 @@ const ProfileUser = () => {
               updatePhoto(response);
             },
           )
-        }>
+        }
+      >
         {photoURL ? (
           <Image
-            source={{uri: photoURL}}
+            source={{ uri: photoURL }}
             resizeMode="contain"
             style={styles.userPhoto}
-            defaultSource={{uri: PhotoDefault}}
+            defaultSource={{ uri: PhotoDefault }}
           />
         ) : null}
         <Text style={styles.textName}>{displayName}</Text>
@@ -62,7 +63,7 @@ const ProfileUser = () => {
           <Text style={styles.textTitle}>Télefono</Text>
         </View>
         <Text style={styles.text}>
-          {userPhone ? userPhone : 'No se encuentra'}
+          {userPhone ? userPhone : "No se encuentra"}
         </Text>
       </View>
       <View style={styles.buttonDelete}>
@@ -70,7 +71,8 @@ const ProfileUser = () => {
           onPress={() => {
             deleteUsers();
           }}
-          style={styles.deleteContainer}>
+          style={styles.deleteContainer}
+        >
           <Ionicons name="trash-outline" color="#FFF" size={22} />
           <Text style={styles.textDelete}>Borrar Cuenta</Text>
         </TouchableOpacity>

@@ -1,18 +1,18 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
-} from '@react-navigation/drawer';
-import styles from './style/styleSideBar';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import hookDataUser from '../../hooks/userPrincipal/hookDataUser';
+} from "@react-navigation/drawer";
+import styles from "./style/styleSideBar";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 
-const defaultDisplayName = 'Usuario';
-const defaultEmail = 'Email';
+const defaultDisplayName = "Usuario";
+const defaultEmail = "Email";
 
 const CustomDrawer = (props: any) => {
-  const {displayName, photoURL, userEmail, handleLogout, PhotoDefault} =
+  const { displayName, photoURL, userEmail, handleLogout, PhotoDefault } =
     hookDataUser();
   return (
     <View style={styles.parentAll}>
@@ -21,10 +21,10 @@ const CustomDrawer = (props: any) => {
           <View style={styles.iconChild}>
             {photoURL ? (
               <Image
-                source={{uri: photoURL}}
+                source={{ uri: photoURL }}
                 resizeMode="contain"
                 style={styles.icon}
-                defaultSource={{uri: PhotoDefault}}
+                defaultSource={{ uri: PhotoDefault }}
               />
             ) : null}
             <View style={styles.textChild}>

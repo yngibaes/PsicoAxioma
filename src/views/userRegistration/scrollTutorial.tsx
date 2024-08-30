@@ -1,14 +1,14 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from "react";
 import {
   PixelRatio,
   StyleSheet,
   Text,
   View,
   useWindowDimensions,
-} from 'react-native';
-import data from '../../data/dataScroll';
-import RenderItem from '../../components/scrollTutorial/RenderItem';
-import CustomButton from '../../components/scrollTutorial/CustomButton';
+} from "react-native";
+import data from "../../data/dataScroll";
+import RenderItem from "../../components/scrollTutorial/RenderItem";
+import CustomButton from "../../components/scrollTutorial/CustomButton";
 import {
   Canvas,
   Circle,
@@ -17,15 +17,15 @@ import {
   Mask,
   SkImage,
   makeImageFromView,
-} from '@shopify/react-native-skia';
-import {useSharedValue, withTiming} from 'react-native-reanimated';
-import Pagination from '../../components/scrollTutorial/Pagination';
-import UserNavigation from '../../hooks/userNavigation';
-import styles from './style/styleAll';
+} from "@shopify/react-native-skia";
+import { useSharedValue, withTiming } from "react-native-reanimated";
+import Pagination from "../../components/scrollTutorial/Pagination";
+import UserNavigation from "../../hooks/userNavigation";
+import styles from "./style/styleAll";
 
 const Scroll = () => {
   const pd = PixelRatio.get();
-  const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = useWindowDimensions();
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const ref = useRef(null);
   const [active, setActive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,7 +36,7 @@ const Scroll = () => {
   const wait = async (ms: number) =>
     new Promise(resolve => setTimeout(resolve, ms));
 
-  const {Welcome} = UserNavigation();
+  const { Welcome } = UserNavigation();
 
   const handlePress = async () => {
     if (currentIndex === data.length - 1 && !active) {
@@ -51,7 +51,7 @@ const Scroll = () => {
       await wait(80);
 
       setCurrentIndex(prev => prev + 1);
-      mask.value = withTiming(SCREEN_HEIGHT, {duration: 1000});
+      mask.value = withTiming(SCREEN_HEIGHT, { duration: 1000 });
       buttonVal.value = withTiming(buttonVal.value + SCREEN_HEIGHT);
       await wait(1000);
 
@@ -70,7 +70,7 @@ const Scroll = () => {
         })}
       </View>
       {overlay && (
-        <Canvas style={StyleSheet.absoluteFill} pointerEvents={'none'}>
+        <Canvas style={StyleSheet.absoluteFill} pointerEvents={"none"}>
           <Mask
             mode="luminance"
             mask={
@@ -88,7 +88,8 @@ const Scroll = () => {
                   color="black"
                 />
               </Group>
-            }>
+            }
+          >
             <Image
               image={overlay}
               x={0}

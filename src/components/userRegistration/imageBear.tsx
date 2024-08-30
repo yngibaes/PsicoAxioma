@@ -1,10 +1,10 @@
-import React from 'react';
-import {Image, View} from 'react-native';
+import React from "react";
+import { Image, View } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import styles from './style/stylesAll';
+} from "react-native-responsive-screen";
+import styles from "./style/stylesAnother";
 
 // Definición de las props usando TypeScript
 interface propsImage {
@@ -16,7 +16,7 @@ interface propsImage {
 // Definición del componente ImageLogIn
 const ImageLogIn = (props: propsImage) => {
   return (
-    <View style={[styles.divImage, {height: hp(`${props.sizeHeightD}`)}]}>
+    <View style={[styles.divImage, { height: hp(`${props.sizeHeightD}`) }]}>
       <Image
         style={[
           styles.image,
@@ -26,7 +26,7 @@ const ImageLogIn = (props: propsImage) => {
           },
         ]}
         resizeMode="contain"
-        source={require('../../assets/img/userRegistration/osito.png')}
+        source={require("../../assets/img/userRegistration/osito.png")}
       />
     </View>
   );

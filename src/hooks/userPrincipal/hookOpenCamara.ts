@@ -1,32 +1,32 @@
-import {useEffect, useRef, useState, useCallback} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
+import { useEffect, useRef, useState, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import {
   Camera,
   PhotoFile,
   useCameraDevice,
   useCameraPermission,
-} from 'react-native-vision-camera';
+} from "react-native-vision-camera";
 //import { Worklets } from 'react-native-worklets-core';
 //import { scanFaces, type Face } from 'vision-camera-trustee-face-detector-v3';
-import UserNavigation from '../userNavigation';
+import UserNavigation from "../userNavigation";
 
 //https://dev.to/thelamina/how-to-implement-face-detection-in-react-native-using-react-native-vision-camera-58ff
 //https://www.npmjs.com/package/react-native-vision-camera-face-detector
 
 const hookOpenCamara = () => {
-  const {hasPermission, requestPermission} = useCameraPermission();
+  const { hasPermission, requestPermission } = useCameraPermission();
   const camera = useRef<Camera>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState<PhotoFile>();
   //const [faces, setFaces] = useState<any>();
 
-  console.log('Permiso de camara: ', hasPermission);
+  console.log("Permiso de camara: ", hasPermission);
 
   /* const handleFaceDetection = (Worklets.createRunInJsFn as unknown as (fn: (face: Face) => void) => (face: Face) => void)((face) => {
      setFaces(face);
    });*/
 
-  const device = useCameraDevice('front');
+  const device = useCameraDevice("front");
   useEffect(() => {
     if (!hasPermission) {
       requestPermission();
@@ -46,12 +46,12 @@ const hookOpenCamara = () => {
     if (camera.current !== null) {
       const photo = await camera.current?.takePhoto({});
       setImageSource(photo);
-      console.log('Foto tomada: ', photo);
+      console.log("Foto tomada: ", photo);
       setShowCamera(false);
     }
   };
 
-  const {HomeScreen} = UserNavigation();
+  const { HomeScreen } = UserNavigation();
 
   return {
     camera,
