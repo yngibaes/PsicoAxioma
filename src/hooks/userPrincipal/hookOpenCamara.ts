@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { Alert } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Camera,
@@ -6,25 +7,16 @@ import {
   useCameraDevice,
   useCameraPermission,
 } from "react-native-vision-camera";
-//import { Worklets } from 'react-native-worklets-core';
-//import { scanFaces, type Face } from 'vision-camera-trustee-face-detector-v3';
 import UserNavigation from "../userNavigation";
-
-//https://dev.to/thelamina/how-to-implement-face-detection-in-react-native-using-react-native-vision-camera-58ff
-//https://www.npmjs.com/package/react-native-vision-camera-face-detector
+import RNFS from 'react-native-fs';
 
 const hookOpenCamara = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
   const camera = useRef<Camera>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState<PhotoFile>();
-  //const [faces, setFaces] = useState<any>();
 
-  console.log("Permiso de camara: ", hasPermission);
-
-  /* const handleFaceDetection = (Worklets.createRunInJsFn as unknown as (fn: (face: Face) => void) => (face: Face) => void)((face) => {
-     setFaces(face);
-   });*/
+  const { HomeScreen } = UserNavigation();
 
   const device = useCameraDevice("front");
   useEffect(() => {
@@ -46,12 +38,75 @@ const hookOpenCamara = () => {
     if (camera.current !== null) {
       const photo = await camera.current?.takePhoto({});
       setImageSource(photo);
-      console.log("Foto tomada: ", photo);
+      //console.log("Foto tomada: ", photo);
+      if (imageSource) {
+        setupWebSocket(imageSource.path);
+      }
       setShowCamera(false);
     }
   };
 
-  const { HomeScreen } = UserNavigation();
+  const setupWebSocket = async (imagePath:string ) => {
+    try {
+      const formData = new FormData();
+      const blob = new Blob([imagePath], { type: 'image/jpeg', lastModified: Date.now() }); // Ajusta el tipo MIME según sea necesario
+      formData.append("file", blob);
+      const response = await fetch("https://api.hume.ai/v0/registry/files/upload", {
+        method: "POST",
+        headers: {
+          "X-Hume-Api-Key": "V7VtoAQ0cAUQALDDjTZAWnqnUnM6mWvRINuB9bqxe7XQGA8I"
+        },
+        body: formData
+      });
+      if(response.status !== 200) {
+      const result = await response.json();
+      console.log(result);
+      } else {
+        console.error("Error al subir la imagen al servidor");
+      }
+    }
+    catch (error) {
+      console.error("Error al subir la imagen al servidor", error);
+    }
+    
+    /* ws.onopen = async () => {
+      console.log(imagePath);
+      console.log("Conectado al WebSocket");
+      try {
+        const fileBuffer = await RNFS.readFile(imagePath, 'base64');
+        const payload = {
+          file: fileBuffer
+        };
+        ws.send(JSON.stringify(payload)); // Enviar los datos codificados en base64
+      } catch (error) {
+        console.error("Error al leer o codificar el archivo: ", error);
+      }
+    };
+
+    ws.onmessage = (event: any) => {
+      try {
+        const result = JSON.parse(event.data);
+        console.log(result);
+      } catch (error) {
+        console.error("Error al procesar el mensaje:", error);
+        Alert.alert("Error", "No fue posible obtener las emociones del diario.");
+      } finally {
+        ws.close();
+      }
+    };
+
+    ws.onerror = (error: Event) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed.");
+    };
+
+    return () => {
+      ws.close();
+    }; */
+  }
 
   return {
     camera,
