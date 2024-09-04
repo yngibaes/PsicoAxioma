@@ -19,32 +19,35 @@ const hookDataUser = () => {
   const [userPhone, setUserPhone] = useState("");
 
   useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setDisplayName(user.displayName);
-      setUserEmail(user.email);
-      setPhotoURL(user.photoURL);
-    }
+    const getUser = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        setDisplayName(user.displayName);
+        setUserEmail(user.email);
+        setPhotoURL(user.photoURL);
+      }
+    };
+    getUser();
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       //if si lo que hay en el userphone esta vacio si no que no lo ejecute.
-        try {
-          const response = await fetch(
-            `${url}/readPhone?userEmail=${userEmail}`,
-          );
-          if (!response.ok) {
-            throw new Error("Salió mal la conexión");
-          }
-          const [result] = await response.json();
-          setUserPhone(result.userPhone);
-          console.log(result.userPhone);
-        } catch (error) {
-          console.log(error);
+      try {
+        const response = await fetch(
+          `${url}/readPhone?userEmail=${userEmail}`,
+        );
+        if (!response.ok) {
+          throw new Error("Salió mal la conexión");
         }
+        const [result] = await response.json();
+        setUserPhone(result.userPhone);
+        console.log(result.userPhone);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    
+
     fetchData();
   }, [userEmail]);
 

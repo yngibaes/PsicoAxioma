@@ -66,12 +66,12 @@ const CameraScreen = () => {
             <View style={styles.containerResult}>
               <TopBar goBack={HomeScreen} text="Resultados" />
               <Image
-                source={{ uri: `file://${imageSource.path}` }}
+                source={{ uri: `file://${imageSource[0]?.path}` }}
                 style={styles.photo}
               />
               <View style={styles.resultsContainer}>
                 <Text style={styles.textResult}>
-                  `Resultados: ${imageSource.path}`
+                  {`Resultados:`}
                 </Text>
               </View>
             </View>
