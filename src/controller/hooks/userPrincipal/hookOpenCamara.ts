@@ -4,19 +4,26 @@ import {
   Camera,
   PhotoFile,
   useCameraDevice,
+  useCameraFormat,
   useCameraPermission,
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
+import RNFS from 'react-native-fs';
+
 
 const hookOpenCamara = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
   const camera = useRef<Camera>(null);
   const [showCamera, setShowCamera] = useState(false);
-  const [imageSource, setImageSource] = useState<PhotoFile[]>([]);
+  const [imageSource, setImageSource] = useState<PhotoFile>();
 
   const { HomeScreen } = UserNavigation();
 
   const device = useCameraDevice("front");
+
+  const format = useCameraFormat(device, [
+    {photoResolution: {width: 1280, height: 700}}
+  ]);
 
   useEffect(() => {
     const checkPermission = async () => {
@@ -41,18 +48,10 @@ const hookOpenCamara = () => {
     if (camera.current !== null && device != null) {
       try {
         const photo = await camera.current?.takePhoto({});
-        setImageSource(prevState => [photo, ...prevState,]);
-        console.log(imageSource[0]?.path);
+        setImageSource(photo);
         console.log(imageSource);
-        const photoFile: PhotoFile = { 
-          path: imageSource[0]?.path, 
-          width: 0, 
-          height: 0, 
-          isRawPhoto: false, 
-          orientation: "portrait", 
-          isMirrored: false 
-        };
-        scannerResult([photoFile]);
+        console.log(imageSource?.path);
+        await scannerResult(imageSource);
         setShowCamera(false);
       } catch (error) {
         console.error("Error al capturar la foto", error);
@@ -62,37 +61,81 @@ const hookOpenCamara = () => {
     }
   };
 
-  const scannerResult = async (imageSources: PhotoFile[]) => {
-
+  const readFileAsBase64 = async (filePath: string): Promise<string> => {
     try {
-      const formData = new FormData();
-
-      const response = await fetch("https://api.hume.ai/v0/registry/files/upload", {
-        method: "POST",
-        headers: {
-          "X-Hume-Api-Key": "V7VtoAQ0cAUQALDDjTZAWnqnUnM6mWvRINuB9bqxe7XQGA8I",
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        const idPhoto = result.job_id;
-        console.log(idPhoto);
-        //await retryGetEmotions(idPhoto);
-      } else {
-        const errorResult = await response.json();
-        console.error("Error al subir la imagen al servidor", errorResult);
-      }
-    } catch (error) {
-        console.error("Error inesperado", error);
+      /* const data = await RNFS.readFile(filePath, 'base64');
+      return Buffer.from(data, 'binary').toString('base64'); */
+      return await RNFS.readFile(filePath, 'base64');
+    } catch (err) {
+      throw new Error(`Error reading file: ${err.message}`);
     }
   };
 
-  const getEmotions = async (idPhoto:any) => {
+  const scannerResult = async (imageSources: any) => {
+    const apiKey = "ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU";
+    const ws = new WebSocket(`wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`);
 
+    ws.onopen = async () => {
+      console.log("WebSocket connection opened.");
+      try {
+        const image64 = await readFileAsBase64(imageSources.path);
+        console.log(image64);
+        const payload = {
+          models: {
+            face: {
+              facs: {}
+            }
+          },
+          data: image64
+        };
+        ws.send(JSON.stringify(payload));
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data);
+      const detectedEmotions = data.face.predictions[0].emotions;
+
+      const cVaginia = [
+        'Admiración', 'Adoración', 'Apreciación estética', 'Diversión', 'Enojo', 'Ansiedad',
+        'Asombro', 'Incomodidad', 'Aburrimiento', 'Calma', 'Concentración', 'Contemplación',
+        'Confusión', 'Desprecio', 'Alegría', 'Antojo', 'Determinación', 'Decepción',
+        'Repulsión', 'Angustia', 'Duda', 'Éxtasis', 'Vergüenza', 'Dolor empático',
+        'Fascinación', 'Envidia', 'Emoción', 'Temor', 'Culpa', 'Horror', 'Interés',
+        'Regocijo', 'Amor', 'Nostalgia', 'Dolor', 'Orgullo', 'Plenitud', 'Alivio',
+        'Romance', 'Tristeza', 'Satisfacción', 'Deseo', 'Vergüenza', 'Sorpresa (negativa)',
+        'Sorpresa (positiva)', 'Simpatía', 'Cansancio', 'Triunfo'
+      ];
+
+      const emociones = detectedEmotions.map((item:any, index:any) => ({
+        name: cVaginia[index],
+        score: Math.round(item.score * 100)
+      }));
+
+      emociones.sort((a:any, b:any) => b.score - a.score);
+      const top = emociones.slice(0, 6);
+      console.log(`Hoy te sientes con ${top[0].name} (${top[0].score})\n`);
+
+      for (const i of top)
+        console.log(i.name + ': ' + i.score);
+
+      ws.close();
+    };
+
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket conn closed.");
+    };
   };
-  
+
+
   return {
     camera,
     hasPermission,
@@ -101,6 +144,7 @@ const hookOpenCamara = () => {
     capturePhoto,
     device,
     HomeScreen,
+    format
   };
 };
 

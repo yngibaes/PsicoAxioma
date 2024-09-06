@@ -8,7 +8,7 @@ export interface OnboardingData {
   phoneNumber: string;
 }
 
-const path = "../assets/img/routesCall/";
+const path = "../../views/assets/img/routesCall/";
 
 // Data para las rutas de llamada de atención
 const dataCall: OnboardingData[] = [

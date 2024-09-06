@@ -10,7 +10,7 @@ export interface OnboardingData {
   backgroundColor: string;
 }
 
-const path = "../assets/img/scroll/";
+const path = "../../views/assets/img/scroll/";
 const textBlack = "#000";
 const TextWhite = "#FFF";
 const backgroundColor1 = "#cce8e8";
