@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { OnboardingData } from "../../data/dataScroll";
+import { OnboardingData } from "../../controller/data/dataScroll";
 import { SharedValue } from "react-native-reanimated";
 import Dot from "./Dot";
 import styles from "./style/stylesAll"; /*Este es el css que se le da a los botones que se le dan a la paginacion de los scroll */

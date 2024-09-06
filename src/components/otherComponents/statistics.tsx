@@ -4,7 +4,7 @@ import hookDataUser from "../../hooks/userPrincipal/hookDataUser";
 import url from "../../hooks/config/config";
 import { LineChart, PieChart } from "react-native-gifted-charts";
 import styles from "./style/styleStatics";
-import data from "../../data/dataColor";
+import data from "../../controller/data/dataColor";
 
 // Estrucutra de los datos para la gráfica de línea
 type lineDataItem = {

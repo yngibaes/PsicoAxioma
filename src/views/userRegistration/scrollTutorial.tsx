@@ -6,7 +6,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import data from "../../data/dataScroll";
+import data from "../../controller/data/dataScroll";
 import RenderItem from "../../components/scrollTutorial/RenderItem";
 import CustomButton from "../../components/scrollTutorial/CustomButton";
 import {

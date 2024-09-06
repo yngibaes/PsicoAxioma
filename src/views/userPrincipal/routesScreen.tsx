@@ -2,7 +2,7 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import Menu from "../../components/otherComponents/menu";
 import CardRoute from "../../components/otherComponents/cardRoute";
-import dataCall from "../../data/dataCall";
+import dataCall from "../../controller/data/dataCall";
 import styles from "./style/styleScreen";
 
 const RoutesScreen = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, View, useWindowDimensions } from "react-native";
-import { OnboardingData } from "../../data/dataScroll";
+import { OnboardingData } from "../../controller/data/dataScroll";
 import styles from "./style/stylesAll";
 
 type Props = {
