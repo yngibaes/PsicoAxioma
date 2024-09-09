@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { Alert } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Camera,
@@ -9,7 +10,6 @@ import {
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
 import RNFS from 'react-native-fs';
-
 
 const hookOpenCamara = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -22,7 +22,7 @@ const hookOpenCamara = () => {
   const device = useCameraDevice("front");
 
   const format = useCameraFormat(device, [
-    {photoResolution: {width: 1280, height: 700}}
+    { photoResolution: { width: 1280, height: 700 } }
   ]);
 
   useEffect(() => {
@@ -61,35 +61,42 @@ const hookOpenCamara = () => {
     }
   };
 
-  const readFileAsBase64 = async (filePath: string): Promise<string> => {
-    try {
-      /* const data = await RNFS.readFile(filePath, 'base64');
-      return Buffer.from(data, 'binary').toString('base64'); */
-      return await RNFS.readFile(filePath, 'base64');
-    } catch (err) {
-      throw new Error(`Error reading file: ${err.message}`);
-    }
-  };
-
   const scannerResult = async (imageSources: any) => {
+    if (!imageSources || !imageSources.path) {
+      Alert.alert('Error', 'Intenta de nuevo');
+      return;
+    }
+  
+
     const apiKey = "ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU";
     const ws = new WebSocket(`wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`);
+
+    const readFileAsBase64 = async (filePath: string): Promise<string> => {
+      try {
+        const img = 'file://' + filePath.replace('file://', '');
+        const data = await RNFS.readFile(img, 'base64');
+        return data;
+      } catch (err) {
+        throw new Error(`Error reading file: ${err.message}`);
+      }
+    };
 
     ws.onopen = async () => {
       console.log("WebSocket connection opened.");
       try {
-        const image64 = await readFileAsBase64(imageSources.path);
+        const image64 = await readFileAsBase64('file://' + imageSources.path);
+        console.log(imageSources);
         console.log(image64);
         const payload = {
           models: {
             face: {
-              facs: {}
+                facs:{}
             }
           },
           data: image64
         };
         ws.send(JSON.stringify(payload));
-        
+
       } catch (error) {
         console.error(error);
       }
@@ -111,12 +118,12 @@ const hookOpenCamara = () => {
         'Sorpresa (positiva)', 'Simpatía', 'Cansancio', 'Triunfo'
       ];
 
-      const emociones = detectedEmotions.map((item:any, index:any) => ({
+      const emociones = detectedEmotions.map((item: any, index: any) => ({
         name: cVaginia[index],
         score: Math.round(item.score * 100)
       }));
 
-      emociones.sort((a:any, b:any) => b.score - a.score);
+      emociones.sort((a: any, b: any) => b.score - a.score);
       const top = emociones.slice(0, 6);
       console.log(`Hoy te sientes con ${top[0].name} (${top[0].score})\n`);
 

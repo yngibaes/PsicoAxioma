@@ -1,0 +1,260 @@
+https://reactnavigation.org/docs/preventing-going-back = Para cuando se este haciendo la entrada de diario
+
+https://reactnavigation.org/docs/shared-element-transitions =  Para las animaciónes de navigación
+
+https://reactnative.dev/docs/text-style-props = Documentación de React para poder ver cada cosa
+
+npx react-native doctor - Para mirar los errores
+npx prettier --write "**/*.{ts,tsx,js,jsx}" - organizar codigo lerolero
+
+            https://www.google.com/search?q=texttype+textinput+react+native+android&sca_esv=01e0ff83ef1459c0&sxsrf=ADLYWILhaTQWSvtmGDHwsp1QDV-Uhteang%3A1720586533092&ei=JRGOZuGtBZuZwbkPs7yMoAU&oq=texttype+textinput+reac&gs_lp=Egxnd3Mtd2l6LXNlcnAiF3RleHR0eXBlIHRleHRpbnB1dCByZWFjKgIIAjIHECEYoAEYCjIHECEYoAEYCjIHECEYoAEYCkjmHVD_AVjnFHAEeACQAQCYAZMBoAGPB6oBAzAuN7gBA8gBAPgBAZgCCqACywbCAgoQABiwAxjWBBhHmAMAiAYBkAYIkgcDNC42oAfWJQ&sclient=gws-wiz-serp
+            https://blog.logrocket.com/keyboardawarescrollview-keyboardavoidingview-react-native/
+            https://reactnative.dev/docs/textinput
+            https://www.taskade.com/spaces/3FkbZCu8UWVH9X6k/agents?onboarding-open-chat-agent-id=01J2D98NKGR9380VDXX4K3J958
+            https://reactnative.dev/docs/textinput
+            https://reactnavigation.org/docs/tab-based-navigation
+            https://reactnative.dev/docs/images
+            https://www.paste.photos/
+            https://www.figma.com/design/cEsEbDLSfCKaxkD5xkXN3a/PsicoAxioma?node-id=9-2&m=dev
+
+
+https://material-foundation.github.io/material-theme-builder/
+https://m3.material.io/styles/shape/overview
+https://m3.material.io/styles/icons/applying-icons
+https://pixabay.com/illustrations/emoji-emotion-emoticon-expression-1585197/
+
+Necesito terminar y arreglar el signup
+    - Enviar datos del signup
+    - organizar la vista
+    - Mira si si nos sirve el boton normal o se necesita crear uno nuevo
+Hacer el form de logIn
+El de forget
+Y empezar a traer datos de la base de datos
+
+
+https://rnfirebase.io/auth/usage
+
+Ya casi se termina todo de registro
+
+Button componente
+// Objetivo: Componente de botón para la aplicación móvil de React Native.
+import * as React from 'react'
+import {StyleSheet, Pressable, Text, View} from 'react-native'
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen'
+
+// Definición de las props usando TypeScript
+interface PropsButton {
+  onPress: () => void // Función que ejecuta el botón
+  colorButton: string
+  colorText: string
+  text: string
+  width: string
+  height: string
+  size: string
+}
+
+// Definición del componente Button
+const Button = (props: PropsButton) => {
+  return (
+    <View style={styles.divButton}>
+      <Pressable
+        style={[
+          styles.parentButton,
+          {
+            backgroundColor: props.colorButton,
+            width: wp(props.width),
+            height: hp(props.height),
+          },
+        ]}>
+        <Text
+          style={[
+            styles.button,
+            styles.title,
+            {color: props.colorText, fontSize: wp(props.size)},
+          ]}>
+          {props.text}
+        </Text>
+      </Pressable>
+    </View>
+  )
+}
+
+// Definición de los estilos
+const styles = StyleSheet.create({
+  button: {
+    // Estilos del botón
+    fontSize: wp('8%'), // Tamaño de la fuente, 15% del ancho de la pantalla
+    textAlign: 'center',
+  },
+  divButton: {
+    // Estilos del contenedor de los botones
+    alignItems: 'center',
+    width: wp('94%'), // Ancho del contenedor
+  },
+  parentButton: {
+    // Estilos del contenedor del botón de inicio de sesión
+    alignItems: 'center',
+    borderRadius: 10, // Radio de las esquinas del botón
+    justifyContent: 'center',
+    overflow: 'hidden', // Ocultar elementos que sobresalgan
+  },
+  title: {
+    // Estilos del título
+    fontFamily: 'InterBold',
+    fontWeight: '300', // Grosor del texto
+  },
+})
+
+export default Button
+
+
+
+To address the performance warning from VirtualizedList, you should ensure that the renderItem function renders components that follow React performance best practices. One way to do this is by using React.memo to memoize the AgentaItem component, which will prevent unnecessary re-renders.
+
+Step-by-Step Plan:
+Wrap the AgentaItem component with React.memo.
+Ensure that AgentaItem only re-renders when its props change.
+Example Code:
+Before:
+
+const AgentaItem = ({ item }) => {
+  // component implementation
+};
+
+import React from 'react';
+
+const AgentaItem = React.memo(({ item }) => {
+  // component implementation
+});
+
+import React, { useCallback } from 'react';
+import { CalendarProvider, ExpandableCalendar, AgendaList } from 'react-native-calendars';
+import { StyleSheet } from 'react-native';
+import AgentaItem from './AgentaItem'; // Ensure this path is correct
+
+const styles = StyleSheet.create({
+  calendary: {
+    // your styles here
+  },
+  section: {
+    // your styles here
+  }
+});
+
+const Calendary = () => {
+  const renderItem = useCallback(({ item }) => {
+    return <AgentaItem item={item} />;
+  }, []);
+
+  return (
+    <CalendarProvider date={new Date().toISOString().split('T')[0]} style={styles.calendary}>
+      <ExpandableCalendar
+        // horizontal={false}
+        // hideArrows
+        // disablePan
+        // hideKnob
+        // initialPosition={ExpandableCalendar.positions.OPEN}
+        // calendarStyle={styles.calendar}
+        // headerStyle={styles.header} // for horizontal only
+        // disableWeekScroll
+        // disableAllTouchEventsForDisabledDays
+        firstDay={1}
+        // closeOnDayPress={false} 
+        animateScroll
+      />
+      <AgendaList
+        sections={ITEMS}
+        renderItem={renderItem}
+        // scrollToNextEvent
+        sectionStyle={styles.section}
+        dayFormat={'yyyy-MM-d'}
+      />
+    </CalendarProvider>
+  );
+};
+
+export default Calendary;
+
+AgentaItem Component:
+Ensure that the AgentaItem component is defined in a separate file (e.g., AgentaItem.tsx) and wrapped with React.memo:
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const AgentaItem = React.memo(({ item }) => {
+  return (
+    <View>
+      <Text>{item.name}</Text>
+      {/* Render other item properties as needed
+     */}
+    </View>
+  );
+});
+
+export default AgentaItem;
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const AgentaItem = React.memo(({ item }) => {
+  return (
+    <View>
+      <Text>{item.name}</Text>
+      {/* Render other item properties as needed */}
+    </View>
+  );
+});
+
+export default AgentaItem;
+
+By wrapping AgentaItem with React.memo, it will only re-render when its props change, improving the performance of the VirtualizedList.
+
+-Fecha de guardado de diario
+-Fuente de scroll en unos muy grande
+
+ {/*  */}
+
+ 
+  const renderLegend = (text: any, color: any) => {
+    return (
+      <View style={{flexDirection: 'row', marginBottom: 12}}>
+        <View
+          style={{
+            height: 18,
+            width: 18,
+            marginRight: 10,
+            borderRadius: 4,
+            backgroundColor: color || 'white',
+          }}
+        />
+        <Text style={{color: 'white', fontSize: 16}}>{text || ''}</Text>
+      </View>
+    );
+  };
+
+              <PieChart
+                  data={lineData}
+                  textSize={20}
+                  showText
+                  textColor="black"
+                  focusOnPress
+                  showValuesAsLabels
+                />
+                <View>
+                  {emotions.map((emotion, index) => (
+                    <View key={index}>
+                      <View
+                        style={{
+                          width: '100%',
+                          flexDirection: 'row',
+                          justifyContent: 'space-evenly',
+                          marginTop: 20,
+                        }}>
+                        {renderLegend(emotion.diaryDate.toLocaleDateString(), 'rgb(84,219,234)')}
+                      </View>
+                    </View>
+                  ))}
+                </View>

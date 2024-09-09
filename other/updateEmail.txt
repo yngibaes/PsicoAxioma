@@ -1,0 +1,88 @@
+import React from "react";
+import { View, Pressable, Text, TextInput } from "react-native";
+import styles from './style/styleUpdateEmail.tsx';
+import hookUpdateEmail from "../../hooks/userPrincipal/hookUpdateEmail.ts";
+
+const userEmailText = 'Digite su email actual';
+const userEmailPlaceHolder = 'Escriba su email actual';
+const newEmailText = 'Digite el nuevo email';
+const newEmailPlaceHolder = 'Escriba el nuevo email';
+const userPasswordText = 'Digite su contraseña';
+const userPasswordPlaceHolder = 'Escriba su contraseña';
+const placeholderColor = '#828282';
+const buttonText = 'Enviar';
+
+const UpdateEmail = () => {
+    const { newEmail, setNewEmail, userPassword, setUserPassword, updateEmailUser, userEmail, setUserEmail } = hookUpdateEmail();
+    return (
+        <View style={styles.parentEmail}>
+            <View style={styles.childEmail}>
+                <Text style={[styles.divLabel, styles.labelText]}>
+                    {userEmailText}
+                </Text>
+                <View style={[styles.Input, styles.sizeInput]}>
+                    <TextInput
+                        style={styles.label}
+                        placeholder={userEmailPlaceHolder}
+                        keyboardType="email-address"
+                        placeholderTextColor={placeholderColor}
+                        inputMode="email"
+                        data-name="userEmail"
+                        keyboardAppearance="dark"
+                        returnKeyType="next"
+                        value={userEmail}
+                        onChangeText={setUserEmail}
+                    />
+                </View>
+            </View>
+            <View style={styles.childEmail}>
+                <Text style={[styles.divLabel, styles.labelText]}>
+                    {newEmailText}
+                </Text>
+                <View style={[styles.Input, styles.sizeInput]}>
+                    <TextInput
+                        style={styles.label}
+                        placeholder={newEmailPlaceHolder}
+                        keyboardType="email-address"
+                        placeholderTextColor={placeholderColor}
+                        inputMode="email"
+                        data-name="userEmail"
+                        keyboardAppearance="dark"
+                        returnKeyType="next"
+                        value={newEmail}
+                        onChangeText={setNewEmail}
+                    />
+                </View>
+            </View>
+            <View style={styles.childEmail}>
+                <Text style={[styles.divLabel, styles.labelText]}>
+                    {userPasswordText}
+                </Text>
+                <View style={[styles.Input, styles.sizeInput]}>
+                    <TextInput
+                        style={styles.label}
+                        placeholder={userPasswordPlaceHolder}
+                        keyboardType="visible-password"
+                        placeholderTextColor={placeholderColor}
+                        inputMode="text"
+                        data-name="userPassword"
+                        keyboardAppearance="dark"
+                        returnKeyType="next"
+                        value={userPassword}
+                        onChangeText={setUserPassword}
+                    />
+                </View>
+            </View>
+
+            <View style={styles.divButton}>
+                <Pressable
+                    style={styles.parentButton}
+                    onPress={() => updateEmailUser(newEmail, userEmail, userPassword)}>
+                    <Text style={[styles.button, styles.title]}>{buttonText}</Text>
+                </Pressable>
+            </View>
+        </View>
+    );
+};
+
+export default UpdateEmail;

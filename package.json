@@ -65,6 +65,7 @@
     "jest": "^29.7.0",
     "metro-react-native-babel-preset": "^0.77.0",
     "prettier": "2.8.8",
+    "react-native-image-base64": "^0.1.4",
     "react-test-renderer": "18.2.0",
     "ts-jest": "^29.2.4",
     "typescript": "5.0.4"
