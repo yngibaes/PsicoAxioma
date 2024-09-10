@@ -4,11 +4,12 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   backgroundForm: {
     alignItems: "center",
-    backgroundColor: materialTheme.palettes.tertiary[70],
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     height: hp("100%"),
@@ -27,14 +28,14 @@ const styles = StyleSheet.create({
   },
   credit: {
     bottom: 12,
-    color: materialTheme.palettes.primary[0],
+    color: materialTheme.palettes.primary[0], //Black
     fontSize: 14,
     position: "absolute",
   },
   divForm: {
     alignItems: "center",
     alignSelf: "stretch",
-    backgroundColor: materialTheme.palettes.tertiary[70],
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     height: hp("70%"),
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     width: wp("100%"),
   },
   ellipseForm: {
-    backgroundColor: materialTheme.palettes.tertiary[70],
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
     borderRadius: 100,
     height: hp("23%"),
     padding: 15,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   parentForget: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
+    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
     flex: 1,
     flexDirection: "column", //	Orden de los elementos
     height: hp("100%"),
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
   parentLogIn: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
+    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
     flex: 1,
     flexDirection: "column",
     height: hp("100%"),
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
   },
   parentSignUp: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer,
+    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
     flex: 1,
     flexDirection: "column", //	Orden de los elementos
     height: hp("100%"),
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   },
   parentWelcome: {
     alignItems: "center",
-    backgroundColor: materialTheme.palettes.tertiary[70],
+    backgroundColor: materialTheme.palettes.tertiary[70], //Background color
     flex: 1,
     flexDirection: "column",
     height: hp("100%"),

@@ -66,15 +66,14 @@ const hookOpenCamara = () => {
       Alert.alert('Error', 'Intenta de nuevo');
       return;
     }
-  
+
 
     const apiKey = "ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU";
     const ws = new WebSocket(`wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`);
 
     const readFileAsBase64 = async (filePath: string): Promise<string> => {
       try {
-        const img = 'file://' + filePath.replace('file://', '');
-        const data = await RNFS.readFile(img, 'base64');
+        const data = await RNFS.readFile(filePath, 'base64');
         return data;
       } catch (err) {
         throw new Error(`Error reading file: ${err.message}`);
@@ -84,13 +83,14 @@ const hookOpenCamara = () => {
     ws.onopen = async () => {
       console.log("WebSocket connection opened.");
       try {
-        const image64 = await readFileAsBase64('file://' + imageSources.path);
-        console.log(imageSources);
+        const image64 = await readFileAsBase64(imageSources.path);
         console.log(image64);
         const payload = {
           models: {
             face: {
-                facs:{}
+              facs: {},
+              min_face_size: 30,  // Adjust this value as needed
+              prob_threshold: 0.9  // Adjust this value as needed
             }
           },
           data: image64
