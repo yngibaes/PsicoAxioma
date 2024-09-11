@@ -71,7 +71,7 @@ const hookDataUser = () => {
         assets: [
           {
             uri: image.path,
-            fileName: image.filename,
+            fileName: image.filename || "userPhoto.jpg",
             type: image.mime,
           },
         ],
@@ -115,13 +115,20 @@ const hookDataUser = () => {
 
         // Actualizar el perfil del usuario con la nueva foto
         if (auth.currentUser) {
-          await updateProfile(auth.currentUser, {
-            photoURL: downloadURL,
-          });
-          console.log("Foto de perfil actualizada");
+          try {
+            // Update the user's profile with the new photo URL
+            await updateProfile(auth.currentUser, {
+              photoURL: downloadURL,
+            });
+            console.log("Foto de perfil actualizada");
 
-          // Recargar la aplicación
-          DevSettings.reload();
+            // Recargar la aplicación
+            DevSettings.reload();
+          } catch (error) {
+            console.error("Error al actualizar la foto de perfil:", error);
+          }
+        } else {
+          console.error("No hay un usuario autenticado.");
         }
       } catch (error) {
         console.error("Error al subir la imagen:", error);

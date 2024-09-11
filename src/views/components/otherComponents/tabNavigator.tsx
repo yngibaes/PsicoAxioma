@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../assets/material-theme.json";
+import colorTheme from '../../assets/color-theme.json';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const routeName = "Home";
@@ -42,7 +42,7 @@ const getTabBarStyle = (routeName: string): ViewStyle => {
     };
   }
   return {
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.secondary,
+    backgroundColor: colorTheme.PsicoAxiomaColors.containerResult,
     borderRadius: 20,
     display: "flex",
     marginHorizontal: wp("2%"),
