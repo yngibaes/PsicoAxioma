@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundPrincipal,
     flex: 1, // Asegura que el contenedor use todo el espacio disponible
   },
 });

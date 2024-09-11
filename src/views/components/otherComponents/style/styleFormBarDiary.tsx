@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
     height: hp("100%"),
   },
   date: {
-    color: materialTheme.schemes.darkmediumcontrast.date,
+    color: colorTheme.PsicoAxiomaColors.date,
     fontSize: wp("2.2%"),
     fontWeight: "bold",
     marginBottom: hp("0.5%"),
     textAlign: "left",
   },
   error: {
-    color: materialTheme.schemes.darkmediumcontrast.errorContainer,
+    color: colorTheme.PsicoAxiomaColors.error1,
     fontSize: wp("3%"),
   },
   flexBox: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   goback: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
+    backgroundColor: colorTheme.PsicoAxiomaColors.containerResult,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
     height: hp("5%"),
@@ -37,22 +37,22 @@ const styles = StyleSheet.create({
     width: wp("8.8%"),
   },
   input: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     justifyContent: "center",
     marginLeft: wp("1%"),
     width: wp("65%"),
   },
   inputContent: {
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.CardDiary,
+    backgroundColor: colorTheme.PsicoAxiomaColors.cardDiary,
     borderRadius: 20,
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     marginLeft: wp("5%"),
     padding: wp("3%"),
     width: wp("90%"),
   },
   label: {
     borderBottomWidth: 1,
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterMedium",
     fontSize: wp("4.5%"),
     fontWeight: "100",
@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   labelContent: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterMedium",
     fontSize: wp("5%"),
     fontWeight: "thin",
     textAlign: "left",
   },
   labelText: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterMedium",
     fontSize: wp("4.5%"),
     fontWeight: "100",

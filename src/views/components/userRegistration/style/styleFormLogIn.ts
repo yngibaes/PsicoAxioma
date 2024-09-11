@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 // Definición de los estilos
 const styles = StyleSheet.create({
@@ -25,19 +25,19 @@ const styles = StyleSheet.create({
     width: wp("59%"), // Ancho del contenedor
   },
   error: {
-    color: materialTheme.schemes.dark.errorContainer,
+    color: colorTheme.PsicoAxiomaColors.error1,
     fontSize: wp("2.6%"),
     fontWeight: "bold",
     paddingHorizontal: wp("1.5%"),
   },
   input: {
     // Estilos del input
-    backgroundColor: materialTheme.palettes.primary[100], // Color de fondo
-    borderColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, // Color del borde
+    backgroundColor: colorTheme.PsicoAxiomaColors.white, // Color de fondo
+    borderColor: colorTheme.PsicoAxiomaColors.registrationContainer, // Color del borde
     borderRadius: 15, // Radio del borde
     borderStyle: "solid", // Estilo del borde
     borderWidth: 1, // Ancho del border
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     elevation: 2, // Elevación
     flexDirection: "row", // Orden de los elementos
     marginTop: hp("0.5%"), // Margen superior
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   label: {
     // Estilos de la etiqueta
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontFamily: "InterMedium", // Tipo de fuente
     fontSize: wp("3.5%"), // Tamaño de la fuente
     fontWeight: "200", // Grosor del texto
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   labelForm: {
     // Estilos de la etiqueta del formulario
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontFamily: "InterMedium", // Tipo de fuente
     fontSize: wp("3.9%"), // Tamaño de la fuente
     fontWeight: "200", // Grosor del texto
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     height: hp("8%"), // Altura del input
   },
   text: {
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontFamily: "InterSemiBold",
     fontSize: wp("3.5%"),
     fontWeight: "600",

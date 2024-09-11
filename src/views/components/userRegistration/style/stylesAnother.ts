@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 // Definición de los estilos
 const styles = StyleSheet.create({
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: wp("90%"), // Ancho del contenedor, 90% del ancho de la pantalla
   },
   gobackChild: {
-    backgroundColor: materialTheme.palettes.secondary[20],
+    backgroundColor: colorTheme.PsicoAxiomaColors.buttonForm,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
   },
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: wp("90%"),
   },
   gobackText: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: hp("2.5%"),
     fontWeight: "400",
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   sizeTitle: {
     // Estilos del tamaño del título
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontSize: wp("10.5%"), // Tamaño de la fuente, 4.2% del ancho de la pantalla
     textAlign: "center", // Alineación del texto
     width: "100%", // Ancho del contenedor

@@ -3,12 +3,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.inverseSurface,
+    backgroundColor: colorTheme.PsicoAxiomaColors.buttonCamara,
     borderRadius: 50,
     height: hp("10%"),
     justifyContent: "center",
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   capturePhoto: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.inverseOnSurface,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundButtonCamara,
     bottom: 0,
     display: "flex",
     height: hp("15%"),
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundPrincipal,
     flex: 1, // Asegura que el contenedor use todo el espacio disponible
     height: hp("100%"),
     justifyContent: "center", // Centra verticalmente,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   containerResult: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundPrincipal,
     flex: 1,
     flexDirection: "column",
     height: hp("100%"),
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   parentUpdate: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.background,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundPrincipal,
     flex: 1,
     flexDirection: "column", //	Orden de los elementos
     height: hp("100%"),
@@ -60,19 +60,19 @@ const styles = StyleSheet.create({
   },
   resultsContainer: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
+    backgroundColor: colorTheme.PsicoAxiomaColors.containerResult,
     borderRadius: wp("2%"),
     height: hp("20%"),
     marginTop: hp("1.5%"),
     width: wp("90%"),
   },
   text: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("4.2%"),
   },
   textResult: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("4%"),
     fontWeight: "200",

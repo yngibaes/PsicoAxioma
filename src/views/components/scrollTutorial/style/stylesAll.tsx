@@ -3,12 +3,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: materialTheme.palettes.tertiary[100],
+    backgroundColor: colorTheme.PsicoAxiomaColors.white,
     borderRadius: 100,
     bottom: 68,
     height: hp("8%"),
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   dot: {
-    backgroundColor: materialTheme.palettes.primary[0],
+    backgroundColor: colorTheme.PsicoAxiomaColors.black,
     borderRadius: 5,
     bottom: -10,
     height: hp("1.2%"),
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   textButton: {
-    color: materialTheme.palettes.tertiary[100],
+    color: colorTheme.PsicoAxiomaColors.white,
     fontSize: wp("6%"),
     position: "absolute",
   },

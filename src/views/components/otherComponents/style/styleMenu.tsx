@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   hello: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     width: wp("100%"),
   },
   textParent: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontSize: wp("4%"),
     height: hp("5.5%"),
     marginLeft: wp("2%"),

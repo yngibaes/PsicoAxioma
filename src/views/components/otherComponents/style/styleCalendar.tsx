@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   border: {
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     width: wp("90%"),
   },
   section: {
-    backgroundColor: materialTheme.schemes.light.background,
-    color: materialTheme.schemes.light.error,
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundCalendar,
+    color: colorTheme.PsicoAxiomaColors.error1,
     textTransform: "capitalize",
   },
 });

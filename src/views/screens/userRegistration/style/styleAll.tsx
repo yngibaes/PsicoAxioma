@@ -3,13 +3,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
 import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   backgroundForm: {
     alignItems: "center",
-    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     height: hp("100%"),
@@ -28,14 +27,14 @@ const styles = StyleSheet.create({
   },
   credit: {
     bottom: 12,
-    color: materialTheme.palettes.primary[0], //Black
+    color: colorTheme.PsicoAxiomaColors.black,
     fontSize: 14,
     position: "absolute",
   },
   divForm: {
     alignItems: "center",
     alignSelf: "stretch",
-    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     height: hp("70%"),
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     width: wp("100%"),
   },
   ellipseForm: {
-    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration, //Background color
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration,
     borderRadius: 100,
     height: hp("23%"),
     padding: 15,
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
   },
   parentForget: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
+    backgroundColor: colorTheme.PsicoAxiomaColors.registrationContainer,
     flex: 1,
     flexDirection: "column", //	Orden de los elementos
     height: hp("100%"),
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
   },
   parentLogIn: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
+    backgroundColor: colorTheme.PsicoAxiomaColors.registrationContainer,
     flex: 1,
     flexDirection: "column",
     height: hp("100%"),
@@ -80,18 +79,17 @@ const styles = StyleSheet.create({
   },
   parentSignUp: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, //"secondaryContainer": "#B5D0CE",
+    backgroundColor: colorTheme.PsicoAxiomaColors.registrationContainer,
     flex: 1,
     flexDirection: "column", //	Orden de los elementos
     height: hp("100%"),
     overflow: "hidden",
     paddingTop: wp("1%"),
     width: wp("100%"),
-    //justifyContent: 'space-evenly', // Alineación de los elementos
   },
   parentWelcome: {
     alignItems: "center",
-    backgroundColor: materialTheme.palettes.tertiary[70], //Background color
+    backgroundColor: colorTheme.PsicoAxiomaColors.backgroundRegistration,
     flex: 1,
     flexDirection: "column",
     height: hp("100%"),

@@ -3,12 +3,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   child: {
     alignSelf: "center",
-    backgroundColor: materialTheme.schemes.dark.outline,
+    backgroundColor: colorTheme.PsicoAxiomaColors.parentStatistics,
     borderRadius: 10,
     marginTop: hp("3%"),
     width: wp("95%"),
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: wp('2.5%'),
   },
   labelLine: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("2%"),
     fontWeight: "200",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     zIndex: 10
   },
   score: {
-    backgroundColor: materialTheme.palettes.tertiary[80],
+    backgroundColor: colorTheme.PsicoAxiomaColors.textStatistics,
     borderRadius: 10,
     fontFamily: "InterBold",
     fontSize: wp("2%"),
@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     padding: wp("1%"),
   },
   textLabel: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontWeight: "bold",
   },
   textNumber: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("2%"),
     fontWeight: "200",
     textAlign: "center",
   },
   textTitle: {
-    color: materialTheme.palettes.primary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("3.5%"),
     fontWeight: "200",

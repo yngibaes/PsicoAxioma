@@ -1,5 +1,26 @@
 {
     "PsicoAxiomaColors": {
-        "backgroundRegistration": "#9EACC2"
+        "backgroundRegistration": "#9EACC2",
+        "registrationContainer": "#B5D0CE",
+        "backgroundPrincipal": "#DDD6D2",
+        "containerResult": "#B6CCEC",
+        "buttonCamara": "#DDE4E3",
+        "backgroundButtonCamara": "#252B2B94",
+        "formTextSignUp":"#003736",
+        "iconPhotoProfile": "#7B9694",
+        "card": "#CCBFB6",
+        "date": "#A1A1A1",
+        "cardDiary": "#95B9E760",
+        "borderColorIconProfile": "#AFAFAF",
+        "buttonForm": "#233333",
+        "error1": "#C50713",
+        "backgroundCalendar": "#F4FBF9",
+        "errorContainer": "#CB3B30",
+        "error": "#BA1A1A",
+        "parentStatistics": "#CACACA",
+        "textStatistics": "#B9C8DE",
+        "textDiaryDescription": "#2F3636",
+        "black": "#000000",
+        "white": "#FFFFFF",
     }
 }

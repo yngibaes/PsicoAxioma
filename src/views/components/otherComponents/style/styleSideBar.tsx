@@ -3,18 +3,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   buttonLogOut: {
-    borderTopColor: materialTheme.schemes.dark.errorContainer,
+    borderTopColor: colorTheme.PsicoAxiomaColors.error1,
     borderTopWidth: 2,
     height: hp("6.5%"),
     paddingVertical: wp("1%"),
   },
   icon: {
     alignItems: "center",
-    borderColor: materialTheme.schemes.darkmediumcontrast.background,
+    borderColor: colorTheme.PsicoAxiomaColors.backgroundPrincipal,
     borderRadius: 60,
     borderWidth: 3,
     height: hp("16%"),
@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
     marginTop: hp("2%"),
   },
   iconContainer: {
-    backgroundColor:
-      materialTheme.schemes.darkmediumcontrast.secondaryContainer,
+    backgroundColor: colorTheme.PsicoAxiomaColors.iconPhotoProfile,
     borderRadius: 20,
     height: hp("26.5%"), // La mitad de la altura del contenedor
     marginHorizontal: wp("1%"),
@@ -45,12 +44,12 @@ const styles = StyleSheet.create({
     /* width: wp('68.1%'), // Ancho total del contenedor */
   },
   spaces: {
-    backgroundColor: materialTheme.palettes.secondary[100],
+    backgroundColor: colorTheme.PsicoAxiomaColors.white,
     flex: 1,
     padding: wp("1%"),
   },
   text: {
-    color: materialTheme.palettes.secondary[100],
+    color: colorTheme.PsicoAxiomaColors.white,
     fontFamily: "InterBold",
     marginLeft: wp("1%"),
     textAlign: "center",
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: hp("1%"),
   },
   textLogOut: {
-    color: materialTheme.schemes.dark.errorContainer,
+    color: colorTheme.PsicoAxiomaColors.error1,
     fontFamily: "InterBold",
     fontSize: wp("4%"),
     marginLeft: wp("2%"),

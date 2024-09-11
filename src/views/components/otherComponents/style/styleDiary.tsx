@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   childText: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   parentDiary: {
     alignItems: "center",
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.tertiary,
+    backgroundColor: colorTheme.PsicoAxiomaColors.containerResult,
     borderRadius: 30,
     justifyContent: "center",
     marginBottom: hp("2%"),
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   text: {
     alignItems: "center",
-    color: materialTheme.palettes.tertiary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("9%"),
     fontWeight: "200",

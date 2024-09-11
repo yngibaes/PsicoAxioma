@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 const styles = StyleSheet.create({
   cardImage: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     width: wp("100%"),
   },
   cardInfo: {
-    backgroundColor: materialTheme.schemes.darkmediumcontrast.card,
+    backgroundColor: colorTheme.PsicoAxiomaColors.card,
     borderRadius: 8,
     elevation: 1,
     margin: wp("3%"),
@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   },
   cardText: {
-    color: materialTheme.palettes.secondary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontSize: wp("3.5%"),
     marginLeft: wp("1%"),
     marginTop: hp("1%"),
   },
   cardTitle: {
-    color: materialTheme.palettes.secondary[0],
+    color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
     fontSize: wp("6.5%"),
     fontWeight: "200",

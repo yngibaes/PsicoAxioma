@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from "../../../assets/color-theme.json";
 
 // Definición de los estilos
 const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     width: "100%", // Ancho del contenedor
   },
   error: {
-    color: materialTheme.schemes.dark.errorContainer,
+    color: colorTheme.PsicoAxiomaColors.error1,
     fontSize: wp("2.6%"),
     fontWeight: "bold",
     paddingHorizontal: wp("1.5%"),
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   optionsText: {
     // Estilos del texto de las opciones
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontFamily: "InterBold", // Tipo de fuente
     fontSize: hp("2.25%"), // Tamaño de la fuente
     fontWeight: "600", // Grosor del texto
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   parentButton: {
     // Estilos del contenedor del botón de inicio de sesión
     alignItems: "center", // Alineación de los elementos
-    backgroundColor: materialTheme.palettes.secondary[20], // Color de fondo del botón
+    backgroundColor: colorTheme.PsicoAxiomaColors.buttonForm, // Color de fondo del botón
     borderRadius: 10, // Radio de las esquinas del botón
     height: hp("9.5%"), // Altura del botón
     justifyContent: "center", // Alineación de los elementos
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   sizeText: {
     // Estilos del tamaño del texto
-    color: materialTheme.palettes.primary[100], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.white, // Color del texto
     fontFamily: "InterSemiBold", // Tipo de fuente
     fontWeight: "600", // Grosor del texto
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   title: {
     // Estilos del título
-    color: materialTheme.palettes.primary[100], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.white, // Color del texto
     fontFamily: "InterBold", // Tipo de fuente
     fontWeight: "300", // Grosor del texto
   },

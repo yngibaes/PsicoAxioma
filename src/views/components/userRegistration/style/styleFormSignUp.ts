@@ -3,18 +3,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import materialTheme from "../../../assets/material-theme.json";
+import colorTheme from '../../../assets/color-theme.json';
 
 // Definición de los estilos
 const styles = StyleSheet.create({
   Input: {
     // Estilos del input
-    backgroundColor: materialTheme.palettes.primary[100], // Color de fondo
-    borderColor: materialTheme.schemes.darkhighcontrast.secondaryContainer, // Color del borde
+    backgroundColor: colorTheme.PsicoAxiomaColors.white, // Color de fondo
+    borderColor: colorTheme.PsicoAxiomaColors.registrationContainer, // Color del borde
     borderRadius: 15, // Radio del borde
     borderStyle: "solid", // Estilo del borde
     borderWidth: 1, // Ancho del border
-    color: materialTheme.palettes.secondary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     elevation: 2, // Elevación
     flexDirection: "row", // Orden de los elementos
     marginTop: hp("0.5%"), // Margen superior
@@ -51,14 +51,14 @@ const styles = StyleSheet.create({
     width: wp("59%"), // Ancho del contenedor
   },
   error: {
-    color: materialTheme.schemes.dark.errorContainer,
+    color: colorTheme.PsicoAxiomaColors.error1,
     fontSize: wp("2.6%"),
     fontWeight: "bold",
     paddingHorizontal: wp("1.5%"),
   },
   label: {
     // Estilos de la etiqueta
-    color: materialTheme.palettes.primary[0], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.black, // Color del texto
     fontFamily: "InterMedium", // Tipo de fuente
     fontSize: wp("3.5%"), // Tamaño de la fuente
     fontWeight: "200", // Grosor del texto
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   labelForm: {
     // Estilos de la etiqueta del formulario
-    color: materialTheme.palettes.primary[20], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.formTextSignUp, // Color del texto
     fontFamily: "InterMedium", // Tipo de fuente
     fontSize: wp("3.9%"), // Tamaño de la fuente
     fontWeight: "500", // Grosor del texto
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   parentButton: {
     // Estilos del contenedor del botón de inicio de sesión
     alignItems: "center",
-    backgroundColor: materialTheme.palettes.secondary[20],
+    backgroundColor: colorTheme.PsicoAxiomaColors.buttonForm,
     borderRadius: 10, // Radio de las esquinas del botón
     height: hp("8%"),
     justifyContent: "center",
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   title: {
     // Estilos del título
-    color: materialTheme.palettes.primary[100], // Color del texto
+    color: colorTheme.PsicoAxiomaColors.white, // Color del texto
     fontFamily: "InterBold",
     fontSize: wp("6.6%"),
     fontWeight: "300", // Grosor del texto
