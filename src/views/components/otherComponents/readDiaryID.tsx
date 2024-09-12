@@ -11,6 +11,7 @@ import { RootStackParamList } from "../../../controller/hooks/type/type";
 import hookReadDiaryID from "../../../controller/hooks/userPrincipal/hookReadDiaryID";
 import styles from "./style/styleFormBarDiary";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import hookDiaryInfo from "../../../controller/hooks/userPrincipal/hookDiaryInfo";
 
 type ReadDiaryIDScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -25,6 +26,7 @@ const readDiaryID: React.FC = () => {
   const route = useRoute<ReadDiaryIDScreenRouteProp>();
   const { diaryID } = route.params;
   const { data, loading, error, DiaryScreen } = hookReadDiaryID(diaryID);
+  const { formatDate } = hookDiaryInfo();
 
   const renderLoading = () => (
     <ActivityIndicator size="large" color={activityIndicatorColor} />
@@ -52,8 +54,9 @@ const readDiaryID: React.FC = () => {
             <View style={styles.input}>
               <Text style={styles.labelText}>
                 {data[0].diaryTitle}{" "}
-                <Text style={styles.date}>{data[0].diaryDate}</Text>
+                
               </Text>
+              <Text style={styles.date}>{formatDate(data[0].diaryDate)}</Text>
             </View>
           </View>
         </View>

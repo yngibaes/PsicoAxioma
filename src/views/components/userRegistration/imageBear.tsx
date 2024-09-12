@@ -26,7 +26,7 @@ const ImageLogIn = (props: propsImage) => {
           },
         ]}
         resizeMode="contain"
-        source={require("../../assets/img/userRegistration/osito.png")}
+        source={require("../../assets/img/userRegistration/Axios.png")}
       />
     </View>
   );

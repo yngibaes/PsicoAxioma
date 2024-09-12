@@ -51,8 +51,6 @@ const hookDataUser = () => {
     fetchData();
   }, [userEmail]);
 
-  const storage = getStorage();
-
   const cropImage = async (uri: string) => {
     try {
       const image = await ImagePicker.openCropper({
@@ -71,7 +69,7 @@ const hookDataUser = () => {
         assets: [
           {
             uri: image.path,
-            fileName: image.filename || "userPhoto.jpg",
+            fileName: image.filename,
             type: image.mime,
           },
         ],
@@ -99,22 +97,35 @@ const hookDataUser = () => {
         const croppedAsset = croppedResponse.assets[0];
         const croppedUri = croppedAsset.uri;
 
+        if (!croppedUri) {
+          console.error("URI recortada no existe");
+          return;
+        }
+
         // Obtener el blob de la imagen recortada
         const fetchResponse = await fetch(croppedUri);
+        console.log("Imagen recortada:", croppedUri);
+
         const blob = await fetchResponse.blob();
+        console.log("Blob de la imagen:", blob);
 
         // Crear una referencia en Firebase Storage
-        const storageRef = ref(storage, `userPhoto/${croppedAsset.fileName}`);
-        // Subir el blob
-        await uploadBytes(storageRef, blob);
-        console.log("Se ha subido la imagen");
+        const storage = getStorage();
+        const fileName = croppedAsset.fileName || `userPhoto_${Date.now()}.jpg`;
+        const storageRef = ref(storage, `userPhoto/${fileName}`);
+        console.log("Referencia de almacenamiento:", storageRef);
 
-        // Obtener la URL de descarga de la imagen subida
-        const downloadURL = await getDownloadURL(storageRef);
-        console.log("URL de descarga:", downloadURL);
-
-        // Actualizar el perfil del usuario con la nueva foto
         if (auth.currentUser) {
+          console.log("Usuario autenticado:", auth.currentUser);
+          // Subir el blob
+          await uploadBytes(storageRef, blob);
+          console.log("Se ha subido la imagen correctamente");
+
+          // Obtener la URL de descarga de la imagen subida
+          const downloadURL = await getDownloadURL(storageRef);
+          console.log("URL de descarga:", downloadURL);
+
+          // Actualizar el perfil del usuario con la nueva foto
           try {
             // Update the user's profile with the new photo URL
             await updateProfile(auth.currentUser, {
@@ -133,6 +144,8 @@ const hookDataUser = () => {
       } catch (error) {
         console.error("Error al subir la imagen:", error);
       }
+    } else {
+      console.error("No se encontraron activos en la respuesta.");
     }
   };
 

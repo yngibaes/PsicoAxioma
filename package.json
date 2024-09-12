@@ -25,6 +25,7 @@
     "hume": "^0.8.8",
     "react": "18.2.0",
     "react-native": "^0.74.3",
+    "react-native-blob-util": "^0.19.11",
     "react-native-calendars": "^1.1306.0",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.18.0",

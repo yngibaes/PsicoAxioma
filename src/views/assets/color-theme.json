@@ -2,13 +2,13 @@
     "PsicoAxiomaColors": {
         "backgroundRegistration": "#9EACC2",
         "registrationContainer": "#B5D0CE",
-        "backgroundPrincipal": "#DDD6D2",
+        "backgroundPrincipal": "#FDF1E9", //FDF1E9
         "containerResult": "#B6CCEC",
         "buttonCamara": "#DDE4E3",
         "backgroundButtonCamara": "#252B2B94",
         "formTextSignUp":"#003736",
         "iconPhotoProfile": "#7B9694",
-        "card": "#CCBFB6",
+        "card": "#e6d5ce",
         "date": "#A1A1A1",
         "cardDiary": "#95B9E760",
         "borderColorIconProfile": "#AFAFAF",

@@ -42,7 +42,7 @@ const getTabBarStyle = (routeName: string): ViewStyle => {
     };
   }
   return {
-    backgroundColor: colorTheme.PsicoAxiomaColors.containerResult,
+    backgroundColor: colorTheme.PsicoAxiomaColors.registrationContainer,
     borderRadius: 20,
     display: "flex",
     marginHorizontal: wp("2%"),

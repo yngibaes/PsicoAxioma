@@ -43,11 +43,17 @@ const hookDiaryInfo = () => {
 
   // Función para formatear la fecha
   const formatDate = (date: any) => {
-    return new Date(date).toLocaleDateString("es-ES", {
+    const dateObj = new Date(date);
+    const formattedDate = dateObj.toLocaleDateString("es-ES", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
+    const formattedTime = dateObj.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return `${formattedDate} - ${formattedTime}`;
   };
 
   return {

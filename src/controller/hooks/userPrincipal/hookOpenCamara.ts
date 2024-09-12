@@ -9,7 +9,7 @@ import {
   useCameraPermission,
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
-import RNFS from 'react-native-fs';
+import RNBlobUtil from 'react-native-blob-util';
 
 const hookOpenCamara = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -71,35 +71,27 @@ const hookOpenCamara = () => {
     const apiKey = "ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU";
     const ws = new WebSocket(`wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`);
 
-    const readFileAsBase64 = async (filePath: string): Promise<string> => {
-      try {
-        const data = await RNFS.readFile(filePath, 'base64');
-        return data;
-      } catch (err) {
-        throw new Error(`Error reading file: ${err.message}`);
-      }
-    };
-
     ws.onopen = async () => {
-      console.log("WebSocket connection opened.");
-      try {
-        const image64 = await readFileAsBase64(imageSources.path);
-        console.log(image64);
+      // img local
+      const imagePath = RNBlobUtil.fs.dirs.DocumentDir + imageSources.path;
+      // encode y mandar 
+      const sendImage = (imagePath: any) => {
+        RNBlobUtil.fs.readFile(imagePath, 'base64')
+          .then(image64 => {
         const payload = {
           models: {
             face: {
-              facs: {},
-              min_face_size: 30,  // Adjust this value as needed
-              prob_threshold: 0.9  // Adjust this value as needed
+          facs: {}
             }
           },
           data: image64
         };
         ws.send(JSON.stringify(payload));
+          })
+          .catch(err => console.log('Err encoding to Base64:', err));
+      };
 
-      } catch (error) {
-        console.error(error);
-      }
+      sendImage(imagePath);
     };
 
     ws.onmessage = (event) => {

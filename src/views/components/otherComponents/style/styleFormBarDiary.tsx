@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     fontFamily: "InterMedium",
     fontSize: wp("4.5%"),
     fontWeight: "100",
-    height: hp("5%"),
     marginTop: hp("1%"),
     textAlign: "left",
   },
