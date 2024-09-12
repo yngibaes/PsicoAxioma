@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: hp("0.5%"), // Margen superior
     overflow: "hidden", //Ocultar elementos que sobresalgan
-    width: wp("32%"), // Ancho del botón
+    width: wp("42%"), // Ancho del botón
   },
   parentForm: {
     alignItems: "center",

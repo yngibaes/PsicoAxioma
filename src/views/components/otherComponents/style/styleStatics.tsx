@@ -13,15 +13,30 @@ const styles = StyleSheet.create({
     marginTop: hp("3%"),
     width: wp("95%"),
   },
+  childScore: {
+    alignItems: "center",
+    flexDirection: "row",
+    width: wp("33%"), // Ajusta el ancho para que ocupe un tercio del contenedor
+  },
+  childScores:{
+    alignSelf: "center",
+    backgroundColor: colorTheme.PsicoAxiomaColors.parentStatistics,
+    borderRadius: 10,
+    flexDirection: "row", // Asegura que los elementos hijos se alineen en fila
+    flexWrap: "wrap", // Permite que los elementos hijos se envuelvan a la siguiente línea
+    justifyContent: "center",
+    marginTop: hp("3%"),
+    width: wp("93%"),
+  },
   container: {
     marginBottom: hp("4%"),
     width: wp("100%"),
   },
-  dot:{
+  dot: {
     borderRadius: 5,
-    height: wp('2.5%'),
-    marginRight: wp('1%'),
-    width: wp('2.5%'),
+    height: wp("2.5%"),
+    marginRight: wp("1%"),
+    width: wp("2.5%"),
   },
   labelLine: {
     color: colorTheme.PsicoAxiomaColors.black,
@@ -39,13 +54,31 @@ const styles = StyleSheet.create({
     padding: wp("1%"),
     width: wp("25%"),
   },
+  maxScoreView: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   parentLine: {
     alignItems: "center",
     flex: 1,
     height: hp("40%"),
     justifyContent: "center",
     marginTop: hp("1%"),
-    zIndex: 10
+    zIndex: 10,
+  },
+  parentLinePie: {
+    alignItems: "center",
+    flex: 1,
+    height: hp("50%"),
+    justifyContent: "center",
+    marginTop: hp("1%"),
+    zIndex: 10,
+  },
+  parentScore:{
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: hp("1%"),
   },
   score: {
     backgroundColor: colorTheme.PsicoAxiomaColors.textStatistics,
@@ -65,6 +98,17 @@ const styles = StyleSheet.create({
     fontSize: wp("2%"),
     fontWeight: "200",
     textAlign: "center",
+  },
+  textScore: {
+    color: colorTheme.PsicoAxiomaColors.black,
+    fontFamily: "InterBold",
+    fontSize: wp("5.5%"),
+  },
+  textScoreLabel: {
+    color: colorTheme.PsicoAxiomaColors.black,
+    fontFamily: "InterBold",
+    fontSize: wp("3%"),
+    textDecorationLine: "underline",
   },
   textTitle: {
     color: colorTheme.PsicoAxiomaColors.black,

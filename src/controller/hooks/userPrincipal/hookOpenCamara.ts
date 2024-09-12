@@ -9,7 +9,7 @@ import {
   useCameraPermission,
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
-import RNBlobUtil from 'react-native-blob-util';
+import RNFetchBlob from 'react-native-blob-util';
 
 const hookOpenCamara = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -71,67 +71,81 @@ const hookOpenCamara = () => {
     const apiKey = "ihQLg5EVtVEJEK1SGjqG40EAknf8mwM2qEreZNBxEd954lbU";
     const ws = new WebSocket(`wss://api.hume.ai/v0/stream/models?api_key=${apiKey}`);
 
-    ws.onopen = async () => {
-      // img local
-      const imagePath = RNBlobUtil.fs.dirs.DocumentDir + imageSources.path;
-      // encode y mandar 
-      const sendImage = (imagePath: any) => {
-        RNBlobUtil.fs.readFile(imagePath, 'base64')
-          .then(image64 => {
-        const payload = {
-          models: {
-            face: {
-          facs: {}
-            }
-          },
-          data: image64
-        };
-        ws.send(JSON.stringify(payload));
-          })
-          .catch(err => console.log('Err encoding to Base64:', err));
+    const imgToBase64 = async (imagePath: any) => {
+      try {
+        const base64Data = await RNFetchBlob.fs.readFile(imagePath, 'base64');
+        console.log('encoded base64:', base64Data);
+        return base64Data;
+      } catch (error) {
+        console.error('err encoding:', error);
+        return null;
+      }
+    };
+
+    const sendWebSocket = async (imageSources: any) => {
+      const base64Image = await imgToBase64(imageSources.path);
+
+      if (!base64Image) {
+        console.error('no se convirtió a base64');
+      }
+
+      const payload = {
+        models: {
+          face: {
+            facs: {}
+          }
+        },
+        data: base64Image
       };
 
-      sendImage(imagePath);
+      ws.onopen = async () => {
+        console.log("WebSocket connection opened.");
+        ws.send(JSON.stringify(payload));
+      };
+
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        const detectedEmotions = data.face.predictions[0].emotions;
+
+        const cVaginia = [
+          'Admiración', 'Adoración', 'Apreciación estética', 'Diversión', 'Enojo', 'Ansiedad',
+          'Asombro', 'Incomodidad', 'Aburrimiento', 'Calma', 'Concentración', 'Contemplación',
+          'Confusión', 'Desprecio', 'Alegría', 'Antojo', 'Determinación', 'Decepción',
+          'Repulsión', 'Angustia', 'Duda', 'Éxtasis', 'Vergüenza', 'Dolor empático',
+          'Fascinación', 'Envidia', 'Emoción', 'Temor', 'Culpa', 'Horror', 'Interés',
+          'Regocijo', 'Amor', 'Nostalgia', 'Dolor', 'Orgullo', 'Plenitud', 'Alivio',
+          'Romance', 'Tristeza', 'Satisfacción', 'Deseo', 'Vergüenza', 'Sorpresa (negativa)',
+          'Sorpresa (positiva)', 'Simpatía', 'Cansancio', 'Triunfo'
+        ];
+
+        const emociones = detectedEmotions.map((item: any, index: any) => ({
+          name: cVaginia[index],
+          score: Math.round(item.score * 100)
+        }));
+
+        emociones.sort((a: any, b: any) => b.score - a.score);
+        const top = emociones.slice(0, 6);
+        console.log(`Hoy te sientes con ${top[0].name} (${top[0].score})\n`);
+
+        for (const i of top)
+          console.log(i.name + ': ' + i.score);
+
+        ws.close();
+      };
+
+      ws.onerror = (error) => {
+        console.error("WebSocket error:", error);
+      };
+
+      ws.onclose = () => {
+        console.log("WebSocket conn closed.");
+      };
+
     };
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log(data);
-      const detectedEmotions = data.face.predictions[0].emotions;
+    sendWebSocket(imageSources);
 
-      const cVaginia = [
-        'Admiración', 'Adoración', 'Apreciación estética', 'Diversión', 'Enojo', 'Ansiedad',
-        'Asombro', 'Incomodidad', 'Aburrimiento', 'Calma', 'Concentración', 'Contemplación',
-        'Confusión', 'Desprecio', 'Alegría', 'Antojo', 'Determinación', 'Decepción',
-        'Repulsión', 'Angustia', 'Duda', 'Éxtasis', 'Vergüenza', 'Dolor empático',
-        'Fascinación', 'Envidia', 'Emoción', 'Temor', 'Culpa', 'Horror', 'Interés',
-        'Regocijo', 'Amor', 'Nostalgia', 'Dolor', 'Orgullo', 'Plenitud', 'Alivio',
-        'Romance', 'Tristeza', 'Satisfacción', 'Deseo', 'Vergüenza', 'Sorpresa (negativa)',
-        'Sorpresa (positiva)', 'Simpatía', 'Cansancio', 'Triunfo'
-      ];
-
-      const emociones = detectedEmotions.map((item: any, index: any) => ({
-        name: cVaginia[index],
-        score: Math.round(item.score * 100)
-      }));
-
-      emociones.sort((a: any, b: any) => b.score - a.score);
-      const top = emociones.slice(0, 6);
-      console.log(`Hoy te sientes con ${top[0].name} (${top[0].score})\n`);
-
-      for (const i of top)
-        console.log(i.name + ': ' + i.score);
-
-      ws.close();
-    };
-
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-
-    ws.onclose = () => {
-      console.log("WebSocket conn closed.");
-    };
   };
 
 

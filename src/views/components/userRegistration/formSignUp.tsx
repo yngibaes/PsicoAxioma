@@ -14,7 +14,7 @@ const placeholderPassword = "Escriba su contraseña";
 const labelConfirmPassword = "Repetir Contraseña";
 const placeholderConfirmPassword = "Repita su contraseña";
 const placeholderColor = "#828282";
-const buttonText = "Enviar";
+const buttonText = "Registrarse";
 
 // Definición del componente FormSignUp
 const FormSignUp = () => {

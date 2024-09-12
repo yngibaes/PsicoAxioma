@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ActivityIndicator, Alert } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import hookDataUser from "../../../controller/hooks/userPrincipal/hookDataUser";
 import url from "../../../controller/hooks/config/config";
 import { LineChart, PieChart } from "react-native-gifted-charts";
@@ -97,7 +97,7 @@ const Statistics = () => {
     (prev, current) => (prev.value > current.value ? prev : current),
     { value: 0 },
   );
-  console.log(maxScoreItem);
+  //console.log(maxScoreItem);
 
   return (
     <View style={styles.container}>
@@ -157,55 +157,48 @@ const Statistics = () => {
               <ActivityIndicator size="small" color="#213751" />
             )}
           </View>
-          {/* <View style={styles.child}>
+          <View style={styles.child}>
             <Text style={styles.textTitle}>
               Emociones detectadas del scaneo:
             </Text>
             {emotions.length > 0 ? (
-              <View style={styles.parentLine}>
+              <View style={styles.parentLinePie}>
                 <PieChart
                   data={lineDataScanner}
                   donut
                   showValuesAsLabels
                   innerRadius={70}
-                  textSize={15}
-                  textColor="white
-                  "
-                  showText
+                  //textSize={15}
+                  //showText
                   textBackgroundRadius={26}
-                  onPress={(item: any) => Alert.alert(`Value: ${item.score}`)}
-                  onLabelPress={(item: any) => Alert.alert(item[0].score)}
+                  //onPress={(item: any) => Alert.alert(`Value: ${item.score}`)}
+                  //onLabelPress={(item: any) => Alert.alert(item[0].score)}
                   innerCircleColor={"#CACACA"}
                   centerLabelComponent={() => {
                     return (
                       <View
-                        style={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
+                        style={styles.maxScoreView}
                       >
-                        <Text style={{ fontSize: 14, color: "black" }}>
+                        <Text style={styles.textScore}>
                           {maxScoreItem.score}
                         </Text>
-                        <Text style={{ fontSize: 14, color: "black" }}>
+                        <Text style={styles.textScoreLabel}>
                           {maxScoreItem.label}
                         </Text>
                       </View>
                     );
                   }}
                 />
-                <View style={styles.child}>
+                <View style={styles.childScores}>
                   {lineDataScanner.slice(0, 7).map((item, index) => (
                     <View
                       key={index}
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        width: 120,
-                      }}
+                      style={styles.parentScore}
                     >
+                      <View style={styles.childScore}>
                       {renderDot(item.color)}
-                      <Text style={{ color: "black" }}>{item.label}: {item.score}</Text>
+                      <Text style={styles.textLabel}>{item.label}: <Text style={styles.textLabel}>{item.score}</Text></Text>
+                      </View>
                     </View>
                   ))}
                 </View>
@@ -213,7 +206,7 @@ const Statistics = () => {
             ) : (
               <ActivityIndicator size="small" color="#213751" />
             )}
-          </View> */}
+          </View>
         </>
       )}
     </View>
