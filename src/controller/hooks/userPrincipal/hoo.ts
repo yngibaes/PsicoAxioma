@@ -1,4 +1,4 @@
-import isEmpty from "lodash/isEmpty";
+/* import isEmpty from "lodash/isEmpty";
 import { MarkedDates } from "react-native-calendars/src/types";
 
 const today = new Date().toISOString().split("T")[0];
@@ -28,10 +28,6 @@ function getPastDate(numberOfDays: number) {
 }
 
 export const agendaItems = [
-  {
-    title: dates[0],
-    data: [{ hour: "12am", duration: "1h", title: "First Yoga" }],
-  },
   {
     title: dates[1],
     data: [
@@ -99,7 +95,10 @@ export const agendaItems = [
       { hour: "1pm", duration: "1h", title: "Ashtanga Yoga" },
       { hour: "2pm", duration: "1h", title: "Deep Stretches" },
       { hour: "3pm", duration: "1h", title: "Private Yoga" },
-    ],
+    ],  const renderItem = useCallback(({ item }: any) => {
+    return <AgentaItem item={item} />;
+  }, []);
+
   },
   {
     title: dates[12],
@@ -111,16 +110,19 @@ export const agendaItems = [
   },
 ];
 
-export function getMarkedDates() {
-  const marked: MarkedDates = {};
 
-  agendaItems.forEach(item => {
-    // NOTE: only mark dates with data
-    if (item.data && item.data.length > 0 && !isEmpty(item.data[0])) {
-      marked[item.title] = { marked: true };
-    } else {
-      marked[item.title] = { disabled: true };
-    }
-  });
-  return marked;
 }
+ */
+
+import { useEffect } from "react";
+
+
+
+const hookCalendar = () => {
+
+  useEffect(() => {
+
+  });
+};
+
+export default hookCalendar;

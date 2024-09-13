@@ -1,19 +1,26 @@
-import React, { useCallback } from "react";
+import React from "react";
 import {
   CalendarProvider,
   ExpandableCalendar,
   AgendaList,
 } from "react-native-calendars";
 import styles from "./style/styleCalendar";
-import { agendaItems } from "./deletebutnotyet/agendaItem";
-import AgentaItem from "./deletebutnotyet/AgentaItem";
-
-const ITEMS: any[] = agendaItems;
+import AgendaItem from "./deletebutnotyet/AgentaItem";
+import hooksCalendar from "../../../controller/hooks/userPrincipal/hookCalendars";
 
 const Calendary = () => {
-  const renderItem = useCallback(({ item }: any) => {
-    return <AgentaItem item={item} />;
-  }, []);
+  const { combinedResults } = hooksCalendar();
+
+  // Transformar combinedResults en el formato esperado por AgendaList
+  const ITEMS = combinedResults.length > 0 ? combinedResults.reduce((acc: any[], result: any) => {
+    const dateIndex = acc.findIndex((item) => item.title === result.date);
+    if (dateIndex >= 0) {
+      acc[dateIndex].data.push(result);
+    } else {
+      acc.push({ title: result.date, data: [result] });
+    }
+    return acc;
+  }, []) : [{ title: 'No Data', data: [] }];
 
   return (
     <CalendarProvider
@@ -27,7 +34,7 @@ const Calendary = () => {
       />
       <AgendaList
         sections={ITEMS}
-        renderItem={renderItem}
+        renderItem={({ item }) => <AgendaItem item={item} />}
         scrollToNextEvent
         sectionStyle={styles.section}
         dayFormat={"yyyy-MM-d"}

@@ -56,7 +56,7 @@ const hooksCalendar = () => {
     const scannerMarker = { key: 'scanner', color: '#233333', selectedDotColor: '#7B9694' };
 
     const combinedResults = [...resultDiary, ...resultScanner]; // Combina los resultados de diario y scanner
-    
+
     // Define el tipo de acc y usa las fechas formateadas
     const markedDates = combinedResults.reduce((acc: { [key: string]: { dots: { key: string, color: string, selectedDotColor: string }[] } }, { date, name }) => {
         if (!acc[date]) {
@@ -70,8 +70,25 @@ const hooksCalendar = () => {
         }
         return acc;
     }, {});
-    
-    return { resultDiary, markedDates }; // Devuelve el estado resultDates y markedDates
-};
 
-export default hooksCalendar;
+    console.log(combinedResults);
+
+    //Calendario Agenda
+
+    const markedDatesCalendar = combinedResults.reduce((acc: { [key: string]: { dots: { key: string, color: string, selectedDotColor: string }[] } }, { date, name }) => {
+        if (!acc[date]) {
+            acc[date] = { dots: [] };
+        }
+        const dotKeys = new Set(acc[date].dots.map(dot => dot.key));
+        if (name === 'Diario' && !dotKeys.has(diarioMarker.key)) {
+            acc[date].dots.push(diarioMarker);
+        } else if (name === 'Scanner' && !dotKeys.has(scannerMarker.key)) {
+            acc[date].dots.push(scannerMarker);
+        }
+        return acc;
+    }, {});
+
+        return { resultDiary, markedDates, markedDatesCalendar, combinedResults };
+    };
+
+    export default hooksCalendar;
