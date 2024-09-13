@@ -1,8 +1,11 @@
 import React from "react";
+import { View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+//Pantallas
 import Scroll from "./userRegistration/scrollTutorial";
 import WelcomeScreen from "./userRegistration/welcomeScreen";
 import LogInScreen from "./userRegistration/loginScreen";
@@ -17,7 +20,7 @@ import ProfileScreen from "./userAccount/profileScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-import { View, ActivityIndicator } from "react-native";
+//Hooks
 import useAuth from "../../controller/hooks/useAuth";
 import styles from "./userPrincipal/style/styleScreen";
 
@@ -27,6 +30,7 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
   const { loading, isLoggedIn } = useAuth();
 
+  //Mientras se carga la autenticación
   if (loading) {
     return (
       <View style={styles.container}>

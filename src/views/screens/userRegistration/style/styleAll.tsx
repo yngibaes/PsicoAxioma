@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   childForm: {
     alignItems: "center",
     height: hp("100%"),
-    overflow: "hidden",
+    overflow: "hidden", // Ocultar elementos que sobresalgan
     position: "absolute",
   },
   container: {
