@@ -102,7 +102,7 @@ const Statistics = () => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <ActivityIndicator size="large" color="#213751" />
+        <ActivityIndicator size="large" color="#479E9C" />
       ) : (
         <>
           <View style={styles.child}>
@@ -154,7 +154,7 @@ const Statistics = () => {
                 />
               </View>
             ) : (
-              <ActivityIndicator size="small" color="#213751" />
+              <ActivityIndicator size="small" color="#479E9C" />
             )}
           </View>
           <View style={styles.child}>
@@ -204,7 +204,7 @@ const Statistics = () => {
                 </View>
               </View>
             ) : (
-              <ActivityIndicator size="small" color="#213751" />
+              <ActivityIndicator size="small" color="#479E9C" />
             )}
           </View>
         </>

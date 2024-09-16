@@ -21,6 +21,7 @@ const hookDiaryInfo = () => {
   // Efecto para obtener la información
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`${url}/diary?userEmail=${userEmail}`);
         if (!response.ok) {
@@ -39,6 +40,16 @@ const hookDiaryInfo = () => {
       // Asegúrate de que el email esté disponible antes de hacer la consulta
       fetchData();
     }
+
+/*      // Polling every 30 seconds to check for changes
+     const interval = setInterval(() => {
+      fetchData();
+    }, 30000); // Change the interval as needed (30 seconds in this case)
+
+    return () => {
+      clearInterval(interval); // Clear the interval when the component unmounts
+    }; */
+
   }, [userEmail]);
 
   // Función para formatear la fecha

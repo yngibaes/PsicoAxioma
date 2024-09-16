@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Image,
-  ScrollView,
+  ScrollView
 } from "react-native";
 import { Camera } from "react-native-vision-camera";
 import hookOpenCamara from "../../../controller/hooks/userPrincipal/hookOpenCamara";
@@ -14,7 +14,6 @@ import styles from "./style/styleScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TopBar from "../../components/userRegistration/topBar";
 
-// Pantalla de la cámara
 const CameraScreen = () => {
   const {
     camera,
@@ -24,19 +23,17 @@ const CameraScreen = () => {
     capturePhoto,
     device,
     HomeScreen,
-    format,
+    format
   } = hookOpenCamara();
 
-  // Mientras se carga la cámara
   if (!hasPermission) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#213751" />
+        <ActivityIndicator size="large" color="#479E9C" />
       </View>
     );
   }
 
-  // Si no se encuentra el dispositivo
   if (!device) {
     return (
       <View style={styles.container}>
@@ -55,6 +52,7 @@ const CameraScreen = () => {
             device={device}
             format={format}
             isActive={showCamera}
+            
             photo={true}
           />
           <View style={styles.capturePhoto}>

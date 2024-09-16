@@ -3,6 +3,7 @@ import url from '../config/config';
 import hookDataUser from "../../../controller/hooks/userPrincipal/hookDataUser";
 
 const hooksCalendar = () => {
+    const [loading, setLoading] = useState(true);
     const { userEmail } = hookDataUser();
     const [resultDiary, setResultDiary] = useState<{ name: string, date: string }[]>([]);
     const [resultScanner, setResultScanner] = useState<{ name: string, date: string }[]>([]);
@@ -14,11 +15,24 @@ const hooksCalendar = () => {
                     `${url}/calendaryDiary?userEmail=${userEmail}`,
                 );
                 const result = await response.json();
+                console.log(result);
                 if (Array.isArray(result)) {
-                    const dates = result.map((entry: { diaryDate: string }) => ({
-                        name: `Diario`,
-                        date: new Date(entry.diaryDate).toISOString().split('T')[0], // Formatea la fecha a 'YYYY-MM-DD'
-                    }));
+                    const dates = result.map((entry: { diaryDate: string, resultDiary: string }) => {
+                        const date = new Date(entry.diaryDate);
+                        const formattedDate = date.toISOString().split('T')[0]; // Formatea la fecha a 'YYYY-MM-DD'
+
+
+                        // Extraer el primer elemento de resultDiary
+                        const resultDiaryArray = JSON.parse(entry.resultDiary);
+                        const firstResultDiary = resultDiaryArray[0];
+
+                        return {
+                            name: `Diario Emocional`, // Nombre del marcador
+                            nameEmotion: firstResultDiary.name, // Nombre de la emoción
+                            date: `${formattedDate}`, // Combina la fecha y la hora
+                            score: firstResultDiary.score, // Puntuación de la emoción
+                        };
+                    });
                     setResultDiary(dates);
                 } else {
                     console.error("Unexpected response format for diary data:", result);
@@ -34,11 +48,23 @@ const hooksCalendar = () => {
                     `${url}/calendaryScanner?userEmail=${userEmail}`,
                 );
                 const result = await response.json();
+                console.log(result);
                 if (Array.isArray(result)) {
-                    const dates = result.map((entry: { resultScannerDate: string }) => ({
-                        name: `Scanner`,
-                        date: new Date(entry.resultScannerDate).toISOString().split('T')[0], // Formatea la fecha a 'YYYY-MM-DD'
-                    }));
+                    const dates = result.map((entry: { resultScannerDate: string, resultScanner: string }) => {
+                        const date = new Date(entry.resultScannerDate);
+                        const formattedDate = date.toISOString().split('T')[0]; // Formatea la fecha a 'YYYY-MM-DD'
+
+                        // Extraer el primer elemento de resultDiary
+                        const resultDiaryArray = JSON.parse(entry.resultScanner);
+                        const firstResultDiary = resultDiaryArray[0];
+
+                        return {
+                            name: `Escáner Emocional`, // Nombre del marcador
+                            nameEmotion: firstResultDiary.name,
+                            date: `${formattedDate}`, // Combina la fecha y la hora
+                            score: firstResultDiary.score,
+                        };
+                    });
                     setResultScanner(dates);
                 } else {
                     console.error("Unexpected response format for scanner data:", result);
@@ -49,6 +75,7 @@ const hooksCalendar = () => {
         };
         fetchDataDiary();
         fetchDataScanner();
+        setLoading(false);
     }, [userEmail]);
 
     // Define los tipos de marcadores
@@ -63,15 +90,15 @@ const hooksCalendar = () => {
             acc[date] = { dots: [] };
         }
         const dotKeys = new Set(acc[date].dots.map(dot => dot.key));
-        if (name === 'Diario' && !dotKeys.has(diarioMarker.key)) {
+        if (name === 'Diario Emocional' && !dotKeys.has(diarioMarker.key)) {
             acc[date].dots.push(diarioMarker);
-        } else if (name === 'Scanner' && !dotKeys.has(scannerMarker.key)) {
+        } else if (name === 'Escáner Emocional' && !dotKeys.has(scannerMarker.key)) {
             acc[date].dots.push(scannerMarker);
         }
         return acc;
     }, {});
 
-    console.log(combinedResults);
+    //console.log(combinedResults);
 
     //Calendario Agenda
 
@@ -80,15 +107,15 @@ const hooksCalendar = () => {
             acc[date] = { dots: [] };
         }
         const dotKeys = new Set(acc[date].dots.map(dot => dot.key));
-        if (name === 'Diario' && !dotKeys.has(diarioMarker.key)) {
+        if (name === 'Diario Emocional' && !dotKeys.has(diarioMarker.key)) {
             acc[date].dots.push(diarioMarker);
-        } else if (name === 'Scanner' && !dotKeys.has(scannerMarker.key)) {
+        } else if (name === 'Escáner Emocional' && !dotKeys.has(scannerMarker.key)) {
             acc[date].dots.push(scannerMarker);
         }
         return acc;
     }, {});
 
-        return { resultDiary, markedDates, markedDatesCalendar, combinedResults };
-    };
+    return { resultDiary, markedDates, markedDatesCalendar, combinedResults, loading };
+};
 
-    export default hooksCalendar;
+export default hooksCalendar;

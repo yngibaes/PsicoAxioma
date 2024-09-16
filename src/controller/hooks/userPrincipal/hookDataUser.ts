@@ -133,8 +133,8 @@ const hookDataUser = () => {
             });
             console.log("Foto de perfil actualizada");
 
-            // Recargar la aplicación
-            DevSettings.reload();
+            //DevSettings.reload();
+            HomeScreen();
           } catch (error) {
             console.error("Error al actualizar la foto de perfil:", error);
           }
@@ -196,7 +196,7 @@ const hookDataUser = () => {
     await signOut(auth);
   };
 
-  const { UpdateEmailScreen } = UserNavigation();
+  const { UpdateEmailScreen, HomeScreen } = UserNavigation();
 
   return {
     displayName,

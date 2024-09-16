@@ -12,7 +12,7 @@ const hookCreateDiary = () => {
   const [diaryTitle, setdiaryTitle] = useState("");
   const { userEmail } = useAuth();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const { DiaryScreen } = UserNavigation();
+  const { HomeScreen, DiaryScreen } = UserNavigation();
   const diaryContentRef = useRef<TextInput>(null);
 
   // Limpiar el formulario
@@ -163,8 +163,8 @@ const hookCreateDiary = () => {
         if (response.status === 200) {
           Alert.alert("Enviado", "Diario enviado.");
           clearForm();
-          DiaryScreen();
-          DevSettings.reload();
+          //DevSettings.reload();
+          HomeScreen();
         }
       } catch (error) {
         console.error("Error al procesar el mensaje:", error);
