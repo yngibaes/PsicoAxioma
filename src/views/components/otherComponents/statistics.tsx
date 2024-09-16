@@ -157,7 +157,7 @@ const Statistics = () => {
               <ActivityIndicator size="small" color="#479E9C" />
             )}
           </View>
-          <View style={styles.child}>
+          {/* <View style={styles.child}>
             <Text style={styles.textTitle}>
               Emociones detectadas del scaneo:
             </Text>
@@ -206,7 +206,7 @@ const Statistics = () => {
             ) : (
               <ActivityIndicator size="small" color="#479E9C" />
             )}
-          </View>
+          </View> */}
         </>
       )}
     </View>
