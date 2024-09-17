@@ -133,7 +133,7 @@ const hookDataUser = () => {
             });
             console.log("Foto de perfil actualizada");
 
-            //DevSettings.reload();
+            DevSettings.reload();
             HomeScreen();
           } catch (error) {
             console.error("Error al actualizar la foto de perfil:", error);

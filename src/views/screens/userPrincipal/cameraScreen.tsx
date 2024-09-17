@@ -78,29 +78,8 @@ const CameraScreen = () => {
                   <View style={styles.resultsContainer}>
                     <Text
                       style={styles.titleResult}
-                    >{`Tus emociones son:`}</Text>
-                    <View style={styles.textContainer}>
-                      <Text style={styles.textResult}>
-                        {`1. Alegría:`}
-                        <Text style={styles.textScore}>{` 65%`}</Text>
-                      </Text>
-                      <Text style={styles.textResult}>
-                        {`2. Regocijo:`}
-                        <Text style={styles.textScore}>{` 20%`}</Text>
-                      </Text>
-                      <Text style={styles.textResult}>
-                        {`3. Éxtasis:`}
-                        <Text style={styles.textScore}>{` 15%`}</Text>
-                      </Text>
-                      <Text style={styles.textResult}>
-                        {`4. Alegría:`}
-                        <Text style={styles.textScore}>{` 65%`}</Text>
-                      </Text>
-                      <Text style={styles.textResult}>
-                        {`5. Regocijo:`}
-                        <Text style={styles.textScore}>{` 20%`}</Text>
-                      </Text>
-                    </View>
+                    >{`Datos no encontrados`}</Text>
+                    
                   </View>
                 </View>
               </View>

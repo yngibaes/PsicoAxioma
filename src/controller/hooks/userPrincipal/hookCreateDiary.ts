@@ -163,7 +163,7 @@ const hookCreateDiary = () => {
         if (response.status === 200) {
           Alert.alert("Enviado", "Diario enviado.");
           clearForm();
-          //DevSettings.reload();
+          DevSettings.reload();
           HomeScreen();
         }
       } catch (error) {

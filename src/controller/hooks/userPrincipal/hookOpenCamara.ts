@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Alert } from "react-native";
+import { HumeClient } from "hume";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Camera,
@@ -9,9 +10,8 @@ import {
   useCameraPermission,
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
-import RNFS from 'react-native-fs';
 
-const hookOpenCamara = () => {
+const hookOpenCamara = async () => {
   const { hasPermission, requestPermission } = useCameraPermission();
   const camera = useRef<Camera>(null);
   const [showCamera, setShowCamera] = useState(false);
@@ -45,14 +45,12 @@ const hookOpenCamara = () => {
     }, [])
   );
 
-
   const capturePhoto = async () => {
     if (camera.current !== null && device != null) {
       try {
         const photo = await camera.current?.takePhoto({});
         console.log(photo);
         setImageSource(photo);
-        await scannerResult(photo);
         setShowCamera(false);
       } catch (error) {
         console.error("Error al capturar la foto", error);
@@ -61,7 +59,50 @@ const hookOpenCamara = () => {
       console.error("La cámara no está lista o el dispositivo no está configurado");
     }
   };
+  return {
+    camera,
+    hasPermission,
+    showCamera,
+    imageSource,
+    capturePhoto,
+    device,
+    HomeScreen,
+    format
+  };
+};
 
+
+
+export default hookOpenCamara;
+
+  
+/*   const imgToBase64 = async (imagePath: string): Promise<string | null> => {
+    try {
+      var base64Data = await RNFS.readFile(imagePath, 'base64');
+      // Asegúrate de que el prefijo esté incluido
+      var base64Img = `data:image/jpeg;base64,${base64Data}`; // Cambia el prefijo si es necesario
+      //console.log(base64Img);
+      return base64Img
+    } catch (error) {
+      console.error('Error encoding to base64:', error);
+      return null;
+    }
+  };
+
+  if (imageSource?.path) {
+    imgToBase64(imageSource.path);
+  }
+
+  if (imageSource?.path) {
+    const client = new HumeClient({ apiKey: "V7VtoAQ0cAUQALDDjTZAWnqnUnM6mWvRINuB9bqxe7XQGA8I" });
+
+  await client.expressionMeasurement.batch.startInferenceJob({
+    urls: [imageSource.path],
+    notify: true
+  }); */
+  
+
+/* 
   const scannerResult = async (imageSources: PhotoFile) => {
 
     try {
@@ -70,9 +111,7 @@ const hookOpenCamara = () => {
       // Verifica que imageSource tenga una propiedad 'path'
       if (imageSources.path) {
         const file = {
-          uri: imageSources.path,
-          type: 'image/jpeg', // Ajusta el tipo MIME según el tipo de imagen
-          name: 'photo.jpg', // Ajusta el nombre del archivo si es necesario
+          url: imageSources.path,} // Ajusta el nombre del archivo si es necesario
         };
 
         formData.append('file', file as any); // TypeScript puede necesitar un "any" aquí
@@ -114,24 +153,9 @@ const hookOpenCamara = () => {
     } catch (error) {
       console.error("Error inesperado", error);
     }
-  };
+  }; */
 
-  return {
-    camera,
-    hasPermission,
-    showCamera,
-    imageSource,
-    capturePhoto,
-    device,
-    HomeScreen,
-    format
-  };
-};
-
-
-
-export default hookOpenCamara;
-
+  
 
 /* const scannerResult = async (imageSources: any) => {
   if (!imageSources || !imageSources.path) {
