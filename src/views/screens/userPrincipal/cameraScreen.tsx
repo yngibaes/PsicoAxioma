@@ -23,8 +23,12 @@ const CameraScreen = () => {
     capturePhoto,
     device,
     HomeScreen,
-    format
+    format,
+    imageSourceShow,
+    resultDiary
   } = hookOpenCamara();
+
+  const data = resultDiary ? JSON.parse(resultDiary) : [];
 
   if (!hasPermission) {
     return (
@@ -72,14 +76,25 @@ const CameraScreen = () => {
                 <TopBar goBack={HomeScreen} text="Resultados" />
                 <View style={styles.containerParent}>
                   <Image
-                    source={{ uri: `file://${imageSource?.path}` }}
+                    source={{ uri: `file://${imageSourceShow?.path}` }}
                     style={styles.photo}
                   />
                   <View style={styles.resultsContainer}>
-                    <Text
+                  <Text
                       style={styles.titleResult}
-                    >{`Datos no encontrados`}</Text>
-                    
+                    >{`Tus emociones son:`}</Text>
+                     <View style={styles.textContainer}>             
+                      {data.length > 0 ? (
+                        data.map((item:any, index:any) => (
+                          <Text key={index} style={styles.textResult}>
+                          {`${index + 1}. ${item.name}:`}
+                          <Text style={styles.textScore}>{` ${item.score}%`}</Text>
+                        </Text>
+                        ))
+                      ) : (
+                        <Text style={styles.titleResult}>{`Datos no encontrados`}</Text>
+                      )}
+                    </View>
                   </View>
                 </View>
               </View>

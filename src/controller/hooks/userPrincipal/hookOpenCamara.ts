@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Alert } from "react-native";
-import { HumeClient } from "hume";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Camera,
@@ -17,6 +16,8 @@ const useOpenCamera = () => {
   const camera = useRef<Camera>(null);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState<string>();
+  const [imageSourceShow, setImageSourceShow] = useState<PhotoFile>();
+  const [resultDiary, setResultDiary] = useState('');
 
   const { HomeScreen } = UserNavigation();
 
@@ -53,6 +54,7 @@ const useOpenCamera = () => {
         const savedPhotoPath = await savePhotoToLocal(photo);
         console.log("Photo saved to:", savedPhotoPath);
         setImageSource(savedPhotoPath);
+        setImageSourceShow(photo);
         await ScannerResult(savedPhotoPath);
         setShowCamera(false);
       } catch (error) {
@@ -87,6 +89,8 @@ const useOpenCamera = () => {
         "models": {
           "face": {
             "identify_faces": true,
+            "min_face_size": 30,
+            "prob_threshold": 0.8,
           },
         },
       }));
@@ -104,8 +108,80 @@ const useOpenCamera = () => {
         });
 
         const body = await response.json();
-        const getEmotions 
-        console.log(body);
+        const job_id = body.job_id;
+        console.log(job_id);
+        const getEmotions = async () => {
+          let isJobComplete = false;
+          let emotions = null;
+
+          while (!isJobComplete) {
+            const response = await fetch(`https://api.hume.ai/v0/batch/jobs/${job_id}/predictions`, {
+              method: 'GET',
+              headers: {
+                'X-Hume-Api-Key': 'V7VtoAQ0cAUQALDDjTZAWnqnUnM6mWvRINuB9bqxe7XQGA8I',
+                'Content-Type': 'application/json',
+              },
+            });
+
+            const result = await response.json();
+
+            if (response.status === 200) {
+              isJobComplete = true;
+              emotions = result;
+            } else if (response.status === 400 && result.message === 'Job is in progress.') {
+              console.log('Job is still in progress, waiting...');
+              await new Promise(resolve => setTimeout(resolve, 5000)); // Espera 5 segundos antes de volver a intentar
+            } else {
+              throw new Error(`Unexpected response: ${response.status} ${result.message}`);
+            }
+          }
+
+          return emotions;
+        };
+        const data = await getEmotions();
+
+        // Verificación adicional para evitar errores de acceso a propiedades
+        if (
+          data &&
+          data[0] &&
+          data[0].results &&
+          data[0].results.predictions &&
+          data[0].results.predictions[0] &&
+          data[0].results.predictions[0].models &&
+          data[0].results.predictions[0].models.face &&
+          data[0].results.predictions[0].models.face.grouped_predictions &&
+          data[0].results.predictions[0].models.face.grouped_predictions[0] &&
+          data[0].results.predictions[0].models.face.grouped_predictions[0].predictions &&
+          data[0].results.predictions[0].models.face.grouped_predictions[0].predictions[0]
+        ) {
+          const predictions = data[0].results.predictions[0].models.face.grouped_predictions[0].predictions;
+
+          if (predictions.length === 0) {
+            Alert.alert("Error", "La foto debe estar más iluminada.");
+            
+            return;
+          }
+
+          const detectedEmotions = predictions[0].emotions;
+          console.log(detectedEmotions);
+
+          const emotions = detectedEmotions.map((item: any) => ({
+            name: item.name,
+            score: Math.round(item.score * 100),
+          }));
+
+          emotions.sort((a: any, b: any) => b.score - a.score);
+          const top = emotions.slice(0, 5);
+          console.log("Emociones más fuertes detectadas:", top);
+
+          const ResultDiaryTop = JSON.stringify(top);
+          console.log(ResultDiaryTop);
+
+          setResultDiary(ResultDiaryTop);
+          console.log(resultDiary);
+        } else {
+          Alert.alert("Error", "La foto debe estar más iluminada.");
+        }
       } catch (error) {
         console.error("Error al enviar la imagen al servidor", error);
       }
@@ -113,7 +189,7 @@ const useOpenCamera = () => {
     } catch (error) {
       console.error("Error inesperado", error);
     }
-  }
+  };
 
   return {
     camera,
@@ -123,7 +199,9 @@ const useOpenCamera = () => {
     capturePhoto,
     device,
     HomeScreen,
-    format
+    format,
+    imageSourceShow,
+    resultDiary
   };
 };
 
