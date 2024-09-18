@@ -79,7 +79,7 @@ const useOpenCamera = () => {
       const formData = new FormData();
       formData.append('file', {
         uri: filePath.startsWith('file://') ? filePath : `file://${filePath}`,
-        type: 'image/jpeg',
+        type: 'image/jpg',
         name: `scanner_${Date.now()}.jpg`,
       });
 
@@ -87,8 +87,6 @@ const useOpenCamera = () => {
         "models": {
           "face": {
             "identify_faces": true,
-            "min_face_size": 30,
-            "prob_threshold": 0.8,
           },
         },
       }));
@@ -100,11 +98,13 @@ const useOpenCamera = () => {
           method: "POST",
           headers: {
             "X-Hume-Api-Key": "V7VtoAQ0cAUQALDDjTZAWnqnUnM6mWvRINuB9bqxe7XQGA8I",
+            "Content-Type": "multipart/form-data"
           },
           body: formData,
         });
 
         const body = await response.json();
+        const getEmotions 
         console.log(body);
       } catch (error) {
         console.error("Error al enviar la imagen al servidor", error);
