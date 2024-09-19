@@ -10,6 +10,9 @@ import {
 } from "react-native-vision-camera";
 import UserNavigation from "../userNavigation";
 import RNFS from "react-native-fs";
+import axios from "axios";
+import hookDataUser from "./hookDataUser";
+import url from "../config/config";
 
 const useOpenCamera = () => {
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -17,8 +20,10 @@ const useOpenCamera = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState<string>();
   const [imageSourceShow, setImageSourceShow] = useState<PhotoFile>();
-  const [resultDiary, setResultDiary] = useState('');
+  const [resultScanner, setResultScanner] = useState('');
+  const [loading, setLoading] = useState(false); // Estado para la pantalla de carga
 
+  const { userEmail } = hookDataUser();
   const { HomeScreen } = UserNavigation();
 
   const device = useCameraDevice("front");
@@ -38,6 +43,7 @@ const useOpenCamera = () => {
 
   useFocusEffect(
     useCallback(() => {
+      Alert.alert("Advertencia", "Por favor, la foto debe estar bien iluminada, de lo contrario no se podrá detectar las emociones.");
       setShowCamera(true);
       return () => {
         setShowCamera(false);
@@ -50,11 +56,13 @@ const useOpenCamera = () => {
       try {
         const photo = await camera.current?.takePhoto({});
         console.log(photo);
+        setImageSourceShow(photo);
+
         // Save photo to local storage
         const savedPhotoPath = await savePhotoToLocal(photo);
         console.log("Photo saved to:", savedPhotoPath);
         setImageSource(savedPhotoPath);
-        setImageSourceShow(photo);
+
         await ScannerResult(savedPhotoPath);
         setShowCamera(false);
       } catch (error) {
@@ -77,6 +85,7 @@ const useOpenCamera = () => {
   };
 
   const ScannerResult = async (filePath: string) => {
+    Alert.alert("Procesando", "Por favor, espere un momento...");
     try {
       const formData = new FormData();
       formData.append('file', {
@@ -155,18 +164,70 @@ const useOpenCamera = () => {
           data[0].results.predictions[0].models.face.grouped_predictions[0].predictions[0]
         ) {
           const predictions = data[0].results.predictions[0].models.face.grouped_predictions[0].predictions;
+          console.log(predictions);
 
           if (predictions.length === 0) {
-            Alert.alert("Error", "La foto debe estar más iluminada.");
-            
+            Alert.alert("Error", "La foto debe estar más iluminada. Inténtalo de nuevo.");
+            setLoading(false); // Ocultar pantalla de carga
             return;
           }
 
           const detectedEmotions = predictions[0].emotions;
           console.log(detectedEmotions);
 
-          const emotions = detectedEmotions.map((item: any) => ({
-            name: item.name,
+          const spanish = [
+            "Admiración",
+            "Adoración",
+            "Apreciación estética",
+            "Diversión",
+            "Enojo",
+            "Ansiedad",
+            "Asombro",
+            "Incomodidad",
+            "Aburrimiento",
+            "Calma",
+            "Concentración",
+            "Confusión",
+            "Contemplación",
+            "Desprecio",
+            "Alegría",
+            "Antojo",
+            "Deseo",
+            "Determinación",
+            "Decepción",
+            "Repulsión",
+            "Angustia",
+            "Duda",
+            "Éxtasis",
+            "Vergüenza",
+            "Dolor empático",
+            "Fascinación",
+            "Envidia",
+            "Emoción",
+            "Temor",
+            "Culpa",
+            "Horror",
+            "Interés",
+            "Regocijo",
+            "Amor",
+            "Nostalgia",
+            "Dolor",
+            "Orgullo",
+            "Plenitud",
+            "Alivio",
+            "Romance",
+            "Tristeza",
+            "Satisfacción",
+            "Lástima",
+            "Sorpresa (negativa)",
+            "Sorpresa (positiva)",
+            "Simpatía",
+            "Cansancio",
+            "Triunfo"
+          ];
+
+          const emotions = detectedEmotions.map((item: any, index: any) => ({
+            name: spanish[index],
             score: Math.round(item.score * 100),
           }));
 
@@ -174,11 +235,23 @@ const useOpenCamera = () => {
           const top = emotions.slice(0, 5);
           console.log("Emociones más fuertes detectadas:", top);
 
-          const ResultDiaryTop = JSON.stringify(top);
-          console.log(ResultDiaryTop);
+          const ResultScanner = JSON.stringify(top);
+          setResultScanner(ResultScanner);
 
-          setResultDiary(ResultDiaryTop);
-          console.log(resultDiary);
+          try {
+            const response = await axios.post(`${url}/insertsResultScanner?userEmail=${userEmail}`, {
+              ResultScanner,
+            });
+            if (response.status === 200) {
+              Alert.alert("Enviado", "Escánner Enviado.");
+            } else {
+              console.error("Error en la respuesta del servidor:", response.data);
+              Alert.alert("Error", "Hubo un problema al enviar los datos al servidor.");
+            }
+          } catch (error) {
+            console.error("Error al enviar la imagen al servidor:", error.response ? error.response.data : error.message);
+            Alert.alert("Error", "Hubo un problema al enviar los datos al servidor.");
+          }
         } else {
           Alert.alert("Error", "La foto debe estar más iluminada.");
         }
@@ -188,6 +261,8 @@ const useOpenCamera = () => {
 
     } catch (error) {
       console.error("Error inesperado", error);
+    } finally {
+      setLoading(false); // Ocultar pantalla de carga
     }
   };
 
@@ -201,7 +276,8 @@ const useOpenCamera = () => {
     HomeScreen,
     format,
     imageSourceShow,
-    resultDiary
+    resultScanner,
+    loading // Devolver el estado de carga
   };
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Checkbox } from "react-native-paper";
 import styles from "./style/styleFormSignUp";
 import hookSignup from "../../../controller/hooks/userRegistration/hookSignup";
 
@@ -15,6 +16,7 @@ const labelConfirmPassword = "Repetir Contraseña";
 const placeholderConfirmPassword = "Repita su contraseña";
 const placeholderColor = "#828282";
 const buttonText = "Registrarse";
+const labelDataTreatment = "Acepto el tratamiento de datos personales";
 
 // Definición del componente FormSignUp
 const FormSignUp = () => {
@@ -40,6 +42,9 @@ const FormSignUp = () => {
     userPasswordNext,
     confirmPasswordRef,
     confirmPasswordNext,
+    isDataTreatmentAccepted,
+    handleCheckboxChange,
+
   } = hookSignup();
 
   return (
@@ -165,6 +170,14 @@ const FormSignUp = () => {
               ref={confirmPasswordRef}
             />
           </View>
+        </View>
+        <View style={styles.divInputCheck}>
+          <Checkbox
+            status={isDataTreatmentAccepted ? 'checked' : 'unchecked'}
+            onPress={handleCheckboxChange}
+            color='#003736'
+          />
+          <Text style={styles.labelFormData}>{labelDataTreatment}</Text>
         </View>
         <View style={styles.divButton}>
           <TouchableOpacity

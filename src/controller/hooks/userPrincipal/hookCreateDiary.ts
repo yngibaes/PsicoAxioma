@@ -17,7 +17,7 @@ const hookCreateDiary = () => {
 
   // Limpiar el formulario
   const clearForm = () => {
-    setdiaryContent("");
+    setdiaryContent(""); 
     setdiaryTitle("");
   };
 
@@ -93,6 +93,7 @@ const hookCreateDiary = () => {
       try {
         const data = JSON.parse(event.data);
         const detectedEmotions = data.language.predictions[0].emotions;
+        //console.log(detectedEmotions);
         const spanish = [
           "Admiración",
           "Adoración",

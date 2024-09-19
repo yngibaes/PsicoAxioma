@@ -36,11 +36,20 @@ const styles = StyleSheet.create({
   divButton: {
     // Estilos del contenedor de los botones
     alignItems: "center",
-    marginTop: hp("2%"),
+    marginTop: hp("0.5%"),
     width: wp("94%"), // Ancho del contenedor
   },
   divInput: {
     // Estilos del contenedor del input del formulario
+    marginTop: hp("1.5%"), // Margen superior
+    paddingHorizontal: wp("5%"), // Relleno horizontal
+    width: wp("90%"), // Ancho del contenedor
+  },
+  divInputCheck: {
+    // Estilos del contenedor del input del formulario
+    alignItems: "center", // Alineación de los elementos
+    flexDirection: "row", // Orden de los elementos
+    justifyContent: "center", // Alineación de los elementos
     marginTop: hp("1.5%"), // Margen superior
     paddingHorizontal: wp("5%"), // Relleno horizontal
     width: wp("90%"), // Ancho del contenedor
@@ -72,6 +81,15 @@ const styles = StyleSheet.create({
     fontSize: wp("3.9%"), // Tamaño de la fuente
     fontWeight: "500", // Grosor del texto
     lineHeight: 19, // Altura de la línea
+    marginLeft: wp("1%"), // Margen izquierdo
+    textAlign: "left", // Alineación del texto
+  },
+  labelFormData: {
+    // Estilos de la etiqueta del formulario
+    color: colorTheme.PsicoAxiomaColors.formTextSignUp, // Color del texto
+    fontFamily: "InterMedium", // Tipo de fuente
+    fontSize: wp("3.5%"), // Tamaño de la fuente
+    fontWeight: "500", // Grosor del texto
     marginLeft: wp("1%"), // Margen izquierdo
     textAlign: "left", // Alineación del texto
   },

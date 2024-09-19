@@ -22,6 +22,7 @@ const hookSignup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isDataTreatmentAccepted, setIsDataTreatmentAccepted] = useState(false);
 
   // Referencias
   const userEmailRef = useRef<TextInput>(null);
@@ -134,6 +135,10 @@ const hookSignup = () => {
     }
   };
 
+  const handleCheckboxChange = () => {
+    setIsDataTreatmentAccepted(!isDataTreatmentAccepted);
+  };
+
   // Registrar usuario en firebase
   const registerUserInFirebase = async (
     userEmail: string,
@@ -195,6 +200,10 @@ const hookSignup = () => {
         console.error("Error al momento de enviar a la base de datos");
         return;
       }
+      if (!isDataTreatmentAccepted) {
+        Alert.alert("Error", "Debe aceptar el tratamiento de datos personales para registrarse.");
+        return;
+      }
       // Verificar si el número de teléfono ya está registrado
       const phoneValid = await verifyPhoneNumber(userPhone);
       if (phoneValid) {
@@ -241,6 +250,9 @@ const hookSignup = () => {
     userPasswordNext,
     confirmPasswordRef,
     confirmPasswordNext,
+    isDataTreatmentAccepted,
+    handleCheckboxChange,
+    setIsDataTreatmentAccepted
   };
 };
 

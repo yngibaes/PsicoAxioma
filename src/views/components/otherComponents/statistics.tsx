@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Text, View, ActivityIndicator } from "react-native";
-import hookDataUser from "../../../controller/hooks/userPrincipal/hookDataUser";
-import url from "../../../controller/hooks/config/config";
 import { LineChart, PieChart } from "react-native-gifted-charts";
 import styles from "./style/styleStatics";
 import data from "../../../controller/data/dataColor";
+import useStatisticsData from "../../../controller/hooks/userPrincipal/hookStatistics";
 
-// Estrucutra de los datos para la gráfica de línea
+// Estructura de los datos para la gráfica de línea
 type lineDataItem = {
   value: number;
   text?: string | undefined; // Update the type to be string | undefined
@@ -20,50 +19,7 @@ const renderDot = (colorDot: any) => {
 };
 
 const Statistics = () => {
-  const [emotions, setEmotion] = useState<
-    { score: number; diaryFK: number; name: string; diaryDate: Date }[]
-  >([]);
-  const [loading, setLoading] = useState(true);
-  const { userEmail } = hookDataUser();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${url}/resultDiary?userEmail=${userEmail}`,
-        );
-        const result = await response.json();
-        //console.log(result);
-        // Procesar los datos para extraer las emociones principales de cada diario
-        const processedEmotions = result.map(
-          (diary: {
-            resultDiary: string;
-            diaryFK: number;
-            diaryDate: Date;
-          }) => {
-            const emotions = JSON.parse(diary.resultDiary);
-            const topEmotion = emotions[0]; // Tomar la primera emoción
-            return {
-              ...topEmotion,
-              diaryFK: diary.diaryFK,
-              diaryDate: new Date(diary.diaryDate),
-            };
-          },
-        );
-
-        // Ordenar las emociones por fecha de la más antigua a la más reciente
-        processedEmotions.sort(
-          (a: any, b: any) => a.diaryDate.getTime() - b.diaryDate.getTime(),
-        );
-        setEmotion(processedEmotions);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [userEmail]);
+  const { emotionsDiary, emotionsScanner, loading } = useStatisticsData();
 
   const formatDate = (date: Date): string => {
     return date.toLocaleDateString("en-GB", {
@@ -77,7 +33,7 @@ const Statistics = () => {
   };
 
   // Crear la estructura de datos para la gráfica de línea
-  const lineData: lineDataItem[] = emotions.map(item => ({
+  const lineData: lineDataItem[] = emotionsDiary.map(item => ({
     value: item.score,
     score: `${item.score}%`,
     label: item.name,
@@ -85,7 +41,7 @@ const Statistics = () => {
   }));
   //console.log(lineData);
 
-  const lineDataScanner: lineDataItem[] = emotions.map((item, index) => ({
+  const lineDataScanner: lineDataItem[] = emotionsScanner.map((item, index) => ({
     value: item.score,
     color: data[index % data.length].color,
     score: `${item.score}%`,
@@ -109,7 +65,7 @@ const Statistics = () => {
             <Text style={styles.textTitle}>
               Emociones detectadas del diario semanalmente:
             </Text>
-            {emotions.length > 0 ? (
+            {emotionsDiary.length > 0 ? (
               <View style={styles.parentLine}>
                 <LineChart
                   initialSpacing={30}
@@ -161,7 +117,7 @@ const Statistics = () => {
             <Text style={styles.textTitle}>
               Emociones detectadas del scaneo:
             </Text>
-            {emotions.length > 0 ? (
+            {emotionsScanner.length > 0 ? (
               <View style={styles.parentLinePie}>
                 <PieChart
                   data={lineDataScanner}

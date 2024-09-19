@@ -25,10 +25,11 @@ const CameraScreen = () => {
     HomeScreen,
     format,
     imageSourceShow,
-    resultDiary
+    resultScanner,
+    loading
   } = hookOpenCamara();
 
-  const data = resultDiary ? JSON.parse(resultDiary) : [];
+  const data = resultScanner ? JSON.parse(resultScanner) : [];
 
   if (!hasPermission) {
     return (
@@ -48,6 +49,11 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
+      {loading && (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
       {showCamera ? (
         <>
           <Camera
