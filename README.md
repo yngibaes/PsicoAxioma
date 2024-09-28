@@ -4,8 +4,6 @@
 
 <br clear="both">
 
-###
-
 ## **Descripción**
 **PsicoAxioma** es una aplicación móvil desarrollada con _React Native_ que integra una robusta infraestructura backend construida en _Node.js_.
 Su principal objetivo es proporcionar una herramienta de apoyo psicológico, aprovechando la vanguardia de la inteligencia artificial a través de la plataforma _HUMEAI_.
