@@ -1,6 +1,7 @@
 <h2 align="center">PsicoAxioma 🧸</h2>
 
 Es una aplicación de seguimiento emocional post-terapia potenciado por _HUME AI_. 🧸
+<h1 align="center">PsicoAxioma 🧸</h1>
 
 ###
 
