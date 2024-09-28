@@ -16,6 +16,10 @@ Puedes encontrar la aplicación de PsicoAxioma en la PlayStore.
 <br clear="both">
 
 ## **Funcionalidades**
+En PsicoAxioma existen 3 funcionalidades especiales:
++ Escáner Emocional: En este podrás saber tus emociones apartir de tus rasgos faciales.
++ Diario Emocional: Apartir de tus experencias diarias sabrás como te sientes.
++ Líneas de Atención Psicológicas: Tendrás acceso directo a las líneas de atención psicológicas de Bogotá.
 <div align="center">
  <img src="./readme-assets/1.jpg" alt="readme-title" width="220" height="400"/>
  <img src="./readme-assets/2.jpg" alt="readme-title" width="220" height="400"/>
