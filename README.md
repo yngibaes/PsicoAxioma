@@ -28,5 +28,9 @@ Puedes encontrar la aplicación de PsicoAxioma en la PlayStore
 ## **Funcionalidades**
 <div align="center">
  <img src="./readme-assets/1.jpg" alt="readme-title" width="220" height="400"/>
-  <img src="./readme-assets/1.jpg" alt="readme-title" width="100%"/>
+<img src="./readme-assets/2.jpg" alt="readme-title" width="220" height="400"/>
+ <img src="./readme-assets/3.jpg" alt="readme-title" width="220" height="400"/>
+ <img src="./readme-assets/4.jpg" alt="readme-title" width="220" height="400"/>
+ <img src="./readme-assets/5.jpg" alt="readme-title" width="220" height="400"/>
+ <img src="./readme-assets/6.jpg" alt="readme-title" width="220" height="400"/>
 </div>
