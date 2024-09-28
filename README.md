@@ -1,8 +1,12 @@
-<h2 align="center">PsicoAxioma, es una aplicación de seguimiento emocional post-terapia potenciado por HUME AI. 🧸</h2>
+<h2 align="center">PsicoAxioma 🧸</h2>
+
+Es una aplicación de seguimiento emocional post-terapia potenciado por _HUME AI_. 🧸
 
 ###
 
 <br clear="both">
+
+###
 
 ## **Descripción**
 **PsicoAxioma** es una aplicación móvil desarrollada con _React Native_ que integra una robusta infraestructura backend construida en _Node.js_.
