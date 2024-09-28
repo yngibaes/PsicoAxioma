@@ -102,7 +102,8 @@ const Scroll = () => {
       )}
       <CustomButton handlerPress={handlePress} buttonVal={buttonVal} />
       <Pagination data={data} buttonVal={buttonVal} />
-      <Text style={styles.credit}>© TypeByte Ⓡ 2024</Text>
+      <Text style={styles.credit}>©Ⓡ TypeByte | Potenciado por Hume AI · 2024
+      </Text>
     </View>
   );
 };

@@ -13,7 +13,7 @@ export interface OnboardingData {
 const path = "../../views/assets/img/scroll/";
 const textBlack = "#000";
 const TextWhite = "#FFF";
-const backgroundColor1 = "#cce8e8";
+const backgroundColor1 = "#123e49";
 const backgroundColor2 = "#458281";
 const backgroundColor3 = "#f8dac2";
 const backgroundColor4 = "#c1cde0";
@@ -23,7 +23,7 @@ const data: OnboardingData[] = [
     id: 1,
     image: require(`${path}logo.png`),
     text: "¡Bienvenido a PsicoAxioma!",
-    textColor: textBlack,
+    textColor: TextWhite,
     backgroundColor: backgroundColor1, //Aca se le pude modificar los colores a cada componente de las paginas
   },
   {

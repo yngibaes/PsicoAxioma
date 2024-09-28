@@ -62,6 +62,9 @@ const Statistics = () => {
       ) : (
         <>
           <View style={styles.child}>
+            <Text style={styles.textProm}>
+              · Potenciado por Hume AI
+            </Text>
             <Text style={styles.textTitle}>
               Emociones detectadas del diario semanalmente:
             </Text>
@@ -113,7 +116,10 @@ const Statistics = () => {
               <ActivityIndicator size="small" color="#479E9C" />
             )}
           </View>
-           <View style={styles.child}>
+          <View style={styles.child}>
+            <Text style={styles.textProm}>
+              · Potenciado por Hume AI
+            </Text>
             <Text style={styles.textTitle}>
               Emociones detectadas del scaneo:
             </Text>
@@ -152,8 +158,8 @@ const Statistics = () => {
                       style={styles.parentScore}
                     >
                       <View style={styles.childScore}>
-                      {renderDot(item.color)}
-                      <Text style={styles.textLabel}>{item.label}: <Text style={styles.textLabel}>{item.score}</Text></Text>
+                        {renderDot(item.color)}
+                        <Text style={styles.textLabel}>{item.label}: <Text style={styles.textLabel}>{item.score}</Text></Text>
                       </View>
                     </View>
                   ))}

@@ -99,6 +99,15 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     textAlign: "center",
   },
+  textProm:{
+    color: colorTheme.PsicoAxiomaColors.formTextSignUp,
+    fontFamily: "InterBold",
+    fontSize: wp("2.5%"),
+    fontWeight: "200",
+    marginLeft: wp("3%"),
+    marginTop: hp("1%"),
+    textAlign: "left",
+  },
   textScore: {
     color: colorTheme.PsicoAxiomaColors.black,
     fontFamily: "InterBold",
@@ -116,7 +125,6 @@ const styles = StyleSheet.create({
     fontSize: wp("3.5%"),
     fontWeight: "200",
     marginLeft: wp("3%"),
-    marginTop: hp("2%"),
     textAlign: "left",
   },
 });
