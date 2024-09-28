@@ -15,7 +15,7 @@ Su principal objetivo es proporcionar una herramienta de apoyo psicológico, apr
 ###
 
 ## **PlayStore**
-Puedes encontrar la aplicación de PsicoAxioma en la PlayStore
+Puedes encontrar la aplicación de PsicoAxioma en la PlayStore.
 
 ###
 
@@ -26,7 +26,7 @@ Puedes encontrar la aplicación de PsicoAxioma en la PlayStore
 ## **Funcionalidades**
 <div align="center">
  <img src="./readme-assets/1.jpg" alt="readme-title" width="220" height="400"/>
-<img src="./readme-assets/2.jpg" alt="readme-title" width="220" height="400"/>
+ <img src="./readme-assets/2.jpg" alt="readme-title" width="220" height="400"/>
  <img src="./readme-assets/3.jpg" alt="readme-title" width="220" height="400"/>
  <img src="./readme-assets/4.jpg" alt="readme-title" width="220" height="400"/>
  <img src="./readme-assets/5.jpg" alt="readme-title" width="220" height="400"/>
